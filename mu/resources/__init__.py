@@ -17,20 +17,20 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from pkg_resources import resource_filename, resource_string
+from importlib.resources import files as importlib_files
 from PyQt6.QtGui import QPixmap, QIcon, QMovie
 from PyQt6.QtCore import QDir
 import os
 
 
 # The following lines add the images and css directories to the search path.
-QDir.addSearchPath("images", resource_filename(__name__, "images"))
-QDir.addSearchPath("css", resource_filename(__name__, "css"))
+QDir.addSearchPath("images", str(importlib_files(__name__) / "images"))
+QDir.addSearchPath("css", str(importlib_files(__name__) / "css"))
 
 
 def path(name, resource_dir="images/", ext=""):
     """Return the filename for the referenced image."""
-    return resource_filename(__name__, resource_dir + name + ext)
+    return str(importlib_files(__name__) / (resource_dir + name + ext))
 
 
 def load_icon(name):
@@ -58,11 +58,11 @@ def load_movie(name):
 
 def load_stylesheet(name):
     """Load a CSS stylesheet from the resources directory."""
-    return resource_string(__name__, "css/" + name).decode("utf8")
+    return importlib_files(__name__).joinpath("css/" + name).read_bytes().decode("utf8")
 
 
 def load_font_data(name):
     """
     Load the (binary) content of a font as bytes
     """
-    return resource_string(__name__, "fonts/" + name)
+    return importlib_files(__name__).joinpath("fonts/" + name).read_bytes()

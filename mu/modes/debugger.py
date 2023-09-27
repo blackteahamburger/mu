@@ -23,7 +23,6 @@ from .base import BaseMode
 from ..debugger.config import DEBUGGER_PORT
 from ..debugger.client import Debugger
 from ..debugger.utils import is_breakpoint_line
-from ..virtual_environment import venv
 
 from PyQt6.QtCore import QTimer
 
@@ -122,7 +121,7 @@ class DebugMode(BaseMode):
             envars = self.editor.envars
             cwd = os.path.dirname(tab.path)
             self.runner = self.view.add_python3_runner(
-                venv.interpreter, tab.path, cwd, debugger=True, envars=envars
+                tab.path, cwd, debugger=True, envars=envars
             )
             self.runner.process.waitForStarted()
             self.runner.process.finished.connect(self.finished)

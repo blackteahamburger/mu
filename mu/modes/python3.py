@@ -23,7 +23,6 @@ from mu.modes.base import BaseMode
 from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS
 from mu.resources import load_icon
 from mu.interface.panes import CHARTS
-from ..virtual_environment import venv
 from qtconsole.manager import QtKernelManager
 from qtconsole.client import QtKernelClient
 from PyQt6.QtCore import QObject, QThread, pyqtSignal
@@ -40,17 +39,6 @@ class MuKernelManager(QtKernelManager):
         Mu itself.
         """
         kernel_cmd, kw = self.pre_start_kernel(**kw)
-        cmd_interpreter = kernel_cmd[0]
-        if cmd_interpreter != venv.interpreter:
-            self.log.debug(
-                "Wrong interpreter selected to run REPL: %s", kernel_cmd
-            )
-            self.log.debug(
-                "Using default interpreter to run REPL instead: %s",
-                cmd_interpreter,
-            )
-            cmd_interpreter = venv.interpreter
-            kernel_cmd[0] = cmd_interpreter
 
         # launch the kernel subprocess
         self.log.debug("Starting kernel: %s", kernel_cmd)
@@ -230,7 +218,6 @@ class PythonMode(BaseMode):
             logger.info(
                 "About to run script: %s",
                 dict(
-                    interpreter=venv.interpreter,
                     script_name=tab.path,
                     working_directory=cwd,
                     interactive=True,
@@ -238,7 +225,6 @@ class PythonMode(BaseMode):
                 ),
             )
             self.runner = self.view.add_python3_runner(
-                interpreter=venv.interpreter,
                 script_name=tab.path,
                 working_directory=cwd,
                 interactive=True,
@@ -297,7 +283,6 @@ class PythonMode(BaseMode):
         self.set_buttons(repl=False)
         self.kernel_thread = QThread()
         self.kernel_runner = KernelRunner(
-            kernel_name=venv.name,
             cwd=self.workspace_dir(),
             envars=self.editor.envars,
         )

@@ -49,7 +49,6 @@ from mu.interface.dialogs import (
     ModeSelector,
     AdminDialog,
     FindReplaceDialog,
-    PackageDialog,
 )
 from mu.interface.themes import (
     DayTheme,
@@ -731,18 +730,17 @@ class Window(QMainWindow):
 
     def add_python3_runner(
         self,
-        interpreter,
         script_name,
         working_directory,
         interactive=False,
         debugger=False,
         command_args=None,
+        runner=None,
         envars=None,
         python_args=None,
     ):
         """
-        Display console output for the interpreter with the referenced
-        pythonpath running the referenced script.
+        Display console output for the referenced Python script.
 
         The script will be run within the workspace_path directory.
 
@@ -757,6 +755,9 @@ class Window(QMainWindow):
         If there is a list of command_args (the default is None) then these
         will be passed as further arguments into the command run in the
         new process.
+
+        If runner is given, this is used as the command to start the Python
+        process.
 
         If envars is given, these will become part of the environment context
         of the new child process.
@@ -783,24 +784,24 @@ class Window(QMainWindow):
         self.addDockWidget(area, self.runner)
         logger.info(
             "About to start_process: %r, %r, %r, %r, %r, %r, %r, %r",
-            interpreter,
             script_name,
             working_directory,
             interactive,
             debugger,
             command_args,
+            runner,
             envars,
             python_args,
         )
 
         self.process_runner.start_process(
-            interpreter,
             script_name,
             working_directory,
             interactive,
             debugger,
             command_args,
             envars,
+            runner,
             python_args,
         )
         self.process_runner.setFocus()
@@ -1004,28 +1005,19 @@ class Window(QMainWindow):
 
         timer.start(500)
 
-    def show_admin(self, log, settings, packages, mode, device_list):
+    def show_admin(self, log, settings, mode, device_list):
         """
         Display the administrative dialog with referenced content of the log
         and settings. Return a dictionary of the settings that may have been
         changed by the admin dialog.
         """
         admin_box = AdminDialog(self)
-        admin_box.setup(log, settings, packages, mode, device_list)
+        admin_box.setup(log, settings, mode, device_list)
         result = admin_box.exec()
         if result:
             return admin_box.settings()
         else:
             return {}
-
-    def sync_packages(self, to_remove, to_add):
-        """
-        Display a modal dialog that indicates the status of the add/remove
-        package management operation.
-        """
-        package_box = PackageDialog(self)
-        package_box.setup(to_remove, to_add)
-        package_box.exec()
 
     def show_message(self, message, information=None, icon=None):
         """

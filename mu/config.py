@@ -5,12 +5,6 @@ import platformdirs
 # The default directory for application data (i.e., configuration).
 DATA_DIR = platformdirs.user_data_dir(appname="mu", appauthor="python")
 
-# The name of the default virtual environment used by Mu.
-VENV_NAME = "mu_venv"
-
-# The directory containing default virtual environment.
-VENV_DIR = os.path.join(DATA_DIR, VENV_NAME)
-
 # Maximum line length for using both in Check and Tidy
 MAX_LINE_LENGTH = 88
 

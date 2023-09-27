@@ -255,15 +255,6 @@ class SessionSettings(SettingsBase):
     filestem = "session"
 
 
-class VirtualEnvironmentSettings(SettingsBase):
-
-    DEFAULTS = {
-        "baseline_packages": [],
-    }
-    autosave = True
-    filestem = "venv"
-
-
 settings = UserSettings()
 session = SessionSettings()
 

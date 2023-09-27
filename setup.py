@@ -33,7 +33,6 @@ install_requires = [
     + ';"arm" not in platform_machine and "aarch" not in platform_machine',
     "jupyter-client",
     # ipykernel v5.5.6 resolves issue ipython/ipykernel#759.
-    # ipykernel version has to be mirrored in mu/wheels/__init__.py
     "ipykernel>=5.5.6",
     "qtconsole~=5.4",
     # adafruit-board-toolkit is used to find serial ports and help identify
@@ -50,24 +49,14 @@ install_requires = [
     "black>=19.10b0",
     "platformdirs>=2.0.0",
     "semver>=2.8.0",
-    # virtualenv vendors pip, we need at least pip v19.3 to install some
-    # rust based dependencies. virtualenv >=v20 is required for the --symlinks
-    # flag needed by AppImage, and it packs pip v20.0.2.
-    "virtualenv>=20.0.0",
-    "pip>=19.3",
-    #
-    # Needed for packaging
-    #
-    "wheel",
     # Needed to deploy from web mode
     "requests>=2.0.0",
+    "pgzero>=1.2.1",
+    "flask>=2.0.3",
     #
     # Needed to resolve an issue with paths in the user virtual environment
     #
     "pywin32; sys_platform=='win32'",
-    # pkg_resources has been removed in Python 3.12, until we move to importlib
-    # we need it via setuptools: https://github.com/mu-editor/mu/issues/2485
-    "setuptools",
 ]
 
 
@@ -119,12 +108,10 @@ setup(
         "mu.debugger",
         "mu.interface",
         "mu.modes.api",
-        "mu.wheels",
     ],
     python_requires=">=3.8,<3.14",
     install_requires=install_requires,
     extras_require=extras_require,
-    package_data={"mu.wheels": ["*.whl", "*.zip"]},
     include_package_data=True,
     zip_safe=False,
     classifiers=[

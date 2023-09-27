@@ -40,9 +40,8 @@ from . import __version__
 from . import i18n
 from .resources import path
 from .debugger.utils import is_breakpoint_line
-from .config import DATA_DIR, VENV_DIR, MAX_LINE_LENGTH
+from .config import DATA_DIR, MAX_LINE_LENGTH
 from . import settings
-from .virtual_environment import venv
 
 # The default directory for application logs.
 LOG_DIR = platformdirs.user_log_dir(appname="mu", appauthor="python")
@@ -952,10 +951,6 @@ class Editor(QObject):
             self._view.zoom_position = old_session["zoom_level"]
             self._view.set_zoom()
 
-        if "venv_path" in old_session:
-            venv.relocate(old_session["venv_path"])
-            venv.ensure()
-
         python_anywhere = old_session.get("python_anywhere")
         if python_anywhere:
             self.pa_username = python_anywhere["username"]
@@ -1463,13 +1458,10 @@ class Editor(QObject):
             "pa_token": self.pa_token,
             "pa_instance": self.pa_instance,
         }
-        baseline_packages, user_packages = venv.installed_packages()
-        packages = user_packages
         with open(LOG_FILE, "r", encoding="utf8") as logfile:
             new_settings = self._view.show_admin(
                 logfile.read(),
                 settings,
-                "\n".join(packages),
                 self.modes[self.mode],
                 self.connected_devices,
             )
@@ -1491,14 +1483,6 @@ class Editor(QObject):
                     self._view.show_message(message, information)
                 else:
                     self.microbit_runtime = runtime
-            if "packages" in new_settings:
-                new_packages = [
-                    p
-                    for p in new_settings["packages"].lower().split("\n")
-                    if p.strip()
-                ]
-                old_packages = [p.lower() for p in user_packages]
-                self.sync_package_state(old_packages, new_packages)
             if "pa_username" in new_settings:
                 self.pa_username = new_settings["pa_username"].strip()
             if "pa_token" in new_settings:
@@ -1511,26 +1495,6 @@ class Editor(QObject):
             self.modes[self.mode].ensure_state()
         else:
             logger.info("No admin settings changed.")
-
-    def sync_package_state(self, old_packages, new_packages):
-        """
-        Given the state of the old third party packages, compared to the new
-        third party packages, ensure that pip uninstalls and installs the
-        packages so the currently available third party packages reflects the
-        new state.
-        """
-        old = set(old_packages)
-        new = set(new_packages)
-        logger.info("Synchronize package states...")
-        logger.info("Old: {}".format(old))
-        logger.info("New: {}".format(new))
-        to_remove = old.difference(new)
-        to_add = new.difference(old)
-        if to_remove or to_add:
-            logger.info("To add: {}".format(to_add))
-            logger.info("To remove: {}".format(to_remove))
-            logger.info("Virtualenv: {}".format(VENV_DIR))
-            self._view.sync_packages(to_remove, to_add)
 
     def select_mode(self, event=None):
         """

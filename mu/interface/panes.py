@@ -1045,20 +1045,20 @@ class PythonProcessPane(QTextEdit):
 
     def start_process(
         self,
-        interpreter,
         script_name,
         working_directory,
         interactive=True,
         debugger=False,
         command_args=None,
         envars=None,
+        runner=None,
         python_args=None,
     ):
         """
         Start the child Python process.
 
-        Will use the referenced interpreter to run the Python
-        script_name within the context of the working directory.
+        Will run the referenced Python script_name within the context of theAdd commentMore actions
+        working directory.
 
         If interactive is True (the default) the Python process will run in
         interactive mode (dropping the user into the REPL when the script
@@ -1073,8 +1073,11 @@ class PythonProcessPane(QTextEdit):
         If there is a list of environment variables, these will be part of the
         context of the new child process.
 
+        If runner is given, this is used as the command to start the PythonAdd commentMore actions
+        process.
+
         If python_args is given, these are passed as arguments to the Python
-        interpreter used to launch the child process.
+        runtime used to launch the child process.
         """
         self.is_interactive = interactive
         if not envars:  # Envars must be a dict if not passed a value.
@@ -1086,7 +1089,6 @@ class PythonProcessPane(QTextEdit):
         if script_name:
             self.script = os.path.abspath(os.path.normcase(script_name))
         logger.info("Running script: {}".format(self.script))
-        logger.info("Using interpreter: {}".format(interpreter))
         if interactive:
             logger.info("Running with interactive mode.")
         if command_args is None:
@@ -1124,6 +1126,7 @@ class PythonProcessPane(QTextEdit):
             mu_dir = os.path.abspath(parent_dir)
             logger.info("mu_dir: %s", mu_dir)
             runner = os.path.join(mu_dir, "mu_debug.py")
+            python_exec = sys.executable
             args = [runner, self.script] + command_args
             #
             # The runtime virtualenvironment doesn't include Mu
@@ -1135,8 +1138,14 @@ class PythonProcessPane(QTextEdit):
                 "PYTHONPATH", os.path.abspath(os.path.join(mu_dir, ".."))
             )
             self.process.setProcessEnvironment(env)
-            self.process.start(interpreter, args)
+            self.process.start(python_exec, args)
         else:
+            if runner:
+                # Use the passed in Python "runner" to run the script.
+                python_exec = runner
+            else:
+                # Use the current system Python to run the script.
+                python_exec = sys.executable
             args = []
             if self.script:
                 if interactive:
@@ -1147,9 +1156,10 @@ class PythonProcessPane(QTextEdit):
                     args = [self.script] + command_args
             if python_args:
                 args = python_args + args
+            logger.info("Runner: {}".format(python_exec))
             logger.info("Args: {}".format(args))
             self.process.setProcessEnvironment(env)
-            self.process.start(interpreter, args)
+            self.process.start(python_exec, args)
             self.running = True
 
     def stop_process(self):

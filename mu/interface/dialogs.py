@@ -42,7 +42,6 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QTextCursor
 from mu.resources import load_icon
 from mu.interface.widgets import DeviceSelector
-from ..virtual_environment import venv
 
 logger = logging.getLogger(__name__)
 
@@ -201,33 +200,6 @@ class MicrobitSettingsWidget(QWidget):
         self.runtime_path.setText(custom_runtime_path)
         widget_layout.addWidget(self.runtime_path)
         widget_layout.addStretch()
-
-
-class PackagesWidget(QWidget):
-    """
-    Used for editing and displaying 3rd party packages installed via pip to be
-    used with Python 3 mode.
-    """
-
-    def setup(self, packages):
-        widget_layout = QVBoxLayout()
-        self.setLayout(widget_layout)
-        self.text_area = QPlainTextEdit()
-        self.text_area.setLineWrapMode(QPlainTextEdit.NoWrap)
-        label = QLabel(
-            _(
-                "The packages shown below will be available to "
-                "import in Python 3 mode. Delete a package from "
-                "the list to remove its availability.\n\n"
-                "Each separate package name should be on a new "
-                "line. Packages are installed from PyPI "
-                "(see: https://pypi.org/)."
-            )
-        )
-        label.setWordWrap(True)
-        widget_layout.addWidget(label)
-        self.text_area.setPlainText(packages)
-        widget_layout.addWidget(self.text_area)
 
 
 class PythonAnywhereWidget(QWidget):
@@ -556,7 +528,7 @@ class ESPFirmwareFlasherWidget(QWidget):
 class AdminDialog(QDialog):
     """
     Displays administrative related information and settings (logs, environment
-    variables, third party packages etc...).
+    variables etc...).
     """
 
     def __init__(self, parent=None):
@@ -566,7 +538,7 @@ class AdminDialog(QDialog):
         self.envar_widget = None
         self.python_anywhere_widget = None
 
-    def setup(self, log, settings, packages, mode, device_list):
+    def setup(self, log, settings, mode, device_list):
         self.setMinimumSize(600, 400)
         self.setWindowTitle(_("Mu Administration"))
         widget_layout = QVBoxLayout()
@@ -594,10 +566,6 @@ class AdminDialog(QDialog):
                 settings.get("microbit_runtime", ""),
             )
             self.tabs.addTab(self.microbit_widget, _("BBC micro:bit Settings"))
-        if mode.short_name in ["python", "web", "pygamezero"]:
-            self.package_widget = PackagesWidget(self)
-            self.package_widget.setup(packages)
-            self.tabs.addTab(self.package_widget, _("Third Party Packages"))
         if mode.short_name == "esp":
             self.esp_widget = ESPFirmwareFlasherWidget(self)
             self.esp_widget.setup(mode, device_list)
@@ -634,8 +602,6 @@ class AdminDialog(QDialog):
             settings[
                 "microbit_runtime"
             ] = self.microbit_widget.runtime_path.text()
-        if self.package_widget:
-            settings["packages"] = self.package_widget.text_area.toPlainText()
         if self.python_anywhere_widget:
             settings[
                 "pa_username"
@@ -710,87 +676,3 @@ class FindReplaceDialog(QDialog):
         Return the value of the global replace flag.
         """
         return self.replace_all_flag.isChecked()
-
-
-class PackageDialog(QDialog):
-    """
-    Display the output of the pip commands needed to remove or install
-    packages.
-
-    Because the QProcess mechanism we're using is asynchronous, we have to
-    manage the pip requests via `pip_queue`. When one request is signalled
-    as finished we start the next.
-    """
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.pip_queue = []
-
-    def setup(self, to_remove, to_add):
-        """
-        Create the UI for the dialog.
-        """
-        # Basic layout.
-        self.setMinimumSize(600, 400)
-        self.setWindowTitle(_("Third Party Package Status"))
-        widget_layout = QVBoxLayout()
-        self.setLayout(widget_layout)
-        # Text area for pip output.
-        self.text_area = QPlainTextEdit()
-        self.text_area.setReadOnly(True)
-        self.text_area.setLineWrapMode(QPlainTextEdit.NoWrap)
-        widget_layout.addWidget(self.text_area)
-        # Buttons.
-        self.button_box = QDialogButtonBox(QDialogButtonBox.Ok)
-        self.button_box.button(QDialogButtonBox.Ok).setEnabled(False)
-        self.button_box.accepted.connect(self.accept)
-        widget_layout.addWidget(self.button_box)
-
-        #
-        # Set up the commands to be issues to pip. Since we'll be popping
-        # from the list (as LIFO) we'll add the installs first so the
-        # removes are the first to happen
-        #
-        if to_add:
-            self.pip_queue.append(("install", to_add))
-        if to_remove:
-            self.pip_queue.append(("remove", to_remove))
-        QTimer.singleShot(2, self.next_pip_command)
-
-    def next_pip_command(self):
-        """
-        Run the next pip command, finishing if there is none.
-        """
-        if self.pip_queue:
-            command, packages = self.pip_queue.pop()
-            self.run_pip(command, packages)
-        else:
-            self.finish()
-
-    def finish(self):
-        """
-        Set the UI to a valid end state.
-        """
-        self.text_area.appendPlainText("\nFINISHED")
-        self.button_box.button(QDialogButtonBox.Ok).setEnabled(True)
-
-    def run_pip(self, command, packages):
-        """
-        Run a pip command in a subprocess and pipe the output to the dialog's
-        text area.
-        """
-        if command == "remove":
-            pip_fn = venv.remove_user_packages
-        elif command == "install":
-            pip_fn = venv.install_user_packages
-        else:
-            raise RuntimeError(
-                "Invalid pip command: %s %s" % (command, packages)
-            )
-        pip_fn(
-            packages,
-            slots=venv.Slots(
-                output=self.text_area.appendPlainText,
-                finished=self.next_pip_command,
-            ),
-        )
