@@ -3,6 +3,7 @@
 Tests for the user interface elements of Mu.
 """
 from unittest import mock
+import mu.i18n
 import mu.interface.editor
 import keyword
 import re
@@ -682,7 +683,7 @@ def test_EditorPane_highlight_selected_matches_cursor_remains():
 
 def test_EditorPane_selection_change_listener():
     """
-    Enusure that is there is a change to the selected text then controll is
+    Enusure that is there is a change to the selected text then control is
     passed to highlight_selected_matches.
     """
     ep = mu.interface.editor.EditorPane(None, "baz")
@@ -937,6 +938,7 @@ def test_EditorPane_toggle_comments_handle_crlf_newline():
     """
     ep = mu.interface.editor.EditorPane(None, "test\r\nline 2\n")
     ep.hasSelectedText = mock.MagicMock(return_value=False)
+    ep.setCursorPosition(0, 0)
     ep.toggle_comments()
     assert ep.text() == "# test\nline 2\n"
     assert ep.selectedText() == "# test"
