@@ -39,8 +39,7 @@ ZIP_FILEPATH = os.path.join(WHEELS_DIRPATH, mu_version + ".zip")
 #
 mode_packages = [
     ("pgzero", ("pgzero>=1.2.1",)),
-    # Lock Werkzeug to < 3.0.0: import flask fails, otherwise.
-    ("flask", ("flask==2.0.3", "Werkzeug<3.0.0")),
+    ("flask", ("flask>=2.0.3",)),
 ]
 
 

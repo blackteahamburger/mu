@@ -685,7 +685,6 @@ class Window(QMainWindow):
         """
         Adds a Jupyter based REPL pane to the application.
         """
-        kernel_manager.kernel.gui = "qt4"
         kernel_client.start_channels()
         ipython_widget = JupyterREPLPane()
         ipython_widget.kernel_manager = kernel_manager

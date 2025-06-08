@@ -54,7 +54,7 @@ class MuKernelManager(QtKernelManager):
 
         # launch the kernel subprocess
         self.log.debug("Starting kernel: %s", kernel_cmd)
-        self.kernel = self._launch_kernel(kernel_cmd, **kw)
+        self._launch_kernel(kernel_cmd, **kw)
         self.post_start_kernel(**kw)
 
 

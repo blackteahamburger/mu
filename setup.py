@@ -25,26 +25,17 @@ install_requires = [
     # The core 'install_requires' should only be things
     # which are needed for the main editor to function.
     #
-    "PyQt6==6.3.1"
+    "PyQt6>=6.3.1"
     + ';"arm" not in platform_machine and "aarch" not in platform_machine',
-    "PyQt6-QScintilla==2.13.3"
+    "PyQt6-QScintilla>=2.13.3"
     + ';"arm" not in platform_machine and "aarch" not in platform_machine',
-    "PyQt6-Charts==6.3.1"
+    "PyQt6-Charts>=6.3.1"
     + ';"arm" not in platform_machine and "aarch" not in platform_machine',
-    # Needed for qtconsole, this is the latest wheel in armv7l for
-    # Python 3.7 (Buster), otherwise it tries to build from source and fails.
-    "pyzmq<=26.0.3",
-    # We are using an internal method of jupyter_client that changed in v7
-    # QtKernelManager._launch_kernel() returning a KernelProvisionerBase
-    # https://github.com/jupyter/jupyter_client/commit/516d9df270b2e4603ee0ecd986554cb5fe1c2940
-    "jupyter-client<7",
+    "jupyter-client",
     # ipykernel v5.5.6 resolves issue ipython/ipykernel#759.
     # ipykernel version has to be mirrored in mu/wheels/__init__.py
     "ipykernel>=5.5.6",
     "qtconsole~=5.4",
-    # In Python 3.12 the deprecated 'imp' module was removed from the stdlib.
-    # ipykernel only moved to importlib in v6.10, so this is a "forward-port"
-    "zombie_imp>=0.0.2;python_version>='3.12'",
     # adafruit-board-toolkit is used to find serial ports and help identify
     # CircuitPython boards in the CircuitPython mode.
     "adafruit-board-toolkit~=1.1",
@@ -56,15 +47,14 @@ install_requires = [
     # though. Regarding these packages' versions, please refer to:
     # http://flake8.pycqa.org/en/latest/faq.html#why-does-flake8-use-ranges-for-its-dependencies
     "flake8 >= 3.8.3",
-    # Clamp click max version to workaround incompatibility with black<22.1.0
-    "click<=8.0.4",
-    "black>=19.10b0,<22.1.0",
-    "platformdirs>=2.0.0,<3.0.0",
+    "black>=19.10b0",
+    "platformdirs>=2.0.0",
     "semver>=2.8.0",
     # virtualenv vendors pip, we need at least pip v19.3 to install some
     # rust based dependencies. virtualenv >=v20 is required for the --symlinks
     # flag needed by AppImage, and it packs pip v20.0.2.
     "virtualenv>=20.0.0",
+    "pip>=19.3",
     #
     # Needed for packaging
     #
