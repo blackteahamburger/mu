@@ -442,7 +442,7 @@ class EditorPane(QsciScintilla):
         for line, messages in lines.items():
             text = "\n".join(messages).strip()
             if text:
-                self.annotate(line, text, self.annotationDisplay())
+                self.annotate(line, text, self.annotationDisplay().value)
 
     def find_next_match(
         self,
