@@ -1,3 +1,15 @@
+================================
+This repo is for Gentoo packaging, report related issues here
+================================
+
+Differences from the original version:
+
+* Support for new versions of all dependencies (including PyQt6 support)
+* venv is removed
+* No longer depend on pkg_resources
+
+**Note**: All tests are broken, please contribute if you can fix them.
+
 Mu - A Simple Python Code Editor 
 ================================
 
