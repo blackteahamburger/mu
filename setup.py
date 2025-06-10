@@ -109,7 +109,7 @@ setup(
         "mu.interface",
         "mu.modes.api",
     ],
-    python_requires=">=3.8,<3.14",
+    python_requires=">=3.8",
     install_requires=install_requires,
     extras_require=extras_require,
     include_package_data=True,
