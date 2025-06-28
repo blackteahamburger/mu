@@ -819,6 +819,7 @@ class LocalFileList(MuFileList):
         ext = os.path.splitext(local_filename)[1].lower()
         menu = QMenu(self)
         open_internal_action = None
+        write_to_main_action = None
         # Mu micro:bit mode only handles .py & .hex
         if ext == ".py" or ext == ".hex":
             open_internal_action = menu.addAction(_("Open in Mu"))
