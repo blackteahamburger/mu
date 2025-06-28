@@ -23,11 +23,11 @@ import csv
 import time
 import logging
 import pkgutil
+import microfs
 from serial import Serial
 from PyQt6.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt6.QtCore import QObject, pyqtSignal, QIODevice, QTimer
 from mu.logic import Device
-from mu.contrib import microfs
 from .. import config, settings
 
 ENTER_RAW_MODE = b"\x01"  # CTRL-A

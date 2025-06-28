@@ -23,10 +23,11 @@ import time
 from tokenize import TokenError
 
 import semver
+import microfs
 from PyQt6.QtCore import QThread, pyqtSignal
 
 from mu.logic import sniff_newline_convention
-from mu.contrib import uflash, microfs
+from mu.contrib import uflash
 from mu.modes.api import MICROBIT_APIS, SHARED_APIS
 from mu.modes.base import MicroPythonMode, FileManager
 from mu.interface.panes import CHARTS
