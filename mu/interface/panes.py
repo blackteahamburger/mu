@@ -830,6 +830,8 @@ class LocalFileList(MuFileList):
         # Open outside Mu (things get meta if Mu is the default application)
         open_action = menu.addAction(_("Open"))
         action = menu.exec(self.mapToGlobal(event.pos()))
+        if action is None:
+            return
         if action == open_action:
             # Get the file's path
             path = os.path.abspath(os.path.join(self.home, local_filename))
