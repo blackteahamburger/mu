@@ -53,6 +53,7 @@ install_requires = [
     "requests>=2.0.0",
     "pgzero>=1.2.1",
     "flask>=2.0.3",
+    "esptool>=3",
     "microfs>=1.4.1",
     #
     # Needed to resolve an issue with paths in the user virtual environment

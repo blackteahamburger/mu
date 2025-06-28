@@ -426,7 +426,7 @@ class ESPFirmwareFlasherWidget(QWidget):
         if device is None:
             return
 
-        esptool = "-mmu.contrib.esptool"
+        esptool = "-mesptool"
         erase_command = '"{}" "{}" --port {} erase_flash'.format(
             sys.executable, esptool, device.port
         )
