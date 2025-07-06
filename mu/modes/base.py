@@ -82,20 +82,17 @@ class REPLConnection(QObject):
 
         logger.info("Connecting to REPL on port: {}".format(self.port))
 
+        # Using pyserial as a 'hack' to open the port and set DTR
+        # as QtSerial does not seem to work on some situations :(
+        # See issues #281 and #302 for details.
+        pyser = Serial(self.port)  # open serial port w/pyserial
+        pyser.dtr = True
+        pyser.close()
+
         if not self.serial.open(QIODevice.ReadWrite):
             msg = _("Cannot connect to device on port {}").format(self.port)
             raise IOError(msg)
 
-        self.serial.setDataTerminalReady(True)
-        if not self.serial.isDataTerminalReady():
-            # Using pyserial as a 'hack' to open the port and set DTR
-            # as QtSerial does not seem to work on some Windows :(
-            # See issues #281 and #302 for details.
-            self.serial.close()
-            pyser = Serial(self.port)  # open serial port w/pyserial
-            pyser.dtr = True
-            pyser.close()
-            self.serial.open(QIODevice.ReadWrite)
         self.serial.readyRead.connect(self._on_serial_read)
 
         logger.info("Connected to REPL on port: {}".format(self.port))
@@ -133,7 +130,10 @@ class REPLConnection(QObject):
             logger.info("Sending command {}".format(command))
             self.write(command)
             remainder = commands[1:]
-            remaining_task = lambda commands=remainder: self.execute(commands)
+
+            def remaining_task(commands=remainder):
+                return self.execute(commands)
+
             QTimer.singleShot(2, remaining_task)
 
     def send_commands(self, commands):
