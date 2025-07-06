@@ -107,20 +107,18 @@ def coverage():
     """
     print("\ncoverage")
     os.environ["LANG"] = "en_GB.utf8"
-    return subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            PYTEST,
-            "-v",
-            "--cov-config",
-            "setup.cfg",
-            "--cov-report",
-            "term-missing",
-            "--cov=mu",
-            "tests/",
-        ]
-    ).returncode
+    return subprocess.run([
+        sys.executable,
+        "-m",
+        PYTEST,
+        "-v",
+        "--cov-config",
+        "setup.cfg",
+        "--cov-report",
+        "term-missing",
+        "--cov=mu",
+        "tests/",
+    ]).returncode
 
 
 @export
@@ -355,7 +353,7 @@ def run():
     clean()
     if not os.environ.get("VIRTUAL_ENV"):
         raise RuntimeError(
-            "Cannot run Mu;" "your Python virtualenv is not activated"
+            "Cannot run Mu;your Python virtualenv is not activated"
         )
     return subprocess.run([sys.executable, "-m", "mu"]).returncode
 
@@ -366,9 +364,12 @@ def dist():
     if check() != 0:
         raise RuntimeError("Check failed")
     print("Checks pass; good to package")
-    return subprocess.run(
-        [sys.executable, "setup.py", "sdist", "bdist_wheel"]
-    ).returncode
+    return subprocess.run([
+        sys.executable,
+        "setup.py",
+        "sdist",
+        "bdist_wheel",
+    ]).returncode
 
 
 @export
@@ -376,18 +377,16 @@ def publish_test():
     """Upload to a test PyPI"""
     dist()
     print("Packaging complete; upload to PyPI")
-    return subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            "twine",
-            "upload",
-            "-r",
-            "test",
-            "--sign",
-            "dist/*",
-        ]
-    ).returncode
+    return subprocess.run([
+        sys.executable,
+        "-m",
+        "twine",
+        "upload",
+        "-r",
+        "test",
+        "--sign",
+        "dist/*",
+    ]).returncode
 
 
 @export
@@ -395,9 +394,14 @@ def publish_live():
     """Upload to PyPI"""
     dist()
     print("Packaging complete; upload to PyPI")
-    return subprocess.run(
-        [sys.executable, "-m", "twine", "upload", "--sign", "dist/*"]
-    ).returncode
+    return subprocess.run([
+        sys.executable,
+        "-m",
+        "twine",
+        "upload",
+        "--sign",
+        "dist/*",
+    ]).returncode
 
 
 _PUP_PBS_URLs = {

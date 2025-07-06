@@ -88,9 +88,9 @@ extras_require["dev"] = (
     + extras_require["i18n"]
 )
 
-extras_require["all"] = list(
-    {req for extra, reqs in extras_require.items() for req in reqs}
-)
+extras_require["all"] = list({
+    req for extra, reqs in extras_require.items() for req in reqs
+})
 
 
 setup(

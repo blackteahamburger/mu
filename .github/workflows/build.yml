@@ -2,15 +2,15 @@ name: Build Mu
 
 on:
   push:
-    branches: 'master'
+    branches: "master"
   pull_request:
-    branches: '*'
+    branches: "*"
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [macos-13, windows-2019]
+        os: [macos-latest, windows-latest]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     name: Build ${{ matrix.os }}
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: "3.13"
       - name: Display Python info
         run: |
           python -c "import sys; print(sys.version)"
@@ -52,7 +52,7 @@ jobs:
           path: upload
 
   build-linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/mu-editor/mu-appimage:2024.12.02
     name: Build AppImage

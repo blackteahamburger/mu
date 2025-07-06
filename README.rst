@@ -1,5 +1,5 @@
 ================================
-This repo is for Gentoo packaging, report related issues here
+A community fork of the Mu code editor. PR welcome!
 ================================
 
 Differences from the original version:

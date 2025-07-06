@@ -2,18 +2,17 @@ name: Run tests
 
 on:
   push:
-    branches: '*'
+    branches: "*"
   pull_request:
-    branches: '*'
+    branches: "*"
 
 jobs:
   test:
     timeout-minutes: 30
     strategy:
       matrix:
-        # macos-13 is the last release on x86, and macos-14 is arm64
-        os: [ubuntu-20.04, ubuntu-24.04, macos-13, macos-14, windows-2019, windows-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     name: Test Py ${{ matrix.python-version }} - ${{ matrix.os }}
@@ -67,7 +66,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
         with:
           image: tonistiigi/binfmt:latest
-          platforms: 'linux/arm64,linux/arm/v7,linux/arm/v6'
+          platforms: "linux/arm64,linux/arm/v7,linux/arm/v6"
       - name: Check Debian image info
         uses: docker://arm32v7/debian:bookworm
         with:
@@ -104,7 +103,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        docker-tag: ['buster-2021-05-28', 'buster-legacy-2023-05-03', 'bullseye-2023-05-03']
+        docker-tag:
+          [
+            "buster-2021-05-28",
+            "buster-legacy-2023-05-03",
+            "bullseye-2023-05-03",
+          ]
       fail-fast: false
     services:
       rpios:
@@ -121,7 +125,7 @@ jobs:
           host: rpios
           username: pi
           password: raspberry
-          port:  ${{ job.services.rpios.ports[5022] }}
+          port: ${{ job.services.rpios.ports[5022] }}
           script: |
             mkdir ~/mu && cd ~/mu
             git init
@@ -136,7 +140,7 @@ jobs:
           host: rpios
           username: pi
           password: raspberry
-          port:  ${{ job.services.rpios.ports[5022] }}
+          port: ${{ job.services.rpios.ports[5022] }}
           script: |
             sudo apt-get update
             sudo apt-get install -y python3-virtualenv
@@ -146,7 +150,7 @@ jobs:
           host: rpios
           username: pi
           password: raspberry
-          port:  ${{ job.services.rpios.ports[5022] }}
+          port: ${{ job.services.rpios.ports[5022] }}
           command_timeout: 25m
           # Some compiled packages take a while to be built in piwheels, so to
           # avoid intermittent pip install failures we use `--prefer-binary`
@@ -163,7 +167,7 @@ jobs:
           host: rpios
           username: pi
           password: raspberry
-          port:  ${{ job.services.rpios.ports[5022] }}
+          port: ${{ job.services.rpios.ports[5022] }}
           script: |
             uname -a
             cat /etc/os-release
@@ -176,6 +180,6 @@ jobs:
           host: rpios
           username: pi
           password: raspberry
-          port:  ${{ job.services.rpios.ports[5022] }}
+          port: ${{ job.services.rpios.ports[5022] }}
           command_timeout: 30m
           script: xvfb-run python make.py check
