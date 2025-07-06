@@ -68,25 +68,11 @@ class DeviceFlasher(QThread):
         into the micro:bit drive otherwise use uFlash.
         """
         try:
-            if self.path_to_runtime:
-                if self.python_script:
-                    raise Exception(
-                        "Cannot flash a custom runtime with a Python script"
-                    )
-                with open(self.path_to_runtime, "rb") as f_input:
-                    rt_bytes = f_input.read()
-                with open(
-                    os.path.join(self.path_to_microbit, "micropython.hex"),
-                    "wb",
-                ) as f_output:
-                    f_output.write(rt_bytes)
-                    f_output.flush()
-                    os.fsync(f_output.fileno())
-            else:
-                uflash.flash(
-                    paths_to_microbits=[self.path_to_microbit],
-                    python_script=self.python_script,
-                )
+            uflash.flash(
+                paths_to_microbits=[self.path_to_microbit],
+                python_script=self.python_script,
+                path_to_runtime=self.path_to_runtime,
+            )
             # After flash ends DAPLink reboots the MSD, and serial might not
             # be immediately available, so this small delay helps.
             time.sleep(0.5)
