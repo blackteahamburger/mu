@@ -66,10 +66,6 @@ msgstr ""
 "每行一个单独的环境变量: \n"
 "名称 = 值"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "在刷入之前简化 Python 代码？"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file (empty "
@@ -1217,22 +1213,6 @@ msgstr "访问 micro:bit 上的文件系统。"
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "使用 REPL 在 micro:bit 上实时编写代码。"
-
-#: mu/modes/microbit.py:190
-msgid "Your script is too long and code minification is disabled"
-msgstr "您的脚本太长，简化器已被禁用"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "您的脚本太长，简化器不可用"
-
-#: mu/modes/microbit.py:206
-msgid "Problem minifying script"
-msgstr "无法简化脚本"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "我们的简化器尝试过了，但你的脚本实在太长！"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

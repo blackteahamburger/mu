@@ -74,10 +74,6 @@ msgstr ""
 "個々の環境変数は次の形式で改行で区切って指定するようにしてください:\n"
 "名前=値"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "転送の前に Python コードを縮小しますか？"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file "
@@ -1284,22 +1280,6 @@ msgstr "micro:bit にあるファイルにアクセスします。"
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "micro:bit を対話モードで利用します。"
-
-#: mu/modes/microbit.py:190
-msgid "Your script is too long and code minification is disabled"
-msgstr "スクリプトが長すぎて縮小できません"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "スクリプトが長すぎて縮小できません"
-
-#: mu/modes/microbit.py:206
-msgid "Problem minifying script"
-msgstr "スクリプトに問題があります"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "縮小しようとしましたが、スクリプトが長すぎます！"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

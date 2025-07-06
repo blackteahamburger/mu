@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import logging
 
 from PyQt6.QtGui import QColor, QFontDatabase
@@ -171,9 +172,9 @@ class DayTheme(Theme):
     ClassSelector = Tag
     PseudoClass = ClassSelector
     UnknownPseudoClass = ClassSelector
-    CSS1Property = (
-        CSS2Property
-    ) = CSS3Property = UnknownProperty = SingleQuotedString
+    CSS1Property = CSS2Property = CSS3Property = UnknownProperty = (
+        SingleQuotedString
+    )
     Value = Number
     IDSelector = Tag
     Important = UnmatchedBraceBackground
@@ -243,9 +244,9 @@ class NightTheme(Theme):
     ClassSelector = Tag
     PseudoClass = ClassSelector
     UnknownPseudoClass = ClassSelector
-    CSS1Property = (
-        CSS2Property
-    ) = CSS3Property = UnknownProperty = SingleQuotedString
+    CSS1Property = CSS2Property = CSS3Property = UnknownProperty = (
+        SingleQuotedString
+    )
     Value = Number
     IDSelector = Tag
     Important = UnmatchedBraceBackground
@@ -312,9 +313,9 @@ class ContrastTheme(Theme):
     ClassSelector = Tag
     PseudoClass = ClassSelector
     UnknownPseudoClass = ClassSelector
-    CSS1Property = (
-        CSS2Property
-    ) = CSS3Property = UnknownProperty = SingleQuotedString
+    CSS1Property = CSS2Property = CSS3Property = UnknownProperty = (
+        SingleQuotedString
+    )
     Value = Number
     IDSelector = Tag
     Important = UnmatchedBraceBackground

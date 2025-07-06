@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
@@ -179,9 +180,12 @@ def excepthook(*exc_args):
                 "v": __version__,  # version
                 "l": str(i18n.language_code),  # locale
                 "p": base64.standard_b64encode(
-                    " ".join(
-                        [p.system, p.release, p.version, p.machine]
-                    ).encode("utf-8")
+                    " ".join([
+                        p.system,
+                        p.release,
+                        p.version,
+                        p.machine,
+                    ]).encode("utf-8")
                 ),  # platform
                 "f": log_file,  # location of log file
                 "e": error,  # error message

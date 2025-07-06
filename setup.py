@@ -39,7 +39,6 @@ install_requires = [
     # CircuitPython boards in the CircuitPython mode.
     "adafruit-board-toolkit~=1.1",
     "pyserial~=3.5",
-    "nudatus>=0.0.3",
     # `flake8` is actually a testing/packaging dependency that, among other
     # packages, brings in `pycodestyle` and `pyflakes` which are runtime
     # dependencies. For the sake of "locality", it is being declared here,
@@ -54,7 +53,8 @@ install_requires = [
     "pgzero>=1.2.1",
     "flask>=2.0.3",
     "esptool>=3",
-    "microfs>=1.4.1",
+    "microfs>=1.4.6",
+    "uflash>=2.1.0",
     #
     # Needed to resolve an issue with paths in the user virtual environment
     #
@@ -104,7 +104,6 @@ setup(
     license=about["__license__"],
     packages=[
         "mu",
-        "mu.contrib",
         "mu.resources",
         "mu.modes",
         "mu.debugger",

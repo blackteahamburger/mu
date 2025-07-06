@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import sys
 import os
 import logging
@@ -85,8 +86,9 @@ class KernelRunner(QObject):
         # Add user defined envars to os.environ so they can be picked up by
         # the child process running the kernel.
         logger.info(
-            "Starting iPython kernel with user defined envars: "
-            "{}".format(self.envars)
+            "Starting iPython kernel with user defined envars: {}".format(
+                self.envars
+            )
         )
         for k, v in self.envars.items():
             if k != "PYTHONPATH":
@@ -156,17 +158,13 @@ class PythonMode(BaseMode):
             },
         ]
         if CHARTS:
-            buttons.append(
-                {
-                    "name": "plotter",
-                    "display_name": _("Plotter"),
-                    "description": _(
-                        "Plot data from your script or the REPL."
-                    ),
-                    "handler": self.toggle_plotter,
-                    "shortcut": "CTRL+Shift+P",
-                }
-            )
+            buttons.append({
+                "name": "plotter",
+                "display_name": _("Plotter"),
+                "description": _("Plot data from your script or the REPL."),
+                "handler": self.toggle_plotter,
+                "shortcut": "CTRL+Shift+P",
+            })
         return buttons
 
     def api(self):

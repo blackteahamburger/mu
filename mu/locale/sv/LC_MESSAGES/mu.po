@@ -72,10 +72,6 @@ msgstr ""
 "Varje miljövariabel ska vara på sin egen rad och på formen:\n"
 "NAMN=VÄRDE"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "Minifiera Python-koden innan flashning?"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file "
@@ -1284,24 +1280,6 @@ msgstr "Accessa filsystemet på micro:biten."
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "Använd REPL för att live-koda på micro:biten."
-
-#: mu/modes/microbit.py:190
-#, fuzzy
-msgid "Your script is too long and code minification is disabled"
-msgstr "Ditt skript är för långt och minifieraren är inte tillgänglig"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "Ditt skript är för långt och minifieraren är inte tillgänglig"
-
-#: mu/modes/microbit.py:206
-#, fuzzy
-msgid "Problem minifying script"
-msgstr "Problem med skrytet"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "Vår minifierare försökte, men ditt skript är för långt!"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

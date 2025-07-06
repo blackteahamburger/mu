@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import logging
 from mu.modes.base import MicroPythonMode, FileManager
 from mu.modes.api import ESP_APIS, SHARED_APIS
@@ -77,8 +78,7 @@ class ESPMode(MicroPythonMode):
                 "name": "run",
                 "display_name": _("Run"),
                 "description": _(
-                    "Run your code directly on the {board_name}"
-                    " via the REPL."
+                    "Run your code directly on the {board_name} via the REPL."
                 ).format(board_name=self.board_name),
                 "handler": self.run,
                 "shortcut": "F5",
@@ -103,15 +103,13 @@ class ESPMode(MicroPythonMode):
             },
         ]
         if CHARTS:
-            buttons.append(
-                {
-                    "name": "plotter",
-                    "display_name": _("Plotter"),
-                    "description": _("Plot incoming REPL data."),
-                    "handler": self.toggle_plotter,
-                    "shortcut": "CTRL+Shift+P",
-                }
-            )
+            buttons.append({
+                "name": "plotter",
+                "display_name": _("Plotter"),
+                "description": _("Plot incoming REPL data."),
+                "handler": self.toggle_plotter,
+                "shortcut": "CTRL+Shift+P",
+            })
         return buttons
 
     def api(self):
@@ -154,7 +152,7 @@ class ESPMode(MicroPythonMode):
                 self.set_buttons(files=True)
         else:
             message = _(
-                "The plotter and file system cannot work at the same " "time."
+                "The plotter and file system cannot work at the same time."
             )
             information = _(
                 "The plotter and file system both use the same "

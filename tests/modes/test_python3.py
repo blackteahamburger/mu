@@ -2,6 +2,7 @@
 """
 Tests for the Python3 mode.
 """
+
 import sys
 import os
 from mu.modes.python3 import PythonMode, KernelRunner
@@ -29,13 +30,17 @@ def test_kernel_runner_start_kernel():
     mock_os.environ = {}
     mock_os.pathsep = os.pathsep
     mock_os.path.dirname.return_value = (
-        "/Applications/mu-editor.app" "/Contents/Resources/app/mu"
+        "/Applications/mu-editor.app/Contents/Resources/app/mu"
     )
     mock_kernel_manager_class = mock.MagicMock()
     mock_kernel_manager_class.return_value = mock_kernel_manager
-    with mock.patch("mu.modes.python3.os", mock_os), mock.patch(
-        "mu.modes.python3.MuKernelManager", mock_kernel_manager_class
-    ), mock.patch("sys.platform", "darwin"):
+    with (
+        mock.patch("mu.modes.python3.os", mock_os),
+        mock.patch(
+            "mu.modes.python3.MuKernelManager", mock_kernel_manager_class
+        ),
+        mock.patch("sys.platform", "darwin"),
+    ):
         kr.start_kernel()
     mock_os.chdir.assert_called_once_with("/a/path/to/mu_code")
     assert mock_os.environ["name"] == "value"
@@ -370,9 +375,11 @@ def test_python_add_repl():
     pm = PythonMode(editor, view)
     pm.set_buttons = mock.MagicMock()
     pm.stop_kernel = mock.MagicMock()
-    with mock.patch("mu.modes.python3.QThread", mock_qthread), mock.patch(
-        "mu.modes.python3.KernelRunner", mock_kernel_runner
-    ), mock.patch.object(venv, "name", "name"):
+    with (
+        mock.patch("mu.modes.python3.QThread", mock_qthread),
+        mock.patch("mu.modes.python3.KernelRunner", mock_kernel_runner),
+        mock.patch.object(venv, "name", "name"),
+    ):
         pm.add_repl()
     mock_qthread.assert_called_once_with()
     mock_kernel_runner.assert_called_once_with(

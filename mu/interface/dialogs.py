@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import os
 import logging
 from PyQt6.QtCore import QSize, QProcess, QTimer, Qt
@@ -177,16 +178,12 @@ class MicrobitSettingsWidget(QWidget):
     """
     Used for configuring how to interact with the micro:bit:
 
-    * Minification flag.
     * Override runtime version to use.
     """
 
-    def setup(self, minify, custom_runtime_path):
+    def setup(self, custom_runtime_path):
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
-        self.minify = QCheckBox(_("Minify Python code before flashing?"))
-        self.minify.setChecked(minify)
-        widget_layout.addWidget(self.minify)
         label = QLabel(
             _(
                 "Override the built-in MicroPython runtime with "
@@ -562,7 +559,6 @@ class AdminDialog(QDialog):
         if mode.short_name == "microbit":
             self.microbit_widget = MicrobitSettingsWidget(self)
             self.microbit_widget.setup(
-                settings.get("minify", False),
                 settings.get("microbit_runtime", ""),
             )
             self.tabs.addTab(self.microbit_widget, _("BBC micro:bit Settings"))
@@ -598,20 +594,17 @@ class AdminDialog(QDialog):
         if self.envar_widget:
             settings["envars"] = self.envar_widget.text_area.toPlainText()
         if self.microbit_widget:
-            settings["minify"] = self.microbit_widget.minify.isChecked()
-            settings[
-                "microbit_runtime"
-            ] = self.microbit_widget.runtime_path.text()
+            settings["microbit_runtime"] = (
+                self.microbit_widget.runtime_path.text()
+            )
         if self.python_anywhere_widget:
-            settings[
-                "pa_username"
-            ] = self.python_anywhere_widget.username_text.text().strip()
-            settings[
-                "pa_token"
-            ] = self.python_anywhere_widget.token_text.text().strip()
-            settings[
-                "pa_instance"
-            ] = (
+            settings["pa_username"] = (
+                self.python_anywhere_widget.username_text.text().strip()
+            )
+            settings["pa_token"] = (
+                self.python_anywhere_widget.token_text.text().strip()
+            )
+            settings["pa_instance"] = (
                 self.python_anywhere_widget.instance_combo.currentText().strip()
             )
         settings["locale"] = self.locale_widget.get_locale()

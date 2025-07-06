@@ -18,7 +18,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 PI_APIS = [
     _(
         "gpiozero.AnalogInputDevice(*args, **kwargs) \nRepresents an analog input device connected to SPI (serial interface).\n\nTypical analog input devices are `analog to digital converters`_ (ADCs).\nSeveral classes are provided for specific ADC chips, including\n:class:`MCP3004`, :class:`MCP3008`, :class:`MCP3204`, and :class:`MCP3208`.\n\nThe following code demonstrates reading the first channel of an MCP3008\nchip attached to the Pi's SPI pins::\n\n    from gpiozero import MCP3008\n\n    pot = MCP3008(0)\n    print(pot.value)\n\nThe :attr:`value` attribute is normalized such that its value is always\nbetween 0.0 and 1.0 (or in special cases, such as differential sampling,\n-1 to +1). Hence, you can use an analog input to control the brightness of\na :class:`PWMLED` like so::\n\n    from gpiozero import MCP3008, PWMLED\n\n    pot = MCP3008(0)\n    led = PWMLED(17)\n    led.source = pot.values\n\n.. _analog to digital converters: https://en.wikipedia.org/wiki/Analog-to-digital_converter"

@@ -2,6 +2,7 @@
 """
 Tests for the user interface elements of Mu.
 """
+
 from unittest import mock
 import mu.interface.themes
 import mu.interface.editor
@@ -64,11 +65,9 @@ def test_Font_loading():
             mu.interface.themes.Font(bold=True, italic=True).load()
     finally:
         mu.interface.themes.Font._DATABASE = None
-    db.font.assert_has_calls(
-        [
-            mock.call("Source Code Pro", "Regular", 14),
-            mock.call("Source Code Pro", "Semibold", 14),
-            mock.call("Source Code Pro", "Italic", 14),
-            mock.call("Source Code Pro", "Semibold Italic", 14),
-        ]
-    )
+    db.font.assert_has_calls([
+        mock.call("Source Code Pro", "Regular", 14),
+        mock.call("Source Code Pro", "Semibold", 14),
+        mock.call("Source Code Pro", "Italic", 14),
+        mock.call("Source Code Pro", "Semibold Italic", 14),
+    ])

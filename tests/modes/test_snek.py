@@ -2,6 +2,7 @@
 """
 Tests for the Snek mode.
 """
+
 import pytest
 from mu.logic import Device
 from mu.modes.snek import SnekMode

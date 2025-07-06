@@ -9,14 +9,13 @@ import subprocess
 PYTEST = "pytest"
 FLAKE8 = "flake8"
 BLACK = "black"
-BLACK_FLAGS = ["-l", "79", "--exclude=mu/contrib/"]
+BLACK_FLAGS = ["-l", "79"]
 PYGETTEXT = os.path.join(sys.base_prefix, "tools", "i18n", "pygettext.py")
 
 INCLUDE_PATTERNS = {"*.py"}
 EXCLUDE_PATTERNS = {
     "build/*",
     "docs/*",
-    "mu/contrib/*",
     "mu/modes/api/*",
     "utils/*",
 }
@@ -276,7 +275,6 @@ def translate_begin(lang=""):
 
 _TRANSLATE_IGNORE_DIRNAMES = {
     os.path.join("mu", "modes", "api"),
-    os.path.join("mu", "contrib"),
 }
 
 

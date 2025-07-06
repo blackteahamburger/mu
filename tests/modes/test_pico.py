@@ -1,6 +1,7 @@
 """
 Tests for the minimalist Pico mode.
 """
+
 import pytest
 from unittest import mock
 from mu.modes.pico import PicoMode

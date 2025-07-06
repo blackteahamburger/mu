@@ -17,6 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import os
 import sys
 import codecs
@@ -483,14 +484,12 @@ def check_pycodestyle(code, config_file=False):
             # Capitalise the 1st letter keeping the rest of the str unmodified
             if description:
                 description = description[0].upper() + description[1:]
-            style_feedback[line_no].append(
-                {
-                    "line_no": line_no,
-                    "column": int(col) - 1,
-                    "message": description,
-                    "code": code,
-                }
-            )
+            style_feedback[line_no].append({
+                "line_no": line_no,
+                "column": int(col) - 1,
+                "message": description,
+                "code": code,
+            })
     return style_feedback
 
 
@@ -512,9 +511,11 @@ class MuFlakeCodeReporter:
         called filename. The message parameter contains a description of the
         problem.
         """
-        self.log.append(
-            {"line_no": 0, "filename": filename, "message": str(message)}
-        )
+        self.log.append({
+            "line_no": 0,
+            "filename": filename,
+            "message": str(message),
+        })
 
     def syntaxError(self, filename, message, line_no, column, source):
         """
@@ -529,14 +530,12 @@ class MuFlakeCodeReporter:
             "Syntax error. Python cannot understand this line. Check for "
             "missing characters!"
         )
-        self.log.append(
-            {
-                "message": msg,
-                "line_no": int(line_no) - 1,  # Zero based counting in Mu.
-                "column": column - 1,
-                "source": source,
-            }
-        )
+        self.log.append({
+            "message": msg,
+            "line_no": int(line_no) - 1,  # Zero based counting in Mu.
+            "column": column - 1,
+            "source": source,
+        })
 
     def flake(self, message):
         """
@@ -545,17 +544,17 @@ class MuFlakeCodeReporter:
         matcher = FLAKE_REGEX.match(str(message))
         if matcher:
             line_no, col, msg = matcher.groups()
-            self.log.append(
-                {
-                    "line_no": int(line_no) - 1,  # Zero based counting in Mu.
-                    "column": int(col),
-                    "message": msg,
-                }
-            )
+            self.log.append({
+                "line_no": int(line_no) - 1,  # Zero based counting in Mu.
+                "column": int(col),
+                "message": msg,
+            })
         else:
-            self.log.append(
-                {"line_no": 0, "column": 0, "message": str(message)}
-            )
+            self.log.append({
+                "line_no": 0,
+                "column": 0,
+                "message": str(message),
+            })
 
 
 class Device:
@@ -792,7 +791,6 @@ class Editor(QObject):
         self.python_extensions = [".py", ".pyw"]
         self.modes = {}
         self.envars = {}  # See restore session and show_admin
-        self.minify = False
         self.pa_username = ""
         self.pa_token = ""
         self.pa_instance = "www"
@@ -926,19 +924,15 @@ class Editor(QObject):
                 old_envars = dict(old_envars)
             self.envars = old_envars
             logger.info(
-                "User defined environment variables: " "{}".format(self.envars)
-            )
-        if "minify" in old_session:
-            self.minify = old_session["minify"]
-            logger.info(
-                "Minify scripts on micro:bit? " "{}".format(self.minify)
+                "User defined environment variables: {}".format(self.envars)
             )
         if "microbit_runtime" in old_session:
             self.microbit_runtime = old_session["microbit_runtime"]
             if self.microbit_runtime:
                 logger.info(
-                    "Custom micro:bit runtime path: "
-                    "{}".format(self.microbit_runtime)
+                    "Custom micro:bit runtime path: {}".format(
+                        self.microbit_runtime
+                    )
                 )
                 if not os.path.isfile(self.microbit_runtime):
                     self.microbit_runtime = ""
@@ -1284,7 +1278,7 @@ class Editor(QObject):
             folder = self.get_dialog_directory(default)
             path = self._view.get_save_path(folder)
             if path and self.check_for_shadow_module(path):
-                message = _("You cannot use the filename " '"{}"').format(
+                message = _('You cannot use the filename "{}"').format(
                     os.path.basename(path)
                 )
                 info = _(
@@ -1416,7 +1410,6 @@ class Editor(QObject):
             "mode": self.mode,
             "paths": paths,
             "envars": self.envars,
-            "minify": self.minify,
             "microbit_runtime": self.microbit_runtime,
             "zoom_level": self._view.zoom_position,
             "window": {
@@ -1443,15 +1436,11 @@ class Editor(QObject):
         Ensure any changes to the envars is updated.
         """
         logger.info("Showing admin with logs from {}".format(LOG_FILE))
-        envars = "\n".join(
-            [
-                "{}={}".format(name, value)
-                for name, value in self.envars.items()
-            ]
-        )
+        envars = "\n".join([
+            "{}={}".format(name, value) for name, value in self.envars.items()
+        ])
         settings = {
             "envars": envars,
-            "minify": self.minify,
             "microbit_runtime": self.microbit_runtime,
             "locale": self.user_locale,
             "pa_username": self.pa_username,
@@ -1468,8 +1457,6 @@ class Editor(QObject):
         if new_settings:
             if "envars" in new_settings:
                 self.envars = extract_envars(new_settings["envars"])
-            if "minify" in new_settings:
-                self.minify = new_settings["minify"]
             if "microbit_runtime" in new_settings:
                 runtime = new_settings["microbit_runtime"].strip()
                 if runtime and not os.path.isfile(runtime):
@@ -1596,8 +1583,9 @@ class Editor(QObject):
                     # Suppress error message on autosave attempts
                     self.save_tab_to_file(tab, show_error_messages=False)
                     logger.info(
-                        "Autosave detected and saved "
-                        "changes in {}.".format(tab.path)
+                        "Autosave detected and saved changes in {}.".format(
+                            tab.path
+                        )
                     )
 
     def ask_to_change_mode(self, new_mode, mode_name, heading):
@@ -1612,9 +1600,9 @@ class Editor(QObject):
         m = self.modes[self.mode]
         running = hasattr(m, "runner") and m.runner
         if (self.mode != new_mode and not self.selecting_mode) and not running:
-            msg_body = _(
-                "Would you like to change Mu to the {} " "mode?"
-            ).format(mode_name)
+            msg_body = _("Would you like to change Mu to the {} mode?").format(
+                mode_name
+            )
             change_confirmation = self._view.show_confirmation(
                 heading, msg_body, icon="Question"
             )
@@ -1688,7 +1676,7 @@ class Editor(QObject):
             new_path = self._view.get_save_path(tab.path)
             if new_path and new_path != tab.path:
                 if self.check_for_shadow_module(new_path):
-                    message = _("You cannot use the filename " '"{}"').format(
+                    message = _('You cannot use the filename "{}"').format(
                         os.path.basename(new_path)
                     )
                     info = _(
@@ -1715,7 +1703,7 @@ class Editor(QObject):
                         )
                         message = _("Could not rename file.")
                         information = _(
-                            "A file of that name is already open " "in Mu."
+                            "A file of that name is already open in Mu."
                         )
                         self._view.show_message(message, information)
                         return
@@ -1787,8 +1775,7 @@ class Editor(QObject):
         else:
             message = _("You must provide something to find.")
             information = _(
-                "Please try again, this time with something "
-                "in the find box."
+                "Please try again, this time with something in the find box."
             )
             self._view.show_message(message, information)
 
@@ -1830,7 +1817,7 @@ class Editor(QObject):
             # reformatting from black.
             tab.SendScintilla(tab.SCI_SETTEXT, tidy_code.encode("utf-8"))
             self.show_status_message(
-                _("Successfully cleaned the code. " "Use CTRL-Z to undo.")
+                _("Successfully cleaned the code. Use CTRL-Z to undo.")
             )
         except Exception as ex:
             # The user's code is problematic. Recover with a modal dialog

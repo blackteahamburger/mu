@@ -2,6 +2,7 @@
 """
 Tests for the virtual_environment module pip support
 """
+
 import os
 import random
 import logging

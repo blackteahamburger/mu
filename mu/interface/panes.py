@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import sys
 import os
 import re
@@ -142,13 +143,13 @@ class JupyterREPLPane(RichJupyterWidget):
 
 VT100_RETURN = b"\r"
 VT100_BACKSPACE = b"\b"
-VT100_DELETE = b"\x1B[\x33\x7E"
-VT100_UP = b"\x1B[A"
-VT100_DOWN = b"\x1B[B"
-VT100_RIGHT = b"\x1B[C"
-VT100_LEFT = b"\x1B[D"
-VT100_HOME = b"\x1B[H"
-VT100_END = b"\x1B[F"
+VT100_DELETE = b"\x1b[\x33\x7e"
+VT100_UP = b"\x1b[A"
+VT100_DOWN = b"\x1b[B"
+VT100_RIGHT = b"\x1b[C"
+VT100_LEFT = b"\x1b[D"
+VT100_HOME = b"\x1b[H"
+VT100_END = b"\x1b[F"
 
 
 class MicroPythonREPLPane(QTextEdit):
@@ -439,7 +440,7 @@ class MicroPythonREPLPane(QTextEdit):
                                 self.device_cursor_position = tc.position()
                         else:
                             # Unknown action, log warning and ignore
-                            command = match.group(0).replace("\x1B", "<Esc>")
+                            command = match.group(0).replace("\x1b", "<Esc>")
                             msg = "Received unsupported VT100 command: {}"
                             logger.warning(msg.format(command))
                     else:
@@ -460,7 +461,7 @@ class MicroPythonREPLPane(QTextEdit):
                             logger.warning("dropped title {}".format(string))
                         else:
                             # Unknown action, log warning and ignore
-                            command = match.group(0).replace("\x1B", "<Esc>")
+                            command = match.group(0).replace("\x1b", "<Esc>")
                             msg = "Received unsupported VT100 command: {}"
                             logger.warning(msg.format(command))
                     else:
@@ -628,7 +629,10 @@ class SnekREPLPane(MicroPythonREPLPane):
             logger.info("Sending command {}".format(command))
             self.connection.write(command)
             remainder = commands[1:]
-            remaining_task = lambda commands=remainder: self.execute(commands)
+
+            def remaining_task(commands=remainder):
+                return self.execute(commands)
+
             QTimer.singleShot(1000, remaining_task)
 
     def process_bytes(self, data):
@@ -793,9 +797,9 @@ class LocalFileList(MuFileList):
                 self.disable.emit()
                 microbit_filename = source.currentItem().text()
                 local_filename = os.path.join(self.home, microbit_filename)
-                msg = _(
-                    "Getting '{}' from device. " "Copying to '{}'."
-                ).format(microbit_filename, local_filename)
+                msg = _("Getting '{}' from device. Copying to '{}'.").format(
+                    microbit_filename, local_filename
+                )
                 logger.info(msg)
                 self.set_message.emit(msg)
                 self.get.emit(microbit_filename, local_filename)
@@ -805,7 +809,7 @@ class LocalFileList(MuFileList):
         Fired when the get event is completed for the given filename.
         """
         msg = _(
-            "Successfully copied '{}' " "from the device to your computer."
+            "Successfully copied '{}' from the device to your computer."
         ).format(microbit_file)
         self.set_message.emit(msg)
         self.list_files.emit()
@@ -1114,7 +1118,7 @@ class PythonProcessPane(QTextEdit):
         # Manage environment variables that may have been set by the user.
         if envars:
             logger.info(
-                "Running with environment variables: " "{}".format(envars)
+                "Running with environment variables: {}".format(envars)
             )
             for name, value in envars.items():
                 env.insert(name, value)

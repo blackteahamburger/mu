@@ -44,7 +44,7 @@ path = os.path.abspath(os.path.join(".git", "avatar"))
 if not os.path.exists(path):
     os.makedirs(path)
 
-for (username, email) in users:
+for username, email in users:
     print(f"Processing {username} {email}")
     if "users.noreply.github.com" in email:
         raw_username, _ = email.split("@")

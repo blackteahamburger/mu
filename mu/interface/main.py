@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import sys
 import logging
 import os.path
@@ -145,9 +146,7 @@ class ButtonBar(QToolBar):
         self.addAction(
             name="theme",
             display_name=_("Theme"),
-            tool_text=_(
-                "Toggle theme between day, night or " "high contrast."
-            ),
+            tool_text=_("Toggle theme between day, night or high contrast."),
         )
         self.addSeparator()
         self.addAction(
@@ -856,46 +855,36 @@ class Window(QMainWindow):
                 list_item = DebugInspectorItem(name)
                 item_to_expand = list_item
                 for i, i_val in enumerate(val):
-                    list_item.appendRow(
-                        [
-                            DebugInspectorItem(str(i)),
-                            DebugInspectorItem(repr(i_val)),
-                        ]
-                    )
-                self.debug_model.appendRow(
-                    [
-                        list_item,
-                        DebugInspectorItem(
-                            _("(A list of {} items.)").format(len(val))
-                        ),
-                    ]
-                )
+                    list_item.appendRow([
+                        DebugInspectorItem(str(i)),
+                        DebugInspectorItem(repr(i_val)),
+                    ])
+                self.debug_model.appendRow([
+                    list_item,
+                    DebugInspectorItem(
+                        _("(A list of {} items.)").format(len(val))
+                    ),
+                ])
             elif isinstance(val, dict):
                 # Show a dict consisting of rows of key/value pairs.
                 dict_item = DebugInspectorItem(name)
                 item_to_expand = dict_item
                 for k, k_val in val.items():
-                    dict_item.appendRow(
-                        [
-                            DebugInspectorItem(repr(k)),
-                            DebugInspectorItem(repr(k_val)),
-                        ]
-                    )
-                self.debug_model.appendRow(
-                    [
-                        dict_item,
-                        DebugInspectorItem(
-                            _("(A dict of {} items.)").format(len(val))
-                        ),
-                    ]
-                )
+                    dict_item.appendRow([
+                        DebugInspectorItem(repr(k)),
+                        DebugInspectorItem(repr(k_val)),
+                    ])
+                self.debug_model.appendRow([
+                    dict_item,
+                    DebugInspectorItem(
+                        _("(A dict of {} items.)").format(len(val))
+                    ),
+                ])
             else:
-                self.debug_model.appendRow(
-                    [
-                        DebugInspectorItem(name),
-                        DebugInspectorItem(locals_dict[name]),
-                    ]
-                )
+                self.debug_model.appendRow([
+                    DebugInspectorItem(name),
+                    DebugInspectorItem(locals_dict[name]),
+                ])
             # Expand dicts/list with names matching old expanded entries
             if (
                 hasattr(self, "debug_inspector")

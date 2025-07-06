@@ -18,7 +18,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 PYGAMEZERO_APIS = [
     _(
         "actor.Actor(image, pos=None, anchor=None, **kwargs) \nRect(left, top, width, height) -> Rect\nRect((left, top), (width, height)) -> Rect\nRect(object) -> Rect\nPygame Zero object for storing rectangular coordinates"

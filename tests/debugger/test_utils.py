@@ -2,6 +2,7 @@
 """
 Tests for the debug utils.
 """
+
 from mu.debugger.utils import is_breakpoint_line
 
 

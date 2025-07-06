@@ -3,6 +3,7 @@
 Retrieves the GH releases stats from their open API and counts the total number
 of asset downloads, which so far are all Mu installers.
 """
+
 import datetime
 import requests
 

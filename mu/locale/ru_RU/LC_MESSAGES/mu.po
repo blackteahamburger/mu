@@ -72,10 +72,6 @@ msgstr ""
 "вид:\n"
 "ИМЯ=ЗНАЧЕНИЕ"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "Минимизировать код Python перед прошивкой?"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file (empty "
@@ -1284,22 +1280,6 @@ msgstr "Доступ к файловой системе на micro: bit."
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "Используйте REPL для немедленного выполнения кода на micro:bit."
-
-#: mu/modes/microbit.py:190
-msgid "Your script is too long and code minification is disabled"
-msgstr "Ваш скрипт слишком длинный, и минификация кода отключена"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "Ваш скрипт слишком длинный, а минификатор недоступен"
-
-#: mu/modes/microbit.py:206
-msgid "Problem minifying script"
-msgstr "Проблема с минификацией скрипта"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "Наш минификатор пытался уменьшить код, но ваш скрипт слишком длинный!"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

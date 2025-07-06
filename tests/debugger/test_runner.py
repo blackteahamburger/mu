@@ -2,6 +2,7 @@
 """
 Tests for the debug runner.
 """
+
 import json
 import pytest
 import os.path
@@ -103,7 +104,7 @@ def test_Debugger_output_no_client_connection():
         db.output("test", foo="bar")
         assert mock_logger.call_count == 2
         mock_logger.call_args_list[0][0] == (
-            "Debugger client not connected " "to runner."
+            "Debugger client not connected to runner."
         )
         mock_logger.call_args_list[1][0] == AttributeError("bang!")
 
@@ -291,8 +292,9 @@ def test_Debugger_interact_client_close():
     mock_queue = mock.MagicMock()
     mock_queue.get.side_effect = [("quit", {"foo": "bar"})]
     mock_queue_class = mock.MagicMock(return_value=mock_queue)
-    with mock.patch("mu.debugger.runner.Thread", mock_thread), mock.patch(
-        "mu.debugger.runner.Queue", mock_queue_class
+    with (
+        mock.patch("mu.debugger.runner.Thread", mock_thread),
+        mock.patch("mu.debugger.runner.Queue", mock_queue_class),
     ):
         db.interact(None, None)
     db.output.assert_called_once_with("bootstrap", breakpoints=[])
@@ -863,10 +865,10 @@ def test_run_with_user_requested_quit():
     mock_sys.argv = [None, None]
     mock_sys.path = [None]
     mock_socket = mock.MagicMock()
-    with mock.patch(
-        "mu.debugger.runner.Debugger", mock_debugger_class
-    ), mock.patch("mu.debugger.runner.sys", mock_sys), mock.patch(
-        "mu.debugger.runner.socket", mock_socket
+    with (
+        mock.patch("mu.debugger.runner.Debugger", mock_debugger_class),
+        mock.patch("mu.debugger.runner.sys", mock_sys),
+        mock.patch("mu.debugger.runner.socket", mock_socket),
     ):
         mu.debugger.runner.run("localhost", 1908, "foo.py", ["bar", "baz"])
     mock_debugger.reset.assert_called_once_with()
@@ -891,10 +893,10 @@ def test_run_with_restart_exception():
     mock_sys.argv = [None, None]
     mock_sys.path = [None]
     mock_socket = mock.MagicMock()
-    with mock.patch(
-        "mu.debugger.runner.Debugger", mock_debugger_class
-    ), mock.patch("mu.debugger.runner.sys", mock_sys), mock.patch(
-        "mu.debugger.runner.socket", mock_socket
+    with (
+        mock.patch("mu.debugger.runner.Debugger", mock_debugger_class),
+        mock.patch("mu.debugger.runner.sys", mock_sys),
+        mock.patch("mu.debugger.runner.socket", mock_socket),
     ):
         mu.debugger.runner.run("localhost", 1908, "foo.py", ["bar", "baz"])
     assert mock_debugger.output.call_count == 2
@@ -913,10 +915,10 @@ def test_run_with_expected_exception():
     mock_sys.argv = [None, None]
     mock_sys.path = [None]
     mock_socket = mock.MagicMock()
-    with mock.patch(
-        "mu.debugger.runner.Debugger", mock_debugger_class
-    ), mock.patch("mu.debugger.runner.sys", mock_sys), mock.patch(
-        "mu.debugger.runner.socket", mock_socket
+    with (
+        mock.patch("mu.debugger.runner.Debugger", mock_debugger_class),
+        mock.patch("mu.debugger.runner.sys", mock_sys),
+        mock.patch("mu.debugger.runner.socket", mock_socket),
     ):
         mu.debugger.runner.run("localhost", 1908, "foo.py", ["bar", "baz"])
     assert mock_debugger.client is None
@@ -935,10 +937,10 @@ def test_run_with_unexpected_exception():
     mock_sys.argv = [None, None]
     mock_sys.path = [None]
     mock_socket = mock.MagicMock()
-    with mock.patch(
-        "mu.debugger.runner.Debugger", mock_debugger_class
-    ), mock.patch("mu.debugger.runner.sys", mock_sys), mock.patch(
-        "mu.debugger.runner.socket", mock_socket
+    with (
+        mock.patch("mu.debugger.runner.Debugger", mock_debugger_class),
+        mock.patch("mu.debugger.runner.sys", mock_sys),
+        mock.patch("mu.debugger.runner.socket", mock_socket),
     ):
         mu.debugger.runner.run("localhost", 1908, "foo.py", ["bar", "baz"])
     assert mock_debugger.output.call_count == 1

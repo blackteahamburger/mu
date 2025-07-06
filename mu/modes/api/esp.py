@@ -18,7 +18,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 ESP_APIS = [
     # RNG
     _("random.getrandbits(n) \nReturn an integer with n random bits."),

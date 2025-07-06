@@ -17,6 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from importlib.resources import files as importlib_files
 from PyQt6.QtGui import QPixmap, QIcon, QMovie
 from PyQt6.QtCore import QDir
@@ -58,11 +59,18 @@ def load_movie(name):
 
 def load_stylesheet(name):
     """Load a CSS stylesheet from the resources directory."""
-    return importlib_files("mu.resources").joinpath("css/" + name).read_bytes().decode("utf8")
+    return (
+        importlib_files("mu.resources")
+        .joinpath("css/" + name)
+        .read_bytes()
+        .decode("utf8")
+    )
 
 
 def load_font_data(name):
     """
     Load the (binary) content of a font as bytes
     """
-    return importlib_files("mu.resources").joinpath("fonts/" + name).read_bytes()
+    return (
+        importlib_files("mu.resources").joinpath("fonts/" + name).read_bytes()
+    )

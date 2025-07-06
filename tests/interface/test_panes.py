@@ -2,6 +2,7 @@
 """
 Tests for the user interface elements of Mu.
 """
+
 from PyQt6.QtWidgets import QMessageBox, QLabel, QMenu
 from PyQt6.QtCore import Qt, QEvent, QPointF, QUrl
 from PyQt6.QtGui import QTextCursor, QMouseEvent
@@ -119,9 +120,11 @@ def test_MicroPythonREPLPane_context_menu():
     mock_platform.system.return_value = "WinNT"
     mock_qmenu = mock.MagicMock()
     mock_qmenu_class = mock.MagicMock(return_value=mock_qmenu)
-    with mock.patch("mu.interface.panes.platform", mock_platform), mock.patch(
-        "mu.interface.panes.QMenu", mock_qmenu_class
-    ), mock.patch("mu.interface.panes.QCursor"):
+    with (
+        mock.patch("mu.interface.panes.platform", mock_platform),
+        mock.patch("mu.interface.panes.QMenu", mock_qmenu_class),
+        mock.patch("mu.interface.panes.QCursor"),
+    ):
         rp = mu.interface.panes.MicroPythonREPLPane(mock_repl_connection)
         rp.context_menu()
     assert mock_qmenu.addAction.call_count == 2
@@ -146,9 +149,11 @@ def test_MicroPythonREPLPane_context_menu_darwin():
     mock_platform.system.return_value = "Darwin"
     mock_qmenu = mock.MagicMock()
     mock_qmenu_class = mock.MagicMock(return_value=mock_qmenu)
-    with mock.patch("mu.interface.panes.platform", mock_platform), mock.patch(
-        "mu.interface.panes.QMenu", mock_qmenu_class
-    ), mock.patch("mu.interface.panes.QCursor"):
+    with (
+        mock.patch("mu.interface.panes.platform", mock_platform),
+        mock.patch("mu.interface.panes.QMenu", mock_qmenu_class),
+        mock.patch("mu.interface.panes.QCursor"),
+    ):
         rp = mu.interface.panes.MicroPythonREPLPane(mock_repl_connection)
         rp.context_menu()
     assert mock_qmenu.addAction.call_count == 2
@@ -651,7 +656,7 @@ def test_MicroPythonREPLPane_process_tty_data_handle_malformed_unicode():
 
     # Test that malformed input are correctly replaced with the standard
     # unicode replacement character (�, U+FFFD)
-    assert rp.insertPlainText.call_args_list[4][0][0] == u"\uFFFD"
+    assert rp.insertPlainText.call_args_list[4][0][0] == "\ufffd"
 
 
 def test_MicroPythonREPLPane_process_tty_data_VT100():
@@ -670,29 +675,27 @@ def test_MicroPythonREPLPane_process_tty_data_VT100():
     rp.setTextCursor = mock.MagicMock(return_value=None)
     rp.insertPlainText = mock.MagicMock(return_value=None)
     rp.ensureCursorVisible = mock.MagicMock(return_value=None)
-    bs = bytes(
-        [
-            27,
-            91,
-            ord("1"),
-            ord("A"),  # <Esc>[1A    (VT100 UP)
-            27,
-            91,
-            ord("1"),
-            ord("B"),  # <Esc>[1B    (VT100 DOWN)
-            27,
-            91,
-            ord("1"),
-            ord("C"),  # <Esc>[1C    (VT100 RIGHT)
-            27,
-            91,
-            ord("1"),
-            ord("D"),  # <Esc>[1D    (VT100 LEFT)
-            27,
-            91,
-            ord("K"),  # <Esc>[K     (VT100 DELETE to end of line)
-        ]
-    )
+    bs = bytes([
+        27,
+        91,
+        ord("1"),
+        ord("A"),  # <Esc>[1A    (VT100 UP)
+        27,
+        91,
+        ord("1"),
+        ord("B"),  # <Esc>[1B    (VT100 DOWN)
+        27,
+        91,
+        ord("1"),
+        ord("C"),  # <Esc>[1C    (VT100 RIGHT)
+        27,
+        91,
+        ord("1"),
+        ord("D"),  # <Esc>[1D    (VT100 LEFT)
+        27,
+        91,
+        ord("K"),  # <Esc>[K     (VT100 DELETE to end of line)
+    ])
     rp.process_tty_data(bs)
     assert mock_tc.movePosition.call_count == 5
     assert mock_tc.movePosition.call_args_list[0][0][0] == QTextCursor.Up
@@ -799,7 +802,7 @@ def test_MicroPythonREPLPane_process_tty_data_vt100_cursor_left():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: move 4 times left
-    bs = b"\x1B[4D"
+    bs = b"\x1b[4D"
     rp.process_tty_data(bs)
     assert rp.toPlainText() == "Hello world!"
     assert rp.textCursor().position() == 1
@@ -817,7 +820,7 @@ def test_MicroPythonREPLPane_process_tty_data_vt100_cursor_right():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: move 4 times right
-    bs = b"\x1B[4C"
+    bs = b"\x1b[4C"
     rp.process_tty_data(bs)
     assert rp.toPlainText() == "Hello world!"
     assert rp.textCursor().position() == 9
@@ -836,9 +839,9 @@ def test_MicroPythonREPLPane_process_tty_data_partial_reception():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: \x1B
-    bs = b"\x1B"
+    bs = b"\x1b"
     rp.process_tty_data(bs)
-    assert rp.unprocessed_input == "\x1B"
+    assert rp.unprocessed_input == "\x1b"
     assert rp.toPlainText() == "Hello world!"
     assert rp.textCursor().position() == 5
     assert rp.device_cursor_position == 5
@@ -863,9 +866,9 @@ def test_MicroPythonREPLPane_process_tty_data_partial_reception2():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: \x1B
-    bs = b"\x1B["
+    bs = b"\x1b["
     rp.process_tty_data(bs)
-    assert rp.unprocessed_input == "\x1B["
+    assert rp.unprocessed_input == "\x1b["
     assert rp.toPlainText() == "Hello world!"
     assert rp.textCursor().position() == 5
     assert rp.device_cursor_position == 5
@@ -889,7 +892,7 @@ def test_MicroPythonREPLPane_process_tty_data_unsupported_vt100_command():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: \x1B[4X - unknown command X
-    bs = b"\x1B[4X"
+    bs = b"\x1b[4X"
     rp.process_tty_data(bs)
     # Do nothing
     assert rp.unprocessed_input == b""
@@ -910,14 +913,14 @@ def test_MicroPythonREPLPane_process_tty_data_partial_osc_reception():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: \x1B
-    bs = b"\x1B]"
+    bs = b"\x1b]"
     rp.process_tty_data(bs)
-    assert rp.unprocessed_input == "\x1B]"
+    assert rp.unprocessed_input == "\x1b]"
     assert rp.toPlainText() == "Hello world!"
     assert rp.textCursor().position() == 5
     assert rp.device_cursor_position == 5
     # Receive the rest of the title
-    bs = b";hello\x1B\\"
+    bs = b";hello\x1b\\"
     rp.process_tty_data(bs)
     assert rp.unprocessed_input == ""
     assert rp.toPlainText() == "Hello world!"
@@ -936,7 +939,7 @@ def test_MicroPythonREPLPane_process_tty_data_osc_title_command():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: \x1B[4X - unknown command X
-    bs = b"\x1B]0;hello\x1B\\"
+    bs = b"\x1b]0;hello\x1b\\"
     rp.process_tty_data(bs)
     # Do nothing
     assert rp.unprocessed_input == b""
@@ -956,7 +959,7 @@ def test_MicroPythonREPLPane_process_tty_data_unsupported_osc_command():
     rp.device_cursor_position = 5
     rp.set_qtcursor_to_devicecursor()
     # Receive: \x1B[4X - unknown command X
-    bs = b"\x1B]100;hello\x1B\\"
+    bs = b"\x1b]100;hello\x1b\\"
     rp.process_tty_data(bs)
     # Do nothing
     assert rp.unprocessed_input == b""
@@ -1064,9 +1067,11 @@ def test_SnekREPLPane_context_menu():
     mock_platform.system.return_value = "WinNT"
     mock_qmenu = mock.MagicMock()
     mock_qmenu_class = mock.MagicMock(return_value=mock_qmenu)
-    with mock.patch("mu.interface.panes.platform", mock_platform), mock.patch(
-        "mu.interface.panes.QMenu", mock_qmenu_class
-    ), mock.patch("mu.interface.panes.QCursor"):
+    with (
+        mock.patch("mu.interface.panes.platform", mock_platform),
+        mock.patch("mu.interface.panes.QMenu", mock_qmenu_class),
+        mock.patch("mu.interface.panes.QCursor"),
+    ):
         rp = mu.interface.panes.SnekREPLPane(mock_serial)
         rp.context_menu()
     assert mock_qmenu.addAction.call_count == 2
@@ -1091,9 +1096,11 @@ def test_SnekREPLPane_context_menu_darwin():
     mock_platform.system.return_value = "Darwin"
     mock_qmenu = mock.MagicMock()
     mock_qmenu_class = mock.MagicMock(return_value=mock_qmenu)
-    with mock.patch("mu.interface.panes.platform", mock_platform), mock.patch(
-        "mu.interface.panes.QMenu", mock_qmenu_class
-    ), mock.patch("mu.interface.panes.QCursor"):
+    with (
+        mock.patch("mu.interface.panes.platform", mock_platform),
+        mock.patch("mu.interface.panes.QMenu", mock_qmenu_class),
+        mock.patch("mu.interface.panes.QCursor"),
+    ):
         rp = mu.interface.panes.SnekREPLPane(mock_serial)
         rp.context_menu()
     assert mock_qmenu.addAction.call_count == 2
@@ -1161,7 +1168,7 @@ def test_SnekREPLPane_keyPressEvent_delete():
     data.text = mock.MagicMock(return_value="\b")
     data.modifiers = mock.MagicMock(return_value=mock.MagicMock())
     rp.keyPressEvent(data)
-    mock_serial.write.assert_called_once_with(b"\x1B[\x33\x7E")
+    mock_serial.write.assert_called_once_with(b"\x1b[\x33\x7e")
 
 
 @mock.patch("PyQt6.QtWidgets.QTextEdit.keyPressEvent")
@@ -1705,11 +1712,12 @@ def test_LocalFileList_contextMenuEvent_hex():
     mfs.mapToGlobal = mock.MagicMock()
     mock_event = mock.MagicMock()
 
-    with mock.patch(
-        "mu.interface.panes.QMenu", return_value=mock_menu
-    ), mock.patch(
-        "mu.interface.panes.QDesktopServices", autospec=True
-    ) as mock_QDesktopServices:
+    with (
+        mock.patch("mu.interface.panes.QMenu", return_value=mock_menu),
+        mock.patch(
+            "mu.interface.panes.QDesktopServices", autospec=True
+        ) as mock_QDesktopServices,
+    ):
         mfs.contextMenuEvent(mock_event)
 
     assert mfs.set_message.emit.call_count == 1
@@ -1741,11 +1749,12 @@ def test_LocalFileList_contextMenuEvent_external():
     mfs.mapToGlobal = mock.MagicMock()
     mock_event = mock.MagicMock()
 
-    with mock.patch(
-        "mu.interface.panes.QMenu", return_value=mock_menu
-    ), mock.patch(
-        "mu.interface.panes.QDesktopServices", autospec=True
-    ) as mock_QDesktopServices:
+    with (
+        mock.patch("mu.interface.panes.QMenu", return_value=mock_menu),
+        mock.patch(
+            "mu.interface.panes.QDesktopServices", autospec=True
+        ) as mock_QDesktopServices,
+    ):
         mfs.contextMenuEvent(mock_event)
 
     assert mfs.set_message.emit.call_count == 1
@@ -1824,9 +1833,10 @@ def test_FileSystemPane_init():
     test_local_fs.set_message = mock.MagicMock()
     mock_mfl = mock.MagicMock(return_value=test_microbit_fs)
     mock_lfl = mock.MagicMock(return_value=test_local_fs)
-    with mock.patch(
-        "mu.interface.panes.MicroPythonDeviceFileList", mock_mfl
-    ), mock.patch("mu.interface.panes.LocalFileList", mock_lfl):
+    with (
+        mock.patch("mu.interface.panes.MicroPythonDeviceFileList", mock_mfl),
+        mock.patch("mu.interface.panes.LocalFileList", mock_lfl),
+    ):
         fsp = mu.interface.panes.FileSystemPane("homepath")
         assert isinstance(fsp.microbit_label, QLabel)
         assert isinstance(fsp.local_label, QLabel)
@@ -1912,8 +1922,9 @@ def test_FileSystemPane_on_ls():
     local_files = ["qux.py", "baz.py"]
     mock_listdir = mock.MagicMock(return_value=local_files)
     mock_isfile = mock.MagicMock(return_value=True)
-    with mock.patch("mu.interface.panes.os.listdir", mock_listdir), mock.patch(
-        "mu.interface.panes.os.path.isfile", mock_isfile
+    with (
+        mock.patch("mu.interface.panes.os.listdir", mock_listdir),
+        mock.patch("mu.interface.panes.os.path.isfile", mock_isfile),
     ):
         fsp.on_ls(microbit_files)
     fsp.microbit_fs.clear.assert_called_once_with()
@@ -2216,10 +2227,12 @@ def test_PythonProcessPane_start_process_user_environment_variables():
     mock_environment_class.systemEnvironment.return_value = mock_environment
     interpreter = sys.executable
     script_filename = "script.py"
-    with mock.patch(
-        "mu.interface.panes.QProcess", mock_process_class
-    ), mock.patch("mu.interface.panes.sys") as mock_sys, mock.patch(
-        "mu.interface.panes.QProcessEnvironment", mock_environment_class
+    with (
+        mock.patch("mu.interface.panes.QProcess", mock_process_class),
+        mock.patch("mu.interface.panes.sys") as mock_sys,
+        mock.patch(
+            "mu.interface.panes.QProcessEnvironment", mock_environment_class
+        ),
     ):
         mock_sys.platform = "darwin"
         ppp = mu.interface.panes.PythonProcessPane()
@@ -2354,9 +2367,11 @@ def test_PythonProcessPane_context_menu():
     mock_platform.system.return_value = "WinNT"
     mock_qmenu = mock.MagicMock()
     mock_qmenu_class = mock.MagicMock(return_value=mock_qmenu)
-    with mock.patch("mu.interface.panes.platform", mock_platform), mock.patch(
-        "mu.interface.panes.QMenu", mock_qmenu_class
-    ), mock.patch("mu.interface.panes.QCursor"):
+    with (
+        mock.patch("mu.interface.panes.platform", mock_platform),
+        mock.patch("mu.interface.panes.QMenu", mock_qmenu_class),
+        mock.patch("mu.interface.panes.QCursor"),
+    ):
         ppp = mu.interface.panes.PythonProcessPane()
         ppp.context_menu()
     assert mock_qmenu.addAction.call_count == 2
@@ -2380,9 +2395,11 @@ def test_PythonProcessPane_context_menu_darwin():
     mock_platform.system.return_value = "Darwin"
     mock_qmenu = mock.MagicMock()
     mock_qmenu_class = mock.MagicMock(return_value=mock_qmenu)
-    with mock.patch("mu.interface.panes.platform", mock_platform), mock.patch(
-        "mu.interface.panes.QMenu", mock_qmenu_class
-    ), mock.patch("mu.interface.panes.QCursor"):
+    with (
+        mock.patch("mu.interface.panes.platform", mock_platform),
+        mock.patch("mu.interface.panes.QMenu", mock_qmenu_class),
+        mock.patch("mu.interface.panes.QCursor"),
+    ):
         ppp = mu.interface.panes.PythonProcessPane()
         ppp.context_menu()
     assert mock_qmenu.addAction.call_count == 2
@@ -2573,9 +2590,11 @@ def test_PythonProcessPane_parse_input_ctrl_c():
     modifiers = Qt.ControlModifier
     mock_kill = mock.MagicMock()
     mock_timer = mock.MagicMock()
-    with mock.patch("mu.interface.panes.os.kill", mock_kill), mock.patch(
-        "mu.interface.panes.QTimer", mock_timer
-    ), mock.patch("mu.interface.panes.platform.system", return_value="win32"):
+    with (
+        mock.patch("mu.interface.panes.os.kill", mock_kill),
+        mock.patch("mu.interface.panes.QTimer", mock_timer),
+        mock.patch("mu.interface.panes.platform.system", return_value="win32"),
+    ):
         ppp.parse_input(key, text, modifiers)
     mock_kill.assert_called_once_with(123, signal.SIGINT)
     ppp.process.readAll.assert_called_once_with()
@@ -2593,9 +2612,10 @@ def test_PythonProcessPane_parse_input_ctrl_d():
     text = ""
     modifiers = Qt.ControlModifier
     mock_timer = mock.MagicMock()
-    with mock.patch(
-        "mu.interface.panes.platform.system", return_value="win32"
-    ), mock.patch("mu.interface.panes.QTimer", mock_timer):
+    with (
+        mock.patch("mu.interface.panes.platform.system", return_value="win32"),
+        mock.patch("mu.interface.panes.QTimer", mock_timer),
+    ):
         ppp.parse_input(key, text, modifiers)
         ppp.process.kill.assert_called_once_with()
     ppp.process.readAll.assert_called_once_with()
@@ -2614,8 +2634,9 @@ def test_PythonProcessPane_parse_input_ctrl_c_after_process_finished():
     text = ""
     modifiers = Qt.ControlModifier
     mock_kill = mock.MagicMock()
-    with mock.patch("mu.interface.panes.os.kill", mock_kill), mock.patch(
-        "mu.interface.panes.platform.system", return_value="win32"
+    with (
+        mock.patch("mu.interface.panes.os.kill", mock_kill),
+        mock.patch("mu.interface.panes.platform.system", return_value="win32"),
     ):
         ppp.parse_input(key, text, modifiers)
     assert mock_kill.call_count == 0

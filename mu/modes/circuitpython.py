@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import os
 import ctypes
 import logging
@@ -146,15 +147,13 @@ class CircuitPythonMode(MicroPythonMode):
             }
         ]
         if CHARTS:
-            buttons.append(
-                {
-                    "name": "plotter",
-                    "display_name": _("Plotter"),
-                    "description": _("Plot incoming REPL data."),
-                    "handler": self.toggle_plotter,
-                    "shortcut": "CTRL+Shift+P",
-                }
-            )
+            buttons.append({
+                "name": "plotter",
+                "display_name": _("Plotter"),
+                "description": _("Plot incoming REPL data."),
+                "handler": self.toggle_plotter,
+                "shortcut": "CTRL+Shift+P",
+            })
         return buttons
 
     def workspace_dir(self):

@@ -18,7 +18,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 FLASK_APIS = [
     _(
         "AppContext(app) \nThe application context binds an application object implicitly\nto the current thread or greenlet, similar to how the\nRequestContext binds request information.  The application\ncontext is also implicitly created if a request context is created\nbut the application is not on top of the individual application\ncontext.\n\n"

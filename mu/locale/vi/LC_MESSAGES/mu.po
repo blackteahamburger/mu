@@ -74,10 +74,6 @@ msgstr ""
 "Mỗi biến môi trường riêng biệt phải nằm trên một dòng mới và theo dạng:\n"
 "NAME=VALUE"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "Thu gọn mã Python trước khi nạp?"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file "
@@ -1295,24 +1291,6 @@ msgstr "Truy cập hệ thống tệp trên micro:bit."
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "Sử dụng REPL để chạy lệnh tức thời trên micro:bit."
-
-#: mu/modes/microbit.py:190
-#, fuzzy
-msgid "Your script is too long and code minification is disabled"
-msgstr "Tệp lệnh của bạn quá dài và bộ thu gọn mã không khả dụng"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "Tệp lệnh của bạn quá dài và bộ thu gọn mã không khả dụng"
-
-#: mu/modes/microbit.py:206
-#, fuzzy
-msgid "Problem minifying script"
-msgstr "Có sự cố với tệp lệnh"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "Trình thu gọn mã đã thử, nhưng tệp lệnh của bạn quá dài!"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

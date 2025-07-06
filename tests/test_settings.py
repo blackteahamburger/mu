@@ -408,9 +408,11 @@ def test_default_file_location_frozen(mocked_settings):
     In this case the logic searches in the path of sys.executable
     """
     settings, filepath, items = mocked_settings
-    with mock.patch.object(sys, "executable", filepath), mock.patch.object(
-        sys, "frozen", True, create=True
-    ), mock.patch.object(platform, "system", return_value="not_Darwin"):
+    with (
+        mock.patch.object(sys, "executable", filepath),
+        mock.patch.object(sys, "frozen", True, create=True),
+        mock.patch.object(platform, "system", return_value="not_Darwin"),
+    ):
         settings.init()
 
     assert settings.filepath == filepath
@@ -445,9 +447,11 @@ def test_default_file_location_frozen_osx(mocked_settings):
     dirpath_plus_3 = os.path.join(os.path.dirname(filepath), "a", "b", "c")
     exe_filepath = os.path.join(dirpath_plus_3, "python.exe")
 
-    with mock.patch.object(sys, "executable", exe_filepath), mock.patch.object(
-        sys, "frozen", True, create=True
-    ), mock.patch("platform.system", return_value="Darwin"):
+    with (
+        mock.patch.object(sys, "executable", exe_filepath),
+        mock.patch.object(sys, "frozen", True, create=True),
+        mock.patch("platform.system", return_value="Darwin"),
+    ):
         settings.init()
 
     assert settings.filepath == filepath
@@ -505,10 +509,11 @@ def test_default_file_location_no_files():
     """
     mock_open = mock.mock_open()
     mock_json_dump = mock.MagicMock()
-    with mock.patch("os.path.exists", return_value=False), mock.patch(
-        "builtins.open", mock_open
-    ), mock.patch("json.dump", mock_json_dump), mock.patch(
-        "mu.logic.DATA_DIR", "fake_path"
+    with (
+        mock.patch("os.path.exists", return_value=False),
+        mock.patch("builtins.open", mock_open),
+        mock.patch("json.dump", mock_json_dump),
+        mock.patch("mu.logic.DATA_DIR", "fake_path"),
     ):
         result = mu.logic.default_file_location("settings.json")
         assert result == os.path.join("fake_path", "settings.json")
@@ -525,16 +530,15 @@ def test_default_file_location_no_files_cannot_create():
     mock_open.return_value.__enter__.side_effect = FileNotFoundError("Bang")
     mock_open.return_value.__exit__ = mock.Mock()
     mock_json_dump = mock.MagicMock()
-    with mock.patch("os.path.exists", return_value=False), mock.patch(
-        "builtins.open", mock_open
-    ), mock.patch("json.dump", mock_json_dump), mock.patch(
-        "mu.logic.DATA_DIR", "fake_path"
-    ), mock.patch(
-        "mu.logic.logger", return_value=None
-    ) as logger:
+    with (
+        mock.patch("os.path.exists", return_value=False),
+        mock.patch("builtins.open", mock_open),
+        mock.patch("json.dump", mock_json_dump),
+        mock.patch("mu.logic.DATA_DIR", "fake_path"),
+        mock.patch("mu.logic.logger", return_value=None) as logger,
+    ):
         mu.logic.default_file_location("settings.json")
-        msg = (
-            "Unable to create admin file: "
-            "fake_path{}settings.json".format(os.path.sep)
+        msg = "Unable to create admin file: fake_path{}settings.json".format(
+            os.path.sep
         )
         logger.error.assert_called_once_with(msg)

@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import os
 import logging
 import webbrowser
@@ -51,9 +52,7 @@ from flask import Flask, render_template
 
 @app.route("/")
 def index():
-    return render_template("index.html")""".format(
-    FLASK_APP
-)
+    return render_template("index.html")""".format(FLASK_APP)
 
 
 class WebMode(BaseMode):

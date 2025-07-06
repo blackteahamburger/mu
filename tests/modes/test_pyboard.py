@@ -2,6 +2,7 @@
 """
 Tests for the Pyboard mode.
 """
+
 import pytest
 import ctypes
 from mu.modes.pyboard import PyboardMode
@@ -98,8 +99,9 @@ def test_workspace_dir_posix_no_mount_command():
     with open("tests/modes/mount_exists.txt", "rb") as fixture_file:
         fixture = fixture_file.read()
     mock_check = mock.MagicMock(side_effect=[FileNotFoundError, fixture])
-    with mock.patch("os.name", "posix"), mock.patch(
-        "mu.modes.pyboard.check_output", mock_check
+    with (
+        mock.patch("os.name", "posix"),
+        mock.patch("mu.modes.pyboard.check_output", mock_check),
     ):
         assert pbm.workspace_dir() == "/media/PYBFLASH"
         assert mock_check.call_count == 2
@@ -118,11 +120,14 @@ def test_workspace_dir_posix_missing():
     with open("tests/modes/mount_missing.txt", "rb") as fixture_file:
         fixture = fixture_file.read()
         with mock.patch("os.name", "posix"):
-            with mock.patch(
-                "mu.modes.pyboard.check_output", return_value=fixture
-            ), mock.patch(
-                "mu.modes.pyboard." "MicroPythonMode.workspace_dir"
-            ) as mpm:
+            with (
+                mock.patch(
+                    "mu.modes.pyboard.check_output", return_value=fixture
+                ),
+                mock.patch(
+                    "mu.modes.pyboard.MicroPythonMode.workspace_dir"
+                ) as mpm,
+            ):
                 mpm.return_value = "foo"
                 assert pbm.workspace_dir() == "foo"
 
@@ -163,11 +168,14 @@ def test_workspace_dir_nt_missing(windll):
     with mock.patch("os.name", "nt"):
         with mock.patch("os.path.exists", return_value=True):
             return_value = ctypes.create_unicode_buffer(1024)
-            with mock.patch(
-                "ctypes.create_unicode_buffer", return_value=return_value
-            ), mock.patch(
-                "mu.modes.pyboard." "MicroPythonMode.workspace_dir"
-            ) as mpm:
+            with (
+                mock.patch(
+                    "ctypes.create_unicode_buffer", return_value=return_value
+                ),
+                mock.patch(
+                    "mu.modes.pyboard.MicroPythonMode.workspace_dir"
+                ) as mpm,
+            ):
                 mpm.return_value = "foo"
                 assert pbm.workspace_dir() == "foo"
 

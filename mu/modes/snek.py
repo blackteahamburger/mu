@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import logging
 from .base import MicroPythonMode, REPLConnection
 from .api import SNEK_APIS
@@ -394,15 +395,13 @@ class SnekMode(MicroPythonMode):
             },
         ]
         if CHARTS:
-            buttons.append(
-                {
-                    "name": "plotter",
-                    "display_name": _("Plotter"),
-                    "description": _("Plot incoming REPL data."),
-                    "handler": self.toggle_plotter,
-                    "shortcut": "CTRL+Shift+P",
-                }
-            )
+            buttons.append({
+                "name": "plotter",
+                "display_name": _("Plotter"),
+                "description": _("Plot incoming REPL data."),
+                "handler": self.toggle_plotter,
+                "shortcut": "CTRL+Shift+P",
+            })
         return buttons
 
     def put(self):
@@ -453,9 +452,7 @@ class SnekMode(MicroPythonMode):
         """
         target_tab = self.get_tab()
         if target_tab and target_tab.isModified():
-            msg = _(
-                "There is un-saved work, 'get' will cause you " "to lose it."
-            )
+            msg = _("There is un-saved work, 'get' will cause you to lose it.")
             window = target_tab.nativeParentWidget()
             if window.show_confirmation(msg) == QMessageBox.Cancel:
                 return

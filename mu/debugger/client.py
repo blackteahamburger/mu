@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import json
 import socket
 import time
@@ -104,9 +105,10 @@ class CommandBufferHandler(QObject):
                 self.debugger.socket = socket.socket(
                     socket.AF_INET, socket.SOCK_STREAM
                 )
-                self.debugger.socket.connect(
-                    (self.debugger.host, self.debugger.port)
-                )
+                self.debugger.socket.connect((
+                    self.debugger.host,
+                    self.debugger.port,
+                ))
                 connected = True
             except ConnectionRefusedError:
                 # Allow up to connection_attempts attempts to connect.

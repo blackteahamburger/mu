@@ -2,6 +2,7 @@
 """
 Tests for the debug mode.
 """
+
 from mu.debugger.config import DEBUGGER_PORT
 from mu.modes.debugger import DebugMode
 from mu.virtual_environment import venv
@@ -53,9 +54,10 @@ def test_debug_start():
     mock_debugger = mock.MagicMock()
     mock_debugger_class = mock.MagicMock(return_value=mock_debugger)
     dm = DebugMode(editor, view)
-    with mock.patch(
-        "mu.modes.debugger.Debugger", mock_debugger_class
-    ), mock.patch.object(venv, "interpreter", "interpreter"):
+    with (
+        mock.patch("mu.modes.debugger.Debugger", mock_debugger_class),
+        mock.patch.object(venv, "interpreter", "interpreter"),
+    ):
         dm.start()
     editor.save_tab_to_file.assert_called_once_with(view.current_tab)
     view.add_python3_runner.assert_called_once_with(
@@ -543,9 +545,11 @@ def test_debug_on_stack():
         (2, {"locals": {"b": "frame2", "c": "frame2"}}),
     ]
     dm.debug_on_stack(stack)
-    view.update_debug_inspector.assert_called_once_with(
-        {"a": "frame1", "b": "frame2", "c": "frame2"}
-    )
+    view.update_debug_inspector.assert_called_once_with({
+        "a": "frame1",
+        "b": "frame2",
+        "c": "frame2",
+    })
 
 
 def test_debug_on_postmortem():

@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import sys
 import os
 import socket
@@ -469,13 +470,11 @@ class Debugger(bdb.Bdb):
         import __main__
 
         __main__.__dict__.clear()
-        __main__.__dict__.update(
-            {
-                "__name__": "__main__",
-                "__file__": filename,
-                "__builtins__": __builtins__,
-            }
-        )
+        __main__.__dict__.update({
+            "__name__": "__main__",
+            "__file__": filename,
+            "__builtins__": __builtins__,
+        })
         # When bdb sets tracing, a number of call and line events happen BEFORE
         # we get to the user's code. The following measures avoid stopping
         # before we get to the target script (see user_line and user_call for

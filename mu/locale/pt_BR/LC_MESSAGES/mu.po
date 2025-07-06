@@ -74,10 +74,6 @@ msgstr ""
 "Cada variável de ambiente deve estar numa linha separada na forma:\n"
 "NOME=VALOR"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "Minificar o código Python antes de enviar?"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file "
@@ -1327,22 +1323,6 @@ msgstr "Acessa o sistema de arquivos no micro:bit."
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "Usa o REPL para programar diretamente no micro:bit."
-
-#: mu/modes/microbit.py:190
-msgid "Your script is too long and code minification is disabled"
-msgstr "O seu script é muito grande e a minificação de código está desabilitada"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "O seu script é muito grande e o minificador não está disponível"
-
-#: mu/modes/microbit.py:206
-msgid "Problem minifying script"
-msgstr "Problema ao minificar o script"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "O minificador tentou, mas o seu script é muito grande!"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

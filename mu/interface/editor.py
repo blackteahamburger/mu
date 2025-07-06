@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import keyword
 import os
 import re
@@ -235,6 +236,7 @@ class EditorPane(QsciScintilla):
         Connect clicking the margin to the passed in handler function, via a
         filtering handler that ignores clicks on margin 4.
         """
+
         # Margin 4 motivation in self.configure comments.
         def func_ignoring_margin_4(margin, line, modifiers):
             if margin != 4:
@@ -556,14 +558,12 @@ class EditorPane(QsciScintilla):
                 continue
 
             line_start, col_start, line_end, col_end = range
-            indicators["positions"].append(
-                {
-                    "line_start": line_start,
-                    "col_start": col_start,
-                    "line_end": line_end,
-                    "col_end": col_end,
-                }
-            )
+            indicators["positions"].append({
+                "line_start": line_start,
+                "col_start": col_start,
+                "line_end": line_end,
+                "col_end": col_end,
+            })
             self.fillIndicatorRange(
                 line_start, col_start, line_end, col_end, indicators["id"]
             )

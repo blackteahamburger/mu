@@ -1,6 +1,7 @@
 """
 Tests for the minimalist Lego Spike mode.
 """
+
 import pytest
 from unittest import mock
 from mu.modes.lego import LegoMode

@@ -6,6 +6,7 @@ Usage:
 scrapy runspider flask_api.py -o flask.json
 
 """
+
 import scrapy
 from bs4 import BeautifulSoup
 

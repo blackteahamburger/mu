@@ -2,6 +2,7 @@
 """
 Tests for the flask based web mode.
 """
+
 import os
 import pytest
 from mu.modes.web import WebMode, CODE_TEMPLATE, FLASK_APP
@@ -556,11 +557,14 @@ def test_deploy():
     view.current_tab.isModified.return_value = True
     wm = WebMode(editor, view)
     test_file = "test_file"
-    with mock.patch("os.path.isdir", return_value=True), mock.patch(
-        "os.listdir",
-        return_value=[
-            test_file,
-        ],
+    with (
+        mock.patch("os.path.isdir", return_value=True),
+        mock.patch(
+            "os.listdir",
+            return_value=[
+                test_file,
+            ],
+        ),
     ):
         wm.deploy(None)
     root_dir = os.path.dirname(os.path.abspath(view.current_tab.path))

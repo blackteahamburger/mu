@@ -2,6 +2,7 @@
 """
 Tests for the BaseMode class.
 """
+
 import os
 import mu
 import pytest
@@ -54,9 +55,13 @@ def test_base_mode_workspace_dir():
     Return settings file workspace value.
     """
     # read from our demo settings.json
-    with mock.patch(
-        "mu.modes.base.get_settings_path", return_value="tests/settings.json"
-    ), mock.patch("os.path.isdir", return_value=True):
+    with (
+        mock.patch(
+            "mu.modes.base.get_settings_path",
+            return_value="tests/settings.json",
+        ),
+        mock.patch("os.path.isdir", return_value=True),
+    ):
         editor = mock.MagicMock()
         view = mock.MagicMock()
         bm = BaseMode(editor, view)
@@ -89,9 +94,10 @@ def test_base_mode_workspace_invalid_value():
     )
     mocked_settings = mu.settings.UserSettings()
     mocked_settings["workspace"] = "*invalid*"
-    with mock.patch.object(
-        mu.settings, "settings", mocked_settings
-    ), mock.patch("mu.modes.base.logger", return_value=None) as logger:
+    with (
+        mock.patch.object(mu.settings, "settings", mocked_settings),
+        mock.patch("mu.modes.base.logger", return_value=None) as logger,
+    ):
         editor = mock.MagicMock()
         view = mock.MagicMock()
         bm = BaseMode(editor, view)
@@ -179,12 +185,11 @@ def test_base_mode_remove_plotter():
     mock_csv_writer = mock.MagicMock()
     mock_csv = mock.MagicMock()
     mock_csv.writer.return_value = mock_csv_writer
-    with mock.patch(
-        "mu.modes.base.os.path.exists", return_value=False
-    ), mock.patch("mu.modes.base.os.makedirs", mock_mkdir), mock.patch(
-        "builtins.open", mock_open
-    ), mock.patch(
-        "mu.modes.base.csv", mock_csv
+    with (
+        mock.patch("mu.modes.base.os.path.exists", return_value=False),
+        mock.patch("mu.modes.base.os.makedirs", mock_mkdir),
+        mock.patch("builtins.open", mock_open),
+        mock.patch("mu.modes.base.csv", mock_csv),
     ):
         bm.remove_plotter()
     assert bm.plotter is False
@@ -281,11 +286,13 @@ def test_micropython_mode_find_device():
             board_name,
             None,
         )
-        with mock.patch(
-            "mu.modes.base.QSerialPortInfo.availablePorts",
-            return_value=[mock_port],
-        ), mock.patch("mu.modes.base.os", mock_os), mock.patch(
-            "mu.modes.base.sys", mock_sys
+        with (
+            mock.patch(
+                "mu.modes.base.QSerialPortInfo.availablePorts",
+                return_value=[mock_port],
+            ),
+            mock.patch("mu.modes.base.os", mock_os),
+            mock.patch("mu.modes.base.sys", mock_sys),
         ):
             assert mm.find_devices() == [device]
 
@@ -350,11 +357,13 @@ def test_micropython_mode_find_device_darwin_remove_extraneous_devices():
         "microbit",
         None,
     )
-    with mock.patch("sys.platform", "darwin"), mock.patch(
-        "os.name", "posix"
-    ), mock.patch(
-        "mu.modes.base.QSerialPortInfo.availablePorts",
-        return_value=[mock_port, mock_port2],
+    with (
+        mock.patch("sys.platform", "darwin"),
+        mock.patch("os.name", "posix"),
+        mock.patch(
+            "mu.modes.base.QSerialPortInfo.availablePorts",
+            return_value=[mock_port, mock_port2],
+        ),
     ):
         assert mm.find_devices() == [device]
 
@@ -770,7 +779,6 @@ def test_micropython_device_changed(microbit):
 
 
 def test_FileManager_on_start():
-
     """
     When a thread signals it has started, create a serial connection and then
     list the files.

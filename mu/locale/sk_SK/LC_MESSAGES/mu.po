@@ -71,10 +71,6 @@ msgstr ""
 "Každá premenná prostredia by sa mala nachádzať na novom riadku vo formáte:\n"
 "NÁZOV=HODNOTA"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "Minifikovať Python kód pred jeho zapísaním?"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file (empty "
@@ -1292,22 +1288,6 @@ msgstr "Prístup k súborovému systému na zariadení micro:bit."
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "Spustí živé programovanie (REPL) na zariadení micro:bit."
-
-#: mu/modes/microbit.py:190
-msgid "Your script is too long and code minification is disabled"
-msgstr "Váš skript je príliš dlhý a minifikácia kódu je vypnutá"
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "Váš skript je príliš dlhý a minifikátor kódu nie je dostupný"
-
-#: mu/modes/microbit.py:206
-msgid "Problem minifying script"
-msgstr "Problém pri minifkovaní skriptu"
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "Náš minifikátor to skúsil, ale váš skript je príliš dlhý!"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

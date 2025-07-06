@@ -18,7 +18,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 ADAFRUIT_APIS = [
     _(
         "_stage.Layer(width, height, graphic, palette, grid) \nKeep internal information about a layer of graphics (either a\nGrid or a Sprite) in a format suitable for fast rendering\nwith the render() function.\n\n\nParameters:\nwidth (int) -- The width of the grid in tiles, or 1 for sprites.\nheight (int) -- The height of the grid in tiles, or 1 for sprites.\ngraphic (bytearray) -- The graphic data of the tiles.\npalette (bytearray) -- The color palette to be used.\ngrid (bytearray) -- The contents of the grid map."

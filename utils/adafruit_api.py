@@ -6,6 +6,7 @@ Usage:
 scrapy runspider adafruit_api.py -o adafruit.json
 
 """
+
 import scrapy
 from bs4 import BeautifulSoup
 

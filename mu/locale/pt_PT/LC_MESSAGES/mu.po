@@ -74,10 +74,6 @@ msgstr ""
 "\n"
 "NOME=VALOR"
 
-#: mu/interface/dialogs.py:188
-msgid "Minify Python code before flashing?"
-msgstr "Compactar o código Python antes de enviar?"
-
 #: mu/interface/dialogs.py:192
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file "
@@ -1317,23 +1313,6 @@ msgstr "Acede aos ficheiros no micro:bit."
 #: mu/modes/microbit.py:153
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "Usa o REPL para programar directamente no micro:bit."
-
-#: mu/modes/microbit.py:190
-msgid "Your script is too long and code minification is disabled"
-msgstr "O teu programa é muito grande e o compactador não está ativado."
-
-#: mu/modes/microbit.py:194
-msgid "Your script is too long and the minifier isn't available"
-msgstr "O teu programa é muito grande e o compactador não está disponível."
-
-#: mu/modes/microbit.py:206
-#, fuzzy
-msgid "Problem minifying script"
-msgstr "Problema na compactação do teu programa."
-
-#: mu/modes/microbit.py:218
-msgid "Our minifier tried but your script is too long!"
-msgstr "O compactador não funcionou porque o teu programa é muito grande!"
 
 #: mu/modes/microbit.py:286
 msgid "Unable to flash \"{}\""

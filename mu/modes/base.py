@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 import sys
 import os
 import os.path
@@ -438,16 +439,14 @@ class MicroPythonMode(BaseMode):
         if not devices and with_logging:
             logger.warning("Could not find device.")
             logger.debug("Available ports:")
-            logger.debug(
-                [
-                    "PID:0x{:04x} VID:0x{:04x} PORT:{}".format(
-                        p.productIdentifier(),
-                        p.vendorIdentifier(),
-                        p.portName(),
-                    )
-                    for p in available_ports
-                ]
-            )
+            logger.debug([
+                "PID:0x{:04x} VID:0x{:04x} PORT:{}".format(
+                    p.productIdentifier(),
+                    p.vendorIdentifier(),
+                    p.portName(),
+                )
+                for p in available_ports
+            ])
         return devices
 
     def port_path(self, port_name):

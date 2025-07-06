@@ -2,6 +2,7 @@
 """
 Tests for the CircuitPython mode.
 """
+
 import pytest
 import ctypes
 from mu.modes.circuitpython import CircuitPythonMode
@@ -75,8 +76,9 @@ def test_workspace_dir_posix_no_mount_command():
     with open("tests/modes/mount_exists.txt", "rb") as fixture_file:
         fixture = fixture_file.read()
     mock_check = mock.MagicMock(side_effect=[FileNotFoundError, fixture])
-    with mock.patch("os.name", "posix"), mock.patch(
-        "mu.modes.circuitpython.check_output", mock_check
+    with (
+        mock.patch("os.name", "posix"),
+        mock.patch("mu.modes.circuitpython.check_output", mock_check),
     ):
         assert am.workspace_dir() == "/media/ntoll/CIRCUITPY"
         assert mock_check.call_count == 2
@@ -95,8 +97,9 @@ def test_workspace_dir_posix_permission_denied():
     with open("tests/modes/mount_exists.txt", "rb") as fixture_file:
         fixture = fixture_file.read()
     mock_check = mock.MagicMock(side_effect=[PermissionError, fixture])
-    with mock.patch("os.name", "posix"), mock.patch(
-        "mu.modes.circuitpython.check_output", mock_check
+    with (
+        mock.patch("os.name", "posix"),
+        mock.patch("mu.modes.circuitpython.check_output", mock_check),
     ):
         assert am.workspace_dir() == "/media/ntoll/CIRCUITPY"
         assert mock_check.call_count == 2
@@ -117,8 +120,9 @@ def test_workspace_dir_posix_exception_raised():
     with open("tests/modes/mount_exists.txt", "rb") as fixture_file:
         fixture = fixture_file.read()
     mock_check = mock.MagicMock(side_effect=[ValueError, fixture])
-    with mock.patch("os.name", "posix"), mock.patch(
-        "mu.modes.circuitpython.check_output", mock_check
+    with (
+        mock.patch("os.name", "posix"),
+        mock.patch("mu.modes.circuitpython.check_output", mock_check),
     ):
         assert am.workspace_dir() == "/media/ntoll/CIRCUITPY"
         assert mock_check.call_count == 2
@@ -137,11 +141,14 @@ def test_workspace_dir_posix_missing():
     with open("tests/modes/mount_missing.txt", "rb") as fixture_file:
         fixture = fixture_file.read()
         with mock.patch("os.name", "posix"):
-            with mock.patch(
-                "mu.modes.circuitpython.check_output", return_value=fixture
-            ), mock.patch(
-                "mu.modes.circuitpython." "MicroPythonMode.workspace_dir"
-            ) as mpm:
+            with (
+                mock.patch(
+                    "mu.modes.circuitpython.check_output", return_value=fixture
+                ),
+                mock.patch(
+                    "mu.modes.circuitpython.MicroPythonMode.workspace_dir"
+                ) as mpm,
+            ):
                 mpm.return_value = "foo"
                 assert am.workspace_dir() == "foo"
 
@@ -248,11 +255,14 @@ def test_workspace_dir_nt_missing(windll):
     with mock.patch("os.name", "nt"):
         with mock.patch("os.path.exists", return_value=True):
             return_value = ctypes.create_unicode_buffer(1024)
-            with mock.patch(
-                "ctypes.create_unicode_buffer", return_value=return_value
-            ), mock.patch(
-                "mu.modes.circuitpython." "MicroPythonMode.workspace_dir"
-            ) as mpm:
+            with (
+                mock.patch(
+                    "ctypes.create_unicode_buffer", return_value=return_value
+                ),
+                mock.patch(
+                    "mu.modes.circuitpython.MicroPythonMode.workspace_dir"
+                ) as mpm,
+            ):
                 mpm.return_value = "foo"
                 assert am.workspace_dir() == "foo"
 

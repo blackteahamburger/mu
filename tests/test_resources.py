@@ -2,6 +2,7 @@
 """
 Tests for the resources sub-module.
 """
+
 import mu.resources
 from unittest import mock
 from PyQt6.QtGui import QIcon, QPixmap, QMovie

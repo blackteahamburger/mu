@@ -2,6 +2,7 @@
 """
 Tests for the user interface elements of Mu.
 """
+
 from unittest import mock
 import mu.i18n
 import mu.interface.editor
@@ -56,12 +57,12 @@ def test_EditorPane_init_python():
     mock_text = mock.MagicMock(return_value=None)
     mock_modified = mock.MagicMock(return_value=None)
     mock_configure = mock.MagicMock(return_value=None)
-    with mock.patch(
-        "mu.interface.editor.EditorPane.setText", mock_text
-    ), mock.patch(
-        "mu.interface.editor.EditorPane.setModified", mock_modified
-    ), mock.patch(
-        "mu.interface.editor.EditorPane.configure", mock_configure
+    with (
+        mock.patch("mu.interface.editor.EditorPane.setText", mock_text),
+        mock.patch(
+            "mu.interface.editor.EditorPane.setModified", mock_modified
+        ),
+        mock.patch("mu.interface.editor.EditorPane.configure", mock_configure),
     ):
         path = "/foo/bar.py"
         text = 'print("Hello, World!")'
@@ -82,12 +83,12 @@ def test_EditorPane_init_html():
     mock_text = mock.MagicMock(return_value=None)
     mock_modified = mock.MagicMock(return_value=None)
     mock_configure = mock.MagicMock(return_value=None)
-    with mock.patch(
-        "mu.interface.editor.EditorPane.setText", mock_text
-    ), mock.patch(
-        "mu.interface.editor.EditorPane.setModified", mock_modified
-    ), mock.patch(
-        "mu.interface.editor.EditorPane.configure", mock_configure
+    with (
+        mock.patch("mu.interface.editor.EditorPane.setText", mock_text),
+        mock.patch(
+            "mu.interface.editor.EditorPane.setModified", mock_modified
+        ),
+        mock.patch("mu.interface.editor.EditorPane.configure", mock_configure),
     ):
         path = "/foo/bar.html"
         text = "<html></html>"
@@ -108,12 +109,12 @@ def test_EditorPane_init_css():
     mock_text = mock.MagicMock(return_value=None)
     mock_modified = mock.MagicMock(return_value=None)
     mock_configure = mock.MagicMock(return_value=None)
-    with mock.patch(
-        "mu.interface.editor.EditorPane.setText", mock_text
-    ), mock.patch(
-        "mu.interface.editor.EditorPane.setModified", mock_modified
-    ), mock.patch(
-        "mu.interface.editor.EditorPane.configure", mock_configure
+    with (
+        mock.patch("mu.interface.editor.EditorPane.setText", mock_text),
+        mock.patch(
+            "mu.interface.editor.EditorPane.setModified", mock_modified
+        ),
+        mock.patch("mu.interface.editor.EditorPane.configure", mock_configure),
     ):
         path = "/foo/bar.css"
         text = "h1 { color: red; }"
@@ -707,13 +708,11 @@ def test_EditorPane_drop_event():
     ep.open_file = mock.MagicMock()
     ep.open_file.emit = m
     data = QMimeData()
-    data.setUrls(
-        [
-            QUrl("file://test/path.py"),
-            QUrl("file://test/path.hex"),
-            QUrl("file://test/path.txt"),
-        ]
-    )
+    data.setUrls([
+        QUrl("file://test/path.py"),
+        QUrl("file://test/path.hex"),
+        QUrl("file://test/path.txt"),
+    ])
     evt = QDropEvent(
         QPointF(0, 0), Qt.CopyAction, data, Qt.LeftButton, Qt.NoModifier
     )
@@ -949,9 +948,10 @@ def test_EditorPane_wheelEvent():
     ep = mu.interface.editor.EditorPane(None, "baz")
     mock_app = mock.MagicMock()
     mock_app.keyboardModifiers.return_value = []
-    with mock.patch("mu.interface.editor.QApplication", mock_app), mock.patch(
-        "mu.interface.editor.QsciScintilla.wheelEvent"
-    ) as mw:
+    with (
+        mock.patch("mu.interface.editor.QApplication", mock_app),
+        mock.patch("mu.interface.editor.QsciScintilla.wheelEvent") as mw,
+    ):
         ep.wheelEvent(None)
         mw.assert_called_once_with(None)
 
@@ -961,9 +961,10 @@ def test_EditorPane_wheelEvent_with_modifier_ignored():
     ep = mu.interface.editor.EditorPane(None, "baz")
     mock_app = mock.MagicMock()
     mock_app.keyboardModifiers.return_value = ["CTRL"]
-    with mock.patch("mu.interface.editor.QApplication", mock_app), mock.patch(
-        "mu.interface.editor.QsciScintilla.wheelEvent"
-    ) as mw:
+    with (
+        mock.patch("mu.interface.editor.QApplication", mock_app),
+        mock.patch("mu.interface.editor.QsciScintilla.wheelEvent") as mw,
+    ):
         ep.wheelEvent(None)
         assert mw.call_count == 0
 

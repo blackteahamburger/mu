@@ -2,6 +2,7 @@
 """
 Tests for the Editor and REPL logic.
 """
+
 import sys
 import os
 import atexit
@@ -28,14 +29,12 @@ from PyQt6.QtCore import pyqtSignal, QObject, Qt
 
 from mu import __version__
 
-SESSION = json.dumps(
-    {
-        "theme": "night",
-        "mode": "python",
-        "paths": ["path/foo.py", "path/bar.py"],
-        "envars": [["name", "value"]],
-    }
-)
+SESSION = json.dumps({
+    "theme": "night",
+    "mode": "python",
+    "paths": ["path/foo.py", "path/bar.py"],
+    "envars": [["name", "value"]],
+})
 ENCODING_COOKIE = "# -*- coding: {} -*-{}".format(
     mu.logic.ENCODING, mu.logic.NEWLINE
 )
@@ -110,7 +109,7 @@ def generate_session(
     zoom_level=2,
     window=None,
     venv_path=None,
-    **kwargs
+    **kwargs,
 ):
     """Generate a temporary session file for one test
 
@@ -310,8 +309,9 @@ def test_save_and_encode():
     mock_open = mock.MagicMock()
     mock_wandf = mock.MagicMock()
     # Valid cookie
-    with mock.patch("mu.logic.open", mock_open), mock.patch(
-        "mu.logic.write_and_flush", mock_wandf
+    with (
+        mock.patch("mu.logic.open", mock_open),
+        mock.patch("mu.logic.write_and_flush", mock_wandf),
     ):
         mu.logic.save_and_encode(text, "foo.py")
     mock_open.assert_called_once_with(
@@ -323,8 +323,9 @@ def test_save_and_encode():
     # Invalid cookie
     encoding_cookie = "# -*- coding: utf-42 -*-"
     text = encoding_cookie + '\n\nprint("Hello")'
-    with mock.patch("mu.logic.open", mock_open), mock.patch(
-        "mu.logic.write_and_flush", mock_wandf
+    with (
+        mock.patch("mu.logic.open", mock_open),
+        mock.patch("mu.logic.write_and_flush", mock_wandf),
     ):
         mu.logic.save_and_encode(text, "foo.py")
     mock_open.assert_called_once_with(
@@ -335,8 +336,9 @@ def test_save_and_encode():
     mock_wandf.reset_mock()
     # No cookie
     text = 'print("Hello")'
-    with mock.patch("mu.logic.open", mock_open), mock.patch(
-        "mu.logic.write_and_flush", mock_wandf
+    with (
+        mock.patch("mu.logic.open", mock_open),
+        mock.patch("mu.logic.write_and_flush", mock_wandf),
     ):
         mu.logic.save_and_encode(text, "foo.py")
     mock_open.assert_called_once_with(
@@ -364,9 +366,10 @@ def test_sniff_encoding_from_cookie():
     encoding_cookie = b"# -*- coding: latin-1 -*-"
     mock_locale = mock.MagicMock()
     mock_locale.getpreferredencoding.return_value = "UTF-8"
-    with mock.patch(
-        "mu.logic.open", mock.mock_open(read_data=encoding_cookie)
-    ), mock.patch("mu.logic.locale", mock_locale):
+    with (
+        mock.patch("mu.logic.open", mock.mock_open(read_data=encoding_cookie)),
+        mock.patch("mu.logic.locale", mock_locale),
+    ):
         assert mu.logic.sniff_encoding("foo.py") == "latin-1"
 
 
@@ -377,9 +380,10 @@ def test_sniff_encoding_from_bad_cookie_encoding():
     encoding_cookie = "# -*- coding: silly-你好 -*-".encode("utf-8")
     mock_locale = mock.MagicMock()
     mock_locale.getpreferredencoding.return_value = "ascii"
-    with mock.patch(
-        "mu.logic.open", mock.mock_open(read_data=encoding_cookie)
-    ), mock.patch("mu.logic.locale", mock_locale):
+    with (
+        mock.patch("mu.logic.open", mock.mock_open(read_data=encoding_cookie)),
+        mock.patch("mu.logic.locale", mock_locale),
+    ):
         assert mu.logic.sniff_encoding("foo.py") is None
 
 
@@ -390,9 +394,10 @@ def test_sniff_encoding_from_bad_cookie_name():
     encoding_cookie = "# -*- coding: invalid-codec -*-".encode("utf-8")
     mock_locale = mock.MagicMock()
     mock_locale.getpreferredencoding.return_value = "utf-8"
-    with mock.patch(
-        "mu.logic.open", mock.mock_open(read_data=encoding_cookie)
-    ), mock.patch("mu.logic.locale", mock_locale):
+    with (
+        mock.patch("mu.logic.open", mock.mock_open(read_data=encoding_cookie)),
+        mock.patch("mu.logic.locale", mock_locale),
+    ):
         assert mu.logic.sniff_encoding("foo.py") is None
 
 
@@ -402,9 +407,10 @@ def test_sniff_encoding_fallback_to_locale():
     """
     mock_locale = mock.MagicMock()
     mock_locale.getpreferredencoding.return_value = "ascii"
-    with mock.patch(
-        "mu.logic.open", mock.mock_open(read_data=b"# hello")
-    ), mock.patch("mu.logic.locale", mock_locale):
+    with (
+        mock.patch("mu.logic.open", mock.mock_open(read_data=b"# hello")),
+        mock.patch("mu.logic.locale", mock_locale),
+    ):
         assert mu.logic.sniff_encoding("foo.py") is None
 
 
@@ -466,9 +472,10 @@ def test_check_flake():
     """
     mock_r = mock.MagicMock()
     mock_r.log = [{"line_no": 2, "column": 0, "message": "b"}]
-    with mock.patch(
-        "mu.logic.MuFlakeCodeReporter", return_value=mock_r
-    ), mock.patch("mu.logic.check", return_value=None) as mock_check:
+    with (
+        mock.patch("mu.logic.MuFlakeCodeReporter", return_value=mock_r),
+        mock.patch("mu.logic.check", return_value=None) as mock_check,
+    ):
         result = mu.logic.check_flake("foo.py", "some code")
         assert result == {2: mock_r.log}
         mock_check.assert_called_once_with("some code", "foo.py", mock_r)
@@ -482,9 +489,10 @@ def test_check_flake_needing_expansion():
     mock_r = mock.MagicMock()
     msg = "'microbit.foo' imported but unused"
     mock_r.log = [{"line_no": 2, "column": 0, "message": msg}]
-    with mock.patch(
-        "mu.logic.MuFlakeCodeReporter", return_value=mock_r
-    ), mock.patch("mu.logic.check", return_value=None) as mock_check:
+    with (
+        mock.patch("mu.logic.MuFlakeCodeReporter", return_value=mock_r),
+        mock.patch("mu.logic.check", return_value=None) as mock_check,
+    ):
         code = "from microbit import *"
         result = mu.logic.check_flake("foo.py", code)
         assert result == {}
@@ -502,9 +510,10 @@ def test_check_flake_with_builtins():
     mock_r.log = [
         {"line_no": 2, "column": 0, "message": "undefined name 'foo'"}
     ]
-    with mock.patch(
-        "mu.logic.MuFlakeCodeReporter", return_value=mock_r
-    ), mock.patch("mu.logic.check", return_value=None) as mock_check:
+    with (
+        mock.patch("mu.logic.MuFlakeCodeReporter", return_value=mock_r),
+        mock.patch("mu.logic.check", return_value=None) as mock_check,
+    ):
         result = mu.logic.check_flake("foo.py", "some code", builtins=["foo"])
         assert result == {}
         mock_check.assert_called_once_with("some code", "foo.py", mock_r)
@@ -795,9 +804,10 @@ def test_editor_init():
     view = mock.MagicMock()
     # Check the editor attempts to create required directories if they don't
     # already exist.
-    with mock.patch("os.path.exists", return_value=False), mock.patch(
-        "os.makedirs", return_value=None
-    ) as mkd:
+    with (
+        mock.patch("os.path.exists", return_value=False),
+        mock.patch("os.makedirs", return_value=None) as mkd,
+    ):
         e = mu.logic.Editor(view)
         assert e._view == view
         assert e.theme == "day"
@@ -824,11 +834,12 @@ def test_editor_setup():
     mock_mode = mock.MagicMock()
     mock_mode.workspace_dir.return_value = "foo"
     mock_modes = {"python": mock_mode}
-    with mock.patch("os.path.exists", return_value=False), mock.patch(
-        "os.makedirs", return_value=None
-    ) as mkd, mock.patch("shutil.copy") as mock_shutil_copy, mock.patch(
-        "shutil.copytree"
-    ) as mock_shutil_copytree:
+    with (
+        mock.patch("os.path.exists", return_value=False),
+        mock.patch("os.makedirs", return_value=None) as mkd,
+        mock.patch("shutil.copy") as mock_shutil_copy,
+        mock.patch("shutil.copytree") as mock_shutil_copytree,
+    ):
         e.setup(mock_modes)
         assert mkd.call_count == 5
         assert mkd.call_args_list[0][0][0] == "foo"
@@ -853,9 +864,12 @@ def test_editor_connect_to_status_bar():
     mock_python_mode.workspace_dir.return_value = "foo"
     mock_modes = {"python": mock_python_mode, "esp": mock_esp_mode}
     mock_device_selector = mock.MagicMock()
-    with mock.patch("os.path.exists", return_value=False), mock.patch(
-        "os.makedirs", return_value=None
-    ), mock.patch("shutil.copy"), mock.patch("shutil.copytree"):
+    with (
+        mock.patch("os.path.exists", return_value=False),
+        mock.patch("os.makedirs", return_value=None),
+        mock.patch("shutil.copy"),
+        mock.patch("shutil.copytree"),
+    ):
         e.setup(mock_modes)
         sb = mock.MagicMock()
         sb.device_selector = mock_device_selector
@@ -873,8 +887,9 @@ def test_editor_restore_session_existing_runtime():
     ed = mocked_editor(mode)
     with mock.patch("os.path.isfile", return_value=True):
         with mock.patch.object(venv, "relocate") as venv_relocate:
-            with mock.patch.object(venv, "ensure"), mock.patch.object(
-                venv, "create"
+            with (
+                mock.patch.object(venv, "ensure"),
+                mock.patch.object(venv, "create"),
             ):
                 with generate_session(
                     theme,
@@ -1156,9 +1171,10 @@ def test_load_checks_file_exists():
     """
     view = mock.MagicMock()
     ed = mu.logic.Editor(view)
-    with mock.patch("os.path.isfile", return_value=False), mock.patch(
-        "mu.logic.logger.info"
-    ) as mock_info:
+    with (
+        mock.patch("os.path.isfile", return_value=False),
+        mock.patch("mu.logic.logger.info") as mock_info,
+    ):
         ed._load("not_a_file")
         msg1 = "Loading script from: not_a_file"
         msg2 = "The file not_a_file does not exist."
@@ -1194,8 +1210,9 @@ def test_load_python_file_case_insensitive_file_type():
     ed = mocked_editor()
     with generate_python_file(text) as filepath:
         ed._view.get_load_path.return_value = filepath.upper()
-        with mock.patch("mu.logic.read_and_decode") as mock_read, mock.patch(
-            "os.path.isfile", return_value=True
+        with (
+            mock.patch("mu.logic.read_and_decode") as mock_read,
+            mock.patch("os.path.isfile", return_value=True),
         ):
             mock_read.return_value = text, newline
             ed.load()
@@ -1322,8 +1339,9 @@ def test_load_other_file():
     mock_mb.file_extensions = ["hex"]
     ed.modes = {"python": mock_py, "microbit": mock_mb}
     ed.mode = "microbit"
-    with mock.patch("builtins.open", mock.mock_open()), mock.patch(
-        "os.path.isfile", return_value=True
+    with (
+        mock.patch("builtins.open", mock.mock_open()),
+        mock.patch("os.path.isfile", return_value=True),
     ):
         ed.load()
     assert view.get_load_path.call_count == 1
@@ -1358,8 +1376,9 @@ def test_load_other_file_change_mode():
     mock_mb.file_extensions = ["hex"]
     ed.modes = {"python": mock_py, "microbit": mock_mb}
     ed.mode = "python"
-    with mock.patch("builtins.open", mock.mock_open()), mock.patch(
-        "os.path.isfile", return_value=True
+    with (
+        mock.patch("builtins.open", mock.mock_open()),
+        mock.patch("os.path.isfile", return_value=True),
     ):
         ed.load()
     assert view.get_load_path.call_count == 1
@@ -1389,8 +1408,9 @@ def test_load_other_file_with_exception():
     ed.modes = {"microbit": mock_mb}
     ed.mode = "microbit"
     mock_open = mock.mock_open()
-    with mock.patch("builtins.open", mock_open), mock.patch(
-        "os.path.isfile", return_value=True
+    with (
+        mock.patch("builtins.open", mock_open),
+        mock.patch("os.path.isfile", return_value=True),
     ):
         ed.load()
     assert view.get_load_path.call_count == 1
@@ -1419,8 +1439,9 @@ def test_load_recovers_from_oserror():
     """
     text = "python"
     ed = mocked_editor()
-    with generate_python_file(text) as filepath, mock.patch(
-        "mu.logic.read_and_decode", side_effect=OSError("boom")
+    with (
+        generate_python_file(text) as filepath,
+        mock.patch("mu.logic.read_and_decode", side_effect=OSError("boom")),
     ):
         ed._view.get_load_path.return_value = filepath
         ed.load()
@@ -1863,8 +1884,9 @@ def test_check_code_on():
     }
     mock_mode = mock.MagicMock()
     mock_mode.builtins = None
-    with mock.patch("mu.logic.check_flake", return_value=flake), mock.patch(
-        "mu.logic.check_pycodestyle", return_value=pep8
+    with (
+        mock.patch("mu.logic.check_flake", return_value=flake),
+        mock.patch("mu.logic.check_pycodestyle", return_value=pep8),
     ):
         ed = mu.logic.Editor(view)
         ed.modes = {"python": mock_mode}
@@ -1892,8 +1914,9 @@ def test_check_code_no_problems():
     pep8 = {}
     mock_mode = mock.MagicMock()
     mock_mode.builtins = None
-    with mock.patch("mu.logic.check_flake", return_value=flake), mock.patch(
-        "mu.logic.check_pycodestyle", return_value=pep8
+    with (
+        mock.patch("mu.logic.check_flake", return_value=flake),
+        mock.patch("mu.logic.check_pycodestyle", return_value=pep8),
     ):
         ed = mu.logic.Editor(view)
         ed.show_status_message = mock.MagicMock()
@@ -1946,9 +1969,10 @@ def test_show_help():
     """
     view = mock.MagicMock()
     ed = mu.logic.Editor(view)
-    with mock.patch(
-        "mu.logic.webbrowser.open_new", return_value=None
-    ) as wb, mock.patch("mu.i18n.language_code", "en_GB"):
+    with (
+        mock.patch("mu.logic.webbrowser.open_new", return_value=None) as wb,
+        mock.patch("mu.i18n.language_code", "en_GB"),
+    ):
         ed.show_help()
         version = ".".join(__version__.split(".")[:2])
         url = "https://codewith.mu/en/help/{}".format(version)
@@ -1968,8 +1992,9 @@ def test_quit_modified_cancelled_from_button():
     mock_open.return_value.__enter__ = lambda s: s
     mock_open.return_value.__exit__ = mock.Mock()
     mock_open.return_value.write = mock.MagicMock()
-    with mock.patch("sys.exit", return_value=None), mock.patch(
-        "builtins.open", mock_open
+    with (
+        mock.patch("sys.exit", return_value=None),
+        mock.patch("builtins.open", mock_open),
     ):
         ed.quit()
     assert view.show_confirmation.call_count == 1
@@ -1991,8 +2016,9 @@ def test_quit_modified_cancelled_from_event():
     mock_open.return_value.write = mock.MagicMock()
     mock_event = mock.MagicMock()
     mock_event.ignore = mock.MagicMock(return_value=None)
-    with mock.patch("sys.exit", return_value=None), mock.patch(
-        "builtins.open", mock_open
+    with (
+        mock.patch("sys.exit", return_value=None),
+        mock.patch("builtins.open", mock_open),
     ):
         ed.quit(mock_event)
     assert view.show_confirmation.call_count == 1
@@ -2029,9 +2055,10 @@ def test_quit_modified_ok():
     # FIXME TJG: not sure what the ignore functionality being mocked here is doing
     #
     mock_event.ignore = mock.MagicMock(return_value=None)
-    with mock.patch("sys.exit", return_value=None), mock.patch(
-        "mu.settings.SessionSettings.save"
-    ) as mocked_save:
+    with (
+        mock.patch("sys.exit", return_value=None),
+        mock.patch("mu.settings.SessionSettings.save") as mocked_save,
+    ):
         ed.quit(mock_event)
 
     mock_debug_mode.stop.assert_called_once_with()
@@ -2201,9 +2228,11 @@ def test_quit_calls_mode_stop():
     mock_open.return_value.write = mock.MagicMock()
     mock_event = mock.MagicMock()
     mock_event.ignore = mock.MagicMock(return_value=None)
-    with mock.patch("sys.exit", return_value=None), mock.patch(
-        "builtins.open", mock_open
-    ), mock.patch("mu.settings.session.save"):
+    with (
+        mock.patch("sys.exit", return_value=None),
+        mock.patch("builtins.open", mock_open),
+        mock.patch("mu.settings.session.save"),
+    ):
         ed.quit(mock_event)
     ed.modes[ed.mode].stop.assert_called_once_with()
 
@@ -2227,9 +2256,10 @@ def test_quit_calls_sys_exit(mocked_session):
     mock_open.return_value.write = mock.MagicMock()
     mock_event = mock.MagicMock()
     mock_event.ignore = mock.MagicMock(return_value=None)
-    with mock.patch(
-        "PyQt5.QtCore.QCoreApplication.exit", return_value=0
-    ) as ex, mock.patch("builtins.open", mock_open):
+    with (
+        mock.patch("PyQt5.QtCore.QCoreApplication.exit", return_value=0) as ex,
+        mock.patch("builtins.open", mock_open),
+    ):
         ed.quit(mock_event)
     ex.assert_called_once_with(0)
 
@@ -2269,8 +2299,9 @@ def test_show_admin():
         venv, "installed_packages", return_value=([], ["Foo", "bar"])
     ):
         mock_open = mock.mock_open()
-        with mock.patch("builtins.open", mock_open), mock.patch(
-            "os.path.isfile", return_value=True
+        with (
+            mock.patch("builtins.open", mock_open),
+            mock.patch("os.path.isfile", return_value=True),
         ):
             ed.show_admin()
             mock_open.assert_called_once_with(
@@ -2307,8 +2338,9 @@ def test_show_admin_no_change():
     with mock.patch.object(
         venv, "installed_packages", return_value=([], ["Foo", "bar"])
     ):
-        with mock.patch("builtins.open", mock_open), mock.patch(
-            "os.path.isfile", return_value=True
+        with (
+            mock.patch("builtins.open", mock_open),
+            mock.patch("os.path.isfile", return_value=True),
         ):
             ed.show_admin(None)
             assert ed.sync_package_state.call_count == 0
@@ -2350,8 +2382,9 @@ def test_show_admin_missing_microbit_runtime():
     with mock.patch.object(
         venv, "installed_packages", return_value=([], ["Foo", "bar"])
     ):
-        with mock.patch("builtins.open", mock_open), mock.patch(
-            "os.path.isfile", return_value=False
+        with (
+            mock.patch("builtins.open", mock_open),
+            mock.patch("os.path.isfile", return_value=False),
         ):
             ed.show_admin(None)
             mock_open.assert_called_once_with(
@@ -2884,7 +2917,7 @@ def test_rename_tab_avoid_duplicating_other_tab_name():
     ed.rename_tab(1)
     view.show_message.assert_called_once_with(
         "Could not rename file.",
-        "A file of that name is already " "open in Mu.",
+        "A file of that name is already open in Mu.",
     )
     assert mock_tab.path == "old.py"
 

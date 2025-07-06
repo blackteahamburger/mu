@@ -2,6 +2,7 @@
 """
 Tests for the PyGameZero mode.
 """
+
 import os.path
 from mu.modes.pygamezero import PyGameZeroMode
 from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS, PYGAMEZERO_APIS
