@@ -293,7 +293,7 @@ class MicrobitMode(MicroPythonMode):
             logger.info("Mu MicroPython: {}".format(uflash_version))
             # If there's an older version of MicroPython on the device,
             # update it with the one packaged with Mu.
-            if semver.Version.compare(board_version, uflash_version) < 0:
+            if semver.Version.parse(board_version).compare(uflash_version) < 0:
                 logger.info("Board MicroPython is older than Mu's MicroPython")
                 update_micropython = True
         except Exception:
