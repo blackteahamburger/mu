@@ -4,18 +4,20 @@ Tests for the resources sub-module.
 """
 
 import mu.resources
+from pathlib import Path
 from unittest import mock
 from PyQt6.QtGui import QIcon, QPixmap, QMovie
 
 
 def test_path():
     """
-    Ensure the resource_filename function is called with the expected args and
-    the path function under test returns its result.
+    Ensure the path function under test returns the expected result.
     """
-    with mock.patch("mu.resources.resource_filename", return_value="bar") as r:
-        assert mu.resources.path("foo") == "bar"
-        r.assert_called_once_with(mu.resources.__name__, "images/foo")
+    mock_resources = Path("bar")
+    with mock.patch(
+        "mu.resources.importlib_files", return_value=mock_resources
+    ):
+        assert mu.resources.path("foo") == "bar/images/foo"
 
 
 def test_load_icon():
@@ -44,18 +46,19 @@ def test_load_movie():
 
 def test_stylesheet():
     """
-    Ensure the resource_string function is called with the expected args and
-    the load_stylesheet function returns its result.
+    Ensure the load_stylesheet function returns the expected result.
     """
-    with mock.patch("mu.resources.resource_string", return_value=b"foo") as rs:
-        assert "foo" == mu.resources.load_stylesheet("foo")
-        rs.assert_called_once_with(mu.resources.__name__, "css/foo")
+    assert (
+        "QToolBar, QToolButton {\n    background: transparent;\n    margin: 0;\n    padding: 0;\n}"
+        in mu.resources.load_stylesheet("day.css")
+    )
 
 
 def test_load_font_data():
     """
     Ensure font data can be loaded
     """
-    with mock.patch("mu.resources.resource_string", return_value=b"foo") as rs:
-        assert b"foo" == mu.resources.load_font_data("foo")
-        rs.assert_called_once_with(mu.resources.__name__, "fonts/foo")
+    assert (
+        b"OTTO\x00\x0f\x00\x80\x00\x03\x00pBASEe\x1e]\xbd\x00\x01\xb2$\x00\x00\x00FCFF W\x92{"
+        in mu.resources.load_font_data("SourceCodePro-Regular.otf")
+    )

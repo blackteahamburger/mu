@@ -22,7 +22,6 @@ import ctypes
 from subprocess import check_output
 from mu.modes.base import MicroPythonMode
 from mu.modes.api import PYBOARD_APIS, SHARED_APIS
-from mu.interface.panes import CHARTS
 
 
 class PyboardMode(MicroPythonMode):
@@ -90,14 +89,13 @@ class PyboardMode(MicroPythonMode):
                 "shortcut": "CTRL+Shift+U",
             },
         ]
-        if CHARTS:
-            buttons.append({
-                "name": "plotter",
-                "display_name": _("Plotter"),
-                "description": _("Plot incoming REPL data."),
-                "handler": self.toggle_plotter,
-                "shortcut": "CTRL+Shift+P",
-            })
+        buttons.append({
+            "name": "plotter",
+            "display_name": _("Plotter"),
+            "description": _("Plot incoming REPL data."),
+            "handler": self.toggle_plotter,
+            "shortcut": "CTRL+Shift+P",
+        })
         return buttons
 
     def workspace_dir(self):
@@ -118,7 +116,7 @@ class PyboardMode(MicroPythonMode):
                         if volume.endswith(b"PYBFLASH"):
                             device_dir = volume.decode("utf-8")
                 except FileNotFoundError:
-                    next
+                    pass
         elif os.name == "nt":
             # We're on Windows.
 

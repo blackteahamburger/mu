@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
+import sys
 import logging
 from PyQt6.QtCore import QSize, QProcess, QTimer, Qt
 
@@ -531,7 +532,6 @@ class AdminDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.microbit_widget = None
-        self.package_widget = None
         self.envar_widget = None
         self.python_anywhere_widget = None
 

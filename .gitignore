@@ -84,8 +84,6 @@ target/
 
 # Virtual Environment
 .venv*/
-/mu/wheels/*.whl
 /baseline_packages.json
 venv-pup/
 /local-scripts
-/mu/wheels/*.zip

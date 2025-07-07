@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 from .base import MicroPythonMode, REPLConnection
 from .api import SNEK_APIS
-from mu.interface.panes import CHARTS
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import QTimer
 
@@ -86,8 +85,10 @@ class SnekREPLConnection(REPLConnection):
         # non-default baud rate
 
         if self.wait_for_data:
+
             def ready_func():
                 return self.set_ready()
+
             QTimer.singleShot(3000, ready_func)
         else:
             self.set_ready()
@@ -124,8 +125,10 @@ class SnekREPLConnection(REPLConnection):
         # if we were waiting for reset, we know the device is now
         # ready, so start transmitting
         if not self.ready and b"W" in data:
+
             def ready_func():
                 return self.set_ready()
+
             # give it 200ms to finish starting up
             QTimer.singleShot(200, ready_func)
 
@@ -396,14 +399,13 @@ class SnekMode(MicroPythonMode):
                 "shortcut": "CTRL+Shift+G",
             },
         ]
-        if CHARTS:
-            buttons.append({
-                "name": "plotter",
-                "display_name": _("Plotter"),
-                "description": _("Plot incoming REPL data."),
-                "handler": self.toggle_plotter,
-                "shortcut": "CTRL+Shift+P",
-            })
+        buttons.append({
+            "name": "plotter",
+            "display_name": _("Plotter"),
+            "description": _("Plot incoming REPL data."),
+            "handler": self.toggle_plotter,
+            "shortcut": "CTRL+Shift+P",
+        })
         return buttons
 
     def put(self):

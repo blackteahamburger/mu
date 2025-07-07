@@ -12,12 +12,10 @@ from unittest import mock
 import sys
 import os
 import signal
-import pytest
 
 import mu
 import mu.interface.panes
 from mu import i18n
-from mu.interface.panes import CHARTS
 from mu.interface.themes import DAY_STYLE, NIGHT_STYLE, CONTRAST_STYLE
 
 
@@ -130,12 +128,12 @@ def test_MicroPythonREPLPane_context_menu():
     assert mock_qmenu.addAction.call_count == 2
     copy_action = mock_qmenu.addAction.call_args_list[0][0]
     assert copy_action[0] == "Copy"
-    assert copy_action[1] == rp.copy
-    assert copy_action[2].toString() == "Ctrl+Shift+C"
+    assert copy_action[1].toString() == "Ctrl+Shift+C"
+    assert copy_action[2] == rp.copy
     paste_action = mock_qmenu.addAction.call_args_list[1][0]
     assert paste_action[0] == "Paste"
-    assert paste_action[1] == rp.paste
-    assert paste_action[2].toString() == "Ctrl+Shift+V"
+    assert paste_action[1].toString() == "Ctrl+Shift+V"
+    assert paste_action[2] == rp.paste
     assert mock_qmenu.exec.call_count == 1
 
 
@@ -159,12 +157,12 @@ def test_MicroPythonREPLPane_context_menu_darwin():
     assert mock_qmenu.addAction.call_count == 2
     copy_action = mock_qmenu.addAction.call_args_list[0][0]
     assert copy_action[0] == "Copy"
-    assert copy_action[1] == rp.copy
-    assert copy_action[2].toString() == "Ctrl+C"
+    assert copy_action[1].toString() == "Ctrl+C"
+    assert copy_action[2] == rp.copy
     paste_action = mock_qmenu.addAction.call_args_list[1][0]
     assert paste_action[0] == "Paste"
-    assert paste_action[1] == rp.paste
-    assert paste_action[2].toString() == "Ctrl+V"
+    assert paste_action[1].toString() == "Ctrl+V"
+    assert paste_action[2] == rp.paste
     assert mock_qmenu.exec.call_count == 1
 
 
@@ -1077,12 +1075,12 @@ def test_SnekREPLPane_context_menu():
     assert mock_qmenu.addAction.call_count == 2
     copy_action = mock_qmenu.addAction.call_args_list[0][0]
     assert copy_action[0] == "Copy"
-    assert copy_action[1] == rp.copy
-    assert copy_action[2].toString() == "Ctrl+Shift+C"
+    assert copy_action[1].toString() == "Ctrl+Shift+C"
+    assert copy_action[2] == rp.copy
     paste_action = mock_qmenu.addAction.call_args_list[1][0]
     assert paste_action[0] == "Paste"
-    assert paste_action[1] == rp.paste
-    assert paste_action[2].toString() == "Ctrl+Shift+V"
+    assert paste_action[1].toString() == "Ctrl+Shift+V"
+    assert paste_action[2] == rp.paste
     assert mock_qmenu.exec.call_count == 1
 
 
@@ -1106,12 +1104,12 @@ def test_SnekREPLPane_context_menu_darwin():
     assert mock_qmenu.addAction.call_count == 2
     copy_action = mock_qmenu.addAction.call_args_list[0][0]
     assert copy_action[0] == "Copy"
-    assert copy_action[1] == rp.copy
-    assert copy_action[2].toString() == "Ctrl+C"
+    assert copy_action[1].toString() == "Ctrl+C"
+    assert copy_action[2] == rp.copy
     paste_action = mock_qmenu.addAction.call_args_list[1][0]
     assert paste_action[0] == "Paste"
-    assert paste_action[1] == rp.paste
-    assert paste_action[2].toString() == "Ctrl+V"
+    assert paste_action[1].toString() == "Ctrl+V"
+    assert paste_action[2] == rp.paste
     assert mock_qmenu.exec.call_count == 1
 
 
@@ -2111,13 +2109,12 @@ def test_PythonProcessPane_start_process():
     mock_process_class = mock.MagicMock(return_value=mock_process)
     mock_merge_chans = mock.MagicMock()
     mock_process_class.MergedChannels = mock_merge_chans
-    interpreter = sys.executable
     working_directory = "workspace"
     script_filename = "script.py"
     script_filepath = os.path.abspath(os.path.normcase(script_filename))
     with mock.patch("mu.interface.panes.QProcess", mock_process_class):
         ppp = mu.interface.panes.PythonProcessPane()
-        ppp.start_process(interpreter, script_filename, working_directory)
+        ppp.start_process(script_filename, working_directory)
     assert mock_process_class.call_count == 1
     assert ppp.process == mock_process
     ppp.process.setProcessChannelMode.assert_called_once_with(mock_merge_chans)
@@ -2127,8 +2124,9 @@ def test_PythonProcessPane_start_process():
     )
     ppp.process.finished.connect.assert_called_once_with(ppp.finished)
     assert ppp.script == script_filepath
+    runner = sys.executable
     expected_args = ["-i", script_filepath]  # called with interactive flag.
-    ppp.process.start.assert_called_once_with(interpreter, expected_args)
+    ppp.process.start.assert_called_once_with(runner, expected_args)
     assert ppp.running is True
 
 
@@ -2140,15 +2138,13 @@ def test_PythonProcessPane_start_process_command_args():
     mock_process_class = mock.MagicMock(return_value=mock_process)
     mock_merge_chans = mock.MagicMock()
     mock_process_class.MergedChannels = mock_merge_chans
-    runner = sys.executable
     script_filename = "script.py"
     script_filepath = os.path.abspath(os.path.normcase(script_filename))
     with mock.patch("mu.interface.panes.QProcess", mock_process_class):
         ppp = mu.interface.panes.PythonProcessPane()
         args = ["foo", "bar"]
-        ppp.start_process(
-            runner, script_filename, "workspace", command_args=args
-        )
+        ppp.start_process(script_filename, "workspace", command_args=args)
+    runner = sys.executable
     expected_args = ["-i", script_filepath, "foo", "bar"]
     ppp.process.start.assert_called_once_with(runner, expected_args)
 
@@ -2162,7 +2158,6 @@ def test_PythonProcessPane_start_process_debugger():
     mock_process_class = mock.MagicMock(return_value=mock_process)
     mock_merge_chans = mock.MagicMock()
     mock_process_class.MergedChannels = mock_merge_chans
-    interpreter = sys.executable
     script_filename = "script.py"
     script_filepath = os.path.abspath(os.path.normcase(script_filename))
     working_directory = "workspace"
@@ -2170,7 +2165,6 @@ def test_PythonProcessPane_start_process_debugger():
         ppp = mu.interface.panes.PythonProcessPane()
         args = ["foo", "bar"]
         ppp.start_process(
-            interpreter,
             script_filename,
             working_directory,
             debugger=True,
@@ -2178,9 +2172,10 @@ def test_PythonProcessPane_start_process_debugger():
         )
     mu_dir = os.path.dirname(os.path.abspath(mu.__file__))
     runner = os.path.join(mu_dir, "mu_debug.py")
+    python_exec = sys.executable
     expected_script = script_filepath
     expected_args = [runner, expected_script, "foo", "bar"]
-    ppp.process.start.assert_called_once_with(interpreter, expected_args)
+    ppp.process.start.assert_called_once_with(python_exec, expected_args)
 
 
 def test_PythonProcessPane_start_process_not_interactive():
@@ -2192,21 +2187,20 @@ def test_PythonProcessPane_start_process_not_interactive():
     mock_process_class = mock.MagicMock(return_value=mock_process)
     mock_merge_chans = mock.MagicMock()
     mock_process_class.MergedChannels = mock_merge_chans
-    interpreter = sys.executable
     script_filename = "script.py"
     script_filepath = os.path.abspath(os.path.normcase(script_filename))
     with mock.patch("mu.interface.panes.QProcess", mock_process_class):
         ppp = mu.interface.panes.PythonProcessPane()
         args = ["foo", "bar"]
         ppp.start_process(
-            interpreter,
             script_filename,
             "workspace",
             interactive=False,
             command_args=args,
         )
+    runner = sys.executable
     expected_args = [script_filepath, "foo", "bar"]
-    ppp.process.start.assert_called_once_with(interpreter, expected_args)
+    ppp.process.start.assert_called_once_with(runner, expected_args)
 
 
 def test_PythonProcessPane_start_process_user_environment_variables():
@@ -2225,7 +2219,6 @@ def test_PythonProcessPane_start_process_user_environment_variables():
     mock_environment = mock.MagicMock()
     mock_environment_class = mock.MagicMock()
     mock_environment_class.systemEnvironment.return_value = mock_environment
-    interpreter = sys.executable
     script_filename = "script.py"
     with (
         mock.patch("mu.interface.panes.QProcess", mock_process_class),
@@ -2238,7 +2231,6 @@ def test_PythonProcessPane_start_process_user_environment_variables():
         ppp = mu.interface.panes.PythonProcessPane()
         envars = {"name": "value"}
         ppp.start_process(
-            interpreter,
             script_filename,
             "workspace",
             interactive=False,
@@ -2265,31 +2257,6 @@ def test_PythonProcessPane_start_process_user_environment_variables():
     assert mock_environment.insert.call_args_list[4][0] == ("name", "value")
 
 
-@pytest.mark.skip(reason="Only used by debugger; now refactored")
-def test_PythonProcessPane_start_process_custom_runner():
-    """
-    Ensure that if the runner is set, it is used as the command to start the
-    new child Python process.
-    """
-    mock_process = mock.MagicMock()
-    mock_process_class = mock.MagicMock(return_value=mock_process)
-    mock_merge_chans = mock.MagicMock()
-    mock_process_class.MergedChannels = mock_merge_chans
-    with mock.patch("mu.interface.panes.QProcess", mock_process_class):
-        ppp = mu.interface.panes.PythonProcessPane()
-        args = ["foo", "bar"]
-        ppp.start_process(
-            "script.py",
-            "workspace",
-            interactive=False,
-            command_args=args,
-            runner="foo",
-        )
-    expected_script = os.path.abspath(os.path.normcase("script.py"))
-    expected_args = [expected_script, "foo", "bar"]
-    ppp.process.start.assert_called_once_with("foo", expected_args)
-
-
 def test_PythonProcessPane_start_process_custom_python_args():
     """
     Ensure that if there are arguments to be passed into the Python runtime
@@ -2303,7 +2270,6 @@ def test_PythonProcessPane_start_process_custom_python_args():
         ppp = mu.interface.panes.PythonProcessPane()
         py_args = ["-m", "pgzero"]
         ppp.start_process(
-            sys.executable,
             "script.py",
             "workspace",
             interactive=False,
@@ -2337,7 +2303,7 @@ def test_PythonProcessPane_stop_process_with_error():
     ppp.stop_process()
     ppp.process.terminate.assert_called_once_with()
     ppp.process.kill.assert_called_once_with()
-    ppp.process.waitForFinished.call_count == 2
+    assert ppp.process.waitForFinished.call_count == 2
 
 
 def test_PythonProcessPane_finished():
@@ -2377,12 +2343,12 @@ def test_PythonProcessPane_context_menu():
     assert mock_qmenu.addAction.call_count == 2
     copy_action = mock_qmenu.addAction.call_args_list[0][0]
     assert copy_action[0] == "Copy"
-    assert copy_action[1] == ppp.copy
-    assert copy_action[2].toString() == "Ctrl+Shift+C"
+    assert copy_action[1].toString() == "Ctrl+Shift+C"
+    assert copy_action[2] == ppp.copy
     paste_action = mock_qmenu.addAction.call_args_list[1][0]
     assert paste_action[0] == "Paste"
-    assert paste_action[1] == ppp.paste
-    assert paste_action[2].toString() == "Ctrl+Shift+V"
+    assert paste_action[1].toString() == "Ctrl+Shift+V"
+    assert paste_action[2] == ppp.paste
     assert mock_qmenu.exec.call_count == 1
 
 
@@ -2405,12 +2371,12 @@ def test_PythonProcessPane_context_menu_darwin():
     assert mock_qmenu.addAction.call_count == 2
     copy_action = mock_qmenu.addAction.call_args_list[0][0]
     assert copy_action[0] == "Copy"
-    assert copy_action[1] == ppp.copy
-    assert copy_action[2].toString() == "Ctrl+C"
+    assert copy_action[1].toString() == "Ctrl+C"
+    assert copy_action[2] == ppp.copy
     paste_action = mock_qmenu.addAction.call_args_list[1][0]
     assert paste_action[0] == "Paste"
-    assert paste_action[1] == ppp.paste
-    assert paste_action[2].toString() == "Ctrl+V"
+    assert paste_action[1].toString() == "Ctrl+V"
+    assert paste_action[2] == ppp.paste
     assert mock_qmenu.exec.call_count == 1
 
 
@@ -3281,7 +3247,6 @@ def test_DebugInspector_set_theme():
     di.set_theme("test")
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_init():
     """
     Ensure the plotter pane is created in the expected manner.
@@ -3300,7 +3265,6 @@ def test_PlotterPane_init():
     assert isinstance(pp.axis_y, mu.interface.panes.QValueAxis)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_process_tty_data():
     """
     If a byte representation of a Python tuple containing numeric values,
@@ -3314,7 +3278,6 @@ def test_PlotterPane_process_tty_data():
     pp.add_data.assert_called_once_with((1, 2.3, 4))
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_process_tty_data_guards_against_data_flood():
     """
     If the process_tty_data method gets data of more than 1024 bytes
@@ -3337,7 +3300,6 @@ def test_PlotterPane_process_tty_data_guards_against_data_flood():
     assert pp.add_data.call_count == 0
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_process_tty_data_tuple_not_numeric():
     """
     If a byte representation of a tuple is received but it doesn't contain
@@ -3349,7 +3311,6 @@ def test_PlotterPane_process_tty_data_tuple_not_numeric():
     assert pp.add_data.call_count == 0
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_process_tty_data_overrun_input_buffer():
     """
     If the incoming bytes are not complete, ensure the input_buffer caches them
@@ -3369,7 +3330,6 @@ def test_PlotterPane_process_tty_data_overrun_input_buffer():
     pp.add_data.assert_called_once_with((1, 2.3, 4))
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data():
     """
     Given a tuple with a single value, ensure it is logged and correctly added
@@ -3381,10 +3341,9 @@ def test_PlotterPane_add_data():
     pp.add_data((1,))
     assert (1,) in pp.raw_data
     mock_line_series.clear.assert_called_once_with()
-    mock_line_series.append.call_args_list[0][0] == (0, 1)
+    assert mock_line_series.append.call_args_list[0][0] == (0, 1)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data_adjust_values_up():
     """
     If more values than have been encountered before are added to the incoming
@@ -3401,7 +3360,6 @@ def test_PlotterPane_add_data_adjust_values_up():
     assert len(pp.data) == 4
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data_adjust_values_down():
     """
     If less values are encountered, before they are added to the incoming
@@ -3419,7 +3377,6 @@ def test_PlotterPane_add_data_adjust_values_down():
     assert pp.chart.removeSeries.call_count == 2
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data_re_scale_up():
     """
     If the y axis contains data greater than the current range, then ensure
@@ -3434,7 +3391,6 @@ def test_PlotterPane_add_data_re_scale_up():
     pp.axis_y.setRange.assert_called_once_with(0, 2000)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data_re_scale_down():
     """
     If the y axis contains data less than half of the current range, then
@@ -3450,7 +3406,6 @@ def test_PlotterPane_add_data_re_scale_down():
     pp.axis_y.setRange.assert_called_once_with(0, 2000)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data_re_scale_min_up():
     """
     If the y axis contains (negative) data smaller than the current
@@ -3465,7 +3420,6 @@ def test_PlotterPane_add_data_re_scale_min_up():
     pp.axis_y.setRange.assert_called_once_with(-2000, 0)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_add_data_re_scale_min_down():
     """
     If the y axis contains (negative) data less than half of the
@@ -3482,7 +3436,6 @@ def test_PlotterPane_add_data_re_scale_min_down():
     pp.axis_y.setRange.assert_called_once_with(-2000, 0)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_set_label_format_to_float_when_range_small():
     """
     If the max_y is 5 or less, make sure the label format is set to being a
@@ -3499,7 +3452,6 @@ def test_PlotterPane_set_label_format_to_float_when_range_small():
     pp.axis_y.setLabelFormat.assert_called_once_with("%2.2f")
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_set_label_format_to_int_when_range_large():
     """
     If the max_y is 5 or less, make sure the label format is set to being a
@@ -3516,7 +3468,6 @@ def test_PlotterPane_set_label_format_to_int_when_range_large():
     pp.axis_y.setLabelFormat.assert_called_once_with("%d")
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_PlotterPane_set_theme():
     """
     Ensure the themes for the chart relate correctly to the theme names used

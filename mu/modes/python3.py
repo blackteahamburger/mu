@@ -23,7 +23,6 @@ import logging
 from mu.modes.base import BaseMode
 from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS
 from mu.resources import load_icon
-from mu.interface.panes import CHARTS
 from qtconsole.manager import QtKernelManager
 from qtconsole.client import QtKernelClient
 from PyQt6.QtCore import QObject, QThread, pyqtSignal
@@ -58,20 +57,17 @@ class KernelRunner(QObject):
     # Used to build context with user defined envars when running the REPL.
     default_envars = os.environ.copy()
 
-    def __init__(self, kernel_name, cwd, envars):
+    def __init__(self, cwd, envars):
         """
         Initialise the kernel runner with a name of a kernel specification, a
-        target current working directory, any user-defined envars and the
-        path for the currently active virtualenv's site-packages.
+        target current working directory and any user-defined envars
         """
         logger.debug(
             "About to create KernelRunner for %s, %s, %s ",
-            kernel_name,
             cwd,
             envars,
         )
         super().__init__()
-        self.kernel_name = kernel_name
         self.cwd = cwd
         self.envars = dict(envars)
 
@@ -95,7 +91,6 @@ class KernelRunner(QObject):
                 os.environ[k] = v
 
         self.repl_kernel_manager = MuKernelManager()
-        self.repl_kernel_manager.kernel_name = self.kernel_name
         self.repl_kernel_manager.start_kernel()
         self.repl_kernel_client = self.repl_kernel_manager.client()
         self.kernel_started.emit(
@@ -157,14 +152,13 @@ class PythonMode(BaseMode):
                 "shortcut": "Ctrl+Shift+I",
             },
         ]
-        if CHARTS:
-            buttons.append({
-                "name": "plotter",
-                "display_name": _("Plotter"),
-                "description": _("Plot data from your script or the REPL."),
-                "handler": self.toggle_plotter,
-                "shortcut": "CTRL+Shift+P",
-            })
+        buttons.append({
+            "name": "plotter",
+            "display_name": _("Plotter"),
+            "description": _("Plot data from your script or the REPL."),
+            "handler": self.toggle_plotter,
+            "shortcut": "CTRL+Shift+P",
+        })
         return buttons
 
     def api(self):

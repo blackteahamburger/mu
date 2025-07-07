@@ -10,10 +10,11 @@ from unittest import mock
 import pytest
 from mu import __version__
 from tests.test_app import DumSig
+import mu.logic
 import mu.interface.main
 import mu.interface.themes
 import mu.interface.editor
-from mu.interface.panes import CHARTS, PlotterPane
+from mu.interface.panes import PlotterPane
 import sys
 
 
@@ -1197,7 +1198,6 @@ def test_Window_add_jupyter_repl():
     mock_pane_class.assert_called_once_with()
     assert mock_pane.kernel_manager == mock_kernel_manager
     assert mock_pane.kernel_client == mock_kernel_client
-    assert mock_kernel_manager.kernel.gui == "qt4"
     w.add_repl.assert_called_once_with(mock_pane, "Python3 (Jupyter)")
 
 
@@ -1239,7 +1239,6 @@ def test_Window_add_plotter():
     w.addDockWidget.assert_called_once_with(Qt.BottomDockWidgetArea, mock_dock)
 
 
-@pytest.mark.skipif(not CHARTS, reason="QtChart unavailable")
 def test_Window_remember_plotter_position():
     """
     Check that opening plotter, changing the area it's docked to, then closing
@@ -1281,7 +1280,7 @@ def test_Window_add_python3_runner():
         mock.patch("mu.interface.main.PythonProcessPane", mock_process_class),
         mock.patch("mu.interface.main.QDockWidget", mock_dock_class),
     ):
-        result = w.add_python3_runner(name, path, ".")
+        result = w.add_python3_runner(name, path)
         assert result == mock_process_runner
     assert w.process_runner == mock_process_runner
     assert w.runner == mock_dock
@@ -1575,10 +1574,10 @@ def test_Window_show_admin():
     mock_admin_display.return_value = mock_admin_box
     with mock.patch("mu.interface.main.AdminDialog", mock_admin_display):
         w = mu.interface.main.Window()
-        result = w.show_admin("log", "envars", "packages", "mode", "devices")
+        result = w.show_admin("log", "envars", "mode", "devices")
         mock_admin_display.assert_called_once_with(w)
         mock_admin_box.setup.assert_called_once_with(
-            "log", "envars", "packages", "mode", "devices"
+            "log", "envars", "mode", "devices"
         )
         mock_admin_box.exec.assert_called_once_with()
         assert result == "this is the expected result"
@@ -1595,29 +1594,13 @@ def test_Window_show_admin_cancelled():
     mock_admin_display.return_value = mock_admin_box
     with mock.patch("mu.interface.main.AdminDialog", mock_admin_display):
         w = mu.interface.main.Window()
-        result = w.show_admin("log", "envars", "packages", "mode", "devices")
+        result = w.show_admin("log", "envars", "mode", "devices")
         mock_admin_display.assert_called_once_with(w)
         mock_admin_box.setup.assert_called_once_with(
-            "log", "envars", "packages", "mode", "devices"
+            "log", "envars", "mode", "devices"
         )
         mock_admin_box.exec.assert_called_once_with()
         assert result == {}
-
-
-def test_Window_sync_packages():
-    """
-    Ensure the expected modal dialog indicating progress of third party package
-    add/removal is displayed with the expected settings.
-    """
-    mock_package_dialog = mock.MagicMock()
-    with mock.patch("mu.interface.main.PackageDialog", mock_package_dialog):
-        w = mu.interface.main.Window()
-        to_remove = {"foo"}
-        to_add = {"bar"}
-        w.sync_packages(to_remove, to_add)
-        dialog = mock_package_dialog()
-        dialog.setup.assert_called_once_with(to_remove, to_add)
-        dialog.exec.assert_called_once_with()
 
 
 def test_Window_show_message():
@@ -1895,8 +1878,8 @@ def test_Window_setup():
     assert w.button_bar == mock_button_bar
     assert w.tabs == mock_qtw
     w.show.assert_called_once_with()
-    w.setCentralWidget.call_count == 1
-    w.addToolBar.call_count == 1
+    assert w.setCentralWidget.call_count == 1
+    assert w.addToolBar.call_count == 1
     assert w.size_window.call_count == 0
 
 

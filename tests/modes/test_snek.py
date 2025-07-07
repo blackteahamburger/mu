@@ -47,24 +47,6 @@ def test_snek_mode():
     assert "code" not in am.module_names
 
 
-def test_snek_mode_no_charts():
-    """
-    If QCharts is not available, ensure the plotter feature is not available.
-    """
-    editor = mock.MagicMock()
-    view = mock.MagicMock()
-    am = SnekMode(editor, view)
-    with mock.patch("mu.modes.snek.CHARTS", False):
-        actions = am.actions()
-        assert len(actions) == 3
-        assert actions[0]["name"] == "serial"
-        assert actions[0]["handler"] == am.toggle_repl
-        assert actions[1]["name"] == "flash"
-        assert actions[1]["handler"] == am.put
-        assert actions[2]["name"] == "getflash"
-        assert actions[2]["handler"] == am.get
-
-
 def test_snek_put():
     """
     Put current editor contents to eeprom

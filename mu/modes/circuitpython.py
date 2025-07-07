@@ -23,7 +23,6 @@ import logging
 from subprocess import check_output
 from mu.modes.base import MicroPythonMode
 from mu.modes.api import ADAFRUIT_APIS, SHARED_APIS
-from mu.interface.panes import CHARTS
 from mu.logic import Device
 from adafruit_board_toolkit import circuitpython_serial
 
@@ -146,14 +145,13 @@ class CircuitPythonMode(MicroPythonMode):
                 "shortcut": "CTRL+Shift+U",
             }
         ]
-        if CHARTS:
-            buttons.append({
-                "name": "plotter",
-                "display_name": _("Plotter"),
-                "description": _("Plot incoming REPL data."),
-                "handler": self.toggle_plotter,
-                "shortcut": "CTRL+Shift+P",
-            })
+        buttons.append({
+            "name": "plotter",
+            "display_name": _("Plotter"),
+            "description": _("Plot incoming REPL data."),
+            "handler": self.toggle_plotter,
+            "shortcut": "CTRL+Shift+P",
+        })
         return buttons
 
     def workspace_dir(self):

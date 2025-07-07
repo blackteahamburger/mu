@@ -8,9 +8,8 @@ import os
 import pytest
 import mu.i18n
 import mu.interface.dialogs
-from PyQt6.QtWidgets import QDialog, QWidget, QDialogButtonBox
+from PyQt6.QtWidgets import QDialog, QWidget
 from unittest import mock
-from mu import virtual_environment
 from mu.modes import (
     PythonMode,
     CircuitPythonMode,
@@ -18,6 +17,7 @@ from mu.modes import (
     DebugMode,
     ESPMode,
 )
+import mu.logic
 from PyQt6.QtCore import QProcess
 
 
@@ -129,23 +129,10 @@ def test_MicrobitSettingsWidget_setup():
     Ensure the widget for editing settings related to the BBC microbit
     displays the referenced settings data in the expected way.
     """
-    minify = True
     custom_runtime_path = "/foo/bar"
     mbsw = mu.interface.dialogs.MicrobitSettingsWidget()
-    mbsw.setup(minify, custom_runtime_path)
-    assert mbsw.minify.isChecked()
+    mbsw.setup(custom_runtime_path)
     assert mbsw.runtime_path.text() == "/foo/bar"
-
-
-def test_PackagesWidget_setup():
-    """
-    Ensure the widget for editing settings related to third party packages
-    displays the referenced data in the expected way.
-    """
-    packages = "foo\nbar\nbaz"
-    pw = mu.interface.dialogs.PackagesWidget()
-    pw.setup(packages)
-    assert pw.text_area.toPlainText() == packages
 
 
 def test_PythonAnywhereWidget_setup():
@@ -188,7 +175,6 @@ def test_ESPFirmwareFlasherWidget_setup(microbit):
     device_list = mu.logic.DeviceList(modes)
     device_list.add_device(microbit)
     espff = mu.interface.dialogs.ESPFirmwareFlasherWidget()
-    espff.venv = mock.Mock()
     with mock.patch("os.path.exists", return_value=False):
         espff.setup(mode, device_list)
 
@@ -228,7 +214,6 @@ def test_ESPFirmwareFlasherWidget_update_firmware(microbit):
     device_list = mu.logic.DeviceList(modes)
     device_list.add_device(microbit)
     espff = mu.interface.dialogs.ESPFirmwareFlasherWidget()
-    espff.venv = mock.Mock()
     with mock.patch("os.path.exists", return_value=True):
         espff.setup(mm, device_list)
 
@@ -354,7 +339,6 @@ def test_AdminDialog_setup_python_mode():
         "envars": "name=value",
         "locale": "",
     }
-    packages = "foo\nbar\nbaz\n"
     mock_window = QWidget()
     mode = mock.MagicMock()
     mode.short_name = "python"
@@ -362,11 +346,9 @@ def test_AdminDialog_setup_python_mode():
     modes = mock.MagicMock()
     device_list = mu.logic.DeviceList(modes)
     ad = mu.interface.dialogs.AdminDialog(mock_window)
-    ad.setup(log, settings, packages, mode, device_list)
+    ad.setup(log, settings, mode, device_list)
     assert ad.log_widget.log_text_area.toPlainText() == log
     s = ad.settings()
-    assert s["packages"] == packages
-    del s["packages"]
     assert s == settings
 
 
@@ -377,11 +359,9 @@ def test_AdminDialog_setup_microbit_mode():
     """
     log = "this is the contents of a log file"
     settings = {
-        "minify": True,
         "microbit_runtime": "/foo/bar",
         "locale": "",
     }
-    packages = "foo\nbar\nbaz\n"
     mock_window = QWidget()
     mode = mock.MagicMock()
     mode.short_name = "microbit"
@@ -389,7 +369,7 @@ def test_AdminDialog_setup_microbit_mode():
     modes = mock.MagicMock()
     device_list = mu.logic.DeviceList(modes)
     ad = mu.interface.dialogs.AdminDialog(mock_window)
-    ad.setup(log, settings, packages, mode, device_list)
+    ad.setup(log, settings, mode, device_list)
     assert ad.log_widget.log_text_area.toPlainText() == log
     s = ad.settings()
     assert s == settings
@@ -408,7 +388,6 @@ def test_AdminDialog_setup_web_mode():
         "pa_token": "test_token",
         "pa_instance": "www",
     }
-    packages = "foo\nbar\nbaz\n"
     mock_window = QWidget()
     mode = mock.MagicMock()
     mode.short_name = "web"
@@ -416,11 +395,9 @@ def test_AdminDialog_setup_web_mode():
     modes = mock.MagicMock()
     device_list = mu.logic.DeviceList(modes)
     ad = mu.interface.dialogs.AdminDialog(mock_window)
-    ad.setup(log, settings, packages, mode, device_list)
+    ad.setup(log, settings, mode, device_list)
     assert ad.log_widget.log_text_area.toPlainText() == log
     s = ad.settings()
-    assert s["packages"] == packages
-    del s["packages"]
     assert s == settings
 
 
@@ -433,7 +410,6 @@ def test_AdminDialog_setup():
     settings = {
         "locale": "",
     }
-    packages = "foo\nbar\nbaz\n"
     mock_window = QWidget()
     mode = mock.MagicMock()
     mode.short_name = "esp"
@@ -441,7 +417,7 @@ def test_AdminDialog_setup():
     modes = mock.MagicMock()
     device_list = mu.logic.DeviceList(modes)
     ad = mu.interface.dialogs.AdminDialog(mock_window)
-    ad.setup(log, settings, packages, mode, device_list)
+    ad.setup(log, settings, mode, device_list)
     assert ad.log_widget.log_text_area.toPlainText() == log
     s = ad.settings()
     assert s == settings
@@ -472,350 +448,3 @@ def test_FindReplaceDialog_setup_with_args():
     assert frd.find() == find
     assert frd.replace() == replace
     assert frd.replace_flag()
-
-
-def test_PackageDialog_setup():
-    """
-    Ensure the PackageDialog is set up correctly and kicks off the process of
-    removing and adding packages.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.remove_packages = mock.MagicMock()
-
-    to_remove = {"foo"}
-    to_add = {"bar"}
-    with mock.patch.object(pd, "pip_queue") as pip_queue:
-        pip_queue.append = mock.Mock()
-        pd.setup(to_remove, to_add)
-
-    queue_called_with = pip_queue.append.call_args_list
-    [args0], _ = queue_called_with[0]
-    assert args0 == ("install", to_add)
-    [args1], _ = queue_called_with[1]
-    assert args1 == ("remove", to_remove)
-    assert pd.button_box.button(QDialogButtonBox.Ok).isEnabled() is False
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_packages():
-    """
-    Ensure the pkg_dirs of to-be-removed packages is correctly filled and the
-    remove_package method is scheduled.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.to_remove = {"foo", "bar-baz", "Quux"}
-    pd.module_dir = "wibble"
-    dirs = [
-        "foo-1.0.0.dist-info",
-        "foo",
-        "bar_baz-1.0.0.dist-info",
-        "bar_baz",
-        "quux-1.0.0.dist-info",
-        "quux",
-    ]
-    with (
-        mock.patch("mu.interface.dialogs.os.listdir", return_value=dirs),
-        mock.patch("mu.interface.dialogs.QTimer") as mock_qtimer,
-    ):
-        pd.remove_packages()
-        assert pd.pkg_dirs == {
-            "foo": os.path.join("wibble", "foo-1.0.0.dist-info"),
-            "bar-baz": os.path.join("wibble", "bar_baz-1.0.0.dist-info"),
-            "Quux": os.path.join("wibble", "quux-1.0.0.dist-info"),
-        }
-        mock_qtimer.singleShot.assert_called_once_with(2, pd.remove_package)
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_package_dist_info():
-    """
-    Ensures that if there are packages remaining to be deleted, then the next
-    one is deleted as expected.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.append_data = mock.MagicMock()
-    pd.pkg_dirs = {"foo": os.path.join("bar", "foo-1.0.0.dist-info")}
-    pd.module_dir = "baz"
-    files = [["filename1", ""], ["filename2", ""], ["filename3", ""]]
-    mock_remove = mock.MagicMock()
-    mock_shutil = mock.MagicMock()
-    mock_qtimer = mock.MagicMock()
-    with (
-        mock.patch("builtins.open"),
-        mock.patch("mu.interface.dialogs.csv.reader", return_value=files),
-        mock.patch("mu.interface.dialogs.os.remove", mock_remove),
-        mock.patch("mu.interface.dialogs.shutil", mock_shutil),
-        mock.patch("mu.interface.dialogs.QTimer", mock_qtimer),
-    ):
-        pd.remove_package()
-        assert pd.pkg_dirs == {}
-        assert mock_remove.call_count == 3
-        assert mock_shutil.rmtree.call_count == 3
-        pd.append_data.assert_called_once_with("Removed foo\n")
-        mock_qtimer.singleShot.assert_called_once_with(2, pd.remove_package)
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_package_dist_info_cannot_delete():
-    """
-    Ensures that if there are packages remaining to be deleted, then the next
-    one is deleted and any failures are logged.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.append_data = mock.MagicMock()
-    pd.pkg_dirs = {"foo": os.path.join("bar", "foo-1.0.0.dist-info")}
-    pd.module_dir = "baz"
-    files = [["filename1", ""], ["filename2", ""], ["filename3", ""]]
-    mock_remove = mock.MagicMock(side_effect=Exception("Bang"))
-    mock_shutil = mock.MagicMock()
-    mock_qtimer = mock.MagicMock()
-    mock_log = mock.MagicMock()
-    with (
-        mock.patch("builtins.open"),
-        mock.patch("mu.interface.dialogs.csv.reader", return_value=files),
-        mock.patch("mu.interface.dialogs.os.remove", mock_remove),
-        mock.patch("mu.interface.dialogs.logger.error", mock_log),
-        mock.patch("mu.interface.dialogs.shutil", mock_shutil),
-        mock.patch("mu.interface.dialogs.QTimer", mock_qtimer),
-    ):
-        pd.remove_package()
-        assert pd.pkg_dirs == {}
-        assert mock_remove.call_count == 3
-        assert mock_log.call_count == 6
-        assert mock_shutil.rmtree.call_count == 3
-        pd.append_data.assert_called_once_with("Removed foo\n")
-        mock_qtimer.singleShot.assert_called_once_with(2, pd.remove_package)
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_package_egg_info():
-    """
-    Ensures that if there are packages remaining to be deleted, then the next
-    one is deleted as expected.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.append_data = mock.MagicMock()
-    pd.pkg_dirs = {"foo": os.path.join("bar", "foo-1.0.0.egg-info")}
-    pd.module_dir = "baz"
-    files = "".join(["filename1\n", "filename2\n", "filename3\n"])
-    mock_remove = mock.MagicMock()
-    mock_shutil = mock.MagicMock()
-    mock_qtimer = mock.MagicMock()
-    with (
-        mock.patch("builtins.open", mock.mock_open(read_data=files)),
-        mock.patch("mu.interface.dialogs.os.remove", mock_remove),
-        mock.patch("mu.interface.dialogs.shutil", mock_shutil),
-        mock.patch("mu.interface.dialogs.QTimer", mock_qtimer),
-    ):
-        pd.remove_package()
-        assert pd.pkg_dirs == {}
-        assert mock_remove.call_count == 3
-        assert mock_shutil.rmtree.call_count == 3
-        pd.append_data.assert_called_once_with("Removed foo\n")
-        mock_qtimer.singleShot.assert_called_once_with(2, pd.remove_package)
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_package_egg_info_cannot_delete():
-    """
-    Ensures that if there are packages remaining to be deleted, then the next
-    one is deleted and any failures are logged.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.append_data = mock.MagicMock()
-    pd.pkg_dirs = {"foo": os.path.join("bar", "foo-1.0.0.egg-info")}
-    pd.module_dir = "baz"
-    files = "".join(["filename1\n", "filename2\n", "filename3\n"])
-    mock_remove = mock.MagicMock(side_effect=Exception("Bang"))
-    mock_shutil = mock.MagicMock()
-    mock_qtimer = mock.MagicMock()
-    mock_log = mock.MagicMock()
-    with (
-        mock.patch("builtins.open", mock.mock_open(read_data=files)),
-        mock.patch("mu.interface.dialogs.os.remove", mock_remove),
-        mock.patch("mu.interface.dialogs.logger.error", mock_log),
-        mock.patch("mu.interface.dialogs.shutil", mock_shutil),
-        mock.patch("mu.interface.dialogs.QTimer", mock_qtimer),
-    ):
-        pd.remove_package()
-        assert pd.pkg_dirs == {}
-        assert mock_remove.call_count == 3
-        assert mock_log.call_count == 6
-        assert mock_shutil.rmtree.call_count == 3
-        pd.append_data.assert_called_once_with("Removed foo\n")
-        mock_qtimer.singleShot.assert_called_once_with(2, pd.remove_package)
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_package_egg_info_cannot_open_record():
-    """
-    If the installed-files.txt file is not available (sometimes the case), then
-    simply raise an exception and communicate this to the user.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.append_data = mock.MagicMock()
-    pd.pkg_dirs = {"foo": os.path.join("bar", "foo-1.0.0.egg-info")}
-    pd.module_dir = "baz"
-    mock_qtimer = mock.MagicMock()
-    mock_log = mock.MagicMock()
-    with (
-        mock.patch(
-            "builtins.open", mock.MagicMock(side_effect=Exception("boom"))
-        ),
-        mock.patch("mu.interface.dialogs.logger.error", mock_log),
-        mock.patch("mu.interface.dialogs.QTimer", mock_qtimer),
-    ):
-        pd.remove_package()
-        assert pd.pkg_dirs == {}
-        assert mock_log.call_count == 2
-        msg = (
-            "UNABLE TO REMOVE PACKAGE: foo (check the logs for "
-            "more information.)"
-        )
-        pd.append_data.assert_called_once_with(msg)
-        mock_qtimer.singleShot.assert_called_once_with(2, pd.remove_package)
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_remove_package_end_state():
-    """
-    If there are no more packages to remove and there's nothing to be done for
-    adding packages, then ensure all directories that do not contain files are
-    deleted and the expected end-state is called.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.module_dir = "foo"
-    pd.pkg_dirs = {}
-    pd.to_add = {}
-    pd.process = None
-    pd.end_state = mock.MagicMock()
-    with (
-        mock.patch(
-            "mu.interface.dialogs.os.listdir", return_value=["bar", "baz"]
-        ),
-        mock.patch(
-            "mu.interface.dialogs.os.walk",
-            side_effect=[[("bar", [], [])], [("baz", [], ["x"])]],
-        ),
-        mock.patch("mu.interface.dialogs.shutil") as mock_shutil,
-    ):
-        pd.remove_package()
-        assert mock_shutil.rmtree.call_count == 2
-        call_args = mock_shutil.rmtree.call_args_list
-        assert call_args[0][0][0] == os.path.join("foo", "bar")
-        assert call_args[1][0][0] == os.path.join("foo", "bin")
-    pd.end_state.assert_called_once_with()
-
-
-@pytest.mark.skip(
-    reason="Superseded probably by ntoll's previous work on venv"
-)
-def test_PackageDialog_end_state():
-    """
-    Ensure the expected end-state is correctly configured (for when all tasks
-    relating to third party packages have finished).
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.append_data = mock.MagicMock()
-    pd.button_box = mock.MagicMock()
-    pd.end_state()
-    pd.append_data.assert_called_once_with("\nFINISHED")
-    pd.button_box.button().setEnabled.assert_called_once_with(True)
-
-
-@pytest.mark.skip(reason="Superseded probably by virtual environment work")
-def test_PackageDialog_run_pip():
-    """
-    Ensure the expected package to be installed is done so via the expected
-    correct call to "pip" in a new process (as per the recommended way to
-    us "pip").
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    venv = virtual_environment.VirtualEnvironment(".")
-    mock_process = mock.MagicMock()
-    with mock.patch("mu.interface.dialogs.QProcess", mock_process):
-        pd.setup({}, {"foo"})
-        pd.process.readyRead.connect.assert_called_once_with(pd.read_process)
-        pd.process.finished.connect.assert_called_once_with(pd.finished)
-        args = [
-            "-m",  # run the module
-            "pip",  # called pip
-            "install",  # to install
-            "foo",  # a package called "foo"
-        ]
-        pd.process.start.assert_called_once_with(venv.interpreter, args)
-
-
-@pytest.mark.skip(reason="Superseded probably by virtual environment work")
-def test_PackageDialog_finished_with_more_to_remove():
-    """
-    When the pip process is finished, check if there are more packages to
-    install and run again.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.run_pip = mock.MagicMock()
-    pd.process = mock.MagicMock()
-    venv = virtual_environment.VirtualEnvironment(".")
-    pd.setup({}, {"foo"}, venv)
-    pd.finished()
-    assert pd.process is None
-    pd.run_pip.assert_called_once_with()
-
-
-@pytest.mark.skip(reason="Superseded probably by virtual environment work")
-def test_PackageDialog_finished_to_end_state():
-    """
-    When the pip process is finished, if there are no more packages to install
-    and there's no more activity for removing packages, move to the end state.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.to_add = set()
-    pd.pkg_dirs = {}
-    pd.end_state = mock.MagicMock()
-    pd.finished()
-    pd.end_state.assert_called_once_with()
-
-
-@pytest.mark.skip(reason="Superseded probably by virtual environment work")
-def test_PackageDialog_read_process():
-    """
-    Ensure any data from the subprocess running "pip" is read and appended to
-    the text area.
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.process = mock.MagicMock()
-    pd.process.readAll().data.return_value = b"hello"
-    pd.append_data = mock.MagicMock()
-    mock_timer = mock.MagicMock()
-    with mock.patch("mu.interface.dialogs.QTimer", mock_timer):
-        pd.read_process()
-        pd.append_data.assert_called_once_with("hello")
-        mock_timer.singleShot.assert_called_once_with(2, pd.read_process)
-
-
-@pytest.mark.skip(reason="Superseded probably by virtual environment work")
-def test_PackageDialog_append_data():
-    """
-    Ensure that when data is appended, it's added to the end of the text area!
-    """
-    pd = mu.interface.dialogs.PackageDialog()
-    pd.text_area = mock.MagicMock()
-    pd.append_data("hello")
-    c = pd.text_area.textCursor()
-    assert c.movePosition.call_count == 2
-    c.insertText.assert_called_once_with("hello")
-    pd.text_area.setTextCursor.assert_called_once_with(c)

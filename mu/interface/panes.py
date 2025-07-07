@@ -59,18 +59,10 @@ from qtconsole.rich_jupyter_widget import RichJupyterWidget
 from ..i18n import language_code
 from mu.interface.themes import Font, DEFAULT_FONT_SIZE
 from mu.interface.themes import DAY_STYLE, NIGHT_STYLE, CONTRAST_STYLE
+from PyQt6.QtCharts import QChart, QLineSeries, QChartView, QValueAxis
 
 
 logger = logging.getLogger(__name__)
-
-
-CHARTS = True
-try:  # pragma: no cover
-    from PyQt6.QtCharts import QChart, QLineSeries, QChartView, QValueAxis
-except ImportError:  # pragma: no cover
-    logger.info("Unable to find QChart. Plotter button will not display.")
-    QChartView = object
-    CHARTS = False
 
 
 PANE_ZOOM_SIZES = {
@@ -1058,13 +1050,12 @@ class PythonProcessPane(QTextEdit):
         debugger=False,
         command_args=None,
         envars=None,
-        runner=None,
         python_args=None,
     ):
         """
         Start the child Python process.
 
-        Will run the referenced Python script_name within the context of theAdd commentMore actions
+        Will run the referenced Python script_name within the context of the
         working directory.
 
         If interactive is True (the default) the Python process will run in
@@ -1079,9 +1070,6 @@ class PythonProcessPane(QTextEdit):
 
         If there is a list of environment variables, these will be part of the
         context of the new child process.
-
-        If runner is given, this is used as the command to start the PythonAdd commentMore actions
-        process.
 
         If python_args is given, these are passed as arguments to the Python
         runtime used to launch the child process.
@@ -1136,9 +1124,8 @@ class PythonProcessPane(QTextEdit):
             python_exec = sys.executable
             args = [runner, self.script] + command_args
             #
-            # The runtime virtualenvironment doesn't include Mu
-            # itself (by design). But the debugger needs mu in
-            # order to run, so we temporarily set the PYTHONPATH
+            # The debugger needs mu in order to run
+            # so we temporarily set the PYTHONPATH
             # to point to Mu's own directory
             #
             env.insert(
@@ -1147,12 +1134,8 @@ class PythonProcessPane(QTextEdit):
             self.process.setProcessEnvironment(env)
             self.process.start(python_exec, args)
         else:
-            if runner:
-                # Use the passed in Python "runner" to run the script.
-                python_exec = runner
-            else:
-                # Use the current system Python to run the script.
-                python_exec = sys.executable
+            # Use the current system Python to run the script.
+            python_exec = sys.executable
             args = []
             if self.script:
                 if interactive:

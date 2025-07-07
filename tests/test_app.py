@@ -16,7 +16,6 @@ from mu.app import (
     setup_exception_handler,
     AnimatedSplash,
     StartupWorker,
-    vlogger,
     check_only_running_once,
     _shared_memory,
 )
@@ -26,7 +25,6 @@ from mu.interface.themes import NIGHT_STYLE, DAY_STYLE, CONTRAST_STYLE
 from mu.logic import LOG_FILE, LOG_DIR, ENCODING
 from mu.resources import load_movie
 from mu import mu_debug
-from mu.virtual_environment import VirtualEnvironment as VE, SplashLogHandler
 from PyQt6.QtCore import Qt
 
 
@@ -147,25 +145,6 @@ def test_animated_splash_failed():
     assert asplash.setPixmap.call_count == 1
 
 
-def test_worker_run():
-    """
-    Ensure the finished signal is called when the tasks called in the run
-    method are completed.
-    """
-    w = StartupWorker()
-    slh = SplashLogHandler(w.display_text)
-    vlogger.addHandler(slh)
-    w.finished = mock.MagicMock()
-    with mock.patch("mu.app.venv.ensure_and_create") as mock_ensure:
-        w.run()
-        assert mock_ensure.call_count == 1
-        w.finished.emit.assert_called_once_with()
-    # Ensure the splash related logger handler has been removed.
-    while vlogger.hasHandlers() and vlogger.handlers:
-        handler = vlogger.handlers[0]
-        assert not isinstance(handler, SplashLogHandler)
-
-
 def test_worker_fail():
     """
     Ensure that exceptions encountered during Mu's start-up are handled in the
@@ -179,7 +158,6 @@ def test_worker_fail():
     mock_ensure.side_effect = ex
     with pytest.raises(RuntimeError):
         with (
-            mock.patch("mu.app.venv.ensure_and_create", mock_ensure),
             mock.patch("mu.app.time") as mock_time,
         ):
             w.run()
@@ -311,55 +289,6 @@ def test_run():
         qa.assert_has_calls([mock.call().setStyleSheet(NIGHT_STYLE)])
         window.load_theme.emit("contrast")
         qa.assert_has_calls([mock.call().setStyleSheet(CONTRAST_STYLE)])
-
-
-@pytest.mark.skip("Possibly hanging...")
-def test_close_splash_screen():
-    """
-    Test that the splash screen is closed.
-    """
-
-    # Create a dummy window
-    class Win(mock.MagicMock):
-        load_theme = DumSig()
-        icon = "icon"
-
-    window = Win()
-
-    # Create a dummy timer class
-    class DummyTimer:
-        def __init__(self):
-            self.callback = lambda x: None
-            self.stop = lambda: None
-            self.setSingleShot = lambda x: None
-
-            def set_callback(fun):
-                self.callback = fun
-
-            class Object(object):
-                pass
-
-            self.timeout = Object()
-            self.timeout.connect = set_callback
-
-        def start(self, t):
-            # Just call the callback immediately
-            self.callback()
-
-    # Mock Splash screen
-    splash = mock.MagicMock()
-
-    # Mock QTimer, QApplication, Window, Editor, sys.exit
-    with (
-        mock.patch("mu.app.Window", window),
-        mock.patch("mu.app.QApplication"),
-        mock.patch("sys.exit"),
-        mock.patch("mu.app.Editor"),
-        mock.patch("mu.app.AnimatedSplash", return_value=splash),
-        mock.patch.object(VE, "ensure_and_create"),
-    ):
-        run()
-        assert splash.close.call_count == 1
 
 
 def test_excepthook():

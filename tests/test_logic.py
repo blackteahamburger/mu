@@ -23,7 +23,6 @@ import mu.config
 import mu.logic
 import mu.settings
 
-from mu.virtual_environment import venv
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtCore import pyqtSignal, QObject, Qt
 
@@ -104,11 +103,9 @@ def generate_session(
     mode="python",
     file_contents=None,
     envars=[["name", "value"]],
-    minify=False,
     microbit_runtime=None,
     zoom_level=2,
     window=None,
-    venv_path=None,
     **kwargs,
 ):
     """Generate a temporary session file for one test
@@ -148,16 +145,12 @@ def generate_session(
         session_data["paths"] = list(paths)
     if envars:
         session_data["envars"] = envars
-    if minify is not None:
-        session_data["minify"] = minify
     if microbit_runtime:
         session_data["microbit_runtime"] = microbit_runtime
     if zoom_level:
         session_data["zoom_level"] = zoom_level
     if window:
         session_data["window"] = window
-    if venv_path:
-        session_data["venv_path"] = venv_path
     session_data.update(**kwargs)
 
     session = mu.settings.SessionSettings()
@@ -429,30 +422,6 @@ def test_sniff_newline_convention_local():
     """
     text = "There are no new lines here"
     assert mu.logic.sniff_newline_convention(text) == os.linesep
-
-
-@pytest.mark.skip("No longer needed post PR #1200")
-def test_get_session_path():
-    """
-    Ensure the result of calling get_admin_file_path with session.json returns
-    the expected result.
-    """
-    mock_func = mock.MagicMock(return_value="foo")
-    with mock.patch("mu.logic.get_admin_file_path", mock_func):
-        assert mu.logic.get_session_path() == "foo"
-        mock_func.assert_called_once_with("session.json")
-
-
-@pytest.mark.skip("No longer needed post PR #1200")
-def test_get_settings_path():
-    """
-    Ensure the result of calling get_admin_file_path with settings.json returns
-    the expected result.
-    """
-    mock_func = mock.MagicMock(return_value="foo")
-    with mock.patch("mu.logic.get_admin_file_path", mock_func):
-        assert mu.logic.get_settings_path() == "foo"
-        mock_func.assert_called_once_with("settings.json")
 
 
 def test_extract_envars():
@@ -814,7 +783,6 @@ def test_editor_init():
         assert e.mode == "python"
         assert e.modes == {}
         assert e.envars == {}
-        assert e.minify is False
         assert e.microbit_runtime == ""
         # assert e.connected_devices == set()
         assert e.find == ""
@@ -886,29 +854,21 @@ def test_editor_restore_session_existing_runtime():
     file_contents = ["", ""]
     ed = mocked_editor(mode)
     with mock.patch("os.path.isfile", return_value=True):
-        with mock.patch.object(venv, "relocate") as venv_relocate:
-            with (
-                mock.patch.object(venv, "ensure"),
-                mock.patch.object(venv, "create"),
-            ):
-                with generate_session(
-                    theme,
-                    mode,
-                    file_contents,
-                    microbit_runtime="/foo",
-                    zoom_level=5,
-                    venv_path="foo",
-                ):
-                    ed.restore_session()
+        with generate_session(
+            theme,
+            mode,
+            file_contents,
+            microbit_runtime="/foo",
+            zoom_level=5,
+        ):
+            ed.restore_session()
 
     assert ed.theme == theme
     assert ed._view.add_tab.call_count == len(file_contents)
     ed._view.set_theme.assert_called_once_with(theme)
     assert ed.envars == {"name": "value"}
-    assert ed.minify is False
     assert ed.microbit_runtime == "/foo"
     assert ed._view.zoom_position == 5
-    venv_relocate.assert_called_with("foo")
 
 
 def test_editor_restore_session_missing_runtime():
@@ -927,7 +887,6 @@ def test_editor_restore_session_missing_runtime():
     assert ed._view.add_tab.call_count == len(file_contents)
     ed._view.set_theme.assert_called_once_with(theme)
     assert ed.envars == {"name": "value"}
-    assert ed.minify is False
     assert ed.microbit_runtime == ""  # File does not exist so set to ''
 
 
@@ -978,7 +937,7 @@ def test_editor_restore_session_no_session_file():
     with mock.patch.object(mu.settings, "session", session):
         ed.restore_session()
 
-    ed._view.add_tab.call_count == 1
+    assert ed._view.add_tab.call_count == 1
     ed.select_mode.assert_called_once_with(None)
 
 
@@ -999,7 +958,7 @@ def test_editor_restore_session_invalid_file(tmp_path):
     with mock.patch.object(mu.settings, "session", session):
         ed.restore_session()
 
-    ed._view.add_tab.call_count == 1
+    assert ed._view.add_tab.call_count == 1
     ed.select_mode.assert_called_once_with(None)
 
 
@@ -1795,7 +1754,7 @@ def test_save_with_non_py_file_extension():
     with mock.patch("mu.logic.save_and_encode") as mock_save:
         ed.save()
     mock_save.assert_called_once_with(text, path, newline)
-    ed._view.get_save_path.call_count == 0
+    assert ed._view.get_save_path.call_count == 0
 
 
 def test_get_tab_existing_tab():
@@ -2257,7 +2216,7 @@ def test_quit_calls_sys_exit(mocked_session):
     mock_event = mock.MagicMock()
     mock_event.ignore = mock.MagicMock(return_value=None)
     with (
-        mock.patch("PyQt5.QtCore.QCoreApplication.exit", return_value=0) as ex,
+        mock.patch("PyQt6.QtCore.QCoreApplication.exit", return_value=0) as ex,
         mock.patch("builtins.open", mock_open),
     ):
         ed.quit(mock_event)
@@ -2271,13 +2230,10 @@ def test_show_admin():
     view = mock.MagicMock()
     ed = mu.logic.Editor(view)
     ed.modes = {"python": mock.MagicMock()}
-    ed.sync_package_state = mock.MagicMock()
     ed.envars = {"name": "value"}
-    ed.minify = True
     ed.microbit_runtime = "/foo/bar"
     settings = {
         "envars": "name=value",
-        "minify": True,
         "microbit_runtime": "/foo/bar",
         "locale": "",
         "pa_instance": "www",
@@ -2286,64 +2242,29 @@ def test_show_admin():
     }
     new_settings = {
         "envars": "name=value",
-        "minify": True,
         "microbit_runtime": "/foo/bar",
-        "packages": "baz\n",
         "locale": "",
         "pa_instance": "www",
         "pa_token": "fake_token",
         "pa_username": "fake_username",
     }
     view.show_admin.return_value = new_settings
-    with mock.patch.object(
-        venv, "installed_packages", return_value=([], ["Foo", "bar"])
-    ):
-        mock_open = mock.mock_open()
-        with (
-            mock.patch("builtins.open", mock_open),
-            mock.patch("os.path.isfile", return_value=True),
-        ):
-            ed.show_admin()
-            mock_open.assert_called_once_with(
-                mu.logic.LOG_FILE, "r", encoding="utf8"
-            )
-            assert view.show_admin.call_count == 1
-            assert view.show_admin.call_args[0][1] == settings
-            assert ed.envars == {"name": "value"}
-            assert ed.minify is True
-            assert ed.microbit_runtime == "/foo/bar"
-            assert ed.pa_instance == "www"
-            assert ed.pa_token == "fake_token"
-            assert ed.pa_username == "fake_username"
-            # Expect package names to be normalised to lowercase.
-            ed.sync_package_state.assert_called_once_with(
-                ["foo", "bar"], ["baz"]
-            )
-
-
-def test_show_admin_no_change():
-    """
-    If the dialog is cancelled, no changes are made to settings.
-    """
-    view = mock.MagicMock()
-    ed = mu.logic.Editor(view)
-    ed.modes = {"python": mock.MagicMock()}
-    ed.sync_package_state = mock.MagicMock()
-    ed.envars = {"name": "value"}
-    ed.minify = True
-    ed.microbit_runtime = "/foo/bar"
-    new_settings = {}
-    view.show_admin.return_value = new_settings
     mock_open = mock.mock_open()
-    with mock.patch.object(
-        venv, "installed_packages", return_value=([], ["Foo", "bar"])
+    with (
+        mock.patch("builtins.open", mock_open),
+        mock.patch("os.path.isfile", return_value=True),
     ):
-        with (
-            mock.patch("builtins.open", mock_open),
-            mock.patch("os.path.isfile", return_value=True),
-        ):
-            ed.show_admin(None)
-            assert ed.sync_package_state.call_count == 0
+        ed.show_admin()
+        mock_open.assert_called_once_with(
+            mu.logic.LOG_FILE, "r", encoding="utf8"
+        )
+        assert view.show_admin.call_count == 1
+        assert view.show_admin.call_args[0][1] == settings
+        assert ed.envars == {"name": "value"}
+        assert ed.microbit_runtime == "/foo/bar"
+        assert ed.pa_instance == "www"
+        assert ed.pa_token == "fake_token"
+        assert ed.pa_username == "fake_username"
 
 
 def test_show_admin_missing_microbit_runtime():
@@ -2354,13 +2275,10 @@ def test_show_admin_missing_microbit_runtime():
     view = mock.MagicMock()
     ed = mu.logic.Editor(view)
     ed.modes = {"python": mock.MagicMock()}
-    ed.sync_package_state = mock.MagicMock()
     ed.envars = {"name": "value"}
-    ed.minify = True
     ed.microbit_runtime = "/foo/bar"
     settings = {
         "envars": "name=value",
-        "minify": True,
         "microbit_runtime": "/foo/bar",
         "locale": "",
         "pa_instance": "www",
@@ -2369,9 +2287,7 @@ def test_show_admin_missing_microbit_runtime():
     }
     new_settings = {
         "envars": "name=value",
-        "minify": True,
         "microbit_runtime": "/foo/bar",
-        "packages": "baz\n",
         "locale": "",
         "pa_instance": "www",
         "pa_token": "",
@@ -2379,40 +2295,19 @@ def test_show_admin_missing_microbit_runtime():
     }
     view.show_admin.return_value = new_settings
     mock_open = mock.mock_open()
-    with mock.patch.object(
-        venv, "installed_packages", return_value=([], ["Foo", "bar"])
+    with (
+        mock.patch("builtins.open", mock_open),
+        mock.patch("os.path.isfile", return_value=False),
     ):
-        with (
-            mock.patch("builtins.open", mock_open),
-            mock.patch("os.path.isfile", return_value=False),
-        ):
-            ed.show_admin(None)
-            mock_open.assert_called_once_with(
-                mu.logic.LOG_FILE, "r", encoding="utf8"
-            )
-            assert view.show_admin.call_count == 1
-            assert view.show_admin.call_args[0][1] == settings
-            assert ed.envars == {"name": "value"}
-            assert ed.minify is True
-            assert ed.microbit_runtime == ""
-            assert view.show_message.call_count == 1
-            ed.sync_package_state.assert_called_once_with(
-                ["foo", "bar"], ["baz"]
-            )
-
-
-def test_sync_package_state():
-    """
-    Ensure that the expected set operations are carried out so that the
-    view's sync_packages method is called with the correct packages.
-    """
-    view = mock.MagicMock()
-    ed = mu.logic.Editor(view)
-    old_packages = ["foo", "bar"]
-    new_packages = ["bar", "baz"]
-    ed.sync_package_state(old_packages, new_packages)
-    args, _ = view.sync_packages.call_args
-    assert args[:2] == ({"foo"}, {"baz"})
+        ed.show_admin(None)
+        mock_open.assert_called_once_with(
+            mu.logic.LOG_FILE, "r", encoding="utf8"
+        )
+        assert view.show_admin.call_count == 1
+        assert view.show_admin.call_args[0][1] == settings
+        assert ed.envars == {"name": "value"}
+        assert ed.microbit_runtime == ""
+        assert view.show_message.call_count == 1
 
 
 def test_select_mode():
@@ -3175,7 +3070,6 @@ def test_handle_open_file():
 
     class Dummy(QObject):
         open_file = pyqtSignal(str)
-        venv = None
 
     view = Dummy()
     edit = mu.logic.Editor(view)
@@ -3240,7 +3134,7 @@ def test_find_replace_cancelled():
     ed = mu.logic.Editor(mock_view)
     ed.show_status_message = mock.MagicMock()
     ed.find_replace()
-    ed.show_status_message.call_count == 0
+    assert ed.show_status_message.call_count == 0
 
 
 def test_find_replace_no_find():
@@ -3419,7 +3313,6 @@ def test_toggle_comments():
     mock_view.toggle_comments.assert_called_once_with()
 
 
-@pytest.mark.skipif(sys.version_info < (3, 6), reason="Requires Python3.6")
 def test_tidy_code_no_tab():
     """
     If there's no current tab ensure black isn't called.
@@ -3432,7 +3325,6 @@ def test_tidy_code_no_tab():
     assert ed.show_status_message.call_count == 0
 
 
-@pytest.mark.skipif(sys.version_info < (3, 6), reason="Requires Python3.6")
 def test_tidy_code_not_python():
     """
     If the current tab doesn't contain Python, abort.
@@ -3446,7 +3338,6 @@ def test_tidy_code_not_python():
     assert ed.show_status_message.call_count == 0
 
 
-@pytest.mark.skipif(sys.version_info < (3, 6), reason="Requires Python3.6")
 def test_tidy_code_valid_python():
     """
     Ensure the "good case" works as expected (the code is reformatted and Mu
@@ -3464,7 +3355,6 @@ def test_tidy_code_valid_python():
     assert ed.show_status_message.call_count == 1
 
 
-@pytest.mark.skipif(sys.version_info < (3, 6), reason="Requires Python3.6")
 def test_tidy_code_invalid_python():
     """
     If the code is incorrectly formatted so black can't do its thing, ensure
@@ -3477,7 +3367,6 @@ def test_tidy_code_invalid_python():
     assert mock_view.show_message.call_count == 1
 
 
-@pytest.mark.skipif(sys.version_info < (3, 6), reason="Requires Python3.6")
 def test_check_tidy_check_line_too_long():
     """
     Check we detect, then correct, lines longer than MAX_LINE_LENGTH.
@@ -3515,7 +3404,6 @@ def test_check_tidy_check_line_too_long():
     )
 
 
-@pytest.mark.skipif(sys.version_info < (3, 6), reason="Requires Python3.6")
 def test_check_tidy_check_short_line():
     """
     Check that Cidy and Check leave a short line as-is and respect

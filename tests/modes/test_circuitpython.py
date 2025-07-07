@@ -23,28 +23,13 @@ def test_circuitpython_mode():
     assert am.editor == editor
     assert am.view == view
 
-    with mock.patch("mu.modes.circuitpython.CHARTS", True):
-        actions = am.actions()
+    actions = am.actions()
     assert len(actions) == 2
     assert actions[0]["name"] == "serial"
     assert actions[0]["handler"] == am.toggle_repl
     assert actions[1]["name"] == "plotter"
     assert actions[1]["handler"] == am.toggle_plotter
     assert "code" not in am.module_names
-
-
-def test_circuitpython_mode_no_charts():
-    """
-    If QCharts is not available, ensure the plotter feature is not available.
-    """
-    editor = mock.MagicMock()
-    view = mock.MagicMock()
-    am = CircuitPythonMode(editor, view)
-    with mock.patch("mu.modes.circuitpython.CHARTS", False):
-        actions = am.actions()
-        assert len(actions) == 1
-        assert actions[0]["name"] == "serial"
-        assert actions[0]["handler"] == am.toggle_repl
 
 
 def test_workspace_dir_posix_exists():

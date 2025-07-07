@@ -157,17 +157,8 @@ def black():
     """Check code with the 'black' formatter."""
     clean()
     print("\nblack")
-    # Black is no available in Python 3.5, in that case let the tests continue
-    try:
-        import black as black_  # noqa: F401
-    except ImportError as e:
-        python_version = sys.version_info
-        if python_version.major == 3 and python_version.minor == 5:
-            print("Black checks are not available in Python 3.5.")
-            return 0
-        else:
-            print(e)
-            return 1
+    import black as black_  # noqa: F401
+
     for target in [
         "setup.py",
         "make.py",

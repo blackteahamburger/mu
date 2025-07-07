@@ -1,9 +1,12 @@
 from unittest import mock
 
+import random
+import os
 import pytest
 from PyQt6.QtWidgets import QApplication
 
 from mu import settings
+from mu.i18n import set_language
 
 # Keep global reference to avoid being garbage collected
 _qapp_instance = None
@@ -37,3 +40,9 @@ def temp_shared_mem_app_name():
     )
     yield
     os.environ.pop("MU_TEST_SUPPORT_RANDOM_APP_NAME_EXT", "")
+
+
+@pytest.fixture(autouse=True)
+def set_locale():
+    """Enforce the en locale"""
+    set_language("en")

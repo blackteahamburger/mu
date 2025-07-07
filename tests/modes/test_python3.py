@@ -3,11 +3,9 @@
 Tests for the Python3 mode.
 """
 
-import sys
 import os
 from mu.modes.python3 import PythonMode, KernelRunner
 from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS
-from mu.virtual_environment import venv
 
 from unittest import mock
 
@@ -22,9 +20,7 @@ def test_kernel_runner_start_kernel():
     mock_client = mock.MagicMock()
     mock_kernel_manager.client.return_value = mock_client
     envars = [["name", "value"]]
-    kr = KernelRunner(
-        kernel_name=sys.executable, cwd="/a/path/to/mu_code", envars=envars
-    )
+    kr = KernelRunner(cwd="/a/path/to/mu_code", envars=envars)
     kr.kernel_started = mock.MagicMock()
     mock_os = mock.MagicMock()
     mock_os.environ = {}
@@ -60,9 +56,7 @@ def test_kernel_runner_stop_kernel():
     the kernel in the quickest way possible.
     """
     envars = [["name", "value"]]
-    kr = KernelRunner(
-        kernel_name=sys.executable, cwd="/a/path/to/mu_code", envars=envars
-    )
+    kr = KernelRunner(cwd="/a/path/to/mu_code", envars=envars)
     kr.repl_kernel_client = mock.MagicMock()
     kr.repl_kernel_manager = mock.MagicMock()
     kr.kernel_finished = mock.MagicMock()
@@ -91,8 +85,7 @@ def test_python_mode():
     assert pm.editor == editor
     assert pm.view == view
 
-    with mock.patch("mu.modes.python3.CHARTS", True):
-        actions = pm.actions()
+    actions = pm.actions()
     assert len(actions) == 4
     assert actions[0]["name"] == "run"
     assert actions[0]["handler"] == pm.run_toggle
@@ -102,31 +95,6 @@ def test_python_mode():
     assert actions[2]["handler"] == pm.toggle_repl
     assert actions[3]["name"] == "plotter"
     assert actions[3]["handler"] == pm.toggle_plotter
-
-
-def test_python_mode_no_charts():
-    """
-    If QCharts is not available, ensure the plotter feature is not available.
-    """
-    editor = mock.MagicMock()
-    view = mock.MagicMock()
-    pm = PythonMode(editor, view)
-    assert pm.name == "Python 3"
-    assert pm.description is not None
-    assert pm.icon == "python"
-    assert pm.is_debugger is False
-    assert pm.editor == editor
-    assert pm.view == view
-
-    with mock.patch("mu.modes.python3.CHARTS", False):
-        actions = pm.actions()
-    assert len(actions) == 3
-    assert actions[0]["name"] == "run"
-    assert actions[0]["handler"] == pm.run_toggle
-    assert actions[1]["name"] == "debug"
-    assert actions[1]["handler"] == pm.debug
-    assert actions[2]["name"] == "repl"
-    assert actions[2]["handler"] == pm.toggle_repl
 
 
 def test_python_api():
@@ -223,12 +191,10 @@ def test_python_run_script():
     mock_runner = mock.MagicMock()
     view.add_python3_runner.return_value = mock_runner
     pm = PythonMode(editor, view)
-    with mock.patch.object(venv, "interpreter", "interpreter"):
-        pm.run_script()
+    pm.run_script()
 
     editor.save_tab_to_file.assert_called_once_with(view.current_tab)
     view.add_python3_runner.assert_called_once_with(
-        interpreter="interpreter",
         script_name="/foo/bar",
         working_directory="/foo",
         interactive=True,
@@ -378,12 +344,11 @@ def test_python_add_repl():
     with (
         mock.patch("mu.modes.python3.QThread", mock_qthread),
         mock.patch("mu.modes.python3.KernelRunner", mock_kernel_runner),
-        mock.patch.object(venv, "name", "name"),
     ):
         pm.add_repl()
     mock_qthread.assert_called_once_with()
     mock_kernel_runner.assert_called_once_with(
-        kernel_name="name", cwd=pm.workspace_dir(), envars=editor.envars
+        cwd=pm.workspace_dir(), envars=editor.envars
     )
     assert pm.kernel_thread == mock_qthread()
     assert pm.kernel_runner == mock_kernel_runner()

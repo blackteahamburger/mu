@@ -5,7 +5,6 @@ Tests for the debug mode.
 
 from mu.debugger.config import DEBUGGER_PORT
 from mu.modes.debugger import DebugMode
-from mu.virtual_environment import venv
 from unittest import mock
 
 
@@ -54,14 +53,10 @@ def test_debug_start():
     mock_debugger = mock.MagicMock()
     mock_debugger_class = mock.MagicMock(return_value=mock_debugger)
     dm = DebugMode(editor, view)
-    with (
-        mock.patch("mu.modes.debugger.Debugger", mock_debugger_class),
-        mock.patch.object(venv, "interpreter", "interpreter"),
-    ):
+    with mock.patch("mu.modes.debugger.Debugger", mock_debugger_class):
         dm.start()
     editor.save_tab_to_file.assert_called_once_with(view.current_tab)
     view.add_python3_runner.assert_called_once_with(
-        "interpreter",
         "/foo/bar",
         "/foo",
         debugger=True,
@@ -472,7 +467,7 @@ def test_debug_on_breakpoint_enable_marker_already_exists():
     mock_breakpoint = mock.MagicMock()
     mock_breakpoint.line = 1
     dm.debug_on_breakpoint_enable(mock_breakpoint)
-    mock_tab.markerAdd.call_count == 0
+    assert mock_tab.markerAdd.call_count == 0
 
 
 def test_debug_on_breakpoint_disable():

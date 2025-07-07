@@ -47,27 +47,6 @@ def test_base_mode():
     assert bm.builtins is None
 
 
-@pytest.mark.skip(
-    "No longer needed now that settings are part of the settings module"
-)
-def test_base_mode_workspace_dir():
-    """
-    Return settings file workspace value.
-    """
-    # read from our demo settings.json
-    with (
-        mock.patch(
-            "mu.modes.base.get_settings_path",
-            return_value="tests/settings.json",
-        ),
-        mock.patch("os.path.isdir", return_value=True),
-    ):
-        editor = mock.MagicMock()
-        view = mock.MagicMock()
-        bm = BaseMode(editor, view)
-        assert bm.workspace_dir() == "/home/foo/mycode"
-
-
 def test_base_mode_workspace_not_present():
     """
     No workspace key in settings file, return default folder.

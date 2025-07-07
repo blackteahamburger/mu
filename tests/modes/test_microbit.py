@@ -6,13 +6,12 @@ Tests for the micro:bit mode.
 import os
 import os.path
 import pytest
+import uflash
 from mu.config import HOME_DIRECTORY
 from mu.logic import Device
-from mu.modes.microbit import MicrobitMode, DeviceFlasher, can_minify
+from mu.modes.microbit import MicrobitMode, DeviceFlasher
 from mu.modes.api import MICROBIT_APIS, SHARED_APIS
-from mu.contrib import uflash
 from unittest import mock
-from tokenize import TokenError
 
 
 TEST_ROOT = os.path.split(os.path.dirname(__file__))[0]
@@ -60,7 +59,9 @@ def test_DeviceFlasher_run():
     with mock.patch("mu.modes.microbit.uflash", mock_flash):
         df.run()
     mock_flash.flash.assert_called_once_with(
-        paths_to_microbits=["path"], python_script="script"
+        paths_to_microbits=["path"],
+        python_script="script",
+        path_to_runtime=None,
     )
 
 
@@ -90,8 +91,7 @@ def test_microbit_mode():
     assert mm.editor == editor
     assert mm.view == view
 
-    with mock.patch("mu.modes.microbit.CHARTS", True):
-        actions = mm.actions()
+    actions = mm.actions()
     assert len(actions) == 4
     assert actions[0]["name"] == "flash"
     assert actions[0]["handler"] == mm.flash
@@ -101,24 +101,6 @@ def test_microbit_mode():
     assert actions[2]["handler"] == mm.toggle_repl
     assert actions[3]["name"] == "plotter"
     assert actions[3]["handler"] == mm.toggle_plotter
-
-
-def test_microbit_mode_no_charts():
-    """
-    If QCharts is not available, ensure plotter is not displayed.
-    """
-    editor = mock.MagicMock()
-    view = mock.MagicMock()
-    mm = MicrobitMode(editor, view)
-    with mock.patch("mu.modes.microbit.CHARTS", False):
-        actions = mm.actions()
-        assert len(actions) == 3
-        assert actions[0]["name"] == "flash"
-        assert actions[0]["handler"] == mm.flash
-        assert actions[1]["name"] == "files"
-        assert actions[1]["handler"] == mm.toggle_files
-        assert actions[2]["name"] == "repl"
-        assert actions[2]["handler"] == mm.toggle_repl
 
 
 def test_flash_no_tab():
@@ -161,7 +143,6 @@ def test_flash_with_attached_device_has_latest_firmware_v1(microbit):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -202,7 +183,6 @@ def test_flash_with_attached_device_has_latest_firmware_v2(microbit):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -246,7 +226,6 @@ def test_flash_device_has_latest_firmware_encounters_serial_problem(microbit):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -301,7 +280,6 @@ def test_flash_with_attached_device_has_latest_firmware_encounters_problem(
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -343,7 +321,6 @@ def test_flash_with_attached_device_has_old_firmware(microbit):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -391,7 +368,6 @@ def test_flash_force_with_no_micropython(microbit):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = "/foo/bar"
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -440,7 +416,6 @@ def test_flash_force_with_unsupported_microbit(microbit_incompatible):
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
         editor.microbit_runtime = ""
-        editor.minify = False
         editor.current_device = microbit_incompatible
         mm = MicrobitMode(editor, view)
         mm.set_buttons = mock.MagicMock()
@@ -481,7 +456,6 @@ def test_flash_force_with_attached_device(microbit):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = "/foo/bar.hex"
         editor.current_device = microbit
         mm = MicrobitMode(editor, view)
@@ -532,7 +506,6 @@ def test_flash_with_attached_device_and_custom_runtime(microbit_v1_5):
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = True
         editor.current_device = microbit_v1_5
         editor.microbit_runtime = os.path.join("tests", "customhextest.hex")
         mm = MicrobitMode(editor, view)
@@ -595,7 +568,6 @@ def test_flash_with_attached_known_device_and_forced(microbit_v1_5):
         # Trigger force flash with an empty file.
         view.current_tab.text = mock.MagicMock(return_value="")
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit_v1_5
         mm = MicrobitMode(editor, view)
@@ -617,11 +589,9 @@ def test_force_flash_no_serial_connection():
     mock_flasher = mock.MagicMock()
     mock_flasher_class = mock.MagicMock(return_value=mock_flasher)
     with (
-        mock.patch(
-            "mu.contrib.uflash.find_microbit", return_value="/path/microbit"
-        ),
-        mock.patch("mu.contrib.microfs.get_serial"),
-        mock.patch("mu.contrib.microfs.version", side_effect=IOError("bang")),
+        mock.patch("uflash.find_microbit", return_value="/path/microbit"),
+        mock.patch("microfs.get_serial"),
+        mock.patch("microfs.version", side_effect=IOError("bang")),
         mock.patch("mu.logic.os.path.exists", return_value=True),
         mock.patch("mu.modes.microbit.DeviceFlasher", mock_flasher_class),
     ):
@@ -629,7 +599,6 @@ def test_force_flash_no_serial_connection():
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = None
         mm = MicrobitMode(editor, view)
@@ -661,11 +630,9 @@ def test_force_flash_empty_script(microbit_v1_5):
     mock_flasher = mock.MagicMock()
     mock_flasher_class = mock.MagicMock(return_value=mock_flasher)
     with (
-        mock.patch(
-            "mu.contrib.uflash.find_microbit", return_value="/path/microbit"
-        ),
-        mock.patch("mu.contrib.microfs.get_serial"),
-        mock.patch("mu.contrib.microfs.version", return_value=version_info),
+        mock.patch("uflash.find_microbit", return_value="/path/microbit"),
+        mock.patch("microfs.get_serial"),
+        mock.patch("microfs.version", return_value=version_info),
         mock.patch("mu.logic.os.path.exists", return_value=True),
         mock.patch("mu.modes.microbit.DeviceFlasher", mock_flasher_class),
     ):
@@ -673,7 +640,6 @@ def test_force_flash_empty_script(microbit_v1_5):
         view.current_tab.text = mock.MagicMock(return_value="   ")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = microbit_v1_5
         mm = MicrobitMode(editor, view)
@@ -707,9 +673,9 @@ def test_force_flash_user_specified_device_path():
     mock_flasher = mock.MagicMock()
     mock_flasher_class = mock.MagicMock(return_value=mock_flasher)
     with (
-        mock.patch("mu.contrib.uflash.find_microbit", return_value=None),
-        mock.patch("mu.contrib.microfs.get_serial"),
-        mock.patch("mu.contrib.microfs.version", return_value=version_info),
+        mock.patch("uflash.find_microbit", return_value=None),
+        mock.patch("microfs.get_serial"),
+        mock.patch("microfs.version", return_value=version_info),
         mock.patch("mu.logic.os.path.exists", return_value=True),
         mock.patch("mu.modes.microbit.DeviceFlasher", mock_flasher_class),
     ):
@@ -718,7 +684,6 @@ def test_force_flash_user_specified_device_path():
         view.current_tab.text = mock.MagicMock(return_value="foo")
         view.show_message = mock.MagicMock()
         editor = mock.MagicMock()
-        editor.minify = False
         editor.microbit_runtime = ""
         editor.current_device = None
         mm = MicrobitMode(editor, view)
@@ -740,10 +705,10 @@ def test_flash_path_specified_does_not_exist(microbit):
     in the specified location.
     """
     with (
-        mock.patch("mu.contrib.uflash.find_microbit", return_value=None),
+        mock.patch("uflash.find_microbit", return_value=None),
         mock.patch("mu.logic.os.path.exists", return_value=False),
         mock.patch("mu.logic.os.makedirs", return_value=None),
-        mock.patch("mu.contrib.uflash.save_hex", return_value=None) as s,
+        mock.patch("uflash.save_hex", return_value=None) as s,
     ):
         view = mock.MagicMock()
         view.current_tab.text = mock.MagicMock(return_value="")
@@ -772,8 +737,8 @@ def test_flash_without_device():
     helpful status message is enacted.
     """
     with (
-        mock.patch("mu.contrib.uflash.find_microbit", return_value=None),
-        mock.patch("mu.contrib.uflash.save_hex", return_value=None) as s,
+        mock.patch("uflash.find_microbit", return_value=None),
+        mock.patch("uflash.save_hex", return_value=None) as s,
     ):
         view = mock.MagicMock()
         view.get_microbit_path = mock.MagicMock(return_value=None)
@@ -796,50 +761,6 @@ def test_flash_without_device():
         home = HOME_DIRECTORY
         view.get_microbit_path.assert_called_once_with(home)
         assert s.call_count == 0
-
-
-@pytest.mark.skipif(not can_minify, reason="No minifier available to test")
-def test_flash_script_too_big():
-    """
-    If the script in the current tab is too big, abort in the expected way.
-    """
-    view = mock.MagicMock()
-    view.current_tab.text = mock.MagicMock(return_value="x" * 8193)
-    view.current_tab.label = "foo"
-    view.show_message = mock.MagicMock()
-    editor = mock.MagicMock()
-    editor.minify = True
-    mm = MicrobitMode(editor, view)
-    with mock.patch("mu.contrib.uflash._MAX_SIZE", 8188):
-        mm.flash()
-    view.show_message.assert_called_once_with(
-        'Unable to flash "foo"',
-        "Our minifier tried but your script is too long!",
-        "Warning",
-    )
-
-
-def test_flash_script_too_big_no_minify():
-    """
-    If the script in the current tab is too big, abort in the expected way.
-    """
-    view = mock.MagicMock()
-    view.current_tab.text = mock.MagicMock(return_value="x" * 8193)
-    view.current_tab.label = "foo"
-    view.show_message = mock.MagicMock()
-    editor = mock.MagicMock()
-    editor.minify = False
-    mm = MicrobitMode(editor, view)
-    with (
-        mock.patch("mu.modes.microbit.can_minify", False),
-        mock.patch("mu.contrib.uflash._MAX_SIZE", 8188),
-    ):
-        mm.flash()
-    view.show_message.assert_called_once_with(
-        'Unable to flash "foo"',
-        "Your script is too long and code minification is disabled",
-        "Warning",
-    )
 
 
 def test_flash_finished_copy_main():
@@ -973,63 +894,6 @@ def test_flash_failed():
         flash=True, repl=True, files=True, plotter=True
     )
     assert mm.flash_thread is None
-
-
-def test_flash_minify(microbit_v1_5):
-    view = mock.MagicMock()
-    script = "#" + ("x" * 8193) + "\n"
-    view.current_tab.text = mock.MagicMock(return_value=script)
-    view.current_tab.label = "foo"
-    view.show_message = mock.MagicMock()
-    editor = mock.MagicMock()
-    editor.minify = True
-    editor.current_device = microbit_v1_5
-    mm = MicrobitMode(editor, view)
-    mm.set_buttons = mock.MagicMock()
-    with (
-        mock.patch("mu.modes.microbit.DeviceFlasher"),
-        mock.patch("mu.contrib.uflash._MAX_SIZE", 8188),
-        mock.patch("nudatus.mangle", return_value="") as m,
-    ):
-        mm.flash()
-        m.assert_called_once_with(script)
-
-    ex = TokenError("Bad", (1, 0))
-    with (
-        mock.patch("nudatus.mangle", side_effect=ex) as m,
-        mock.patch("mu.contrib.uflash._MAX_SIZE", 8188),
-    ):
-        mm.flash()
-        view.show_message.assert_called_with(
-            'Unable to flash "foo"',
-            "Problem minifying script\nBad [1:0]",
-            "Warning",
-        )
-
-
-def test_flash_minify_no_minify(microbit_v1_5):
-    view = mock.MagicMock()
-    view.current_tab.label = "foo"
-    view.show_message = mock.MagicMock()
-    script = "#" + ("x" * 8193) + "\n"
-    view.current_tab.text = mock.MagicMock(return_value=script)
-    editor = mock.MagicMock()
-    editor.minify = True
-    editor.current_device = microbit_v1_5
-    mm = MicrobitMode(editor, view)
-    mm.set_buttons = mock.MagicMock()
-    with (
-        mock.patch("mu.modes.microbit.can_minify", False),
-        mock.patch("mu.contrib.uflash._MAX_SIZE", 8188),
-        mock.patch("nudatus.mangle", return_value="") as m,
-    ):
-        mm.flash()
-        assert m.call_count == 0
-        view.show_message.assert_called_once_with(
-            'Unable to flash "foo"',
-            "Your script is too long and the minifier isn't available",
-            "Warning",
-        )
 
 
 def test_add_fs(microbit):
@@ -1309,7 +1173,7 @@ def test_open_hex():
     with (
         mock.patch("builtins.open", mock_open),
         mock.patch(
-            "mu.contrib.uflash.extract_script", return_value=hex_extracted
+            "uflash.extract_script", return_value=hex_extracted
         ) as extract_script,
     ):
         text, newline = mm.open_file("path_to_file.hex")
@@ -1330,7 +1194,7 @@ def test_open_ignore_non_hex():
     with (
         mock.patch("builtins.open", mock_open),
         mock.patch(
-            "mu.contrib.uflash.extract_script",
+            "uflash.extract_script",
             return_value="Should not be called",
         ) as extract_script,
     ):
@@ -1344,7 +1208,7 @@ def test_open_ignore_non_hex():
     with (
         mock.patch("builtins.open", mock_open),
         mock.patch(
-            "mu.contrib.uflash.extract_script",
+            "uflash.extract_script",
             return_value="Should not be called",
         ) as extract_script,
     ):
@@ -1367,7 +1231,7 @@ def test_open_hex_with_exception():
     mock_extract = mock.MagicMock(side_effect=Exception(":("))
     with (
         mock.patch("builtins.open", mock_open),
-        mock.patch("mu.contrib.uflash.extract_script", mock_extract),
+        mock.patch("uflash.extract_script", mock_extract),
     ):
         text, newline = mm.open_file("path_to_file.hex")
     assert text is None

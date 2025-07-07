@@ -30,7 +30,6 @@ from PyQt6.QtCore import QThread, pyqtSignal
 from mu.logic import sniff_newline_convention
 from mu.modes.api import MICROBIT_APIS, SHARED_APIS
 from mu.modes.base import MicroPythonMode, FileManager
-from mu.interface.panes import CHARTS
 from .. import config
 
 
@@ -137,14 +136,13 @@ class MicrobitMode(MicroPythonMode):
                 "shortcut": "Ctrl+Shift+I",
             },
         ]
-        if CHARTS:
-            buttons.append({
-                "name": "plotter",
-                "display_name": _("Plotter"),
-                "description": _("Plot incoming REPL data."),
-                "handler": self.toggle_plotter,
-                "shortcut": "CTRL+Shift+P",
-            })
+        buttons.append({
+            "name": "plotter",
+            "display_name": _("Plotter"),
+            "description": _("Plot incoming REPL data."),
+            "handler": self.toggle_plotter,
+            "shortcut": "CTRL+Shift+P",
+        })
         return buttons
 
     def api(self):
@@ -295,7 +293,7 @@ class MicrobitMode(MicroPythonMode):
             logger.info("Mu MicroPython: {}".format(uflash_version))
             # If there's an older version of MicroPython on the device,
             # update it with the one packaged with Mu.
-            if semver.compare(board_version, uflash_version) < 0:
+            if semver.Version.compare(board_version, uflash_version) < 0:
                 logger.info("Board MicroPython is older than Mu's MicroPython")
                 update_micropython = True
         except Exception:

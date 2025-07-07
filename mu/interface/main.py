@@ -734,7 +734,6 @@ class Window(QMainWindow):
         interactive=False,
         debugger=False,
         command_args=None,
-        runner=None,
         envars=None,
         python_args=None,
     ):
@@ -754,9 +753,6 @@ class Window(QMainWindow):
         If there is a list of command_args (the default is None) then these
         will be passed as further arguments into the command run in the
         new process.
-
-        If runner is given, this is used as the command to start the Python
-        process.
 
         If envars is given, these will become part of the environment context
         of the new child process.
@@ -788,7 +784,6 @@ class Window(QMainWindow):
             interactive,
             debugger,
             command_args,
-            runner,
             envars,
             python_args,
         )
@@ -800,7 +795,6 @@ class Window(QMainWindow):
             debugger,
             command_args,
             envars,
-            runner,
             python_args,
         )
         self.process_runner.setFocus()

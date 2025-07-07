@@ -46,28 +46,13 @@ def test_pyboard_mode():
     assert pbm.editor == editor
     assert pbm.view == view
 
-    with mock.patch("mu.modes.pyboard.CHARTS", True):
-        actions = pbm.actions()
+    actions = pbm.actions()
     assert len(actions) == 2
     assert actions[0]["name"] == "serial"
     assert actions[0]["handler"] == pbm.toggle_repl
     assert actions[1]["name"] == "plotter"
     assert actions[1]["handler"] == pbm.toggle_plotter
     assert "code" not in pbm.module_names
-
-
-def test_pyboard_mode_no_charts():
-    """
-    If QCharts is not available, ensure the plotter feature is not available.
-    """
-    editor = mock.MagicMock()
-    view = mock.MagicMock()
-    pbm = PyboardMode(editor, view)
-    with mock.patch("mu.modes.pyboard.CHARTS", False):
-        actions = pbm.actions()
-        assert len(actions) == 1
-        assert actions[0]["name"] == "serial"
-        assert actions[0]["handler"] == pbm.toggle_repl
 
 
 def test_workspace_dir_posix_exists():

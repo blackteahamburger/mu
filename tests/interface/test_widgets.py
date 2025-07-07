@@ -5,6 +5,7 @@ Tests for custom widgets made for Mu.
 
 from unittest import mock
 import pytest
+import mu.logic
 import mu.interface.main
 import mu.interface.themes
 import mu.interface.editor

@@ -25,13 +25,17 @@ import os
 
 
 # The following lines add the images and css directories to the search path.
-QDir.addSearchPath("images", str(importlib_files("mu.resources") / "images"))
-QDir.addSearchPath("css", str(importlib_files("mu.resources") / "css"))
+QDir.addSearchPath(
+    "images", str(importlib_files("mu.resources").joinpath("images"))
+)
+QDir.addSearchPath("css", str(importlib_files("mu.resources").joinpath("css")))
 
 
 def path(name, resource_dir="images/", ext=""):
     """Return the filename for the referenced image."""
-    return str(importlib_files("mu.resources") / (resource_dir + name + ext))
+    return str(
+        importlib_files("mu.resources").joinpath(resource_dir + name + ext)
+    )
 
 
 def load_icon(name):
