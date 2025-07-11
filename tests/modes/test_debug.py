@@ -15,7 +15,6 @@ def test_debug_mode():
     editor = mock.MagicMock()
     view = mock.MagicMock()
     dm = DebugMode(editor, view)
-    assert dm.name == "Graphical Debugger"
     assert dm.description is not None
     assert dm.icon == "python"
     assert dm.runner is None

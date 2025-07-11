@@ -213,12 +213,11 @@ def test_Editor_connect_margin_ignores_margin_4():
     """
     mock_fn = mock.MagicMock()
     ep = mu.interface.editor.EditorPane("/foo/bar.py", "baz")
+    ep.marginClicked = mock.MagicMock()
     ep.connect_margin(mock_fn)
-    margin = 4
-    line = 0
-    modifiers = Qt.NoModifier
-    ep.marginClicked.emit(margin, line, modifiers)
-    assert mock_fn.call_count == 0
+    handler = ep.marginClicked.connect.call_args[0][0]
+    handler(4, 10, None)
+    mock_fn.assert_not_called()
 
 
 def test_Editor_connect_margin_1_works():
@@ -227,19 +226,11 @@ def test_Editor_connect_margin_1_works():
     """
     mock_fn = mock.MagicMock()
     ep = mu.interface.editor.EditorPane("/foo/bar.py", "baz")
+    ep.marginClicked = mock.MagicMock()
     ep.connect_margin(mock_fn)
-    margin = 1
-    line = 0
-    modifiers = Qt.NoModifier
-    ep.marginClicked.emit(margin, line, modifiers)
-
-    assert mock_fn.call_count == 1
-    args, _kwargs = mock_fn.call_args
-    call_margin, call_line, _call_modifiers = args
-    assert margin == call_margin
-    assert line == call_line
-    # Don't assert _call_modifiers value: not used in implementation and seems
-    # to fail intermittently on macOS.
+    handler = ep.marginClicked.connect.call_args[0][0]
+    handler(1, 5, "modifiers")
+    mock_fn.assert_called_once_with(1, 5, "modifiers")
 
 
 def test_EditorPane_set_theme():

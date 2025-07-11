@@ -169,7 +169,7 @@ def excepthook(*exc_args):
     # Very important to release shared memory used to signal an app instance is running
     # as we are going to exit below
     _shared_memory.release()
-    if exc_args[0] != KeyboardInterrupt:
+    if exc_args[0] is KeyboardInterrupt:
         try:
             log_file = base64.standard_b64encode(LOG_FILE.encode("utf-8"))
             error = base64.standard_b64encode(

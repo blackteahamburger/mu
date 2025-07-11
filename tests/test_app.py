@@ -150,21 +150,29 @@ def test_worker_fail():
     Ensure that exceptions encountered during Mu's start-up are handled in the
     expected manner.
     """
-    w = StartupWorker()
-    w.finished = mock.MagicMock()
-    w.failed = mock.MagicMock()
-    mock_ensure = mock.MagicMock()
-    ex = RuntimeError("Boom")
-    mock_ensure.side_effect = ex
-    with pytest.raises(RuntimeError):
-        with (
-            mock.patch("mu.app.time") as mock_time,
-        ):
-            w.run()
-    assert mock_ensure.call_count == 1
-    assert w.failed.emit.call_count == 1
-    mock_time.sleep.assert_called_once_with(7)
-    w.finished.emit.assert_called_once_with()
+    worker = StartupWorker()
+    worker.finished = mock.MagicMock()
+    worker.failed = mock.MagicMock()
+    worker.failed.emit = mock.MagicMock()
+    with (
+        mock.patch("mu.app.traceback.extract_stack", return_value=["stack"]),
+        mock.patch(
+            "mu.app.traceback.format_list", return_value=["formatted stack"]
+        ),
+        mock.patch(
+            "mu.app.traceback.format_exc", return_value="formatted exc"
+        ),
+        mock.patch("mu.app.time.sleep") as sleep,
+    ):
+
+        def raise_exc():
+            raise Exception("fail!")
+
+        worker.finished.emit = raise_exc
+        with pytest.raises(Exception, match="fail!"):
+            worker.run()
+        worker.failed.emit.assert_called_once()
+        sleep.assert_called_once_with(7)
 
 
 def test_setup_logging_without_envvar():

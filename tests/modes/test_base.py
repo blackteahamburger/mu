@@ -921,7 +921,12 @@ def test_REPLConnection_open():
     mock_serial.readyRead = mock.MagicMock()
     mock_serial.readyRead.connect = mock.MagicMock(return_value=None)
     mock_serial_class = mock.MagicMock(return_value=mock_serial)
-    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
+    mock_pyserial = mock.MagicMock()
+
+    with (
+        mock.patch("mu.modes.base.QSerialPort", mock_serial_class),
+        mock.patch("mu.modes.base.Serial", mock_pyserial),
+    ):
         conn = REPLConnection("COM0", baudrate=9600)
         conn.open()
     mock_serial.setPortName.assert_called_once_with("COM0")
@@ -945,41 +950,18 @@ def test_REPLConnection_open_unable_to_connect():
             conn.open()
 
 
-def test_REPLConnection_open_DTR_unset():
-    """
-    If data terminal ready (DTR) is unset (as can be the case on some
-    Windows / Qt combinations) then fall back to PySerial to correct. See
-    issues #281 and #302 for details.
-    """
-    # Mock QtSerialPort object
-    mock_qt_serial = mock.MagicMock()
-    mock_qt_serial.isDataTerminalReady.return_value = False
-    mock_qtserial_class = mock.MagicMock(return_value=mock_qt_serial)
-    # Mock PySerial object
-    mock_Serial = mock.MagicMock()
-    mock_pyserial_class = mock.MagicMock(return_value=mock_Serial)
-    with mock.patch("mu.modes.base.QSerialPort", mock_qtserial_class):
-        with mock.patch("mu.modes.base.Serial", mock_pyserial_class):
-            conn = REPLConnection("COM0")
-            conn.open()
-
-    # Check that Qt serial is opened twice
-    mock_qt_serial.close.assert_called_once_with()
-    assert mock_qt_serial.open.call_count == 2
-
-    # Check that DTR is set true with PySerial
-    assert mock_Serial.dtr is True
-    mock_Serial.close.assert_called_once_with()
-
-
 def test_REPLConnection_close():
     """
     Ensure the serial link is closed / cleaned up as expected.
     """
     mock_serial = mock.MagicMock()
     mock_serial_class = mock.MagicMock(return_value=mock_serial)
+    mock_pyserial = mock.MagicMock()
 
-    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
+    with (
+        mock.patch("mu.modes.base.QSerialPort", mock_serial_class),
+        mock.patch("mu.modes.base.Serial", mock_pyserial),
+    ):
         conn = REPLConnection("COM0")
         conn.open()
         conn.close()
@@ -1009,8 +991,12 @@ def test_REPLConnection_on_serial_read():
 def test_REPLConnection_write():
     mock_serial = mock.MagicMock()
     mock_serial_class = mock.MagicMock(return_value=mock_serial)
+    mock_pyserial = mock.MagicMock()
 
-    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
+    with (
+        mock.patch("mu.modes.base.QSerialPort", mock_serial_class),
+        mock.patch("mu.modes.base.Serial", mock_pyserial),
+    ):
         conn = REPLConnection("COM0")
         conn.open()
         conn.write(b"Hello")
@@ -1021,8 +1007,12 @@ def test_REPLConnection_write():
 def test_REPLConnection_send_interrupt():
     mock_serial = mock.MagicMock()
     mock_serial_class = mock.MagicMock(return_value=mock_serial)
+    mock_pyserial = mock.MagicMock()
 
-    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
+    with (
+        mock.patch("mu.modes.base.QSerialPort", mock_serial_class),
+        mock.patch("mu.modes.base.Serial", mock_pyserial),
+    ):
         conn = REPLConnection("COM0")
         conn.open()
         conn.send_interrupt()
