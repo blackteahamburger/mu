@@ -17,12 +17,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 import logging
-from mu.modes.base import BaseMode
-from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS, PYGAMEZERO_APIS
-from mu.resources import load_icon
+import os
 
+from mu.modes.api import PI_APIS, PYGAMEZERO_APIS, PYTHON3_APIS, SHARED_APIS
+from mu.modes.base import BaseMode
+from mu.resources import load_icon
 
 logger = logging.getLogger(__name__)
 

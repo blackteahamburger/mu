@@ -17,11 +17,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 import ctypes
+import os
 from subprocess import check_output
-from mu.modes.base import MicroPythonMode
+
 from mu.modes.api import PYBOARD_APIS, SHARED_APIS
+from mu.modes.base import MicroPythonMode
 
 
 class PyboardMode(MicroPythonMode):

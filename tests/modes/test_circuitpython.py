@@ -3,11 +3,13 @@
 Tests for the CircuitPython mode.
 """
 
-import pytest
 import ctypes
-from mu.modes.circuitpython import CircuitPythonMode
-from mu.modes.api import ADAFRUIT_APIS, SHARED_APIS
 from unittest import mock
+
+import pytest
+
+from mu.modes.api import ADAFRUIT_APIS, SHARED_APIS
+from mu.modes.circuitpython import CircuitPythonMode
 
 
 def test_circuitpython_mode():

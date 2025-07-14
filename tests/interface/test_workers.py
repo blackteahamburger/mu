@@ -5,6 +5,7 @@ Tests for UI workers to be run in separate threads.
 
 import os
 from unittest import mock
+
 from mu.interface import workers
 
 

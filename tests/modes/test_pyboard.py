@@ -3,11 +3,13 @@
 Tests for the Pyboard mode.
 """
 
-import pytest
 import ctypes
-from mu.modes.pyboard import PyboardMode
-from mu.modes.api import PYBOARD_APIS, SHARED_APIS
 from unittest import mock
+
+import pytest
+
+from mu.modes.api import PYBOARD_APIS, SHARED_APIS
+from mu.modes.pyboard import PyboardMode
 
 
 @pytest.fixture

@@ -10,7 +10,6 @@ scrapy runspider flask_api.py -o flask.json
 import scrapy
 from bs4 import BeautifulSoup
 
-
 URL = "http://flask.pocoo.org/docs/1.0/api/"
 
 

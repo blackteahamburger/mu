@@ -8,15 +8,15 @@ or reset and the editor will go on functioning, albeit with default options
 """
 
 import atexit
+import json
 import logging
 import os
-import json
 import platform
 import sys
 
-logger = logging.getLogger(__name__)
+from mu import config
 
-from . import config
+logger = logging.getLogger(__name__)
 
 serialiser = json
 serialiser_ext = "json"

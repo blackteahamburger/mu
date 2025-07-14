@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
-import pytest
 from unittest import mock
-from mu.modes.esp import ESPMode
-from mu.modes.api import ESP_APIS, SHARED_APIS
+
+import pytest
+
 from mu.logic import Device
+from mu.modes.api import ESP_APIS, SHARED_APIS
+from mu.modes.esp import ESPMode
 
 
 @pytest.fixture

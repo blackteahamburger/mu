@@ -1,7 +1,7 @@
+import os
+import random
 from unittest import mock
 
-import random
-import os
 import pytest
 from PyQt6.QtWidgets import QApplication
 

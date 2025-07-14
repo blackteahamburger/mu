@@ -17,63 +17,64 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
 import logging
 import os.path
-from PyQt6.QtCore import QSize, Qt, pyqtSignal, QTimer, QThread
+import sys
+
+from PyQt6.QtCore import QSize, Qt, QThread, QTimer, pyqtSignal
+from PyQt6.QtGui import (
+    QAction,
+    QCursor,
+    QKeySequence,
+    QShortcut,
+    QStandardItemModel,
+)
 from PyQt6.QtWidgets import (
-    QToolBar,
-    QWidget,
-    QVBoxLayout,
-    QTabWidget,
+    QApplication,
+    QDockWidget,
     QFileDialog,
-    QMessageBox,
+    QHBoxLayout,
     QLabel,
     QMainWindow,
-    QStatusBar,
-    QDockWidget,
-    QApplication,
-    QTabBar,
-    QPushButton,
-    QHBoxLayout,
+    QMessageBox,
     QProgressDialog,
+    QPushButton,
+    QStatusBar,
+    QTabBar,
+    QTabWidget,
+    QToolBar,
+    QVBoxLayout,
+    QWidget,
 )
-from PyQt6.QtGui import (
-    QKeySequence,
-    QStandardItemModel,
-    QCursor,
-    QAction,
-    QShortcut,
-)
+
 from mu import __version__
 from mu.interface.dialogs import (
-    ModeSelector,
     AdminDialog,
     FindReplaceDialog,
+    ModeSelector,
 )
-from mu.interface.themes import (
-    DayTheme,
-    NightTheme,
-    ContrastTheme,
-    DEFAULT_FONT_SIZE,
-    MIN_WINDOW_WIDTH,
-    MIN_WINDOW_HEIGHT,
-)
+from mu.interface.editor import EditorPane
 from mu.interface.panes import (
     DebugInspector,
     DebugInspectorItem,
-    PythonProcessPane,
+    FileSystemPane,
     JupyterREPLPane,
     MicroPythonREPLPane,
-    FileSystemPane,
     PlotterPane,
+    PythonProcessPane,
     SnekREPLPane,
 )
-from mu.interface.editor import EditorPane
+from mu.interface.themes import (
+    DEFAULT_FONT_SIZE,
+    MIN_WINDOW_HEIGHT,
+    MIN_WINDOW_WIDTH,
+    ContrastTheme,
+    DayTheme,
+    NightTheme,
+)
 from mu.interface.widgets import DeviceSelector
 from mu.interface.workers import PythonAnywhereWorker
 from mu.resources import load_icon, load_pixmap
-
 
 logger = logging.getLogger(__name__)
 

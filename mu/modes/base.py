@@ -17,19 +17,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
+import csv
+import logging
 import os
 import os.path
-import csv
-import time
-import logging
 import pkgutil
+import sys
+import time
+
 import microfs
-from serial import Serial
+from PyQt6.QtCore import QIODevice, QObject, QTimer, pyqtSignal
 from PyQt6.QtSerialPort import QSerialPort, QSerialPortInfo
-from PyQt6.QtCore import QObject, pyqtSignal, QIODevice, QTimer
+from serial import Serial
+
+from mu import config, settings
 from mu.logic import Device
-from .. import config, settings
 
 ENTER_RAW_MODE = b"\x01"  # CTRL-A
 EXIT_RAW_MODE = b"\x02"  # CTRL-B

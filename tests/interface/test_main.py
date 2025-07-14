@@ -3,19 +3,21 @@
 Tests for the user interface elements of Mu.
 """
 
-from PyQt6.QtWidgets import QWidget, QFileDialog, QMessageBox, QMenu
-from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QAction, QIcon, QKeySequence
+import sys
 from unittest import mock
+
 import pytest
-from mu import __version__
-from tests.test_app import DumSig
-import mu.logic
+from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtGui import QAction, QIcon, QKeySequence
+from PyQt6.QtWidgets import QFileDialog, QMenu, QMessageBox, QWidget
+
+import mu.interface.editor
 import mu.interface.main
 import mu.interface.themes
-import mu.interface.editor
+import mu.logic
+from mu import __version__
 from mu.interface.panes import PlotterPane
-import sys
+from tests.test_app import DumSig
 
 
 def test_ButtonBar_init():

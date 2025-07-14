@@ -5,14 +5,15 @@ Tests for the micro:bit mode.
 
 import os
 import os.path
-import pytest
-import uflash
-from mu.config import HOME_DIRECTORY
-from mu.logic import Device
-from mu.modes.microbit import MicrobitMode, DeviceFlasher
-from mu.modes.api import MICROBIT_APIS, SHARED_APIS
 from unittest import mock
 
+import pytest
+import uflash
+
+from mu.config import HOME_DIRECTORY
+from mu.logic import Device
+from mu.modes.api import MICROBIT_APIS, SHARED_APIS
+from mu.modes.microbit import DeviceFlasher, MicrobitMode
 
 TEST_ROOT = os.path.split(os.path.dirname(__file__))[0]
 

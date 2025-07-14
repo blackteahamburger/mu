@@ -1,8 +1,9 @@
 # Grab Gravatar images for the contributors listed in the GIT log.
-import os
-import subprocess
-import shutil
 import hashlib
+import os
+import shutil
+import subprocess
+
 import requests
 
 

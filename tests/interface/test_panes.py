@@ -3,20 +3,20 @@
 Tests for the user interface elements of Mu.
 """
 
-from PyQt6.QtWidgets import QMessageBox, QLabel, QMenu
-from PyQt6.QtCore import Qt, QEvent, QPointF, QUrl
-from PyQt6.QtGui import QTextCursor, QMouseEvent
+import os
+import signal
+import sys
 from collections import deque
 from unittest import mock
 
-import sys
-import os
-import signal
+from PyQt6.QtCore import QEvent, QPointF, Qt, QUrl
+from PyQt6.QtGui import QMouseEvent, QTextCursor
+from PyQt6.QtWidgets import QLabel, QMenu, QMessageBox
 
 import mu
 import mu.interface.panes
 from mu import i18n
-from mu.interface.themes import DAY_STYLE, NIGHT_STYLE, CONTRAST_STYLE
+from mu.interface.themes import CONTRAST_STYLE, DAY_STYLE, NIGHT_STYLE
 
 
 def test_PANE_ZOOM_SIZES():

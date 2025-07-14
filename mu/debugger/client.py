@@ -18,12 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import json
-import socket
-import time
 import logging
 import os.path
-from PyQt6.QtCore import QObject, QThread, pyqtSignal
+import socket
+import time
 
+from PyQt6.QtCore import QObject, QThread, pyqtSignal
 
 logger = logging.getLogger(__name__)
 

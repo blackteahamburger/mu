@@ -18,31 +18,29 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
-import sys
 import codecs
 import io
-import re
+import locale
 import logging
+import os
+import random
+import re
+import shutil
+import sys
 import tempfile
 import webbrowser
-import random
-import locale
-import shutil
 
 import platformdirs
-from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtCore import QObject, pyqtSignal
-from PyQt6 import QtCore
+from pycodestyle import Checker, StyleGuide
 from pyflakes.api import check
-from pycodestyle import StyleGuide, Checker
+from PyQt6 import QtCore
+from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt6.QtWidgets import QMessageBox
 
-from . import __version__
-from . import i18n
-from .resources import path
-from .debugger.utils import is_breakpoint_line
-from .config import DATA_DIR, MAX_LINE_LENGTH
-from . import settings
+from mu import __version__, i18n, settings
+from mu.config import DATA_DIR, MAX_LINE_LENGTH
+from mu.debugger.utils import is_breakpoint_line
+from mu.resources import path
 
 # The default directory for application logs.
 LOG_DIR = platformdirs.user_log_dir(appname="mu", appauthor="python")
@@ -1801,7 +1799,8 @@ class Editor(QObject):
         # Only works on Python, so abort.
         if tab.path and not self.has_python_extension(tab.path):
             return
-        from black import format_str, FileMode, TargetVersion
+        from black import FileMode, format_str
+        from black.mode import TargetVersion
 
         try:
             source_code = tab.text()

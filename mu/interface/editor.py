@@ -18,23 +18,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import keyword
-import os
-import re
 import logging
+import os
 import os.path
+import re
 from collections import defaultdict
+
 from PyQt6.Qsci import (
-    QsciScintilla,
-    QsciLexerPython,
-    QsciLexerHTML,
     QsciAPIs,
     QsciLexerCSS,
+    QsciLexerHTML,
+    QsciLexerPython,
+    QsciScintilla,
 )
 from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtWidgets import QApplication
-from mu.interface.themes import Font, DayTheme
-from mu.logic import NEWLINE
 
+from mu.interface.themes import DayTheme, Font
+from mu.logic import NEWLINE
 
 # Regular Expression for valid individual code 'words'
 RE_VALID_WORD = re.compile(r"^\w+$")

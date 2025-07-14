@@ -3,10 +3,12 @@
 Tests for the resources sub-module.
 """
 
-import mu.resources
 from pathlib import Path
 from unittest import mock
-from PyQt6.QtGui import QIcon, QPixmap, QMovie
+
+from PyQt6.QtGui import QIcon, QMovie, QPixmap
+
+import mu.resources
 
 
 def test_path():
@@ -48,9 +50,8 @@ def test_stylesheet():
     """
     Ensure the load_stylesheet function returns the expected result.
     """
-    assert (
+    assert mu.resources.load_stylesheet("day.css").startswith(
         "QToolBar, QToolButton {\n    background: transparent;\n    margin: 0;\n    padding: 0;\n}"
-        in mu.resources.load_stylesheet("day.css")
     )
 
 
@@ -58,7 +59,6 @@ def test_load_font_data():
     """
     Ensure font data can be loaded
     """
-    assert (
+    assert mu.resources.load_font_data("SourceCodePro-Regular.otf").startswith(
         b"OTTO\x00\x0f\x00\x80\x00\x03\x00pBASEe\x1e]\xbd\x00\x01\xb2$\x00\x00\x00FCFF W\x92{"
-        in mu.resources.load_font_data("SourceCodePro-Regular.otf")
     )

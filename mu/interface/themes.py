@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 
 from PyQt6.QtGui import QColor, QFontDatabase
-from mu.resources import load_stylesheet, load_font_data
 
+from mu.resources import load_font_data, load_stylesheet
 
 # The default font size.
 DEFAULT_FONT_SIZE = 14

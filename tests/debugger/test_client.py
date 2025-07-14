@@ -3,13 +3,15 @@
 Tests for the debug client.
 """
 
-import socket
-import pytest
 import json
 import os.path
-import mu.debugger.client
+import socket
 from unittest import mock
+
+import pytest
 from PyQt6.QtCore import pyqtBoundSignal
+
+import mu.debugger.client
 
 
 def test_Breakpoint_init():
@@ -271,8 +273,9 @@ def test_Debugger_output_client_error():
     with mock.patch("mu.debugger.client.logger.debug") as mock_logger:
         db.output("test", foo="bar")
         assert mock_logger.call_count == 2
-        mock_logger.call_args_list[0][0] == "Debugger client error."
-        mock_logger.call_args_list[1][0] == OSError("bang!")
+        assert mock_logger.call_args_list[0][0][0] == "Debugger client error."
+        assert isinstance(mock_logger.call_args_list[1][0][0], OSError)
+        assert str(mock_logger.call_args_list[1][0][0]) == "bang!"
 
 
 def test_Debugger_output_no_client_connection():
@@ -286,10 +289,12 @@ def test_Debugger_output_no_client_connection():
     with mock.patch("mu.debugger.client.logger.debug") as mock_logger:
         db.output("test", foo="bar")
         assert mock_logger.call_count == 2
-        mock_logger.call_args_list[0][0] == (
-            "Debugger client not connected to runner."
+        assert (
+            mock_logger.call_args_list[0][0][0]
+            == "Debugger client not connected to runner."
         )
-        mock_logger.call_args_list[1][0] == AttributeError("bang!")
+        assert isinstance(mock_logger.call_args_list[1][0][0], AttributeError)
+        assert str(mock_logger.call_args_list[1][0][0]) == "bang!"
 
 
 def test_Debugger_breakpoint_as_tuple():

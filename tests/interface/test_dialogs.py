@@ -4,21 +4,21 @@ Tests for the user interface elements of Mu.
 """
 
 import os
+from unittest import mock
 
 import pytest
-import mu.i18n
-import mu.interface.dialogs
+from PyQt6.QtCore import QProcess
 from PyQt6.QtWidgets import QDialog, QWidget
-from unittest import mock
+
+import mu.interface.dialogs
+import mu.logic
 from mu.modes import (
-    PythonMode,
     CircuitPythonMode,
-    MicrobitMode,
     DebugMode,
     ESPMode,
+    MicrobitMode,
+    PythonMode,
 )
-import mu.logic
-from PyQt6.QtCore import QProcess
 
 
 def test_ModeItem_init():

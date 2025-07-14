@@ -20,48 +20,46 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import base64
 import logging
-from logging.handlers import TimedRotatingFileHandler
 import os
-import time
 import platform
-import traceback
 import struct
 import sys
-import urllib
+import time
+import traceback
+import urllib.parse
 import webbrowser
-import base64
+from logging.handlers import TimedRotatingFileHandler
 
 from PyQt6.QtCore import (
-    Qt,
     QEventLoop,
-    QThread,
     QObject,
-    pyqtSignal,
     QSharedMemory,
+    Qt,
+    QThread,
+    pyqtSignal,
 )
 from PyQt6.QtWidgets import QApplication, QSplashScreen
 
-from . import i18n
-from . import __version__
-from .logic import Editor, LOG_FILE, LOG_DIR, ENCODING
-from .interface import Window
-from .resources import load_icon, load_movie, load_pixmap
-from .modes import (
-    PythonMode,
+from mu import __version__, i18n, settings
+from mu.interface import Window
+from mu.interface.themes import CONTRAST_STYLE, DAY_STYLE, NIGHT_STYLE
+from mu.logic import ENCODING, LOG_DIR, LOG_FILE, Editor
+from mu.modes import (
     CircuitPythonMode,
-    MicrobitMode,
     DebugMode,
-    PyGameZeroMode,
     ESPMode,
-    WebMode,
-    PyboardMode,
     LegoMode,
+    MicrobitMode,
     PicoMode,
+    PyboardMode,
+    PyGameZeroMode,
+    PythonMode,
     SnekMode,
+    WebMode,
 )
-from .interface.themes import NIGHT_STYLE, DAY_STYLE, CONTRAST_STYLE
-from . import settings
+from mu.resources import load_icon, load_movie, load_pixmap
 
 
 class AnimatedSplash(QSplashScreen):
@@ -169,7 +167,7 @@ def excepthook(*exc_args):
     # Very important to release shared memory used to signal an app instance is running
     # as we are going to exit below
     _shared_memory.release()
-    if exc_args[0] is KeyboardInterrupt:
+    if exc_args[0] is not KeyboardInterrupt:
         try:
             log_file = base64.standard_b64encode(LOG_FILE.encode("utf-8"))
             error = base64.standard_b64encode(

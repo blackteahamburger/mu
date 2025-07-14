@@ -4,19 +4,21 @@ Tests for the BaseMode class.
 """
 
 import os
-import mu
+from unittest import mock
+
 import pytest
+from PyQt6.QtCore import QIODevice
+
+import mu
 import mu.config
+import mu.settings
 from mu.logic import Device
 from mu.modes.base import (
     BaseMode,
-    MicroPythonMode,
     FileManager,
+    MicroPythonMode,
     REPLConnection,
 )
-import mu.settings
-from PyQt6.QtCore import QIODevice
-from unittest import mock
 
 
 @pytest.fixture()

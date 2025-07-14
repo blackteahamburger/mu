@@ -2,10 +2,12 @@
 Tests for the minimalist Lego Spike mode.
 """
 
-import pytest
 from unittest import mock
-from mu.modes.lego import LegoMode
+
+import pytest
+
 from mu.modes.api import LEGO_APIS, SHARED_APIS
+from mu.modes.lego import LegoMode
 
 
 @pytest.fixture

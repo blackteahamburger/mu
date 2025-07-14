@@ -3,15 +3,15 @@
 Tests for the user interface elements of Mu.
 """
 
-from unittest import mock
-import mu.i18n
-import mu.interface.editor
 import keyword
 import re
-from PyQt6.QtCore import Qt, QMimeData, QUrl, QPointF
-from PyQt6.QtGui import QDropEvent
+from unittest import mock
 
 import pytest
+from PyQt6.QtCore import QMimeData, QPointF, Qt, QUrl
+from PyQt6.QtGui import QDropEvent
+
+import mu.interface.editor
 
 
 def test_pythonlexer_keywords():

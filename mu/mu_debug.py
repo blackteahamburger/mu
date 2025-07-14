@@ -1,7 +1,8 @@
 import os
 import sys
-from mu.debugger.config import DEBUGGER_PORT
+
 import mu.debugger.runner
+from mu.debugger.config import DEBUGGER_PORT
 
 if sys.platform == "win32" and "pythonw.exe" in sys.executable:
     # Add the python**.zip path to sys.path if running from the version of Mu

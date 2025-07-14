@@ -17,19 +17,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
-import os
-import socket
-import json
 import bdb
+import json
 import linecache
 import logging
+import os
+import socket
+import sys
 import traceback
 from enum import Enum
 from queue import Queue
 from threading import Thread
-from mu.debugger.utils import is_breakpoint_line
 
+from mu.debugger.utils import is_breakpoint_line
 
 logger = logging.getLogger(__name__)
 

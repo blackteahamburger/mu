@@ -3,9 +3,10 @@
 Tests for the debug mode.
 """
 
+from unittest import mock
+
 from mu.debugger.config import DEBUGGER_PORT
 from mu.modes.debugger import DebugMode
-from unittest import mock
 
 
 def test_debug_mode():

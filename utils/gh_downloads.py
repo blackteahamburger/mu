@@ -5,8 +5,8 @@ of asset downloads, which so far are all Mu installers.
 """
 
 import datetime
-import requests
 
+import requests
 
 releases = requests.get(
     "https://api.github.com/repos/mu-editor/mu/releases"

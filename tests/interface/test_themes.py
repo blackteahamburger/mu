@@ -4,8 +4,9 @@ Tests for the user interface elements of Mu.
 """
 
 from unittest import mock
-import mu.interface.themes
+
 import mu.interface.editor
+import mu.interface.themes
 
 
 def test_constants():

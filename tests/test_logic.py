@@ -3,29 +3,28 @@
 Tests for the Editor and REPL logic.
 """
 
-import sys
-import os
 import atexit
 import codecs
 import contextlib
 import json
 import locale
+import os
 import random
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
-from unittest import mock
 import uuid
+from unittest import mock
 
 import pytest
+from PyQt6.QtCore import QObject, Qt, pyqtSignal
+from PyQt6.QtWidgets import QMessageBox
+
 import mu.config
 import mu.logic
 import mu.settings
-
-from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtCore import pyqtSignal, QObject, Qt
-
 from mu import __version__
 
 SESSION = json.dumps({

@@ -18,20 +18,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 import logging
+import os
 import time
 
-import semver
 import microfs
+import semver
 import uflash
 from PyQt6.QtCore import QThread, pyqtSignal
 
+from mu import config
 from mu.logic import sniff_newline_convention
 from mu.modes.api import MICROBIT_APIS, SHARED_APIS
-from mu.modes.base import MicroPythonMode, FileManager
-from .. import config
-
+from mu.modes.base import FileManager, MicroPythonMode
 
 logger = logging.getLogger(__name__)
 
@@ -290,11 +289,13 @@ class MicrobitMode(MicroPythonMode):
                 uflash_version = uflash.MICROPYTHON_V1_VERSION
             else:
                 uflash_version = uflash.MICROPYTHON_V2_VERSION
-            logger.info("Mu MicroPython: {}".format(uflash_version))
+            logger.info("uflash MicroPython: {}".format(uflash_version))
             # If there's an older version of MicroPython on the device,
-            # update it with the one packaged with Mu.
+            # update it with the one packaged with uflash.
             if semver.Version.parse(board_version).compare(uflash_version) < 0:
-                logger.info("Board MicroPython is older than Mu's MicroPython")
+                logger.info(
+                    "Board MicroPython is older than uflash's MicroPython"
+                )
                 update_micropython = True
         except Exception:
             # Could not get version of MicroPython. This means either the
@@ -309,15 +310,14 @@ class MicrobitMode(MicroPythonMode):
         if update_micropython:
             if board_id in self.valid_board_ids:
                 # The connected board has a serial number that indicates the
-                # MicroPython hex bundled with Mu supports it, so flash it.
+                # MicroPython hex bundled with uflash supports it, so flash it.
                 self.flash_and_send(python_script, path_to_microbit)
                 return
             else:
                 message = _("Unsupported BBC micro:bit.")
                 information = _(
-                    "Your device is newer than this version of Mu. Please "
-                    "update Mu to the latest version to support this device."
-                    "\n\nhttps://codewith.mu/"
+                    "Your device is newer than current version of uflash. Please "
+                    "update uflash to the latest version to support this device."
                 )
                 self.view.show_message(message, information)
                 return

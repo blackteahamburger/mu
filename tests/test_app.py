@@ -3,29 +3,29 @@
 Tests for the app script.
 """
 
-import sys
 import os.path
-import pytest
 import subprocess
-
+import sys
 from unittest import mock
+
+import pytest
+from PyQt6.QtCore import Qt
+
+from mu import mu_debug
 from mu.app import (
-    excepthook,
-    run,
-    setup_logging,
-    setup_exception_handler,
     AnimatedSplash,
     StartupWorker,
-    check_only_running_once,
     _shared_memory,
+    check_only_running_once,
+    excepthook,
+    run,
+    setup_exception_handler,
+    setup_logging,
 )
 from mu.debugger.config import DEBUGGER_PORT
-
-from mu.interface.themes import NIGHT_STYLE, DAY_STYLE, CONTRAST_STYLE
-from mu.logic import LOG_FILE, LOG_DIR, ENCODING
+from mu.interface.themes import CONTRAST_STYLE, DAY_STYLE, NIGHT_STYLE
+from mu.logic import ENCODING, LOG_DIR, LOG_FILE
 from mu.resources import load_movie
-from mu import mu_debug
-from PyQt6.QtCore import Qt
 
 
 class DumSig:

@@ -17,33 +17,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import logging
 import os
 import sys
-import logging
-from PyQt6.QtCore import QSize, QProcess, QTimer, Qt
 
+from PyQt6.QtCore import QProcess, QSize, Qt, QTimer
+from PyQt6.QtGui import QTextCursor
 from PyQt6.QtWidgets import (
-    QHBoxLayout,
-    QVBoxLayout,
-    QGridLayout,
-    QListWidget,
-    QLabel,
-    QListWidgetItem,
+    QCheckBox,
+    QComboBox,
     QDialog,
     QDialogButtonBox,
-    QPlainTextEdit,
-    QTabWidget,
-    QWidget,
-    QCheckBox,
-    QLineEdit,
-    QPushButton,
     QFileDialog,
+    QGridLayout,
     QGroupBox,
-    QComboBox,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QListWidget,
+    QListWidgetItem,
+    QPlainTextEdit,
+    QPushButton,
+    QTabWidget,
+    QVBoxLayout,
+    QWidget,
 )
-from PyQt6.QtGui import QTextCursor
-from mu.resources import load_icon
+
 from mu.interface.widgets import DeviceSelector
+from mu.resources import load_icon
 
 logger = logging.getLogger(__name__)
 

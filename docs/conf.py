@@ -13,8 +13,10 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
 import os
+import sys
+
+from mu import __version__ as full_version
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -53,8 +55,6 @@ author = "Nicholas H.Tollervey"
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-
-from mu import __version__ as full_version
 
 # The short X.Y version.
 version = ".".join(full_version.split(".")[:2])

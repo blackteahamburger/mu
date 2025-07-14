@@ -18,9 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import logging
-from mu.modes.esp import ESPMode
-from mu.modes.api import SHARED_APIS  # TODO: Work out Pico APIs
 
+from mu.modes.api import SHARED_APIS  # TODO: Work out Pico APIs
+from mu.modes.esp import ESPMode
 
 logger = logging.getLogger(__name__)
 

@@ -1,10 +1,10 @@
 #!python3
-import os
-import sys
 import fnmatch
+import os
 import re
 import shutil
 import subprocess
+import sys
 
 PYTEST = "pytest"
 FLAKE8 = "flake8"

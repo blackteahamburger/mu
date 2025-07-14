@@ -4,10 +4,11 @@ Tests for the PyGameZero mode.
 """
 
 import os.path
-from mu.modes.pygamezero import PyGameZeroMode
-from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS, PYGAMEZERO_APIS
-from unittest import mock
 import tempfile
+from unittest import mock
+
+from mu.modes.api import PI_APIS, PYGAMEZERO_APIS, PYTHON3_APIS, SHARED_APIS
+from mu.modes.pygamezero import PyGameZeroMode
 
 
 def test_pgzero_mode():

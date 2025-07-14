@@ -18,11 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import logging
-from mu.modes.base import MicroPythonMode, FileManager
-from mu.modes.api import ESP_APIS, SHARED_APIS
-from PyQt6.QtCore import QThread
 import os
 
+from PyQt6.QtCore import QThread
+
+from mu.modes.api import ESP_APIS, SHARED_APIS
+from mu.modes.base import FileManager, MicroPythonMode
 
 logger = logging.getLogger(__name__)
 

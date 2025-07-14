@@ -19,11 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt6.QtCore import QSize, Qt, pyqtSignal
 from PyQt6.QtWidgets import (
-    QHBoxLayout,
-    QWidget,
-    QLabel,
     QComboBox,
+    QHBoxLayout,
+    QLabel,
+    QWidget,
 )
+
 from mu.resources import load_pixmap
 
 

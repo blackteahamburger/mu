@@ -18,10 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import logging
-from .base import MicroPythonMode, REPLConnection
-from .api import SNEK_APIS
-from PyQt6.QtWidgets import QMessageBox
+
 from PyQt6.QtCore import QTimer
+from PyQt6.QtWidgets import QMessageBox
+
+from mu.modes.api import SNEK_APIS
+from mu.modes.base import MicroPythonMode, REPLConnection
 
 logger = logging.getLogger(__name__)
 

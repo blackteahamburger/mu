@@ -2,10 +2,12 @@
 Tests for the minimalist Pico mode.
 """
 
-import pytest
 from unittest import mock
-from mu.modes.pico import PicoMode
+
+import pytest
+
 from mu.modes.api import SHARED_APIS
+from mu.modes.pico import PicoMode
 
 
 @pytest.fixture

@@ -17,50 +17,55 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
-import os
-import re
-import platform
+import bisect
+import codecs
 import logging
+import os
+import os.path
+import platform
+import re
 import signal
 import string
-import bisect
-import os.path
-import codecs
+import sys
+from collections import deque
 
+from PyQt6.QtCharts import QChart, QChartView, QLineSeries, QValueAxis
 from PyQt6.QtCore import (
-    Qt,
     QProcess,
     QProcessEnvironment,
-    pyqtSignal,
+    Qt,
     QTimer,
     QUrl,
-)
-from collections import deque
-from PyQt6.QtWidgets import (
-    QMessageBox,
-    QTextEdit,
-    QFrame,
-    QListWidget,
-    QGridLayout,
-    QLabel,
-    QMenu,
-    QTreeView,
+    pyqtSignal,
 )
 from PyQt6.QtGui import (
-    QKeySequence,
-    QTextCursor,
     QCursor,
-    QPainter,
     QDesktopServices,
+    QKeySequence,
+    QPainter,
     QStandardItem,
+    QTextCursor,
+)
+from PyQt6.QtWidgets import (
+    QFrame,
+    QGridLayout,
+    QLabel,
+    QListWidget,
+    QMenu,
+    QMessageBox,
+    QTextEdit,
+    QTreeView,
 )
 from qtconsole.rich_jupyter_widget import RichJupyterWidget
-from ..i18n import language_code
-from mu.interface.themes import Font, DEFAULT_FONT_SIZE
-from mu.interface.themes import DAY_STYLE, NIGHT_STYLE, CONTRAST_STYLE
-from PyQt6.QtCharts import QChart, QLineSeries, QChartView, QValueAxis
 
+from mu.i18n import language_code
+from mu.interface.themes import (
+    CONTRAST_STYLE,
+    DAY_STYLE,
+    DEFAULT_FONT_SIZE,
+    NIGHT_STYLE,
+    Font,
+)
 
 logger = logging.getLogger(__name__)
 

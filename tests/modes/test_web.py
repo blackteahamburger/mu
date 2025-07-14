@@ -4,10 +4,12 @@ Tests for the flask based web mode.
 """
 
 import os
-import pytest
-from mu.modes.web import WebMode, CODE_TEMPLATE, FLASK_APP
-from mu.modes.api import PYTHON3_APIS, SHARED_APIS, FLASK_APIS
 from unittest import mock
+
+import pytest
+
+from mu.modes.api import FLASK_APIS, PYTHON3_APIS, SHARED_APIS
+from mu.modes.web import CODE_TEMPLATE, FLASK_APP, WebMode
 
 
 def test_init():

@@ -4,10 +4,10 @@ Tests for the Python3 mode.
 """
 
 import os
-from mu.modes.python3 import PythonMode, KernelRunner
-from mu.modes.api import PYTHON3_APIS, SHARED_APIS, PI_APIS
-
 from unittest import mock
+
+from mu.modes.api import PI_APIS, PYTHON3_APIS, SHARED_APIS
+from mu.modes.python3 import KernelRunner, PythonMode
 
 
 def test_kernel_runner_start_kernel():

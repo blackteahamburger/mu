@@ -1,5 +1,5 @@
-import os
 import gettext
+import os
 
 from PyQt6.QtCore import QLocale
 

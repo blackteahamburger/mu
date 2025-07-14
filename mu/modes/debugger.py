@@ -20,13 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 import os
 
-from .base import BaseMode
-from ..debugger.config import DEBUGGER_PORT
-from ..debugger.client import Debugger
-from ..debugger.utils import is_breakpoint_line
-
 from PyQt6.QtCore import QTimer
 
+from mu.debugger.client import Debugger
+from mu.debugger.config import DEBUGGER_PORT
+from mu.debugger.utils import is_breakpoint_line
+from mu.modes.base import BaseMode
 
 logger = logging.getLogger(__name__)
 

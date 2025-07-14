@@ -17,14 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 import ctypes
 import logging
+import os
 from subprocess import check_output
-from mu.modes.base import MicroPythonMode
-from mu.modes.api import ADAFRUIT_APIS, SHARED_APIS
-from mu.logic import Device
+
 from adafruit_board_toolkit import circuitpython_serial
+
+from mu.logic import Device
+from mu.modes.api import ADAFRUIT_APIS, SHARED_APIS
+from mu.modes.base import MicroPythonMode
 
 logger = logging.getLogger(__name__)
 

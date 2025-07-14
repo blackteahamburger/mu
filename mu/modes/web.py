@@ -17,14 +17,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 import logging
+import os
 import webbrowser
-from mu.modes.base import BaseMode
-from mu.modes.api import PYTHON3_APIS, SHARED_APIS, FLASK_APIS
-from mu.resources import load_icon
-from mu.logic import read_and_decode
 
+from mu.logic import read_and_decode
+from mu.modes.api import FLASK_APIS, PYTHON3_APIS, SHARED_APIS
+from mu.modes.base import BaseMode
+from mu.resources import load_icon
 
 logger = logging.getLogger(__name__)
 

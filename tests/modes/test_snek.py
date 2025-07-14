@@ -3,12 +3,14 @@
 Tests for the Snek mode.
 """
 
-import pytest
-from mu.logic import Device
-from mu.modes.snek import SnekMode
-from mu.modes.api import SNEK_APIS
-from PyQt6.QtWidgets import QMessageBox
 from unittest import mock
+
+import pytest
+from PyQt6.QtWidgets import QMessageBox
+
+from mu.logic import Device
+from mu.modes.api import SNEK_APIS
+from mu.modes.snek import SnekMode
 
 
 @pytest.fixture()

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 import platform
 import random
+import sys
 from unittest import mock
 from unittest.mock import patch
 
 import pytest
 
-import mu.settings
 import mu.config
+import mu.settings
 
 
 def rstring(length=10, characters="abcdefghijklmnopqrstuvwxyz"):
