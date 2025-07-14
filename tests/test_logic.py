@@ -25,7 +25,6 @@ from PyQt6.QtWidgets import QMessageBox
 import mu.config
 import mu.logic
 import mu.settings
-from mu import __version__
 
 SESSION = json.dumps({
     "theme": "night",
@@ -1932,8 +1931,7 @@ def test_show_help():
         mock.patch("mu.i18n.language_code", "en_GB"),
     ):
         ed.show_help()
-        version = ".".join(__version__.split(".")[:2])
-        url = "https://codewith.mu/en/help/{}".format(version)
+        url = "https://codewith.mu/en/help/1.2"
         wb.assert_called_once_with(url)
 
 
@@ -2373,10 +2371,7 @@ def test_change_mode():
     # Check the new mode is set up correctly.
     assert ed.mode == "python"
     view.change_mode.assert_called_once_with(mode)
-    if sys.version_info < (3, 6):
-        assert mock_button_bar.connect.call_count == 11
-    else:
-        assert mock_button_bar.connect.call_count == 12
+    assert mock_button_bar.connect.call_count == 12
     view.status_bar.set_mode.assert_called_once_with("Python")
     view.set_timer.assert_called_once_with(5, ed.autosave)
 
@@ -2401,10 +2396,7 @@ def test_change_mode_no_timer():
     ed.change_mode("python")
     assert ed.mode == "python"
     view.change_mode.assert_called_once_with(mode)
-    if sys.version_info < (3, 6):
-        assert mock_button_bar.connect.call_count == 11
-    else:
-        assert mock_button_bar.connect.call_count == 12
+    assert mock_button_bar.connect.call_count == 12
     view.status_bar.set_mode.assert_called_once_with("Python")
     view.stop_timer.assert_called_once_with()
 

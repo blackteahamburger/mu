@@ -1373,10 +1373,8 @@ class Editor(QObject):
         """
         Display browser based help about Mu.
         """
-        major_version = ".".join(__version__.split(".")[:2])
-        url = "https://codewith.mu/{}/help/{}".format(
-            i18n.language_code[:2], major_version
-        )
+        ".".join(__version__.split(".")[:2])
+        url = "https://codewith.mu/{}/help/1.2".format(i18n.language_code[:2])
         logger.info("Showing help at %r.", url)
         webbrowser.open_new(url)
 
@@ -1532,8 +1530,7 @@ class Editor(QObject):
         button_bar.connect("zoom-out", self.zoom_out, "Ctrl+-")
         button_bar.connect("theme", self.toggle_theme, "F1")
         button_bar.connect("check", self.check_code, "F2")
-        if sys.version_info[:2] >= (3, 6):
-            button_bar.connect("tidy", self.tidy_code, "F10")
+        button_bar.connect("tidy", self.tidy_code, "F10")
         button_bar.connect("help", self.show_help, "Ctrl+H")
         button_bar.connect("quit", self.quit, "Ctrl+Q")
         self._view.status_bar.set_mode(self.modes[mode].name)
@@ -1794,7 +1791,7 @@ class Editor(QObject):
         Prettify code with Black.
         """
         tab = self._view.current_tab
-        if not tab or sys.version_info[:2] < (3, 6):
+        if not tab:
             return
         # Only works on Python, so abort.
         if tab.path and not self.has_python_extension(tab.path):
