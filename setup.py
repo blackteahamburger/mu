@@ -68,6 +68,7 @@ extras_require = {
         "pytest-cov",
         "pytest-random-order>=1.0.0",
         "pytest-timeout",
+        "pytest-xvfb",
         "coverage",
     ],
     "docs": ["sphinx"],
