@@ -2,15 +2,7 @@
 A community fork of the Mu code editor. PR welcome!
 ================================
 
-Differences from the original version:
-
-* Support for new versions of all dependencies (including PyQt6 support)
-* venv is removed
-* No longer depend on pkg_resources
-
-**Note**: All tests are broken, please contribute if you can fix them.
-
-Mu - A Simple Python Code Editor 
+Mu - A Simple Python Code Editor
 ================================
 
 .. image:: https://mu.readthedocs.io/en/latest/_images/logo.png

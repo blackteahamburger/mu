@@ -1,5 +1,12 @@
 Release History
 ---------------
+1.3.0
+=====
+
+* Support for new versions of all dependencies (including PyQt6 support)
+* venv is removed
+* No longer depend on pkg_resources
+* TODO: Add more features and fixes
 
 1.2.2
 =====

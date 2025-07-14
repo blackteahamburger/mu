@@ -6,10 +6,10 @@
 __title__ = "mu-editor"
 __description__ = "A simple Python editor for beginner programmers."
 
-__version__ = "1.2.2"
+__version__ = "1.3.0"
 
 __license__ = "GPL3"
-__url__ = "https://github.com/mu-editor/mu"
+__url__ = "https://github.com/blackteahamburger/mu"
 
-__author__ = "Nicholas H.Tollervey"
-__email__ = "ntoll@ntoll.org"
+__author__ = "Blackteahamburger"
+__email__ = "blackteahamburger@outlook.com"
