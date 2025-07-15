@@ -1,0 +1,166 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mu-editor"
+dynamic = ["version"]
+description = "Mu is a simple Python code editor for beginner programmers."
+readme = "README.rst"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.9"
+authors = [
+    { name = "Blackteahamburger", email = "blackteahamburger@outlook.com" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+    "Topic :: Games/Entertainment",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Text Editors",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+]
+
+dependencies = [
+    "PyQt6>=6.3.1; platform_machine != 'arm' and platform_machine != 'aarch'",
+    "PyQt6-QScintilla>=2.13.3; platform_machine != 'arm' and platform_machine != 'aarch'",
+    "PyQt6-Charts>=6.3.1; platform_machine != 'arm' and platform_machine != 'aarch'",
+    "jupyter-client",
+    "ipykernel>=5.5.6",
+    "qtconsole~=5.4",
+    "adafruit-board-toolkit~=1.1",
+    "pyserial~=3.5",
+    "flake8>=3.8.3",
+    "black>=19.10b0",
+    "platformdirs>=2.0.0",
+    "semver>=2.8.0",
+    "requests>=2.0.0",
+    "pgzero>=1.2.1",
+    "flask>=2.0.3",
+    "esptool>=3",
+    "microfs>=1.4.6",
+    "uflash>=2.1.0",
+    "pywin32; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+tests = [
+    "pytest>=5",
+    "pytest-cov",
+    "pytest-random-order>=1.0.0",
+    "pytest-timeout",
+    "pytest-xvfb",
+    "coverage",
+]
+docs = ["sphinx"]
+package = ["wheel", "twine"]
+i18n = ["babel"]
+utils = ["scrapy", "beautifulsoup4", "requests"]
+dev = [
+    "pytest>=5",
+    "pytest-cov",
+    "pytest-random-order>=1.0.0",
+    "pytest-timeout",
+    "pytest-xvfb",
+    "coverage",
+    "sphinx",
+    "wheel",
+    "twine",
+    "babel",
+]
+all = [
+    "pytest>=5",
+    "pytest-cov",
+    "pytest-random-order>=1.0.0",
+    "pytest-timeout",
+    "pytest-xvfb",
+    "coverage",
+    "sphinx",
+    "wheel",
+    "twine",
+    "babel",
+    "scrapy",
+    "beautifulsoup4",
+    "requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/blackteahamburger/mu"
+
+[project.scripts]
+mu-editor = "mu.app:run"
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.dynamic]
+version = { attr = "mu.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "mu",
+    "mu.modes",
+    "mu.debugger",
+    "mu.interface",
+    "mu.modes.api",
+    "mu.locale.de_DE.LC_MESSAGES",
+    "mu.locale.es.LC_MESSAGES",
+    "mu.locale.fr.LC_MESSAGES",
+    "mu.locale.ja.LC_MESSAGES",
+    "mu.locale.nl.LC_MESSAGES",
+    "mu.locale.pl.LC_MESSAGES",
+    "mu.locale.pt_BR.LC_MESSAGES",
+    "mu.locale.pt_PT.LC_MESSAGES",
+    "mu.locale.ru_RU.LC_MESSAGES",
+    "mu.locale.sk_SK.LC_MESSAGES",
+    "mu.locale.sv.LC_MESSAGES",
+    "mu.locale.uk_UA.LC_MESSAGES",
+    "mu.locale.vi.LC_MESSAGES",
+    "mu.locale.zh_CN.LC_MESSAGES",
+    "mu.resources",
+    "mu.resources.css",
+    "mu.resources.fonts",
+    "mu.resources.images",
+    "mu.resources.pygamezero",
+    "mu.resources.web.static.css",
+    "mu.resources.web.static.img",
+    "mu.resources.web.templates",
+]
+
+[tool.flake8]
+ignore = ["E402", "W503", "W504"]
+exclude = [
+    "./docs/",
+    "./package/",
+    "./venv/",
+    ".venv*/",
+    "./env/",
+    ".env/",
+    "./local-scripts/",
+]
+max-line-length = 88
+
+[tool.coverage.run]
+omit = ["mu/mu_debug.py", "mu/__main__.py"]
+
+[tool.pytest.ini_options]
+addopts = "--random-order"
