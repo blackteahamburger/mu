@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -65,36 +65,33 @@ tests = [
     "pytest>=5",
     "pytest-cov",
     "pytest-random-order>=1.0.0",
-    "pytest-timeout",
     "pytest-xvfb",
     "coverage",
 ]
 docs = ["sphinx"]
-package = ["wheel", "twine"]
+package = ["build", "wheel"]
 i18n = ["babel"]
 utils = ["scrapy", "beautifulsoup4", "requests"]
 dev = [
     "pytest>=5",
     "pytest-cov",
     "pytest-random-order>=1.0.0",
-    "pytest-timeout",
     "pytest-xvfb",
     "coverage",
     "sphinx",
+    "build",
     "wheel",
-    "twine",
     "babel",
 ]
 all = [
     "pytest>=5",
     "pytest-cov",
     "pytest-random-order>=1.0.0",
-    "pytest-timeout",
     "pytest-xvfb",
     "coverage",
     "sphinx",
+    "build",
     "wheel",
-    "twine",
     "babel",
     "scrapy",
     "beautifulsoup4",
@@ -145,19 +142,6 @@ include = [
     "mu.resources.web.static.img",
     "mu.resources.web.templates",
 ]
-
-[tool.flake8]
-ignore = ["E402", "W503", "W504"]
-exclude = [
-    "./docs/",
-    "./package/",
-    "./venv/",
-    ".venv*/",
-    "./env/",
-    ".env/",
-    "./local-scripts/",
-]
-max-line-length = 88
 
 [tool.coverage.run]
 omit = ["mu/mu_debug.py", "mu/__main__.py"]
