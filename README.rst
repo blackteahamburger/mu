@@ -28,3 +28,11 @@ including a guide for
 We want our community to be a friendly place. Therefore, we expect contributors
 and collaborators to follow our
 `Code of Conduct <https://mu.readthedocs.io/en/latest/code_of_conduct.html>`_.
+
+Installation
+------------
+
+Download the source code and install the package using the following commands with build installed in your system::
+
+    $ python -m build
+    $ pip install dist/mu_editor-<version>-py3-none-any.whl

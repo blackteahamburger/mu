@@ -104,7 +104,7 @@ all = [
 [project.urls]
 Homepage = "https://github.com/blackteahamburger/mu"
 
-[project.scripts]
+[project.gui-scripts]
 mu-editor = "mu.app:run"
 
 [tool.setuptools]
