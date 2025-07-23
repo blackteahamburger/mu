@@ -31,10 +31,10 @@ QDir.addSearchPath(
 QDir.addSearchPath("css", str(importlib_files("mu.resources").joinpath("css")))
 
 
-def path(name, resource_dir="images/", ext=""):
+def path(name, resource_dir="images", ext=""):
     """Return the filename for the referenced image."""
     return str(
-        importlib_files("mu.resources").joinpath(resource_dir + name + ext)
+        importlib_files("mu.resources").joinpath(resource_dir, name + ext)
     )
 
 

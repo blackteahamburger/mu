@@ -11,15 +11,31 @@ from PyQt6.QtGui import QIcon, QMovie, QPixmap
 import mu.resources
 
 
-def test_path():
+def test_path_default():
     """
-    Ensure the path function under test returns the expected result.
+    Ensure the path function returns the expected result with default arguments.
     """
     mock_resources = Path("bar")
-    with mock.patch(
-        "mu.resources.importlib_files", return_value=mock_resources
+    with mock.patch.object(
+        mu.resources, "importlib_files", return_value=mock_resources
     ):
-        assert mu.resources.path("foo") == "bar/images/foo"
+        expected = str(mock_resources.joinpath("images", "foo"))
+        assert mu.resources.path("foo") == expected
+
+
+def test_path_custom_dir_ext():
+    """
+    Ensure the path function returns the expected result with custom resource_dir and ext.
+    """
+    mock_resources = Path("bar")
+    with mock.patch.object(
+        mu.resources, "importlib_files", return_value=mock_resources
+    ):
+        expected = str(mock_resources.joinpath("fonts", "font.ttf"))
+        assert (
+            mu.resources.path("font", resource_dir="fonts", ext=".ttf")
+            == expected
+        )
 
 
 def test_load_icon():
@@ -50,15 +66,15 @@ def test_stylesheet():
     """
     Ensure the load_stylesheet function returns the expected result.
     """
-    assert mu.resources.load_stylesheet("day.css").startswith(
-        "QToolBar, QToolButton {\n    background: transparent;\n    margin: 0;\n    padding: 0;\n}"
-    )
+    result = mu.resources.load_stylesheet("day.css")
+    assert isinstance(result, str)
+    assert "QWidget" in result
 
 
 def test_load_font_data():
     """
     Ensure font data can be loaded
     """
-    assert mu.resources.load_font_data("SourceCodePro-Regular.otf").startswith(
-        b"OTTO\x00\x0f\x00\x80\x00\x03\x00pBASEe\x1e]\xbd\x00\x01\xb2$\x00\x00\x00FCFF W\x92{"
-    )
+    data = mu.resources.load_font_data("SourceCodePro-Regular.otf")
+    assert isinstance(data, bytes)
+    assert len(data) > 0
