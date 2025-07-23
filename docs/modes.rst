@@ -102,8 +102,6 @@ There are two ways to run your script in this mode:
 Because of the overhead needed to start the graphical debugger it takes longer
 to start running your script. This is especially noticeable on the Raspberry Pi.
 
-Python 2 isn't supported by Mu and never will be.
-
 Debug Mode
 ++++++++++
 

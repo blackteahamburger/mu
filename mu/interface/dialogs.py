@@ -287,7 +287,8 @@ class LocaleWidget(QWidget):
         "Slovenský": "sk_SK",
         "Svenska": "sv",
         "tiếng Việt": "vi",
-        "中文": "zh_CN",
+        "中文（简体）": "zh_CN",
+        "中文（繁體）": "zh_TW",
     }
 
     def setup(self, locale):

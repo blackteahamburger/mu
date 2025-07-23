@@ -16,11 +16,11 @@ Bug Reports
 If you think you have found a problem, then we want to hear about it!
 
 We keep track of issues via our
-`GitHub repository <https://github.com/mu-editor/mu/issues/>`_. You'll need to
+`GitHub repository <https://github.com/blackteahamburger/mu/issues/>`_. You'll need to
 have an account on GitHub (joining GitHub is
 `very easy <https://github.com/join>`_) in order to submit such feedback.
 
-When you `create an issue <https://github.com/mu-editor/mu/issues/new>`_ we
+When you `create an issue <https://github.com/blackteahamburger/mu/issues/new>`_ we
 expect certain pieces of information from you:
 
 * What you were doing (including all the necessary steps needed to recreate
@@ -56,7 +56,7 @@ sees that the status bar may contain textual messages from the application, a
 ``logic.py``.
 
 If you'd rather try something more substantial, why not explore the
-`list of currently open issues <https://github.com/mu-editor/mu/issues/>`_,
+`list of currently open issues <https://github.com/blackteahamburger/mu/issues/>`_,
 fix one of them and create a pull request for your solution?
 
 Translations

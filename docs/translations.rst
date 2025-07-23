@@ -14,7 +14,7 @@ You can contribute in three ways:
 
 In both cases you'll be using assets found in the ``mu/locale`` directory.
 
-Mu uses Python's standard `gettext <https://docs.python.org/3.6/library/i18n.html>`_
+Mu uses Python's standard `gettext <https://docs.python.org/3.13/library/i18n.html>`_
 based internationalization API so we can make use of standard tools to help
 translators, such as `babel <https://babel.pocoo.org/en/latest/>`_ or
 `Poedit <https://poedit.net/>`_.
@@ -24,7 +24,7 @@ translators, such as `babel <https://babel.pocoo.org/en/latest/>`_ or
     If you are not a technical user and you are not familiar with the
     tools and jargon we use in this guide,
     please reach out to us by
-    `creating a new issue in GitHub <https://github.com/mu-editor/mu/issues/new>`_.
+    `creating a new issue in GitHub <https://github.com/blackteahamburger/mu/issues/new>`_.
 
     We will help you set up a user-friendly tool that you can use to
     contribute new or improved translations, and integrate them into the next

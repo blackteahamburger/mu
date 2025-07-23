@@ -1,0 +1,40 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+    paths-ignore:
+      - "**/*.md"
+      - "**/*.rst"
+  schedule:
+    - cron: "3 2 * * 2"
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies to help the code scanner
+        run: |
+          pip install https://github.com/blackteahamburger/microfs/archive/refs/tags/v1.4.6.tar.gz
+          pip install https://github.com/blackteahamburger/uflash/archive/refs/tags/v2.1.0.tar.gz
+          pip install .[dev]
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+          queries: +security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3

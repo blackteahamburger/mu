@@ -1,11 +1,9 @@
-================================
-A community fork of the Mu code editor. PR welcome!
-================================
-
 Mu - A Simple Python Code Editor
 ================================
 
 .. image:: https://mu.readthedocs.io/en/latest/_images/logo.png
+
+A community fork of the Mu code editor. PR welcome!
 
 Mu is a simple code editor for beginner programmers based on extensive feedback
 from teachers and learners. Having said that, Mu is for anyone who wants to use
@@ -32,7 +30,6 @@ and collaborators to follow our
 Installation
 ------------
 
-Download the source code and install the package using the following commands with build installed in your system::
+Install `uflash <https://github.com/blackteahamburger/uflash>`_ and `microfs <https://github.com/blackteahamburger/microfs>`_ first, then download the source code and install the package using the following command::
 
-    $ python -m build
-    $ pip install dist/mu_editor-<version>-py3-none-any.whl
+    $ pip install .

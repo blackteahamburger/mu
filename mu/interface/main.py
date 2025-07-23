@@ -1409,7 +1409,7 @@ class Window(QMainWindow):
                 "Please check your PythonAnywhere settings or connection "
                 "and ensure you're using a recent version of Mu.<br/><br/>"
                 "Alternatively, "
-                "<a href='https://github.com/mu-editor/mu/issues/new/choose'>"
+                "<a href='https://github.com/blackteahamburger/mu/issues/new/choose'>"
                 "submit a bug report</a>."
             ),
         )

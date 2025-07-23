@@ -5,11 +5,7 @@ We have tests so we can make changes with confidence.
 
 We use several different sorts of test:
 
-* `PyFlakes <https://github.com/PyCQA/pyflakes>`_ for checking for errors in
-  our code.
-* `pycodestyle <http://pycodestyle.pycqa.org/en/latest/intro.html>`_ for
-  making sure our coding style conforms with most of the conventions of
-  `PEP8 <https://www.python.org/dev/peps/pep-0008/>`_.
+* `Ruff <https://ruff.rs/>`_ for checking for errors/formatting in our code.
 * `PyTest <https://pytest.readthedocs.io/en/latest/>`_ as a framework for
   writing our unit tests.
 * `Coverage <https://coverage.readthedocs.io/>`_ for checking
@@ -41,8 +37,8 @@ Running the tests couldn't be simpler: just use the ``make`` command::
 
 This will run **ALL** the tests of each type.
 
-To run specific types of test please try: ``make pyflakes``,
-``make pycodestyle``, ``make test`` or ``make coverage``.
+To run specific types of test please try: ``make ruff``,
+``make format_check``, ``make test`` or ``make coverage``.
 
 .. warning::
     
@@ -76,5 +72,5 @@ like the following::
         """
         assert True  # As per PyTest conventions, use simple asserts.
 
-We also expect your test code to pass PyFlakes and PEP checks. If in doubt,
+We also expect your test code to pass Ruff checks. If in doubt,
 don't hesitate to get in touch and ask.

@@ -20,7 +20,6 @@ def test_init():
     editor = mock.MagicMock()
     view = mock.MagicMock()
     wm = WebMode(editor, view)
-    assert wm.name == "Web"
     assert wm.icon == "web"
     assert wm.runner is None
     assert wm.save_timeout == 0

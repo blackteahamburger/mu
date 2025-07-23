@@ -22,41 +22,12 @@ Python aims to make code readable, Mu aims to make it writeable.
 
 With this in mind:
 
-Next Point Release
-==================
-
-1.0.1 is a bug fix / translations release and will only include:
-
-* Update to Adafruit boards and future proofing for as-yet-unknown boards.
-* Swedish translation.
-* Updated and complete Chinese translation.
-* Blocking IO from Python 3 sub-process flooding data is fixed.
-* New MicroPython runtime for micro:bit (bug fixes).
-* Improvements to the stability of micro:bit flashing.
-
-Expected delivery: mid-September 2018.
-
 Next Minor Release
 ==================
 
-1.1.0 will introduce some new "beta" modes:
+1.3.0 will include:
 
-* ESP mode for embedded devices from ESP.
-* Web mode for creating simple dynamic websites.
+* Realtime generation of API documentation used by Mu's autocomplete and call tip functionality.
+* Updates to the user interface for a more user-friendly experience.
 
-It will also add some new features:
-
-* Use of "black" for code style / quality checking.
-* Configuration of UI for purposes of better presentation:
-
-  - Change size of buttons.
-  - Tool-tips and auto-complete toggle.
-  - Colour configuration for "Custom" theme (help dyslexic users via colour).
-  - Transparent background (makes screen-casting easier).
-
-* Update minifier.
-* More translations.
-* Cleanups to the documentation.
-* Bug fix release of MicroPython for micro:bit.
-
-Expected delivery: late-November 2018.
+Expected delivery: uncertain (even never)

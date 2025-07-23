@@ -14,7 +14,6 @@ from PyQt6.QtCore import Qt
 from mu import mu_debug
 from mu.app import (
     AnimatedSplash,
-    MutexError,
     StartupWorker,
     _shared_memory,
     check_only_running_once,
@@ -63,12 +62,13 @@ class DumSig:
 
 def only_running_once():
     try:
-        with _shared_memory:
-            _shared_memory.acquire()
-            _shared_memory.release()
+        check_only_running_once()
         return True
-    except MutexError:
+    except SystemExit:
         return False
+
+
+IS_ONLY_RUNNING_ONCE = only_running_once()
 
 
 def test_animated_splash_init():
@@ -298,7 +298,7 @@ def test_run():
         assert len(ed.mock_calls) == 4
         assert win.call_count == 1
         assert len(win.mock_calls) == 6
-        assert not only_running_once() or ex.call_count == 1
+        assert not IS_ONLY_RUNNING_ONCE or ex.call_count == 1
         assert mock_event_loop.call_count == 1
         assert mock_worker.call_count == 1
         assert mock_set_except.call_count == 1
@@ -325,7 +325,7 @@ def test_excepthook():
         excepthook(*exc_args)
         error.assert_called_once_with("Unrecoverable error", exc_info=exc_args)
         exit.assert_called_once_with(1)
-        assert not only_running_once() or browser.open.call_count == 1
+        assert not IS_ONLY_RUNNING_ONCE or browser.open.call_count == 1
 
 
 def test_excepthook_alamo():
@@ -345,7 +345,7 @@ def test_excepthook_alamo():
         mock.patch("mu.app.webbrowser", mock_browser),
     ):
         excepthook(*exc_args)
-        assert not only_running_once() or error.call_count == 2
+        assert not IS_ONLY_RUNNING_ONCE or error.call_count == 2
         exit.assert_called_once_with(1)
 
 
@@ -378,7 +378,7 @@ def test_debug_no_args():
 
 
 @pytest.mark.skipif(
-    not only_running_once(),
+    not IS_ONLY_RUNNING_ONCE,
     reason="Fails when there's a real mu-editor process running",
 )
 def test_only_running_once():
@@ -432,7 +432,7 @@ def test_running_twice():
 
 
 @pytest.mark.skipif(
-    not only_running_once(),
+    not IS_ONLY_RUNNING_ONCE,
     reason="Fails when there's a real mu-editor process running",
 )
 def test_running_twice_after_exception():
@@ -446,7 +446,7 @@ def test_running_twice_after_exception():
 
 
 @pytest.mark.skipif(
-    not only_running_once(),
+    not IS_ONLY_RUNNING_ONCE,
     reason="Fails when there's a real mu-editor process running",
 )
 def test_running_twice_after_generic_exception():

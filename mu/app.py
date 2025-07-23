@@ -270,7 +270,7 @@ class SharedMemoryMutex(object):
     handler which uses the built in Semaphore as a locking mechanism
     and raises an error if the shared memory object is already in use
 
-    TODO: The *nix implementation doesn't release the shared memory if a
+    TODO: The Unix implementation doesn't release the shared memory if a
     process attached to it crashes. There is code to attempt to detect this
     but it doesn't seem worth implementing for the moment: we're only talking
     about a page at most.
@@ -374,12 +374,6 @@ def run():
     # if hasattr(Qt, "AA_EnableHighDpiScaling"):
     #    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     # QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-
-    # An issue in PyQt5 v5.13.2 to v5.15.1 makes PyQt6 application
-    # hang on Mac OS 11 (Big Sur)
-    # Setting this environment variable fixes the problem.
-    # See issue #1147 for more information
-    # os.environ["QT_MAC_WANTS_LAYER"] = "1"
 
     # In Wayland for AppImage to launch it needs QT_QPA_PLATFORM set
     # But only touch it if unset, useful for CI to configure it to "offscreen"

@@ -9,7 +9,7 @@ Key Concepts
 
 The key concepts you should know are:
 
-* Mu uses the `PyQT5 framework <https://riverbankcomputing.com/software/pyqt/intro>`_ (that makes the `Qt <https://www.qt.io/>`_ GUI toolkit available to Python) for making its user interface.
+* Mu uses the `PyQt6 framework <https://riverbankcomputing.com/software/pyqt/intro>`_ (that makes the `Qt <https://www.qt.io/>`_ GUI toolkit available to Python) for making its user interface.
 * Mu is a modal editor: the behaviour of Mu changes, depending on mode.
 * There are a number of core features and behaviours that are always available and never vary, no matter the mode.
 * The text area into which users type code is based on a `Scintilla <http://www.scintilla.org/>`_ based widget.
@@ -23,7 +23,6 @@ The code is found in the ``mu`` directory and organised in the following way:
 
 * The application is created and configured in ``app.py``.
 * Most of the fundamental logic for Mu is in ``logic.py``.
-* Un-packaged third party code used by Mu is found in ``contrib``.
 * The Python3 debugger consists of a debug client and debug runner found in the ``debugger`` namespace. A description of how the debugger works can be found in :doc:`debugger`.
 * Interacting with the UI layer is done via the ``Window`` class in the ``interface.main`` module. Mu specific UI code used by the ``Window`` class found in the other modules in the namespace.
 * Internationalization (I18n) related assets are found under ``locale``. Learn how this works via :doc:`translations`.
@@ -47,7 +46,6 @@ The ``utils`` directory contains various scripts used to scrape and / or build
 the API documentation used by Mu's autocomplete and call tip functionality.
 
 The other assets in the root directory of the project are mainly for
-documentation (such as our Code of Conduct), configuration (for testing) or
-packaging for various platforms (see :doc:`packaging`).
+documentation (such as our Code of Conduct) or configuration (for testing).
 
 If you want to make changes please read :doc:`contributing`.

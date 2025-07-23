@@ -1,17 +1,17 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2018 ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+# Mu-Chinese
+# Copyright (C) 2025 Blackteahamburger
+# Blackteahamburger <blackteahamburger@outlook.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
+"Project-Id-Version: Mu Chinese\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-07-23 00:44+0800\n"
-"PO-Revision-Date: 2018-07-25 12:07+0200\n"
-"Last-Translator: René Raab <mail@renraab.org>\n"
-"Language: de_DE\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2025-07-23 00:01+0800\n"
+"Last-Translator: Blackteahamburger <blackteahamburger@outlook.com>\n"
+"Language: zh_TW\n"
+"Language-Team: Blackteahamburger <blackteahamburger@outlook.com>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,50 +21,39 @@ msgstr ""
 msgid ""
 "Connection timed out. Is your machine slow or busy? Free up some of the "
 "machine's resources and try again."
-msgstr ""
-"Zeitüberschreitung der Verbindung. Ist Ihre Maschine langsam oder "
-"beschäftigt? Geben Sie einige Ressourcen des Geräts frei und versuchen "
-"Sie es erneut."
+msgstr "連線逾時。是你的電腦執行太慢還是執行太多東西？嘗試釋放記憶體或 CPU 資源後再試一次吧。"
 
 #: mu/debugger/client.py:135
 msgid ""
 "Could not find localhost.\n"
 "Ensure you have '127.0.0.1 localhost' in your /etc/hosts file."
 msgstr ""
-"Konnte localhost nicht finden.\n"
-"Stellen Sie sicher, dass Sie die Zeile '127.0.0.1 localhost' in Ihrer "
-"/etc/hosts Datei haben."
+"找不到 localhost。\n"
+"請確認你的 /etc/hosts 檔案裡有這一段：「127.0.0.1 localhost」。"
 
 #: mu/interface/dialogs.py:77
 msgid "Select Mode"
-msgstr "Modus wählen"
+msgstr "選擇模式"
 
 #: mu/interface/dialogs.py:81
 msgid ""
 "Please select the desired mode then click \"OK\". Otherwise, click "
 "\"Cancel\"."
-msgstr ""
-"Bitte wählen Sie den gewünschten Modus und klicken dann \"OK\". "
-"Andernfalls, klicken Sie \"Abbrechen\"."
+msgstr "請選擇所需模式，然後點選「確定」。否則，請點選「取消」。"
 
 #: mu/interface/dialogs.py:102
 msgid ""
 "Change mode at any time by clicking the \"Mode\" button containing Mu's "
 "logo."
-msgstr ""
-"Ändern Sie den Modus jederzeit, indem Sie auf den Knopf \"Modus\" mit dem"
-" Mu Logo klicken"
+msgstr "透過點選有 Mu 圖示的「模式」按鈕來隨時變更模式。"
 
 #: mu/interface/dialogs.py:141
 msgid ""
 "When reporting a bug, copy and paste the content of the following log "
 "file."
-msgstr ""
-"Wenn Sie einen Fehler melden, kopieren Sie bitte den Inhalt der folgenden"
-" Protokolldatei."
+msgstr "回報 bug 時，複製並貼上以下記錄檔的內容。"
 
 #: mu/interface/dialogs.py:165
-#, fuzzy
 msgid ""
 "The environment variables shown below will be set each time you run a "
 "Python 3 script.\n"
@@ -73,20 +62,16 @@ msgid ""
 "form:\n"
 "NAME=VALUE"
 msgstr ""
-"Die nachfolgenden Umgebungsvariablen werden jedes mal gesetzt, wenn Sie "
-"ein Python 3 Skript ausführen.\n"
+"每次執行 Python 3 腳本時都會設定下面的環境變數。\n"
 "\n"
-"Jede separate Umgebungsvariable sollte in einer eigenen Zeile und von der"
-" folgenden Form sein:\n"
-"NAME=WERT"
+"每行一個獨立的環境變數，形式如下：\n"
+"名稱=值"
 
 #: mu/interface/dialogs.py:191
 msgid ""
 "Override the built-in MicroPython runtime with the following hex file "
 "(empty means use the default):"
-msgstr ""
-"Überschreibe die eingebaute MicroPython Runtime mit der nachfolgenden hex"
-" Datei (leer benutzt den Standardwert):"
+msgstr "使用下面的 hex 檔案覆寫內建的 MicroPython 執行環境（留空使用預設檔案）："
 
 #: mu/interface/dialogs.py:221
 msgid ""
@@ -95,17 +80,20 @@ msgid ""
 "free. You'll need to sign up for an account and provide the following "
 "details for Mu to deploy your web project."
 msgstr ""
+"<a href='https://www.pythonanywhere.com/'>PythonAnywhere</a> "
+"團隊讓學習者和教育者可以免費託管簡單的網頁專案。你需要註冊一個帳號，並填寫以下資訊，Mu 才能部署你的網頁專案。"
 
 #: mu/interface/dialogs.py:233
 msgid ""
 "\n"
 "Copy your username on PythonAnywhere into here:"
 msgstr ""
+"\n"
+"請將你在 PythonAnywhere 上的使用者名稱複製到這裡："
 
 #: mu/interface/dialogs.py:237
-#, fuzzy
 msgid "username"
-msgstr "Name"
+msgstr "使用者名稱"
 
 #: mu/interface/dialogs.py:243
 msgid ""
@@ -113,29 +101,32 @@ msgid ""
 "href='https://www.pythonanywhere.com/account/#api_token'>secret API token"
 " from PythonAnywhere</a> into here:"
 msgstr ""
+"請將你在 <a "
+"href='https://www.pythonanywhere.com/account/#api_token'>PythonAnywhere "
+"上的 API 金鑰</a> 複製到這裡："
 
 #: mu/interface/dialogs.py:251
 msgid "secret api token"
-msgstr ""
+msgstr "API 金鑰"
 
 #: mu/interface/dialogs.py:256
 msgid "Server location ('www' is a safe default):"
-msgstr ""
+msgstr "伺服器位置（「www」是安全的預設值）："
 
 #: mu/interface/dialogs.py:276
 msgid "Automatically detect"
-msgstr ""
+msgstr "自動偵測"
 
 #: mu/interface/dialogs.py:305
 msgid ""
 "Please select the language for Mu's user interface from the choices "
 "listed below. <strong>Restart Mu for these changes to take "
 "effect.</strong>"
-msgstr ""
+msgstr "請從下面列出的選項中選擇 Mu 的使用者介面語言。<strong>重新啟動 Mu 以使這些變更生效。</strong>"
 
 #: mu/interface/dialogs.py:335
 msgid "How to flash MicroPython to your device"
-msgstr ""
+msgstr "如何將 MicroPython 刷入到你的裝置"
 
 #: mu/interface/dialogs.py:343
 msgid ""
@@ -145,174 +136,179 @@ msgid ""
 " Connect your device<br/>&nbsp;4. Load the .bin file below using the "
 "'Browse' button<br/>&nbsp;5. Press 'Erase & write firmware'"
 msgstr ""
+"&nbsp;1. 確定裝置類型（ ESP8266 或 ESP32 ）<br />&nbsp;2. 從 <a "
+"href=\"https://micropython.org/download\" "
+"style=\"color:#039be5;\">https://micropython.org/download</a> "
+"下載韌體<br/>&nbsp;3. 連接裝置<br/>&nbsp;4. 用「瀏覽」按鈕載入 .bin 檔案<br/>&nbsp;5. 點選「清除&"
+" 寫入韌體」"
 
 #: mu/interface/dialogs.py:365
 msgid "Device:"
-msgstr ""
+msgstr "裝置："
 
 #: mu/interface/dialogs.py:368
 msgid "Choose device type:"
-msgstr ""
+msgstr "選擇裝置類型："
 
 #: mu/interface/dialogs.py:372
 msgid "Firmware (.bin):"
-msgstr ""
+msgstr "韌體（.bin）："
 
 #: mu/interface/dialogs.py:374 mu/modes/web.py:105
 msgid "Browse"
-msgstr ""
+msgstr "瀏覽"
 
 #: mu/interface/dialogs.py:375
 msgid "Erase && write firmware"
-msgstr ""
+msgstr "清除 & 寫入韌體"
 
 #: mu/interface/dialogs.py:407
 msgid "Select MicroPython firmware (.bin)"
-msgstr ""
+msgstr "選擇 MicroPython 韌體（.bin）"
 
 #: mu/interface/dialogs.py:409
 msgid "Firmware (*.bin)"
-msgstr ""
+msgstr "韌體（*.bin）"
 
 #: mu/interface/dialogs.py:542 mu/interface/main.py:1444
 msgid "Mu Administration"
-msgstr "Mu Administration"
+msgstr "Mu 管理"
 
 #: mu/interface/dialogs.py:556
 msgid "Current Log"
-msgstr "Aktuelles Protokoll"
+msgstr "目前記錄"
 
 #: mu/interface/dialogs.py:560
 msgid "Python3 Environment"
-msgstr "Python3 Umgebung"
+msgstr "Python3 環境"
 
 #: mu/interface/dialogs.py:566
 msgid "BBC micro:bit Settings"
-msgstr "BBC micro:bit Einstellungen"
+msgstr "BBC micro:bit 設定"
 
 #: mu/interface/dialogs.py:570
 msgid "ESP Firmware flasher"
-msgstr ""
+msgstr "ESP 韌體刷入器"
 
 #: mu/interface/dialogs.py:579
 msgid "PythonAnywhere API"
-msgstr ""
+msgstr "PythonAnywhere API"
 
 #: mu/interface/dialogs.py:585
 msgid "Select Language"
-msgstr ""
+msgstr "選擇語言"
 
 #: mu/interface/dialogs.py:630
 msgid "Find / Replace"
-msgstr "Suchen / Ersetzen"
+msgstr "尋找 / 取代"
 
 #: mu/interface/dialogs.py:634
 msgid "Find:"
-msgstr "Suchen:"
+msgstr "尋找："
 
 #: mu/interface/dialogs.py:641
 msgid "Replace (optional):"
-msgstr "Ersetzen mit (optional):"
+msgstr "取代（選用）："
 
 #: mu/interface/dialogs.py:647
 msgid "Replace all?"
-msgstr "Alle ersetzen?"
+msgstr "全部取代？"
 
 #: mu/interface/editor.py:330 mu/logic.py:1343
 msgid "untitled"
-msgstr "Unbenannt"
+msgstr "未命名"
 
 #: mu/interface/main.py:108
 msgid "Mode"
-msgstr "Modus"
+msgstr "模式"
 
 #: mu/interface/main.py:109
 msgid "Change Mu's mode of behaviour."
-msgstr "Ändere den Modus von Mu."
+msgstr "改變 Mu 的執行模式。"
 
 #: mu/interface/main.py:114
 msgid "New"
-msgstr "Neu"
+msgstr "新增"
 
 #: mu/interface/main.py:115
 msgid "Create a new Python script."
-msgstr "Erstelle ein neues Python-Skript."
+msgstr "建立一個新的 Python 腳本。"
 
 #: mu/interface/main.py:119
 msgid "Load"
-msgstr "Laden"
+msgstr "載入"
 
 #: mu/interface/main.py:120
 msgid "Load a Python script."
-msgstr "Lade ein Python-Skript."
+msgstr "載入一個 Python 腳本。"
 
 #: mu/interface/main.py:124
 msgid "Save"
-msgstr "Speichern"
+msgstr "儲存"
 
 #: mu/interface/main.py:125
 msgid "Save the current Python script."
-msgstr "Aktuelles Python-Skript speichern."
+msgstr "儲存目前 Python 腳本。"
 
 #: mu/interface/main.py:139
 msgid "Zoom-in"
-msgstr "Hineinzoomen"
+msgstr "放大"
 
 #: mu/interface/main.py:140
 msgid "Zoom in (to make the text bigger)."
-msgstr "Hineinzoomen (um den Text zu vergrößern)"
+msgstr "放大文字。"
 
 #: mu/interface/main.py:144
 msgid "Zoom-out"
-msgstr "Rauszoomen"
+msgstr "縮小"
 
 #: mu/interface/main.py:145
 msgid "Zoom out (to make the text smaller)."
-msgstr "Rauszoomen (um den Text zu verkleinern)"
+msgstr "縮小文字。"
 
 #: mu/interface/main.py:149
 msgid "Theme"
-msgstr "Thema"
+msgstr "主題"
 
 #: mu/interface/main.py:150
 msgid "Toggle theme between day, night or high contrast."
-msgstr "Thema zwischen Tag, Nacht oder hoher Kontrast umschalten."
+msgstr "切換日間、夜間或高對比的主題。"
 
 #: mu/interface/main.py:155
 msgid "Check"
-msgstr "Prüfen"
+msgstr "檢查"
 
 #: mu/interface/main.py:156
 msgid "Check your code for mistakes."
-msgstr "Code auf Fehler überprüfen."
+msgstr "檢查程式碼中的錯誤。"
 
 #: mu/interface/main.py:160
 msgid "Tidy"
-msgstr ""
+msgstr "格式化"
 
 #: mu/interface/main.py:161
 msgid "Tidy up the layout of your code."
-msgstr ""
+msgstr "整理程式碼格式。"
 
 #: mu/interface/main.py:165
 msgid "Help"
-msgstr "Hilfe"
+msgstr "說明"
 
 #: mu/interface/main.py:166
 msgid "Show help about Mu in a browser."
-msgstr "Hilfe für Mu in einem Browser anzeigen."
+msgstr "在瀏覽器中顯示關於 Mu 的說明內容。"
 
 #: mu/interface/main.py:170
 msgid "Quit"
-msgstr "Beenden"
+msgstr "結束"
 
 #: mu/interface/main.py:170
 msgid "Quit Mu."
-msgstr "Mu beenden."
+msgstr "結束 Mu。"
 
 #: mu/interface/main.py:276
 msgid "Close file"
-msgstr ""
+msgstr "關閉檔案"
 
 #: mu/interface/main.py:317
 #, python-brace-format
@@ -321,16 +317,15 @@ msgstr "Mu {}"
 
 #: mu/interface/main.py:556
 msgid "Copy selected text to REPL"
-msgstr ""
+msgstr "複製選取的文字到 REPL"
 
 #: mu/interface/main.py:619
-#, fuzzy
 msgid "Filesystem on "
-msgstr "Dateisystem auf micro:bit"
+msgstr "檔案系統："
 
 #: mu/interface/main.py:680
 msgid "Python3 data tuple"
-msgstr "Python3 Datentupel"
+msgstr "Python3 資料元組"
 
 #: mu/interface/main.py:691
 msgid "Python3 (Jupyter)"
@@ -344,34 +339,34 @@ msgstr "{} REPL"
 #: mu/interface/main.py:717
 #, python-brace-format
 msgid "{} Plotter"
-msgstr "{} Plotter"
+msgstr "{} 繪圖器"
 
 #: mu/interface/main.py:765
 #, python-brace-format
 msgid "Running: {}"
-msgstr "Führe aus: {}"
+msgstr "執行：{}"
 
 #: mu/interface/main.py:812
 msgid "Debug Inspector"
-msgstr "Debugging Inspector"
+msgstr "偵錯檢查器"
 
 #: mu/interface/main.py:824
 msgid "Name"
-msgstr "Name"
+msgstr "名稱"
 
 #: mu/interface/main.py:824
 msgid "Value"
-msgstr "Wert"
+msgstr "值"
 
 #: mu/interface/main.py:859
 #, python-brace-format
 msgid "(A list of {} items.)"
-msgstr "(Eine list mit {} Einträgen.)"
+msgstr "（含有 {} 項的清單 (list)。）"
 
 #: mu/interface/main.py:874
 #, python-brace-format
 msgid "(A dict of {} items.)"
-msgstr "(Ein dict mit {} Einträgen.)"
+msgstr "（含有 {} 項的字典 (dict)。）"
 
 #: mu/interface/main.py:1045
 msgid "Mu"
@@ -383,6 +378,9 @@ msgid ""
 "\n"
 "This may take some time and pause at the end (as the website is started)."
 msgstr ""
+"正在上傳到 PythonAnywhere。\n"
+"\n"
+"這可能需要一些時間，並在最後暫停（因為網站正在啟動）。"
 
 #: mu/interface/main.py:1385
 #, python-brace-format
@@ -390,11 +388,12 @@ msgid ""
 "<p>Your website was successfully deployed.</p><p>You can see it "
 "here:</p><a href='https://{domain}'>https://{domain}</a>"
 msgstr ""
+"<p>你的網站已成功部署。</p><p>你可以在這裡存取：</p><a "
+"href='https://{domain}'>https://{domain}</a>"
 
 #: mu/interface/main.py:1401
-#, fuzzy
 msgid "There was a problem deploying to PythonAnywhere:<br/><br/>"
-msgstr "Beim Aufspielen auf den micro:bit ist ein Problem aufgetreten."
+msgstr "部署到 PythonAnywhere 時出現了一個問題：<br/><br/>"
 
 #: mu/interface/main.py:1409
 msgid ""
@@ -403,464 +402,420 @@ msgid ""
 "href='https://github.com/blackteahamburger/mu/issues/new/choose'>submit a"
 " bug report</a>."
 msgstr ""
+"請檢查你的 PythonAnywhere 設定或網路連線，並確保你正在使用最新版的 Mu。<br/><br/>或者，<a "
+"href='https://github.com/blackteahamburger/mu/issues/new/choose'>提交一個 bug"
+" 報告</a>。"
 
 #: mu/interface/main.py:1431
 msgid "Mu's current mode of behaviour."
-msgstr "Aktueller Verhaltensmodus von Mu."
+msgstr "Mu 目前的執行模式。"
 
 #: mu/interface/main.py:1486
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Detected new {} device: {}."
-msgstr "Neues {} Gerät erkannt."
+msgstr "偵測到新的 {} 裝置：{}。"
 
 #: mu/interface/main.py:1490 mu/logic.py:1615
 #, python-brace-format
 msgid "Detected new {} device."
-msgstr "Neues {} Gerät erkannt."
+msgstr "偵測到新的 {} 裝置。"
 
 #: mu/interface/panes.py:697
 msgid "File already exists; overwrite it?"
-msgstr "Datei existiert bereits; Überschreiben?"
+msgstr "檔案已存在，是否覆寫？"
 
 #: mu/interface/panes.py:698
 msgid "File already exists"
-msgstr "Datei existiert bereits"
+msgstr "檔案已存在"
 
 #: mu/interface/panes.py:731
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Copying '{}' to device."
-msgstr "Kopiere '{}' nach micro:bit."
+msgstr "正在將「{}」複製到裝置。"
 
 #: mu/interface/panes.py:740
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{}' successfully copied to device."
-msgstr "'{}\" erfolgreich auf den micro:bit kopiert."
+msgstr "已成功將「{}」複製到裝置。"
 
 #: mu/interface/panes.py:749
 msgid "Delete (cannot be undone)"
-msgstr "Löschen (kann nicht rückgängig gemacht werden)"
+msgstr "刪除（無法復原）"
 
 #: mu/interface/panes.py:755
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Deleting '{}' from device."
-msgstr "Lösche '{}' vom micro:bit."
+msgstr "正在從裝置中刪除「{}」。"
 
 #: mu/interface/panes.py:764
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{}' successfully deleted from device."
-msgstr "'{}' erfolgreich vom micro:bit gelöscht."
+msgstr "已成功從裝置中刪除「{}」。"
 
 #: mu/interface/panes.py:797
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Getting '{}' from device. Copying to '{}'."
-msgstr "Lade '{}' vom micro:bit. Kopiere nach '{}'."
+msgstr "正從裝置中取得「{}」並複製到「{}」。"
 
 #: mu/interface/panes.py:809
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Successfully copied '{}' from the device to your computer."
-msgstr "'{}' erfolgreich vom micro:bit auf Ihren Rechner kopiert."
+msgstr "已成功將「{}」從裝置複製到你的電腦上。"
 
 #: mu/interface/panes.py:826
 msgid "Open in Mu"
-msgstr "In Mu öffnen"
+msgstr "在 Mu 中開啟"
 
 #: mu/interface/panes.py:829
 msgid "Write to main.py on device"
-msgstr ""
+msgstr "寫入到裝置上的 main.py"
 
 #: mu/interface/panes.py:832
 msgid "Open"
-msgstr "Öffnen"
+msgstr "開啟"
 
 #: mu/interface/panes.py:840
 #, python-brace-format
 msgid "Opening '{}'"
-msgstr "Öffne '{}'"
+msgstr "正在開啟「{}」"
 
 #: mu/interface/panes.py:883
-#, fuzzy
 msgid "Files on your device:"
-msgstr "Dateien auf Ihrem Rechner:"
+msgstr "裝置上的檔案："
 
 #: mu/interface/panes.py:885
 msgid "Files on your computer:"
-msgstr "Dateien auf Ihrem Rechner:"
+msgstr "電腦上的檔案："
 
 #: mu/interface/panes.py:959
-#, fuzzy
 msgid ""
 "There was a problem getting the list of files on the device. Please check"
 " Mu's logs for technical information. Alternatively, try unplugging"
 "/plugging-in your device and/or restarting Mu."
-msgstr ""
-"Beim Laden der Liste der Dateien auf dem micro:bit ist ein Problem "
-"aufgetreten. Prüfe das Protokoll von Mu für technische Informationen. "
-"Alternativ, versuche Deinen micro:bit aus und wieder einzustecken "
-"und/oder Mu neuzustarten."
+msgstr "取得裝置上的檔案清單時出現問題。請檢視Mu的記錄以取得技術資訊。或者嘗試重新插拔裝置和/或重新啟動 Mu。"
 
 #: mu/interface/panes.py:973
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "There was a problem copying the file '{}' onto the device. Please check "
 "Mu's logs for more information."
-msgstr ""
-"Beim Kopieren von '{}' auf den micro:bit ist ein Problem aufgetreten. "
-"Prüfe das Protokoll von Mu für mehr Informationen."
+msgstr "將檔案「{}」複製到裝置上時出現問題。請檢視 Mu 的記錄以取得更多資訊。"
 
 #: mu/interface/panes.py:985
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "There was a problem deleting '{}' from the device. Please check Mu's logs"
 " for more information."
-msgstr ""
-"Beim Löschen von '{}' vom micro:bit ist ein Problem aufgetreten. Prüfe "
-"das Protokoll von Mu für mehr Informationen."
+msgstr "從裝置刪除「{}」時出現問題。請檢視 Mu 的記錄以取得更多資訊。"
 
 #: mu/interface/panes.py:997
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "There was a problem getting '{}' from the device. Please check Mu's logs "
 "for more information."
-msgstr ""
-"Beim Laden von '{}' vom micro:bit ist ein Problem aufgetreten. Prüfe das "
-"Protokoll von Mu für mehr Informationen."
+msgstr "從裝置取得「{}」時出現問題。請檢視 Mu 的記錄以取得更多資訊。"
 
 #: mu/interface/widgets.py:72 mu/interface/widgets.py:143
 #: mu/interface/widgets.py:156
 msgid "No device connected."
-msgstr ""
+msgstr "無裝置已連線。"
 
 #: mu/logic.py:88
 msgid "Hello, World!"
-msgstr "Hallo Welt!"
+msgstr "你好，世界！"
 
 #: mu/logic.py:90
 msgid ""
 "This editor is free software written in Python. You can modify it, add "
 "features or fix bugs if you like."
-msgstr ""
-"Dieser Editor ist freie Software, geschrieben in Python. Du kannst ihn "
-"modifizieren, Funktionen hinzufügen oder Fehler beheben, wenn Du "
-"möchtest."
+msgstr "這個編輯器是用 Python 編寫的自由軟體。你可以根據需要修改，新增功能或修復錯誤。"
 
 #: mu/logic.py:93
 msgid "This editor is called Mu (you say it 'mew' or 'moo')."
-msgstr "Dieser Editor heißt Mu."
+msgstr "這個編輯器名為 Mu，你可以讀作「謬 (miu)」或「沐 (mu)」。"
 
 #: mu/logic.py:94
 msgid "Google, Facebook, NASA, Pixar, Disney and many more use Python."
-msgstr "Google, Facebook, NASA, Pixar, Disney und viele andere nutzen Python."
+msgstr "Google、Facebook、NASA、皮克斯、迪士尼等等都在使用 Python。"
 
 #: mu/logic.py:96
 msgid ""
 "Programming is a form of magic. Learn to cast the right spells with code "
 "and you'll be a wizard."
-msgstr ""
-"Programmieren ist eine Form von Magie. Du musst nur die richtigen "
-"Zaubersprüche lernen."
+msgstr "程式設計是一種魔法。透過學習使用程式碼施放正確的法術，你將成為一名魔法師。"
 
 #: mu/logic.py:100
 msgid ""
 "REPL stands for read, evaluate, print, loop. It's a fun way to talk to "
 "your computer! :-)"
-msgstr ""
-"REPL steht für read (lesen), evaluate (ausführen), print (ausgeben), loop"
-" (wiederholen). Es macht Spaß, so mit deinem Computer zu reden! :-)"
+msgstr "REPL 代表「讀取 (Read)-求值 (Evaluate)-列印 (Print)」的迴圈 (Loop)。這是與你的電腦交談的一個有趣方式！:-)"
 
 #: mu/logic.py:103
 msgid "Be brave, break things, learn and have fun!"
-msgstr "Sei mutig, zerstöre Dinge, lerne und hab Spaß!"
+msgstr "要勇敢地打破一切，快樂地學習和玩耍！"
 
 #: mu/logic.py:104
 msgid "Make your software both useful AND fun. Empower your users."
-msgstr "Mache Deine Software sowohl nützlich als auch spaßig zu benutzen."
+msgstr "讓你的軟體既實用又有趣。為你的使用者賦能。"
 
 #: mu/logic.py:105
 msgid "For the Zen of Python: import this"
-msgstr "Für den Zen von Python: import this"
+msgstr "了解 Python 之禪：import this"
 
 #: mu/logic.py:106
 msgid "Diversity promotes creativity."
-msgstr "Vielfalt unterstützt Kreativität."
+msgstr "多樣性促進創造力。"
 
 #: mu/logic.py:107
 msgid "An open mind, spirit of adventure and respect for diversity are key."
-msgstr ""
-"Ein offener Geist, Abenteuerlust und Respekt für Vielfalt sind der "
-"Schlüssel"
+msgstr "開闊思路、冒險精神及尊重是多樣性的關鍵。"
 
 #: mu/logic.py:109
 msgid ""
 "Don't worry if it doesn't work. Learn the lesson, fix it and try again! "
 ":-)"
-msgstr ""
-"Ärgere Dich nicht, wenn etwas nicht funktioniert. Lerne daraus, repariere"
-" es und versuche es nochmal! :-)"
+msgstr "如果它不起作用，別擔心。吸取教訓，修復它，然後再試一次！:-)"
 
 #: mu/logic.py:112
 msgid "Coding is collaboration."
-msgstr "Programmieren ist Zusammenarbeiten. "
+msgstr "程式設計需要合作。"
 
 #: mu/logic.py:113
 msgid "Compliment and amplify the good things with code."
-msgstr "Ergänze und verstärke die guten Dinge mit Code."
+msgstr "使用程式碼來讚美和放大美好的東西。"
 
 #: mu/logic.py:115
 msgid "In theory, theory and practice are the same. In practice, they're not. ;-)"
-msgstr ""
-"In der Theorie sind Theorie und Praxis gleich. In der Praxis sind sie es "
-"nicht. ;-)"
+msgstr "理論上來說，理論和實務都是一樣的。在實務中，並不是。;-)"
 
 #: mu/logic.py:118
 msgid "Debugging is twice as hard as writing the code in the first place."
-msgstr "Debuggen ist zwei mal so schwer wie das Programmieren."
+msgstr "在開始的時候，除錯程式碼比寫程式碼要難兩倍。"
 
 #: mu/logic.py:119
 msgid "It's fun to program."
-msgstr "Es macht Spaß zu programmieren."
+msgstr "程式設計是個有趣的事情。"
 
 #: mu/logic.py:120
 msgid "Programming has more to do with problem solving than writing code."
-msgstr ""
-"Programmieren hat mehr mit dem Lösen von Problemen zu tun als nur Code zu"
-" schreiben."
+msgstr "程式設計更多的是為了解決問題，而不是單純的寫程式碼。"
 
 #: mu/logic.py:121
 msgid "Start with your users' needs."
-msgstr "Starte mit den Bedürfnissen der Benutzer."
+msgstr "從你的使用者需求出發。"
 
 #: mu/logic.py:122
 msgid "Try to see things from your users' point of view."
-msgstr "Versuche Dinge aus der Perspektive der Nutzer zu sehen."
+msgstr "嘗試從使用者的角度看問題。"
 
 #: mu/logic.py:123
 msgid "Put yourself in your users' shoes."
-msgstr "Versetze Dich in die Lage der Benutzer."
+msgstr "讓自己站在使用者的位置上。"
 
 #: mu/logic.py:125
 msgid ""
 "Explaining a programming problem to a friend often reveals the solution. "
 ":-)"
-msgstr ""
-"Die Lösung zeigt sich oft, wenn man ein Programmierproblem Freunden oder "
-"Freundinnen erklärt."
+msgstr "與朋友討論程式設計中遇到的問題，通常會獲得新的解決方案。:-)"
 
 #: mu/logic.py:128
 msgid "If you don't know, ask. Nobody to ask? Just look it up."
-msgstr "Wenn Du etwas nicht weißt, frag. Niemand zum Fragen? Schlag' es nach."
+msgstr "如果你不知道，就提問吧。找不到人問的話，就自己查查看吧。"
 
 #: mu/logic.py:129
 msgid "Complexity is the enemy. KISS - keep it simple, stupid!"
-msgstr ""
-"Komplexität ist der Gegner. KISS - keep it simple, stupid! (Halte es "
-"einfach, supereinfach!)"
+msgstr "複雜是敵人。KISS - keep it simple, stupid!（保持簡單和純粹！）"
 
 #: mu/logic.py:130
 msgid "Beautiful is better than ugly."
-msgstr "Schön ist besser als hässlich."
+msgstr "美觀勝於醜陋。"
 
 #: mu/logic.py:131
 msgid "Explicit is better than implicit."
-msgstr "Explizit ist besser als implizit."
+msgstr "顯式勝於隱式。"
 
 #: mu/logic.py:132
 msgid "Simple is better than complex. Complex is better than complicated."
-msgstr "Einfach ist besser als komplex. Komplex ist besser als kompliziert."
+msgstr "簡單勝於複雜。複雜勝於難懂。"
 
 #: mu/logic.py:133
 msgid "Flat is better than nested."
-msgstr "Kurz ist besser als verschachtelt."
+msgstr "扁平勝於巢狀。"
 
 #: mu/logic.py:134
 msgid "Sparse is better than dense."
-msgstr "Dünn/spärlich ist besser als dicht."
+msgstr "分散勝於密集。"
 
 #: mu/logic.py:135
 msgid "Readability counts."
-msgstr "Lesbarkeit zählt."
+msgstr "可讀性應當被重視。"
 
 #: mu/logic.py:137
 msgid ""
 "Special cases aren't special enough to break the rules. Although "
 "practicality beats purity."
-msgstr ""
-"Spezialfälle sind nicht speziell genug um die Regeln zu brechen. "
-"Allerdings schlägt Praktikabilität die Einfachheit."
+msgstr "儘管實用性會打敗純粹性，特例也不能凌駕於規則之上。"
 
 #: mu/logic.py:140
 msgid "Errors should never pass silently. Unless explicitly silenced."
-msgstr ""
-"Fehler sollten niemals still vorbeiziehen. Außer sie wurden explizit zum "
-"Schweigen gebracht."
+msgstr "除非明確地使其沉默，錯誤永遠不應該默默地溜走。"
 
 #: mu/logic.py:141
 msgid "In the face of ambiguity, refuse the temptation to guess."
-msgstr "Falls etwas unklar ist, versuche der Versuchung zu raten zu widerstehen."
+msgstr "面對不明確的定義，拒絕猜測的誘惑。"
 
 #: mu/logic.py:142
 msgid "There should be one-- and preferably only one --obvious way to do it."
-msgstr ""
-"Es sollte einen -- vorzugsweise genau einen -- offensichtlichen Weg "
-"geben, etwas zu tun."
+msgstr "只用一種方法，最好只有一種方法來做一件事。"
 
 #: mu/logic.py:144
 msgid "Now is better than never. Although never is often better than *right* now."
-msgstr "Jetzt ist besser als nie. Allerdings ist nie oft besser als *genau* jetzt."
+msgstr "現在做總比不做好，雖然有時候不做比立刻做更好。"
 
 #: mu/logic.py:147
 msgid "If the implementation is hard to explain, it's a bad idea."
-msgstr ""
-"Wenn die Implementierung schwer zu erklären ist, ist sie eine schlechte "
-"Idee."
+msgstr "如果寫的程式碼很難清楚表述的話，那就是個糟糕想法。"
 
 #: mu/logic.py:148
 msgid "If the implementation is easy to explain, it may be a good idea."
-msgstr ""
-"Wenn die Implementierung einfach zu erklären ist, ist sie vermutlich eine"
-" gute Idee."
+msgstr "如果寫的程式碼很容易清楚表述的話，那很有可能是個好想法。"
 
 #: mu/logic.py:149
 msgid "Namespaces are one honking great idea -- let's do more of those!"
-msgstr "Namespaces sind eine gute Idee -- Lasst uns mehr davon machen!"
+msgstr "命名空間是個絕妙的想法，讓我們多多地使用它們吧！"
 
 #: mu/logic.py:150
 msgid "Mu was created by Nicholas H.Tollervey."
-msgstr "Mu wurde von Nicholas H.Tollervey erstellt."
+msgstr "Mu 由 Nicholas H.Tollervey 創造。"
 
 #: mu/logic.py:151
 msgid "To understand what recursion is, you must first understand recursion."
-msgstr "Um Rekursion zu verstehen, musst du zuerst Rekursion verstehen."
+msgstr "要理解遞迴是什麼，你必須先了解遞迴。"
 
 #: mu/logic.py:153
 msgid ""
 "Algorithm: a word used by programmers when they don't want to explain "
 "what they did."
-msgstr ""
-"Algorithmus: Ein Wort das von Programmierer(innen) benutzt wird, wenn sie"
-" nicht erklären möchten, was sie getan haben."
+msgstr "演算法：程式設計師在不想解釋他們所做的事情時使用的一個詞。"
 
 #: mu/logic.py:156
 msgid "Programmers count from zero."
-msgstr "Programmierer(innen) beginnen bei 0 zu zählen."
+msgstr "程式設計師們都從0開始計數。"
 
 #: mu/logic.py:157
 msgid "Simplicity is the ultimate sophistication."
-msgstr "Einfachheit ist die ultimative Perfektion."
+msgstr "簡單是終極的複雜。"
 
 #: mu/logic.py:158
 msgid "A good programmer is humble."
-msgstr "Ein(e) gute(r) Programmierer(in) ist bescheiden."
+msgstr "一個優秀的程式設計師很謙虛。"
 
 #: mu/logic.py:159
 msgid "A good programmer is playful."
-msgstr "Ein(e) gute(r) Programmierer(in) ist verspielt."
+msgstr "一個優秀的程式設計師富有玩心。"
 
 #: mu/logic.py:160
 msgid "A good programmer learns to learn."
-msgstr "Ein(e) gute(r) Programmierer(in) lernt zu lernen."
+msgstr "一個優秀的程式設計師會學習如何學習。"
 
 #: mu/logic.py:161
 msgid "A good programmer thinks beyond the obvious."
-msgstr "Ein(e) gute(r) Programmierer(in) denkt über das Offensichtliche hinaus."
+msgstr "一個優秀的程式設計師思考不止於表面的問題。"
 
 #: mu/logic.py:162
 msgid "A good programmer promotes simplicity."
-msgstr "Ein(e) gute(r) Programmierer(in) fördert Schlichtheit."
+msgstr "一個優秀的程式設計師崇尚簡單。"
 
 #: mu/logic.py:163
 msgid "A good programmer avoids complexity."
-msgstr "Ein(e) gute(r) Programmierer(in) vermeidet Komplexität."
+msgstr "一個優秀的程式設計師會避免複雜。"
 
 #: mu/logic.py:164
 msgid "A good programmer is patient."
-msgstr "Ein(e) gute(r) Programmierer(in) ist geduldig."
+msgstr "一個優秀的程式設計師很有耐心。"
 
 #: mu/logic.py:165
 msgid "A good programmer asks questions."
-msgstr "Ein(e) gute(r) Programmierer(in) stellt Fragen."
+msgstr "一個優秀的程式設計師善於提問。"
 
 #: mu/logic.py:166
 msgid "A good programmer is willing to say, 'I don't know'."
-msgstr ""
-"Ein(e) gute(r) Programmierer(in) ist bereit zu sagen: \"Ich weiß es "
-"nicht\"."
+msgstr "一個優秀的程式設計師願意說：「我不懂」。"
 
 #: mu/logic.py:167
 msgid "Wisest are they that know they know nothing."
-msgstr "Weise sind die, die wissen, dass sie nichts wissen."
+msgstr "最聰明的人是那些知道自己一無所知的人。"
 
 #: mu/logic.py:169
 msgid "Computers aren’t the thing. They’re the thing that gets us to the thing."
-msgstr ""
+msgstr "電腦本身並不是關鍵。它們是幫助我們到達目標的工具。"
 
 #: mu/logic.py:171
 msgid "Don't stare at a blank screen - try something out."
-msgstr ""
+msgstr "不要盯著空白螢幕 - 嘗試一些操作。"
 
 #: mu/logic.py:172
 msgid "If you're stuck - try explaining it to a rubber duck."
-msgstr ""
+msgstr "如果你卡住了 - 嘗試向橡皮鴨解釋一下。"
 
 #: mu/logic.py:173
 msgid "It's ok to be stuck, go for a walk and then try again (:"
-msgstr ""
+msgstr "卡住了沒關係，去散步，然後再試一次 (:"
 
 #: mu/logic.py:174 mu/logic.py:178
 msgid "It's not a mistake to make an error."
-msgstr ""
+msgstr "犯錯並不可恥。"
 
 #: mu/logic.py:175
 msgid "Errors are there to learn from them. Then avoid them."
-msgstr ""
+msgstr "錯誤是用來學習的。然後避免它們。"
 
 #: mu/logic.py:176
 msgid "Don't look backwards for very long. We keep moving forward."
-msgstr ""
+msgstr "不要長時間向後看。我們要繼續向前走。"
 
 #: mu/logic.py:177
 msgid "Keep moving forward."
-msgstr ""
+msgstr "繼續向前走。"
 
 #: mu/logic.py:179
 msgid "Do not pass silently."
-msgstr ""
+msgstr "不要默默地溜走。"
 
 #: mu/logic.py:180
 msgid "Computers are not humans. There is no need arguing with them."
-msgstr ""
+msgstr "電腦不是人類。與它們爭論沒有必要。"
 
 #: mu/logic.py:181
 msgid "Embrace change and seek growth."
-msgstr ""
+msgstr "擁抱變化，追求成長。"
 
 #: mu/logic.py:182
 msgid "Live, laugh, learn!"
-msgstr ""
+msgstr "生活、歡笑、學習！"
 
 #: mu/logic.py:183
 msgid "Let's get coding!"
-msgstr ""
+msgstr "讓我們開始程式設計吧！"
 
 #: mu/logic.py:184
 msgid "Don't be afraid of coding, we all learn by making mistakes!"
-msgstr ""
+msgstr "不要害怕程式設計，我們都是透過犯錯來學習的！"
 
 #: mu/logic.py:479
 msgid " above this line"
-msgstr " oberhalb dieser Zeile"
+msgstr " 在這行之上"
 
 #: mu/logic.py:528
 msgid ""
 "Syntax error. Python cannot understand this line. Check for missing "
 "characters!"
-msgstr ""
-"Syntaxfehler. Python kann diese Zeile nicht verstehen. Überprüfe ob "
-"Zeichen fehlen!"
+msgstr "語法錯誤。Python 無法理解這一行。檢查缺少的字元！"
 
 #: mu/logic.py:592
 #, python-brace-format
 msgid "{} compatible"
-msgstr ""
+msgstr "{} 相容"
 
 #: mu/logic.py:1015
 #, python-brace-format
@@ -872,40 +827,34 @@ msgid ""
 "If this file was saved in another application, re-save the file via the "
 "'Save as' option and set the encoding to {0}"
 msgstr ""
-"Die Datei enthält Zeichen von denen Mu glaubt, dass sie als {0} oder als "
-"{1} (Standard auf diesem Computer) kodiert sind. Allerdings sind sie "
-"irgendwie anders kodiert.\n"
+"檔案的編碼有問題，該檔案所包含字元應為 Mu 的預設編碼 {0} 或電腦的預設編碼 {1}。\n"
 "\n"
-"Falls diese Datei in einer anderen Anwendung gespeichert wurde, speichere"
-" die Datei nochmal mit der \"Speichern als\" Option und setze die "
-"Kodierung auf {0}."
+"如果此檔案是透過另外一個應用程式儲存，請透過「另存新檔」選項重新儲存檔案，並將編碼設定為 {0}"
 
 #: mu/logic.py:1042
 #, python-brace-format
 msgid "The file \"{}\" is already open."
-msgstr "Die Datei \"{}\" ist bereits geöffnet."
+msgstr "檔案「{}」已經開啟。"
 
 #: mu/logic.py:1054
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
-msgstr "Mu kann die Zeichen in {} nicht lesen"
+msgstr "Mu 無法讀取 {} 中的字元"
 
 #: mu/logic.py:1080
 msgid "Mu was not able to open this file"
-msgstr "Mu konnte die Datei nicht öffnen"
+msgstr "Mu 無法開啟此檔案"
 
 #: mu/logic.py:1082
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
-msgstr ""
-"Im Moment funktioniert Mu nur mit Python Quelldateien oder hex-Dateien "
-"die mit MicroPython Code erstellt wurden."
+msgstr "目前，Mu 僅適用於使用嵌入式 MicroPython 程式碼建立的 Python 原始檔或 hex 檔案。"
 
 #: mu/logic.py:1089
 #, python-brace-format
 msgid "Could not load {}"
-msgstr "Konnte {} nicht laden"
+msgstr "無法載入 {}"
 
 #: mu/logic.py:1092
 msgid ""
@@ -914,15 +863,15 @@ msgid ""
 "\n"
 "Please check and try again."
 msgstr ""
-"Existiert diese Datei?\n"
-"Falls ja, hast Du die Berechtigung, sie zu lesen?\n"
+"這個檔案存在嗎？\n"
+"如果存在，你有讀取權限嗎？\n"
 "\n"
-"Bitte überprüfe das und versuche es erneut."
+"請檢查並重試。"
 
 #: mu/logic.py:1099
 #, python-brace-format
 msgid "Is this a {} file?"
-msgstr "Ist dies eine {}-Datei?"
+msgstr "這是一個 {} 檔案嗎？"
 
 #: mu/logic.py:1101
 #, python-brace-format
@@ -931,195 +880,176 @@ msgid ""
 "\n"
 "Would you like to change Mu to the {}mode?"
 msgstr ""
-"Es sieht so aus als könnte dies eine {} Datei sein.\n"
+"看起來這可能是一個 {} 檔案。\n"
 "\n"
-"Möchtest du Mu in den {}-Modus wechseln?"
+"你想將 Mu 改為 {} 模式嗎？"
 
 #: mu/logic.py:1227
 msgid "Could not save file (disk problem)"
-msgstr "Konnte Datei nicht speichern (Problem mit der Festplatte)"
+msgstr "無法儲存檔案（磁碟問題）"
 
 #: mu/logic.py:1229
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
-msgstr ""
-"Fehler beim Speichern der Datei. Stelle sicher, dass du die "
-"Berechtigungen hast, um die Datei zu speichern und dass genügend freier "
-"Speicher vorhanden ist."
+msgstr "將檔案儲存到磁碟時出錯。確保你有寫入檔案的權限和足夠的磁碟空間。"
 
 #: mu/logic.py:1234
 msgid "Could not save file (encoding problem)"
-msgstr "Konnte Datei nicht speichern (Encoding Problem)"
+msgstr "無法儲存檔案（編碼問題）"
 
 #: mu/logic.py:1237
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
-msgstr ""
-"Konnte nicht alle Zeichen konvertieren. Wenn Du am Anfang der Datei eine "
-"Encoding-Zeile hast, entferne sie und versuche es erneut."
+msgstr "無法轉換所有字元。如果檔案頂部有編碼行，請將其刪除並重試。"
 
 #: mu/logic.py:1247
 #, python-brace-format
 msgid "Saved file: {}"
-msgstr "Datei gespeichert: {}"
+msgstr "已儲存檔案：{}"
 
 #: mu/logic.py:1279 mu/logic.py:1674
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
-msgstr "Du kannst den Dateinamen \"{}\" nicht benutzen"
+msgstr "你不能使用檔名「{}」"
 
 #: mu/logic.py:1283
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
 "filename."
-msgstr ""
-"Dieser Name wird bereits von einem anderen Teil von Python genutzt. Wenn "
-"Du diesen Namen nutzt, geht wahrscheinlich etwas kaputt. Bitte versuche "
-"es mit einem anderen Dateinamen."
+msgstr "這個名稱已被 Python 的另一部分使用。如果你使用這個名稱，可能會出問題。請使用其他檔名重試。"
 
 #: mu/logic.py:1359
 msgid "Good job! No problems found."
-msgstr "Gut gemacht! Keine Probleme gefunden."
+msgstr "幹得漂亮！沒有發現問題。"
 
 #: mu/logic.py:1360
 msgid "Hurrah! Checker turned up no problems."
-msgstr "Hurra! Keine Probleme gefunden."
+msgstr "誒嘿！檢查結果顯示，沒有問題。"
 
 #: mu/logic.py:1361
 msgid "Nice one! Zero problems detected."
-msgstr "Cool! Keine Probleme gefunden."
+msgstr "棒！偵測到 0 個問題。"
 
 #: mu/logic.py:1362
 msgid "Well done! No problems here."
-msgstr "Sehr gut! Keine Probleme."
+msgstr "做得好！這裡沒問題。"
 
 #: mu/logic.py:1363
 msgid "Awesome! Zero problems found."
-msgstr "Ausgezeichnet! Keine Probleme gefunden."
+msgstr "真棒！偵測到 0 個問題。"
 
 #: mu/logic.py:1388
 msgid "There is un-saved work, exiting the application will cause you to lose it."
-msgstr ""
-"Es existieren nicht gespeicherte Änderungen. Das Beenden der Anwendung "
-"verwirft diese Änderungen."
+msgstr "你有未儲存的程式碼，結束程式將導致其遺失。"
 
 #: mu/logic.py:1460
 msgid "Could not find MicroPython runtime."
-msgstr "Konnte die MicroPython runtime nicht finden."
+msgstr "找不到 MicroPython 執行環境。"
 
 #: mu/logic.py:1462
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
 "again."
-msgstr ""
-"Die angegebene micro:bit runtime ('{}') existiert nicht. Bitte versuche "
-"es erneut."
+msgstr "你指定的 micro:bit 執行環境（「{}」）不存在。請再試一次。"
 
 #: mu/logic.py:1567
 #, python-brace-format
 msgid "Changed to {} mode."
-msgstr "Zu {}-Modus gewechselt."
+msgstr "已變更為 {} 模式。"
 
 #: mu/logic.py:1598
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
-msgstr "Möchtest Du Mu in den {}-Modus wechseln?"
+msgstr "你想將 Mu 改為 {} 模式嗎？"
 
 #: mu/logic.py:1617
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Device changed to {}."
-msgstr "Zu {}-Modus gewechselt."
+msgstr "裝置變更為 {}。"
 
 #: mu/logic.py:1653
 msgid "Cannot Set Breakpoint."
-msgstr "Kann Haltepunkt nicht setzen."
+msgstr "無法設定中斷點。"
 
 #: mu/logic.py:1655
 msgid ""
 "Lines that are comments or some multi-line statements cannot have "
 "breakpoints."
-msgstr ""
-"Zeilen mit Kommentaren oder mehrzeilige Anweisungen können keine "
-"Haltepunkte haben."
+msgstr "註解行或某些多行陳述式無法設定中斷點。"
 
 #: mu/logic.py:1678
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
 "filename."
-msgstr ""
-"Dieser Name wird bereits von einem anderen Teil von Python genutzt. Wenn "
-"Du diesen Namen nutzt, geht wahrscheinlich etwas kaputt. Bitte versuche "
-"es mit einem anderen Dateinamen."
+msgstr "這個名稱已被 Python 的另一部分使用。如果你使用這個名稱，可能會出問題。請使用其他檔名重試。"
 
 #: mu/logic.py:1699
 msgid "Could not rename file."
-msgstr "Konnte Datei nicht umbenennen."
+msgstr "無法重新命名檔案。"
 
 #: mu/logic.py:1701
 msgid "A file of that name is already open in Mu."
-msgstr "Eine Datei mit diesem Namen ist bereits in Mu geöffnet."
+msgstr "該名稱的檔案已在 Mu 中開啟。"
 
 #: mu/logic.py:1732
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
-msgstr "\"{}\" mit \"{}\" ersetzt."
+msgstr "已將「{}」取代為「{}」。"
 
 #: mu/logic.py:1737
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
-msgstr "{} Treffer von \"{}\" mit \"{}\" ersetzt."
+msgstr "已將 {} 個「{}」的符合項取代為「{}」。"
 
 #: mu/logic.py:1742 mu/logic.py:1749 mu/logic.py:1768
 #, python-brace-format
 msgid "Could not find \"{}\"."
-msgstr "Konnte \"{}\" nicht finden."
+msgstr "找不到「{}」。"
 
 #: mu/logic.py:1747 mu/logic.py:1766
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
-msgstr "Hebe Treffer für \"{}\" hervor."
+msgstr "反白顯示「{}」的符合項。"
 
 #: mu/logic.py:1752 mu/logic.py:1771
 msgid "You must provide something to find."
-msgstr "Du musst etwas eingeben, das gesucht werden soll."
+msgstr "你需要輸入要尋找的內容。"
 
 #: mu/logic.py:1754 mu/logic.py:1773
 msgid "Please try again, this time with something in the find box."
-msgstr ""
-"Bitte versuche es erneut nachdem Du etwas in das Suchfeld geschrieben "
-"hast."
+msgstr "請在尋找方塊中輸入內容，然後重試。"
 
 #: mu/logic.py:1816
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
-msgstr ""
+msgstr "成功清理程式碼。按 CTRL-Z 以復原。"
 
 #: mu/logic.py:1822
 msgid "Your code contains problems."
-msgstr ""
+msgstr "你的程式碼包含錯誤。"
 
 #: mu/logic.py:1824
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
-msgstr ""
+msgstr "這些錯誤必須在格式化之前修正。請使用「檢查」按鈕以反白顯示這些錯誤。"
 
 #: mu/modes/base.py:95
 #, python-brace-format
 msgid "Cannot connect to device on port {}"
-msgstr "Kann nicht zu Gerät verbinden auf Port {}"
+msgstr "無法在 {} 連接埠上連線裝置"
 
 #: mu/modes/base.py:182
 msgid "# Write your code here :-)"
-msgstr "# Schreibe hier Deinen Code :-)"
+msgstr "# 在這裡寫上你的程式碼 :-)"
 
 #: mu/modes/base.py:327
 msgid "Data Flood Detected!"
-msgstr "Data Flood erkannt!"
+msgstr "偵測到資料氾濫！"
 
 #: mu/modes/base.py:329
 msgid ""
@@ -1132,25 +1062,19 @@ msgid ""
 "To fix this, make sure your code prints small tuples of data between "
 "calls to 'sleep' for a very short period of time."
 msgstr ""
-"Der Plotter ist mit Daten überflutet. Das führt dazu das Mu nicht "
-"reagiert und einfriert. Aus Sicherheitsgründen wurde der Plotter beendet."
+"繪圖器已經資料氾濫，這將使 Mu 無回應並卡死。作為一種保護措施，繪圖器已經停止。\n"
 "\n"
+"氾濫是指不停的傳送超過 1024 位元組的大量資料到繪圖器。\n"
 "\n"
-"Überflutung passiert wenn Datenblöcke mit mehr als 1024 Bytes wiederholt "
-"an den Plotter gesendet werden.\n"
-"\n"
-"Um dies zu beheben, stelle Sicher, dass Dein Code kleine Datentupel "
-"zwischen \"sleep\"-Aufrufen sendet."
+"要解決此問題，請確保你的程式碼在列印小的元組 (tuple) 資料的間隔中，呼叫非常短時間的「sleep」函式。"
 
 #: mu/modes/base.py:509 mu/modes/base.py:559 mu/modes/snek.py:522
 msgid "Click on the device's reset button, wait a few seconds and then try again."
-msgstr ""
-"Drücke den Reset Knopf des Gerätes, warte einige Sekunden und versuche es"
-" erneut."
+msgstr "按一下裝置的重置 (reset) 按鈕，等待幾秒鐘，然後重試。"
 
 #: mu/modes/base.py:516 mu/modes/base.py:566 mu/modes/snek.py:529
 msgid "Could not find an attached device."
-msgstr "Konnte kein angeschlossenes Gerät finden."
+msgstr "找不到已連線的裝置。"
 
 #: mu/modes/base.py:518
 msgid ""
@@ -1162,13 +1086,11 @@ msgid ""
 "Finally, press the device's reset button and wait a few seconds before "
 "trying again."
 msgstr ""
-"Bitte stelle sicher, dass das Gerät an den Computer angeschlossen ist.\n"
+"請確保已將裝置插入這台電腦。\n"
 "\n"
-"Das Gerät muss eine Version von MicroPython (oder CircuitPython) "
-"aufgespielt haben, damit der REPL funktioniert.\n"
+"在 REPL 工作之前，裝置必須有一個 MicroPython 或 CircuitPython 版本的韌體已經刷入。\n"
 "\n"
-"Abschließend, drücke den Reset Knopf des Gerätes und warte einige "
-"Sekunden bevor Du es erneut versuchst."
+"最後，按一下裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
 #: mu/modes/base.py:568
 msgid ""
@@ -1180,65 +1102,63 @@ msgid ""
 "Finally, press the device's reset button and wait a few seconds before "
 "trying again."
 msgstr ""
-"Bitte stelle sicher, dass das Gerät an den Computer angeschlossen ist.\n"
+"請確保已將裝置插入這台電腦。\n"
 "\n"
-"Das Gerät muss eine Version von MicroPython (oder CircuitPython) "
-"aufgespielt haben, damit der Plotter funktioniert.\n"
+"在繪圖器工作之前，裝置必須有一個 MicroPython 或 CircuitPython 版本的韌體已經刷入。\n"
 "\n"
-"Abschließend, drücke den Reset Knopf des Gerätes und warte einige "
-"Sekunden bevor Du es erneut versuchst."
+"最後，按一下裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
 #: mu/modes/circuitpython.py:39
-#, fuzzy
 msgid "CircuitPython"
-msgstr "Adafruit CircuitPython"
+msgstr "CircuitPython"
 
 #: mu/modes/circuitpython.py:41
 msgid "Write code for boards running CircuitPython."
-msgstr ""
+msgstr "為執行 CircuitPython 的開發板編寫程式碼。"
 
 #: mu/modes/circuitpython.py:144 mu/modes/pyboard.py:87 mu/modes/snek.py:384
 msgid "Serial"
-msgstr "Seriell"
+msgstr "序列埠"
 
 #: mu/modes/circuitpython.py:145 mu/modes/pyboard.py:88 mu/modes/snek.py:385
 msgid "Open a serial connection to your device."
-msgstr "Serielle Verbindung zum Gerät öffnen."
+msgstr "開啟與裝置的序列埠連線。"
 
 #: mu/modes/circuitpython.py:152 mu/modes/esp.py:107 mu/modes/microbit.py:140
 #: mu/modes/pyboard.py:95 mu/modes/python3.py:158 mu/modes/snek.py:406
 msgid "Plotter"
-msgstr "Plotter"
+msgstr "繪圖器"
 
 #: mu/modes/circuitpython.py:153 mu/modes/esp.py:108 mu/modes/microbit.py:141
 #: mu/modes/pyboard.py:96 mu/modes/snek.py:407
 msgid "Plot incoming REPL data."
-msgstr "Plotte eingehende REPL Daten."
+msgstr "繪製由 REPL 傳入的資料。"
 
 #: mu/modes/circuitpython.py:188
 msgid "Permission error running mount command"
-msgstr ""
+msgstr "執行掛載命令時遇到權限錯誤。"
 
 #: mu/modes/circuitpython.py:190
 #, python-brace-format
 msgid ""
 "The mount command (\"{}\") returned an error: {}. Mu will continue as if "
 "a device isn't plugged in."
-msgstr ""
+msgstr "掛載命令（「{}」）傳回了一個錯誤：{}。Mu 將假設裝置未連線。"
 
 #: mu/modes/circuitpython.py:208
 msgid ""
 "If your Circuit Python device is plugged in, you need to \"Share with "
 "Linux\" on the CIRCUITPY drive in the \"Files\" app then restart Mu."
 msgstr ""
+"如果你的 CircuitPython 裝置已插入，你需要在「檔案 (Files)」應用中把 CIRCUITPY 磁碟機「與 Linux 共享 "
+"(Share with Linux)」，然後重新啟動 Mu。"
 
 #: mu/modes/circuitpython.py:268
-#, fuzzy
 msgid "Could not find an attached CircuitPython device."
-msgstr "Konnte kein angeschlossenes Adafruit CircuitPython Gerät finden."
+msgstr "找不到已連線的 CircuitPython 裝置。"
 
 #: mu/modes/circuitpython.py:270
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "Python files for CircuitPython devices are stored on the device. "
 "Therefore, to edit these files you need to have the device plugged in. "
@@ -1248,178 +1168,168 @@ msgid ""
 "\n"
 "...to store your code."
 msgstr ""
-"Python-Dateien für Adafruit CircuitPython Geräte werden auf dem Gerät "
-"gespeichert. Um diese Dateien zu bearbeiten muss das Gerät angeschlossen "
-"sein. Bis ein Gerät angeschlossen ist, wird Mu diesen Ordner benuzten:\n"
+"CircuitPython 裝置的 Python 檔案儲存在裝置上。因此，要編輯這些檔案，需要你插入裝置。在插入裝置之前，Mu 將使用這個目錄：\n"
 "\n"
-"{}\n"
+" {}\n"
 "\n"
-"um Deinen Code zu speichern."
+"…來儲存你的程式碼。"
 
 #: mu/modes/debugger.py:38
 msgid "Graphical Debugger"
-msgstr "Grafischer Debugger"
+msgstr "圖形化偵錯器"
 
 #: mu/modes/debugger.py:40
 msgid "Debug your Python 3 code."
-msgstr "Debugge Deinen Python 3 Code."
+msgstr "偵錯你的 Python 3 程式碼。"
 
 #: mu/modes/debugger.py:60 mu/modes/pygamezero.py:123 mu/modes/python3.py:188
 #: mu/modes/web.py:187
 msgid "Stop"
-msgstr "Stopp"
+msgstr "停止"
 
 #: mu/modes/debugger.py:61
 msgid "Stop the running code."
-msgstr "Stoppe den Code."
+msgstr "停止執行程式碼。"
 
 #: mu/modes/debugger.py:67
 msgid "Continue"
-msgstr "Fortfahren"
+msgstr "繼續"
 
 #: mu/modes/debugger.py:68
 msgid "Continue to run your Python script."
-msgstr "Ausführung des Python-Skripts fortsetzen."
+msgstr "繼續執行你的 Python 腳本。"
 
 #: mu/modes/debugger.py:74
 msgid "Step Over"
-msgstr "Überspringen"
+msgstr "單步"
 
 #: mu/modes/debugger.py:75
 msgid "Step over a line of code."
-msgstr "Überspringe eine Code-Zeile."
+msgstr "單步一行程式碼。"
 
 #: mu/modes/debugger.py:81
 msgid "Step In"
-msgstr "Schritt hinein"
+msgstr "步入"
 
 #: mu/modes/debugger.py:82
 msgid "Step into a function."
-msgstr "Schritt in eine Funktion hinein."
+msgstr "步入一個函式。"
 
 #: mu/modes/debugger.py:88
 msgid "Step Out"
-msgstr "Schritt heraus"
+msgstr "步出"
 
 #: mu/modes/debugger.py:89
 msgid "Step out of a function."
-msgstr "Schritt heraus aus einer Funktion."
+msgstr "步出一個函式。"
 
 #: mu/modes/debugger.py:160
 msgid "Your script has finished running."
-msgstr "Ausführung des Skriptes beendet."
+msgstr "你的腳本已完成執行。"
 
 #: mu/modes/debugger.py:265
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
 msgstr ""
-"Konnte keine Verbindung zum Python Debugger herstellen.\n"
+"無法連線到 Python 偵錯器。\n"
 "\n"
 
 #: mu/modes/debugger.py:354
 #, python-brace-format
 msgid "Debugger info: {}"
-msgstr "Debugger Info: {}"
+msgstr "偵錯器資訊：{}"
 
 #: mu/modes/debugger.py:361
 #, python-brace-format
 msgid "Debugger warning: {}"
-msgstr "Debugger Warnung: {}"
+msgstr "偵錯器警告：{}"
 
 #: mu/modes/debugger.py:369
 #, python-brace-format
 msgid "Debugger error: {}"
-msgstr "Debugger Fehler: {}"
+msgstr "偵錯器錯誤：{}"
 
 #: mu/modes/esp.py:36
 msgid "ESP MicroPython"
-msgstr ""
+msgstr "ESP MicroPython"
 
 #: mu/modes/esp.py:39
 msgid "Write MicroPython on ESP8266/ESP32 boards."
-msgstr ""
+msgstr "向 ESP8266/ESP32 開發板刷入 MicroPython。"
 
 #: mu/modes/esp.py:79 mu/modes/python3.py:136 mu/modes/python3.py:180
 #: mu/modes/web.py:91 mu/modes/web.py:179
 msgid "Run"
-msgstr "Ausführen"
+msgstr "執行"
 
 #: mu/modes/esp.py:81
 #, python-brace-format
 msgid "Run your code directly on the {board_name} via the REPL."
-msgstr ""
+msgstr "透過 REPL 直接在 {board_name} 上執行你的程式碼。"
 
 #: mu/modes/esp.py:88 mu/modes/microbit.py:123
 msgid "Files"
-msgstr "Dateien"
+msgstr "檔案"
 
 #: mu/modes/esp.py:90
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Access the file system on {board_name}."
-msgstr "Zugriff auf das Dateisystem des micro:bit."
+msgstr "存取 {board_name} 上的檔案系統。"
 
 #: mu/modes/esp.py:97 mu/modes/microbit.py:130 mu/modes/python3.py:150
 msgid "REPL"
 msgstr "REPL"
 
 #: mu/modes/esp.py:99
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Use the REPL to live-code on the {board_name}."
-msgstr "REPL benutzen, um live auf dem micro:bit zu programmieren."
+msgstr "使用 REPL 在 {board_name} 上即時編寫程式碼。"
 
 #: mu/modes/esp.py:133 mu/modes/microbit.py:445
 msgid "REPL and file system cannot work at the same time."
-msgstr "REPL und Dateisystem funktionieren nicht gleichzeitig."
+msgstr "REPL 和檔案系統不能同時工作。"
 
 #: mu/modes/esp.py:135 mu/modes/microbit.py:447
 msgid ""
 "The REPL and file system both use the same USB serial connection. Only "
 "one can be active at any time. Toggle the file system off and try again."
-msgstr ""
-"Der REPL und das Dateisystem nutzen die gleiche USB-Seriell-Verbindung. "
-"Zu jedem Zeitpunkt kann nur eins davon aktiv sein. Schalte das "
-"Dateisystem aus und probiere es erneut."
+msgstr "REPL 和檔案系統都使用相同的 USB 序列埠通訊。任何時候只能使用其中一個功能。請關閉檔案系統，然後重試。"
 
 #: mu/modes/esp.py:154 mu/modes/microbit.py:466
 msgid "The plotter and file system cannot work at the same time."
-msgstr "Der Plotter und das Dateisystem funktionieren nicht zur gleichen Zeit."
+msgstr "繪圖器和檔案系統無法同時工作。"
 
 #: mu/modes/esp.py:157 mu/modes/microbit.py:469
 msgid ""
 "The plotter and file system both use the same USB serial connection. Only"
 " one can be active at any time. Toggle the file system off and try again."
-msgstr ""
-"Das Dateisystem und der REPL und Plotter nutzen die gleiche USB-Seriell-"
-"Verbindung. Zu jedem Zeitpunkt kann nur eins davon aktiv sein. Schalte "
-"den REPL und Plotter aus und versuche es erneut."
+msgstr "繪圖器和檔案系統都使用相同的 USB 序列埠通訊。任何時候只能使用其中一個功能。請關閉檔案系統，然後重試。"
 
 #: mu/modes/esp.py:184 mu/modes/snek.py:422
 msgid "Cannot run anything without any active editor tabs."
-msgstr ""
+msgstr "不能沒有作用中的編輯器分頁時執行程式。"
 
 #: mu/modes/esp.py:186 mu/modes/snek.py:424
 msgid ""
 "Running transfers the content of the current tab onto the device. It "
 "seems like you don't have  any tabs open."
-msgstr ""
+msgstr "「執行」將把目前編輯器分頁的內容傳輸至裝置。未能找到任何開啟的分頁。"
 
 #: mu/modes/esp.py:205 mu/modes/microbit.py:483
 msgid "File system cannot work at the same time as the REPL or plotter."
-msgstr "Dateisystem funktioniert nicht gleichzeitig zum REPL oder Plotter."
+msgstr "檔案系統無法與 REPL 或繪圖器同時工作。"
 
 #: mu/modes/esp.py:209 mu/modes/microbit.py:487
 msgid ""
 "The file system and the REPL and plotter use the same USB serial "
 "connection. Toggle the REPL and plotter off and try again."
-msgstr ""
-"Das Dateisystem und der REPL und Plotter nutzen die gleiche USB-Seriell-"
-"Verbindung. Schalte den REPL und Plotter aus und versuche es erneut."
+msgstr "檔案系統、REPL、繪圖器使用相同的 USB 序列埠通訊。請關閉 REPL 和繪圖器，然後重試。"
 
 #: mu/modes/esp.py:235
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Could not find an attached {board_name}"
-msgstr "Konnte kein angeschlossenes Gerät finden."
+msgstr "找不到已連線的 {board_name}"
 
 #: mu/modes/esp.py:239 mu/modes/microbit.py:512
 msgid ""
@@ -1431,26 +1341,24 @@ msgid ""
 "Finally, press the device's reset button and wait a few seconds before "
 "trying again."
 msgstr ""
-"Bitte stelle sicher, dass das Gerät an den Computer angeschlossen ist.\n"
+"請確保已將裝置插入此電腦。\n"
 "\n"
-"Das Gerät muss MicroPython aufgespielt haben bevor das Dateisystem "
-"funktioniert.\n"
+"在檔案系統工作之前，裝置必須已刷入 MicroPython。\n"
 "\n"
-"Drücke den Reset Knopf des Gerätes und warte einige Sekunden bevor Du es "
-"erneut versuchst."
+"最後，按裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
 #: mu/modes/esp.py:263
 #, python-brace-format
 msgid "{board_name} board"
-msgstr ""
+msgstr "{board_name} 開發板"
 
 #: mu/modes/lego.py:34
 msgid "Lego MicroPython"
-msgstr ""
+msgstr "Lego MicroPython"
 
 #: mu/modes/lego.py:37
 msgid "Write MicroPython directly on Lego Spike devices."
-msgstr ""
+msgstr "向 Lego Spike 裝置直接刷入 MicroPython。"
 
 #: mu/modes/microbit.py:89
 msgid "BBC micro:bit"
@@ -1458,27 +1366,27 @@ msgstr "BBC micro:bit"
 
 #: mu/modes/microbit.py:91
 msgid "Write MicroPython for the BBC micro:bit."
-msgstr "MicroPython für den BBC micro:bit schreiben."
+msgstr "為 BBC micro:bit 編寫 MicroPython。"
 
 #: mu/modes/microbit.py:116
 msgid "Flash"
-msgstr "Aufspielen"
+msgstr "刷入"
 
 #: mu/modes/microbit.py:117
 msgid "Flash your code onto the micro:bit."
-msgstr "Code auf den micro:bit aufspielen."
+msgstr "將程式碼刷入到 micro:bit 上。"
 
 #: mu/modes/microbit.py:124
 msgid "Access the file system on the micro:bit."
-msgstr "Zugriff auf das Dateisystem des micro:bit."
+msgstr "存取 micro:bit 上的檔案系統。"
 
 #: mu/modes/microbit.py:132
 msgid "Use the REPL to live-code on the micro:bit."
-msgstr "REPL benutzen, um live auf dem micro:bit zu programmieren."
+msgstr "使用 REPL 在 micro:bit 上即時編寫程式碼。"
 
 #: mu/modes/microbit.py:232 mu/modes/microbit.py:510
 msgid "Could not find an attached BBC micro:bit."
-msgstr "Konnte den angeschlossenen BBC micro:bit nicht finden."
+msgstr "找不到已連線的 BBC micro:bit。"
 
 #: mu/modes/microbit.py:234
 msgid ""
@@ -1487,25 +1395,22 @@ msgid ""
 " Alternatively, try removing and re-attaching the device or saving your "
 "work and restarting Mu if the device remains unfound."
 msgstr ""
-"Bitte stelle sicher, dass du genug Zeit lässt damit der BBC micro:bit "
-"korrekt vom Computer konfiguriert werden kann. Dies kann einige Sekunden "
-"dauern. Alternativ, versuche das Gerät aus- und wieder einzustecken oder "
-"Änderungen zu speichern und Mu neu zu starten, falls das Gerät weiterhin "
-"nicht gefunden wird."
+"請確保你留出了足夠的時間讓你的電腦正確連線和設定 BBC micro:bit "
+"裝置。這可能需要幾秒鐘的時間。或者你可以嘗試儲存檔案並重新連線裝置，如果仍未發現裝置，你還可以嘗試重新啟動 Mu。"
 
 #: mu/modes/microbit.py:251
 msgid "Cannot save a custom hex file to a local directory."
-msgstr ""
+msgstr "無法將自訂 hex 檔案儲存至本機目錄。"
 
 #: mu/modes/microbit.py:253
 msgid ""
 "When a custom hex file is configured in the settings a local directory "
 "cannot be used to save the final hex file."
-msgstr ""
+msgstr "當在設定中設定了自訂 hex 檔案時，無法使用本機目錄來儲存最終的 hex 檔案。"
 
 #: mu/modes/microbit.py:261
 msgid "Cannot use a custom hex file without micro:bit port."
-msgstr ""
+msgstr "無法在沒有 micro:bit 連接埠的情況下使用自訂 hex 檔案。"
 
 #: mu/modes/microbit.py:263
 msgid ""
@@ -1513,81 +1418,71 @@ msgid ""
 " as Mu can inject the Python code into the hex to flash. However, this "
 "cannot be done with a custom hex file."
 msgstr ""
+"Mu 無法偵測到 micro:bit 序列埠。通常這沒問題，因為 Mu 可以將 Python 程式碼注入到 hex "
+"檔案中進行刷入。但是，這不能在自訂 hex 檔案中完成。"
 
 #: mu/modes/microbit.py:317
 msgid "Unsupported BBC micro:bit."
-msgstr "Nicht unterstützter BBC micro:bit."
+msgstr "不支援的 BBC micro:bit。"
 
 #: mu/modes/microbit.py:319
-#, fuzzy
 msgid ""
 "Your device is newer than current version of uflash. Please update uflash"
 " to the latest version to support this device."
-msgstr ""
-"Dein Gerät ist neuer als diese Version von uflash. Bitte installiere die "
-"neuste Version von uflash um dieses Gerät zu benuzten.\n"
-"\n"
-"https://codewith.mu/"
+msgstr "你的裝置比此版本的 uflash 更新。請將 uflash 更新到最新版本以支援此裝置。"
 
 #: mu/modes/microbit.py:351 mu/modes/microbit.py:372
-#, fuzzy
 msgid "Flashing the micro:bit"
-msgstr "Spiele \"{}\" auf den micro:bit auf."
+msgstr "正在刷入到 micro:bit "
 
 #: mu/modes/microbit.py:353
-#, fuzzy
 msgid "Runtime"
-msgstr "Unbenannt"
+msgstr "執行環境"
 
 #: mu/modes/microbit.py:384
 msgid "Finished flashing."
-msgstr "Aufspielen abgeschlossen."
+msgstr "刷入完成。"
 
 #: mu/modes/microbit.py:416
 msgid "Copied code onto micro:bit."
-msgstr "Code auf den micro:bit kopiert."
+msgstr "已將程式碼複製到 micro:bit。"
 
 #: mu/modes/microbit.py:424
 msgid "There was a problem flashing the micro:bit."
-msgstr "Beim Aufspielen auf den micro:bit ist ein Problem aufgetreten."
+msgstr "刷入程式到 micro:bit 時出現了一個問題。"
 
 #: mu/modes/microbit.py:426
 msgid ""
 "Please do not disconnect the device until flashing has completed. Please "
 "check the logs for more information."
-msgstr ""
-"Bitte entferne das Gerät erst wenn das Aufspielen abgeschlossen ist. "
-"Überprüfe das Protokoll für mehr Informationen."
+msgstr "在刷入完成之前，請不要斷開裝置。請檢視記錄以取得更多資訊。"
 
 #: mu/modes/microbit.py:527
-#, fuzzy
 msgid "micro:bit"
-msgstr "BBC micro:bit"
+msgstr "micro:bit"
 
 #: mu/modes/pico.py:34
 msgid "RP2040"
-msgstr ""
+msgstr "RP2040"
 
 #: mu/modes/pico.py:37
 msgid "Write MicroPython directly on a Raspberry Pi Pico."
-msgstr ""
+msgstr "向 Raspberry Pi Pico 直接刷入 MicroPython。"
 
 #: mu/modes/pyboard.py:33
 msgid "Pyboard MicroPython"
-msgstr ""
+msgstr "Pyboard MicroPython"
 
 #: mu/modes/pyboard.py:35
-#, fuzzy
 msgid "Use MicroPython on the Pyboard line of boards."
-msgstr "Benutze CircuitPython auf einem Adafruit board."
+msgstr "在 Pyboard 系列開發板上使用 MicroPython。"
 
 #: mu/modes/pyboard.py:175
-#, fuzzy
 msgid "Could not find an attached PyBoard device."
-msgstr "Konnte kein angeschlossenes Gerät finden."
+msgstr "找不到已連線的 PyBoard 裝置。"
 
 #: mu/modes/pyboard.py:177
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "Python files for PyBoard MicroPython devices are stored on the device. "
 "Therefore, to edit these files you need to have the device plugged in. "
@@ -1597,13 +1492,12 @@ msgid ""
 "\n"
 "...to store your code."
 msgstr ""
-"Python-Dateien für Adafruit CircuitPython Geräte werden auf dem Gerät "
-"gespeichert. Um diese Dateien zu bearbeiten muss das Gerät angeschlossen "
-"sein. Bis ein Gerät angeschlossen ist, wird Mu diesen Ordner benuzten:\n"
+"PyBoard MicroPython 裝置的 Python 檔案儲存在裝置上。因此，要編輯這些檔案，需要你插入裝置。在插入裝置之前，Mu "
+"將使用這個目錄：\n"
 "\n"
-"{}\n"
+" {}\n"
 "\n"
-"um Deinen Code zu speichern."
+"…來儲存你的程式碼。"
 
 #: mu/modes/pygamezero.py:35
 msgid "Pygame Zero"
@@ -1611,51 +1505,51 @@ msgstr "Pygame Zero"
 
 #: mu/modes/pygamezero.py:37
 msgid "Make games with Pygame Zero."
-msgstr "Spiele mit Pygame Zero erstellen."
+msgstr "用 Pygame Zero 製作遊戲。"
 
 #: mu/modes/pygamezero.py:65 mu/modes/pygamezero.py:115
 msgid "Play"
-msgstr "Spielen."
+msgstr "開始"
 
 #: mu/modes/pygamezero.py:66 mu/modes/pygamezero.py:116
 msgid "Play your Pygame Zero game."
-msgstr "Pygame Zero Spiel spielen."
+msgstr "開始你的 Pygame Zero 遊戲。"
 
 #: mu/modes/pygamezero.py:72 mu/modes/web.py:126
 msgid "Images"
-msgstr "Bilder"
+msgstr "圖片"
 
 #: mu/modes/pygamezero.py:73
 msgid "Show the images used by Pygame Zero."
-msgstr "Bilder anzeigen, die von Pygame Zero benutzt werden."
+msgstr "顯示 Pygame Zero 使用的圖片。"
 
 #: mu/modes/pygamezero.py:79
 msgid "Fonts"
-msgstr "Schriftarten."
+msgstr "字型"
 
 #: mu/modes/pygamezero.py:80
 msgid "Show the fonts used by Pygame Zero."
-msgstr "Schriftarten anzeigen, die von Pygame Zero benutzt werden."
+msgstr "顯示 Pygame Zero 使用的字型。"
 
 #: mu/modes/pygamezero.py:86
 msgid "Sounds"
-msgstr "Geräusche"
+msgstr "音效"
 
 #: mu/modes/pygamezero.py:87
 msgid "Show the sounds used by Pygame Zero."
-msgstr "Geräusche anzeigen, die von Pygame Zero benutzt werden."
+msgstr "顯示 Pygame Zero 使用的音效。"
 
 #: mu/modes/pygamezero.py:93
 msgid "Music"
-msgstr "Musik"
+msgstr "音樂"
 
 #: mu/modes/pygamezero.py:94
 msgid "Show the music used by Pygame Zero."
-msgstr "Musik anzeigen, die von Pygame Zero benutzt wird."
+msgstr "顯示 Pygame Zero 使用的音樂。"
 
 #: mu/modes/pygamezero.py:124
 msgid "Stop your Pygame Zero game."
-msgstr "Pygame Zero Spiel beenden."
+msgstr "停止你的 Pygame Zero 遊戲。"
 
 #: mu/modes/python3.py:119
 msgid "Python 3"
@@ -1663,81 +1557,77 @@ msgstr "Python 3"
 
 #: mu/modes/python3.py:121
 msgid "Create code using standard Python 3."
-msgstr "Erstelle Code mit dem Standard Python 3."
+msgstr "使用標準 Python 3 編寫程式碼。"
 
 #: mu/modes/python3.py:137 mu/modes/python3.py:181
 msgid "Run your Python script."
-msgstr "Python-Skript ausführen."
+msgstr "執行你的 Python 腳本。"
 
 #: mu/modes/python3.py:143
 msgid "Debug"
-msgstr "Debuggen"
+msgstr "偵錯"
 
 #: mu/modes/python3.py:144
 msgid "Debug your Python script."
-msgstr "Python-Skript debuggen."
+msgstr "偵錯你的 Python 腳本。"
 
 #: mu/modes/python3.py:151
 msgid "Use the REPL for live coding."
-msgstr "REPL für Live Programmierung nutzen."
+msgstr "用 REPL 進行即時程式設計。"
 
 #: mu/modes/python3.py:159
 msgid "Plot data from your script or the REPL."
-msgstr "Plotte Daten aus dem Skript oder dem REPL."
+msgstr "從你的腳本或 REPL 的繪製資料。"
 
 #: mu/modes/python3.py:189
 msgid "Stop your Python script."
-msgstr "Python-Skript stoppen."
+msgstr "停止你的 Python 腳本。"
 
 #: mu/modes/python3.py:259
 msgid "Starting iPython REPL."
-msgstr "Starte iPython REPL."
+msgstr "正在啟動 iPython REPL。"
 
 #: mu/modes/python3.py:265
 msgid "Stopping iPython REPL (this may take a short amount of time)."
-msgstr "Stoppe iPython REPL (kann eine Weile dauern)."
+msgstr "正在停止 iPython REPL （可能需要一點點時間）。"
 
 #: mu/modes/python3.py:355
 msgid "REPL started."
-msgstr "REPL gestartet."
+msgstr "REPL 已啟動。"
 
 #: mu/modes/python3.py:364
 msgid "REPL stopped."
-msgstr "REPL gestoppt."
+msgstr "REPL 已停止。"
 
 #: mu/modes/snek.py:177
 msgid "Snek"
-msgstr ""
+msgstr "Snek"
 
 #: mu/modes/snek.py:179
 msgid "Write code for boards running Snek."
-msgstr ""
+msgstr "為執行 Snek 的開發板編寫程式碼。"
 
 #: mu/modes/snek.py:391
 msgid "Put"
-msgstr ""
+msgstr "上傳"
 
 #: mu/modes/snek.py:392
 msgid "Put the current program to the device."
-msgstr ""
+msgstr "將目前程式上傳到裝置。"
 
 #: mu/modes/snek.py:398
 msgid "Get"
-msgstr ""
+msgstr "下載"
 
 #: mu/modes/snek.py:399
 msgid "Get the current program from the device."
-msgstr ""
+msgstr "從裝置下載目前程式。"
 
 #: mu/modes/snek.py:461
-#, fuzzy
 msgid "There is un-saved work, 'get' will cause you to lose it."
-msgstr ""
-"Es existieren nicht gespeicherte Änderungen. Das Beenden der Anwendung "
-"verwirft diese Änderungen."
+msgstr "你有還沒有儲存的程式碼，「下載」將導致你遺失它。"
 
 #: mu/modes/snek.py:531
-#, fuzzy
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1747,77 +1637,73 @@ msgid ""
 "Finally, press the device's reset button and wait a few seconds before "
 "trying again."
 msgstr ""
-"Bitte stelle sicher, dass das Gerät an den Computer angeschlossen ist.\n"
+"請確保已將裝置插入這台電腦。\n"
 "\n"
-"Das Gerät muss eine Version von MicroPython (oder CircuitPython) "
-"aufgespielt haben, damit der REPL funktioniert.\n"
+"在 REPL 工作之前，裝置必須有一個 Snek 版本的韌體已經刷入。\n"
 "\n"
-"Abschließend, drücke den Reset Knopf des Gerätes und warte einige "
-"Sekunden bevor Du es erneut versuchst."
+"最後，按一下裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
 #: mu/modes/web.py:63
 msgid "Web"
-msgstr ""
+msgstr "網頁"
 
 #: mu/modes/web.py:65
 msgid "Build simple websites with the \"Flask\" web framework."
-msgstr ""
+msgstr "使用 Flask Web 框架建置簡單的網頁。"
 
 #: mu/modes/web.py:92 mu/modes/web.py:180
 msgid "Run the web server."
-msgstr ""
+msgstr "執行網頁伺服器。"
 
 #: mu/modes/web.py:98
-#, fuzzy
 msgid "Deploy"
-msgstr "REPL"
+msgstr "部署"
 
 #: mu/modes/web.py:99
 msgid "Deploy website to PythonAnywhere."
-msgstr ""
+msgstr "將網站部署到 PythonAnywhere。"
 
 #: mu/modes/web.py:106
-#, fuzzy
 msgid "Open your website in a browser."
-msgstr "Hilfe für Mu in einem Browser anzeigen."
+msgstr "在瀏覽器中開啟你的網站。"
 
 #: mu/modes/web.py:112
 msgid "Templates"
-msgstr ""
+msgstr "範本"
 
 #: mu/modes/web.py:113
 msgid "Load HTML templates used by your website."
-msgstr ""
+msgstr "載入你的網站使用的 HTML 範本。"
 
 #: mu/modes/web.py:119
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: mu/modes/web.py:120
 msgid "Load CSS files used by your website."
-msgstr ""
+msgstr "載入你的網站使用的 CSS 檔案。"
 
 #: mu/modes/web.py:128
 msgid "Open the directory containing images used by your website."
-msgstr ""
+msgstr "開啟你的網站使用的圖片檔案目錄。"
 
 #: mu/modes/web.py:188
 msgid "Stop the web server."
-msgstr ""
+msgstr "停止網頁伺服器。"
 
 #: mu/modes/web.py:208 mu/modes/web.py:368
 msgid "This is not a Python file!"
-msgstr ""
+msgstr "這不是 Python 檔案！"
 
 #: mu/modes/web.py:210
 msgid ""
 "Mu is only able to serve a Python file. Please make sure the current tab "
 "in Mu is the one for your web application and then try again."
-msgstr ""
+msgstr "Mu 只能識別 Python 檔案。請確認 Mu 編輯器目前分頁開啟的檔案屬於你的網頁應用，然後重試。"
 
 #: mu/modes/web.py:226 mu/modes/web.py:385
 msgid "Cannot find template directory!"
-msgstr ""
+msgstr "無法找到範本目錄！"
 
 #: mu/modes/web.py:228
 msgid ""
@@ -1826,31 +1712,33 @@ msgid ""
 "and try again. (Hint: Mu was expecting the `templates` directory to be "
 "here: )"
 msgstr ""
+"要在本機執行你的網頁應用，必須在網頁應用的 Python 程式碼所在的同一目錄下有一個「templates」目錄。請修正此問題並重試。 "
+"(提示：Mu 期望 `templates` 目錄在這裡： )"
 
 #: mu/modes/web.py:282
 msgid "Too many web apps."
-msgstr ""
+msgstr "網頁應用過多。"
 
 #: mu/modes/web.py:284
 msgid "Please ensure you only have one open Python file for a web application."
-msgstr ""
+msgstr "請確保你只有一個開啟的 Python 檔案用於網頁應用。"
 
 #: mu/modes/web.py:344
 msgid "Cannot Open Website - Server not Running."
-msgstr ""
+msgstr "無法開啟網站 - 伺服器未執行。"
 
 #: mu/modes/web.py:346
 msgid ""
 "You must have the local web server running in order to view your website "
 "in a browser. Click on the 'Run' button to start the server and then try "
 "again."
-msgstr ""
+msgstr "要在瀏覽器中存取你的網站，必須在本機執行 Web 伺服器。點選「執行」按鈕以啟動伺服器，然後重試。"
 
 #: mu/modes/web.py:370
 msgid ""
 "Mu is only able to deploy a Python file. Please make sure the current tab"
 " in Mu is the one for your web application and then try again."
-msgstr ""
+msgstr "Mu 只能識別 Python 檔案。請確認 Mu 編輯器目前分頁開啟的檔案屬於你的網頁應用，然後重試。"
 
 #: mu/modes/web.py:387
 msgid ""
@@ -1859,4 +1747,6 @@ msgid ""
 " and try again. (Hint: Mu was expecting the `templates` directory to be "
 "here: )"
 msgstr ""
+"要部署你的網頁應用，必須在網頁應用的 Python 程式碼所在的同一目錄下有一個「templates」目錄。請修正此問題並重試。 (提示：Mu "
+"期望 `templates` 目錄在這裡： )"
 

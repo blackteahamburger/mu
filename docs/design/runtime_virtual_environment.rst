@@ -1,8 +1,16 @@
-Run the user's code inside its own virtual environment
-======================================================
+No longer run the user's code inside its own virtual environment
+================================================================
 
 Decision
 --------
+
+Mu no longer runs the user's code inside its own virtual environment. Instead,
+it runs the user's code in the same environment as Mu itself. This simplifies
+the codebase and avoids the complexity of managing a separate virtual environment. 
+Moreover, this speeds up the launch of Mu.
+
+Former Decision (Outdated)
+--------------------------
 
 Mu, whether pip-installed or via installer will maintain a separate virtual
 environment for running the user's code. Initially this will contain all

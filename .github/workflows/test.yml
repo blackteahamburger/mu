@@ -1,0 +1,36 @@
+name: Run tests
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    name: Test Py ${{ matrix.python-version }} - ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set up Qt libraries
+        if: runner.os == 'Linux'
+        uses: tlambert03/setup-qt-libs@v1
+      - name: Install Mu dependencies
+        run: |
+          pip install https://github.com/blackteahamburger/microfs/archive/refs/tags/v1.4.6.tar.gz
+          pip install https://github.com/blackteahamburger/uflash/archive/refs/tags/v2.1.0.tar.gz
+          pip install .[dev]
+      - name: Run Tests
+        run: |
+          ruff check
+          ruff format --check
+          py.test --cov-report term-missing --cov=mu tests/

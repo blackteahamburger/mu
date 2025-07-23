@@ -1,12 +1,20 @@
 Release History
 ---------------
-1.3.0
+
+1.2.3
 =====
 
+This is the first version released by this fork of Mu, which was originally intended for Gentoo packaging, but it has changed its positioning to Mu's community branch considering the [retirement plan of Mu](https://madewith.mu/mu/users/2024/12/10/retirement-plans.html) made by the original Mu team.
+
+This version basically does not provide feature updates, containing the following changes:
+
 * Support for new versions of all dependencies (including PyQt6 support)
-* venv is removed
-* No longer depend on pkg_resources
-* TODO: Add more features and fixes
+* Runtime virtual environment is removed
+* New translation: zh_TW (Traditional Chinese)
+* Bundled libraries under mu.contrib are removed to allow for immediate new version usage and easier maintenance
+* micro:bit mode: minifying option is removed - now done by uflash and by default
+* Modernize packaging to use pyproject.toml
+* Various miscellaneous improvements, including bugfix, test, formatting, translation (mainly zh_CN), documentation...
 
 1.2.2
 =====

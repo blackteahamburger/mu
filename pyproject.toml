@@ -8,8 +8,23 @@ dynamic = ["version"]
 description = "Mu is a simple Python code editor for beginner programmers."
 readme = "README.rst"
 license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "AUTHORS"]
 requires-python = ">=3.9"
 authors = [
+    { name = "Blackteahamburger", email = "blackteahamburger@outlook.com" },
+    { name = "Nicholas H.Tollervey", email = "ntoll@ntoll.org" },
+    { name = "Tim Golden" },
+    { name = "Peter Inglesby" },
+    { name = "Carlos Pereira Atencio" },
+    { name = "Nick Sarbicki" },
+    { name = "Kushal Das" },
+    { name = "Tibs / Tony Ibbs" },
+    { name = "Zander Brown" },
+    { name = "Alistair Broomhead" },
+    { name = "Frank Morton" },
+    { name = "Keith Packard" },
+]
+maintainers = [
     { name = "Blackteahamburger", email = "blackteahamburger@outlook.com" },
 ]
 classifiers = [
@@ -23,7 +38,6 @@ classifiers = [
     "Operating System :: POSIX",
     "Operating System :: MacOS :: MacOS X",
     "Operating System :: Microsoft :: Windows",
-    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -61,17 +75,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-tests = [
-    "pytest>=5",
-    "pytest-cov",
-    "pytest-random-order>=1.0.0",
-    "pytest-xvfb",
-    "coverage",
-]
-docs = ["sphinx"]
-package = ["build", "wheel"]
-i18n = ["babel"]
-utils = ["scrapy", "beautifulsoup4", "requests"]
 dev = [
     "pytest>=5",
     "pytest-cov",
@@ -79,23 +82,11 @@ dev = [
     "pytest-xvfb",
     "coverage",
     "sphinx",
-    "build",
-    "wheel",
-    "babel",
-]
-all = [
-    "pytest>=5",
-    "pytest-cov",
-    "pytest-random-order>=1.0.0",
-    "pytest-xvfb",
-    "coverage",
-    "sphinx",
-    "build",
-    "wheel",
     "babel",
     "scrapy",
     "beautifulsoup4",
     "requests",
+    "ruff",
 ]
 
 [project.urls]
@@ -133,6 +124,7 @@ include = [
     "mu.locale.uk_UA.LC_MESSAGES",
     "mu.locale.vi.LC_MESSAGES",
     "mu.locale.zh_CN.LC_MESSAGES",
+    "mu.locale.zh_TW.LC_MESSAGES",
     "mu.resources",
     "mu.resources.css",
     "mu.resources.fonts",
@@ -142,6 +134,13 @@ include = [
     "mu.resources.web.static.img",
     "mu.resources.web.templates",
 ]
+
+[tool.ruff]
+preview = true
+unsafe-fixes = true
+target-version = "py313"
+line-length = 79
+builtins = ["_"]
 
 [tool.coverage.run]
 omit = ["mu/mu_debug.py", "mu/__main__.py"]

@@ -20,7 +20,7 @@
         </description>
         <url type="homepage">https://codewith.mu/</url>
         <url type="help">https://codewith.mu/tutorials/</url>
-        <url type="bugtracker">https://github.com/mu-editor/mu/issues</url>
+        <url type="bugtracker">https://github.com/blackteahamburger/mu/issues</url>
         <project_group>mu-editor</project_group>
         <developer_name>Nicholas H.Tollervey</developer_name>
         <translation type="gettext">mu</translation>
