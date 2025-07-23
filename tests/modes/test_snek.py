@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import QMessageBox
 
 from mu.logic import Device
 from mu.modes.api import SNEK_APIS
-from mu.modes.snek import SnekMode
+from mu.modes.snek import REPLConnection, SnekMode, SnekREPLConnection
 
 
 @pytest.fixture()
@@ -18,6 +18,417 @@ def snek_device():
     return Device(
         0x0403, 0x6001, "COM0", "123456", "Snek", "Snekboard", "snek"
     )
+
+
+def test_snek_repl_connection_init_defaults():
+    """
+    Test SnekREPLConnection __init__ with default arguments.
+    """
+    port = "COM1"
+    conn = SnekREPLConnection(port)
+    assert conn.flowcontrol is False
+    assert conn.sent == 0
+    assert conn.chunk == 16
+    assert conn.data == b""
+    assert conn.waiting is False
+    assert conn.ready is False
+    assert conn.pending == b""
+    assert conn.wait_for_data is False
+    assert conn.got_dc4 is False
+    assert conn._baudrate == 115200
+    assert conn.port == port
+
+
+def test_snek_repl_connection_init_custom_args():
+    """
+    Test SnekREPLConnection __init__ with custom arguments.
+    """
+    port = "COM2"
+    conn = SnekREPLConnection(
+        port,
+        baudrate=57600,
+        flowcontrol=True,
+        chunk=32,
+        wait_for_data=True,
+    )
+    assert conn.flowcontrol is True
+    assert conn.sent == 0
+    assert conn.chunk == 32
+    assert conn.data == b""
+    assert conn.waiting is False
+    assert conn.ready is False
+    assert conn.pending == b""
+    assert conn.wait_for_data is True
+    assert conn.got_dc4 is False
+    assert conn._baudrate == 57600
+    assert conn.port == port
+
+
+def test_set_ready_already_ready():
+    """
+    If already ready, set_ready should do nothing.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.ready = True
+    conn.pending = b"abc"
+    conn.write = mock.MagicMock()
+    conn.set_ready()
+    conn.write.assert_not_called()
+    assert conn.pending == b"abc"
+
+
+def test_set_ready_no_flowcontrol():
+    """
+    If flowcontrol is False, should just call write with pending and clear pending.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.flowcontrol = False
+    conn.ready = False
+    conn.pending = b"xyz"
+    conn.write = mock.MagicMock()
+    conn.set_ready()
+    conn.write.assert_called_once_with(b"xyz")
+    assert conn.pending == b""
+
+
+def test_set_ready_with_flowcontrol_autobaud_response_detected():
+    """
+    If flowcontrol is True and got_dc4 is set after first baudrate, should break early.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.flowcontrol = True
+    conn.ready = False
+    conn.pending = b"123"
+    conn.serial = mock.MagicMock()
+    conn.got_dc4 = False
+
+    def waitForReadyRead(timeout):
+        conn.got_dc4 = True
+
+    conn.serial.waitForReadyRead.side_effect = waitForReadyRead
+    conn.write = mock.MagicMock()
+    conn.set_ready()
+    assert conn.serial.setBaudRate.call_count >= 1
+    assert conn.serial.write.call_count >= 1
+    assert conn.serial.waitForReadyRead.call_count >= 1
+    conn.write.assert_called_once_with(b"123")
+    assert conn.pending == b""
+
+
+def test_set_ready_with_flowcontrol_no_autobaud_response():
+    """
+    If flowcontrol is True and got_dc4 is never set, should use default baudrate.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.flowcontrol = True
+    conn.ready = False
+    conn.pending = b"456"
+    conn.serial = mock.MagicMock()
+    conn.got_dc4 = False
+
+    def waitForReadyRead(timeout):
+        pass
+
+    conn.serial.waitForReadyRead.side_effect = waitForReadyRead
+    conn.write = mock.MagicMock()
+    conn.set_ready()
+    assert conn.serial.setBaudRate.call_count >= 1
+    assert conn.serial.write.call_count >= 1
+    assert conn.serial.waitForReadyRead.call_count >= 1
+    conn.write.assert_called_once_with(b"456")
+    assert conn.pending == b""
+
+
+def test_open_calls_super_and_set_ready_no_wait_for_data():
+    """
+    If wait_for_data is False, open should call super().open() and set_ready().
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.wait_for_data = False
+    conn.set_ready = mock.MagicMock()
+    with mock.patch.object(SnekREPLConnection, "open", wraps=conn.open):
+        with mock.patch.object(REPLConnection, "open") as super_open:
+            conn.open()
+            super_open.assert_called_once_with()
+            conn.set_ready.assert_called_once_with()
+
+
+def test_open_wait_for_data_sets_timer():
+    """
+    If wait_for_data is True, open should call QTimer.singleShot with 3000ms and set_ready.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.wait_for_data = True
+    conn.set_ready = mock.MagicMock()
+    with (
+        mock.patch.object(REPLConnection, "open") as super_open,
+        mock.patch("mu.modes.snek.QTimer") as mock_qtimer,
+    ):
+        conn.open()
+        super_open.assert_called_once_with()
+        mock_qtimer.singleShot.assert_called_once()
+        args, kwargs = mock_qtimer.singleShot.call_args
+        assert args[0] == 3000
+        ready_func = args[1]
+        ready_func()
+        conn.set_ready.assert_called_once_with()
+
+
+def test_send_enq_sets_waiting_and_writes_enq():
+    """
+    Test that send_enq calls super().write with ENQ and sets waiting to True.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.write = mock.MagicMock()
+    with mock.patch.object(REPLConnection, "write") as super_write:
+        conn.send_enq()
+        super_write.assert_called_once_with(b"\x05")
+        assert conn.waiting is True
+
+
+def test_recv_ack_resets_sent_and_waiting_and_calls_send_data():
+    """
+    Test that recv_ack resets sent to 0, waiting to False, and calls send_data.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.sent = 10
+    conn.waiting = True
+    conn.send_data = mock.MagicMock()
+    conn.recv_ack()
+    assert conn.sent == 0
+    assert conn.waiting is False
+    conn.send_data.assert_called_once_with()
+
+
+def test_on_serial_read_ack_calls_recv_ack_and_removes_ack():
+    """
+    If ACK (\x06) is in data, recv_ack should be called and ACK removed from data.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.serial = mock.MagicMock()
+    conn.serial.readAll.return_value = b"abc\x06def"
+    conn.recv_ack = mock.MagicMock()
+    conn.got_dc4 = False
+    conn.ready = True
+    conn.data_received = mock.MagicMock()
+    conn.data_received.emit = mock.MagicMock()
+    conn._on_serial_read()
+    conn.recv_ack.assert_called_once_with()
+    emitted_data = conn.data_received.emit.call_args[0][0]
+    assert b"\x06" not in emitted_data
+    assert emitted_data == b"abcdef"
+
+
+def test_on_serial_read_dc4_sets_got_dc4_and_removes_dc4():
+    """
+    If DC4 (\x14) is in data, got_dc4 should be set and DC4 removed from data.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.serial = mock.MagicMock()
+    conn.serial.readAll.return_value = b"foo\x14bar"
+    conn.recv_ack = mock.MagicMock()
+    conn.got_dc4 = False
+    conn.ready = True
+    conn.data_received = mock.MagicMock()
+    conn.data_received.emit = mock.MagicMock()
+    conn._on_serial_read()
+    assert conn.got_dc4 is True
+    emitted_data = conn.data_received.emit.call_args[0][0]
+    assert b"\x14" not in emitted_data
+    assert emitted_data == b"foobar"
+
+
+def test_on_serial_read_ready_false_and_W_in_data_sets_ready_with_timer():
+    """
+    If not ready and 'W' in data, should set QTimer.singleShot(200, ready_func).
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.serial = mock.MagicMock()
+    conn.serial.readAll.return_value = b"abcWdef"
+    conn.recv_ack = mock.MagicMock()
+    conn.got_dc4 = False
+    conn.ready = False
+    conn.data_received = mock.MagicMock()
+    conn.data_received.emit = mock.MagicMock()
+    conn.set_ready = mock.MagicMock()
+    with mock.patch("mu.modes.snek.QTimer") as mock_qtimer:
+        conn._on_serial_read()
+        mock_qtimer.singleShot.assert_called_once()
+        args, kwargs = mock_qtimer.singleShot.call_args
+        assert args[0] == 200
+        ready_func = args[1]
+        ready_func()
+        conn.set_ready.assert_called_once_with()
+
+
+def test_on_serial_read_emits_data_received():
+    """
+    Should always emit data_received with processed data.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.serial = mock.MagicMock()
+    conn.serial.readAll.return_value = b"hello"
+    conn.recv_ack = mock.MagicMock()
+    conn.got_dc4 = False
+    conn.ready = True
+    conn.data_received = mock.MagicMock()
+    conn.data_received.emit = mock.MagicMock()
+    conn._on_serial_read()
+    conn.data_received.emit.assert_called_once_with(b"hello")
+
+
+def test_send_data_no_data():
+    """
+    If self.data is empty, send_data should do nothing.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.waiting = False
+    conn.data = b""
+    with mock.patch.object(REPLConnection, "write") as super_write:
+        conn.send_data()
+        super_write.assert_not_called()
+
+
+def test_send_data_waiting_true():
+    """
+    If self.waiting is True, send_data should do nothing.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.waiting = True
+    conn.data = b"abc"
+    with mock.patch.object(REPLConnection, "write") as super_write:
+        conn.send_data()
+        super_write.assert_not_called()
+
+
+def test_send_data_less_than_chunk():
+    """
+    If data length is less than chunk, should write all data and not call send_enq.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.waiting = False
+    conn.chunk = 10
+    conn.sent = 0
+    conn.data = b"abc"
+    with (
+        mock.patch.object(REPLConnection, "write") as super_write,
+        mock.patch.object(conn, "send_enq") as send_enq,
+    ):
+        conn.send_data()
+        super_write.assert_called_once_with(b"abc")
+        send_enq.assert_not_called()
+        assert conn.sent == 3
+        assert conn.data == b""
+
+
+def test_send_data_exact_chunk():
+    """
+    If data length equals chunk, should write all data and call send_enq.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.waiting = False
+    conn.chunk = 3
+    conn.sent = 0
+    conn.data = b"xyz"
+    with (
+        mock.patch.object(REPLConnection, "write") as super_write,
+        mock.patch.object(conn, "send_enq") as send_enq,
+    ):
+        conn.send_data()
+        super_write.assert_called_once_with(b"xyz")
+        send_enq.assert_called_once_with()
+        assert conn.sent == 3
+        assert conn.data == b""
+
+
+def test_send_data_multiple_chunks():
+    """
+    If data is longer than chunk, should write chunk-sized pieces and call send_enq after each chunk.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.waiting = False
+    conn.chunk = 2
+    conn.sent = 0
+    conn.data = b"abcd"
+    with (
+        mock.patch.object(REPLConnection, "write") as super_write,
+        mock.patch.object(conn, "send_enq") as send_enq,
+    ):
+
+        def set_waiting_true():
+            conn.waiting = True
+
+        send_enq.side_effect = set_waiting_true
+        conn.send_data()
+        super_write.assert_called_once_with(b"ab")
+        send_enq.assert_called_once_with()
+        assert conn.sent == 2
+        assert conn.data == b"cd"
+
+
+def test_write_not_ready_adds_to_pending():
+    """
+    If not ready, write should add data to pending and return.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.ready = False
+    conn.pending = b""
+    conn.write(b"abc")
+    assert conn.pending == b"abc"
+
+
+def test_write_flowcontrol_with_ctrl_c_sets_data_and_resets_sent_and_waiting():
+    """
+    If flowcontrol is True and data contains Ctrl-C, should set data, reset sent/waiting, and call send_data.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.ready = True
+    conn.flowcontrol = True
+    conn.data = b"old"
+    conn.sent = 5
+    conn.waiting = True
+    conn.send_data = mock.MagicMock()
+    conn.write(b"foo\x03bar")
+    assert conn.data == b"foo\x03bar"
+    assert conn.sent == 0
+    assert conn.waiting is False
+    conn.send_data.assert_called_once_with()
+
+
+def test_write_flowcontrol_without_ctrl_c_appends_data_and_calls_send_data():
+    """
+    If flowcontrol is True and data does not contain Ctrl-C, should append to data and call send_data.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.ready = True
+    conn.flowcontrol = True
+    conn.data = b"old"
+    conn.send_data = mock.MagicMock()
+    conn.write(b"abc")
+    assert conn.data == b"oldabc"
+    conn.send_data.assert_called_once_with()
+
+
+def test_write_no_flowcontrol_calls_super_write():
+    """
+    If flowcontrol is False, should call super().write(data).
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.ready = True
+    conn.flowcontrol = False
+    with mock.patch.object(REPLConnection, "write") as super_write:
+        conn.write(b"xyz")
+        super_write.assert_called_once_with(b"xyz")
+
+
+def test_send_interrupt_calls_write_with_ctrl_o_ctrl_c():
+    """
+    Test that send_interrupt calls write with Control-O and Control-C bytes.
+    """
+    conn = SnekREPLConnection("COM1")
+    conn.write = mock.MagicMock()
+    conn.send_interrupt()
+    conn.write.assert_called_once_with(b"\x0f\x03")
 
 
 def test_snek_mode():

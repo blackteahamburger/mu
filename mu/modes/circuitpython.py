@@ -279,7 +279,8 @@ class CircuitPythonMode(MicroPythonMode):
             return wd
 
     def compatible_board(self, port):
-        """Use adafruit_board_toolkit to find out whether a board is running
+        """
+        Use adafruit_board_toolkit to find out whether a board is running
         CircuitPython. The toolkit sees if the CDC Interface name is appropriate.
         """
 

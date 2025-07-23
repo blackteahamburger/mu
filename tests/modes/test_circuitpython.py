@@ -266,6 +266,68 @@ def test_workspace_dir_unknown_os():
     assert ex.value.args[0] == 'OS "foo" not supported.'
 
 
+def test_compatible_board_match_found():
+    """
+    Test that compatible_board returns a Device when a matching comport is found.
+    """
+    editor = mock.MagicMock()
+    view = mock.MagicMock()
+    am = CircuitPythonMode(editor, view)
+
+    port = mock.MagicMock()
+    port.productIdentifier.return_value = 1234
+    port.vendorIdentifier.return_value = 5678
+    port.manufacturer.return_value = "Adafruit"
+    port.serialNumber.return_value = "ABC123"
+    port.portName.return_value = "COM3"
+    am.port_path = mock.MagicMock(return_value="COM3")
+
+    comport = mock.MagicMock()
+    comport.device = "COM3"
+
+    with mock.patch(
+        "mu.modes.circuitpython.circuitpython_serial.repl_comports",
+        return_value=[comport],
+    ):
+        device = am.compatible_board(port)
+        assert device is not None
+        assert device.vid == 5678
+        assert device.pid == 1234
+        assert device.port == "COM3"
+        assert device.serial_number == "ABC123"
+        assert device.manufacturer == "Adafruit"
+        assert device.long_mode_name == am.name
+        assert device.short_mode_name == am.short_name
+        assert device.board_name == "CircuitPython board"
+
+
+def test_compatible_board_no_match():
+    """
+    Test that compatible_board returns None when no matching comport is found.
+    """
+    editor = mock.MagicMock()
+    view = mock.MagicMock()
+    am = CircuitPythonMode(editor, view)
+
+    port = mock.MagicMock()
+    port.productIdentifier.return_value = 1234
+    port.vendorIdentifier.return_value = 5678
+    port.manufacturer.return_value = "Adafruit"
+    port.serialNumber.return_value = "ABC123"
+    port.portName.return_value = "COM3"
+    am.port_path = mock.MagicMock(return_value="COM3")
+
+    comport = mock.MagicMock()
+    comport.device = "COM4"
+
+    with mock.patch(
+        "mu.modes.circuitpython.circuitpython_serial.repl_comports",
+        return_value=[comport],
+    ):
+        device = am.compatible_board(port)
+        assert device is None
+
+
 def test_api():
     """
     Ensure the correct API definitions are returned.
