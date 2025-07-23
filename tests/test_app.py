@@ -15,8 +15,6 @@ from mu import mu_debug
 from mu.app import (
     AnimatedSplash,
     StartupWorker,
-    _shared_memory,
-    check_only_running_once,
     excepthook,
     is_linux_wayland,
     run,
@@ -59,17 +57,6 @@ class DumSig:
         Proxy the callback function
         """
         self.func(*args)
-
-
-def only_running_once():
-    try:
-        check_only_running_once()
-        return True
-    except SystemExit:
-        return False
-
-
-IS_ONLY_RUNNING_ONCE = only_running_once()
 
 
 def test_animated_splash_init():
@@ -269,6 +256,7 @@ def test_run():
 
     with (
         mock.patch("mu.app.setup_logging") as set_log,
+        mock.patch("mu.app.check_only_running_once"),
         mock.patch("mu.app.QApplication") as qa,
         mock.patch("mu.app.AnimatedSplash") as qsp,
         mock.patch("mu.app.Editor") as ed,
@@ -297,7 +285,7 @@ def test_run():
         assert len(ed.mock_calls) == 4
         assert win.call_count == 1
         assert len(win.mock_calls) == 6
-        assert not IS_ONLY_RUNNING_ONCE or ex.call_count == 1
+        assert ex.call_count == 1
         assert mock_event_loop.call_count == 1
         assert mock_worker.call_count == 1
         assert mock_set_except.call_count == 1
@@ -376,7 +364,7 @@ def test_excepthook():
         excepthook(*exc_args)
         error.assert_called_once_with("Unrecoverable error", exc_info=exc_args)
         exit.assert_called_once_with(1)
-        assert not IS_ONLY_RUNNING_ONCE or browser.open.call_count == 1
+        assert browser.open.call_count == 1
 
 
 def test_excepthook_alamo():
@@ -396,7 +384,7 @@ def test_excepthook_alamo():
         mock.patch("mu.app.webbrowser", mock_browser),
     ):
         excepthook(*exc_args)
-        assert not IS_ONLY_RUNNING_ONCE or error.call_count == 2
+        assert error.call_count == 2
         exit.assert_called_once_with(1)
 
 
@@ -500,20 +488,6 @@ def test_is_linux_wayland_false_env_not_wayland():
         assert is_linux_wayland() is False
 
 
-@pytest.mark.skipif(
-    not IS_ONLY_RUNNING_ONCE,
-    reason="Fails when there's a real mu-editor process running",
-)
-def test_only_running_once():
-    """
-    If we are the first to acquire the application lock we should succeed
-    """
-    setup_exception_handler()
-    check_only_running_once()
-    _shared_memory.release()
-    assert True
-
-
 def test_running_twice():
     # try chaining instead of timing based stuff
 
@@ -554,24 +528,6 @@ def test_running_twice():
     assert child1.returncode == 2
 
 
-@pytest.mark.skipif(
-    not IS_ONLY_RUNNING_ONCE,
-    reason="Fails when there's a real mu-editor process running",
-)
-def test_running_twice_after_exception():
-    """
-    If we run, throw an exception and then run again we should succeed.
-    """
-    # call test that causes app to throw an exception by running it twice
-    test_running_twice()
-    # test that we can still run after exception thrown
-    test_only_running_once()
-
-
-@pytest.mark.skipif(
-    not IS_ONLY_RUNNING_ONCE,
-    reason="Fails when there's a real mu-editor process running",
-)
 def test_running_twice_after_generic_exception():
     """
     If we run and the app throws an exception, the exception handler
@@ -602,5 +558,3 @@ def test_running_twice_after_generic_exception():
 
         child1 = subprocess.run([sys.executable, cmd1])
         assert child1.returncode == 1
-        # confirm exception handler cleared shared memory and we can still run
-        test_only_running_once()

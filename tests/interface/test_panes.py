@@ -513,6 +513,28 @@ def test_MicroPythonREPLPane_set_move_cursor_to_left():
     rp.send.assert_called_once_with(mu.interface.panes.VT100_LEFT * 10)
 
 
+def test_MicroPythonREPLPane_move_cursor_to_limits_left_boundary():
+    """
+    Test that move_cursor_to should not send any movement signals when new_position is less than the start of the current line.
+    """
+    mock_repl_connection = mock.MagicMock()
+    rp = mu.interface.panes.MicroPythonREPLPane(mock_repl_connection)
+    rp.setPlainText("hello\nworld")
+    rp.device_cursor_position = 7
+    tc = rp.textCursor()
+    tc.setPosition(rp.device_cursor_position)
+    tc.movePosition(
+        mu.interface.panes.QTextCursor.StartOfLine,
+        mode=mu.interface.panes.QTextCursor.KeepAnchor,
+    )
+    line_start = tc.selectionStart()
+    new_position = line_start - 1
+    rp.set_qtcursor_to_devicecursor = mock.MagicMock()
+    rp.send = mock.MagicMock()
+    rp.move_cursor_to(new_position)
+    rp.send.assert_not_called()
+
+
 def test_MicroPythonREPLPane_delete_selection():
     """
     Test that delete_selection sends the appropriate number of backspaces
@@ -1375,7 +1397,16 @@ def test_SnekREPLPane_process_bytes_gettext():
     rp.ensureCursorVisible = mock.MagicMock(return_value=None)
     rp.text_recv = mock.MagicMock()
     rp.text_recv.recv_text = mock.MagicMock()
-    bs = bytes([2, 65, 66, 67, 13, 3])  # \2, 'A', 'B', 'C' \r \3
+    bs = bytes([
+        2,
+        65,
+        66,
+        67,
+        13,
+        3,
+        17,
+        19,
+    ])  # ctrl-b, 'A', 'B', 'C', \r, ctrl-c, XON, XOFF
     rp.process_bytes(bs)
     rp.text_recv.recv_text.assert_called_once_with("ABC")
 
@@ -1454,6 +1485,28 @@ def test_SnekREPLPane_execute():
         rp.execute(commands)
         mock_serial.write.assert_called_once_with(b"A")
         assert mock_timer.singleShot.call_count == 1
+
+
+def test_SnekREPLPane_execute_sends_first_command_and_schedules_rest():
+    """
+    Ensure the first command is sent via serial to the connected device, and
+    further commands are scheduled for the future.
+    """
+    mock_serial = mock.MagicMock()
+    rp = mu.interface.panes.SnekREPLPane(mock_serial)
+    commands = [
+        b"A",
+        b"B",
+        b"C",
+    ]
+    with mock.patch("mu.interface.panes.QTimer") as mock_timer:
+        rp.execute(commands)
+        mock_serial.write.assert_called_once_with(b"A")
+        assert mock_timer.singleShot.call_count == 1
+        scheduled_func = mock_timer.singleShot.call_args[0][1]
+        with mock.patch.object(rp, "execute") as mock_execute:
+            scheduled_func()
+            mock_execute.assert_called_once_with([b"B", b"C"])
 
 
 def test_MuFileList_show_confirm_overwrite_dialog():
@@ -1688,6 +1741,30 @@ def test_LocalFileList_contextMenuEvent():
     assert mfs.set_message.emit.call_count == 0
     assert mock_menu.addAction.call_count == 3
     mock_open.assert_called_once_with(os.path.join("homepath", "foo.py"))
+
+
+def test_LocalFileList_contextMenuEvent_action_none():
+    """
+    Ensure that when no action is selected in the context menu, nothing happens.
+    """
+    mock_menu = mock.create_autospec(QMenu, instance=True)
+    mock_menu.exec.return_value = None
+    mfs = mu.interface.panes.LocalFileList("homepath")
+    mock_current = mock.MagicMock()
+    mock_current.text.return_value = "foo.py"
+    mfs.currentItem = mock.MagicMock(return_value=mock_current)
+    mfs.set_message = mock.MagicMock()
+    mfs.mapToGlobal = mock.MagicMock()
+    mfs.open_file = mock.MagicMock()
+    mfs.put = mock.MagicMock()
+    mock_event = mock.MagicMock()
+
+    with mock.patch("mu.interface.panes.QMenu", return_value=mock_menu):
+        mfs.contextMenuEvent(mock_event)
+
+    assert mfs.set_message.emit.call_count == 0
+    assert mfs.open_file.emit.call_count == 0
+    assert mfs.put.emit.call_count == 0
 
 
 def test_LocalFileList_contextMenuEvent_hex():
@@ -2290,6 +2367,16 @@ def test_PythonProcessPane_stop_process():
     ppp.stop_process()
     ppp.process.terminate.assert_called_once_with()
     ppp.process.waitForFinished.assert_called_once_with(10)
+
+
+def test_PythonProcessPane_del_():
+    """
+    Ensure that _del_ calls stop_process.
+    """
+    ppp = mu.interface.panes.PythonProcessPane()
+    ppp.stop_process = mock.MagicMock()
+    ppp._del_()
+    ppp.stop_process.assert_called_once_with()
 
 
 def test_PythonProcessPane_stop_process_with_error():
@@ -3214,6 +3301,58 @@ def test_DebugInspectorItem():
     item = mu.interface.panes.DebugInspectorItem("test")
     assert item.text() == "test"
     assert not item.isEditable()
+
+
+def test_DebugInspector_record_expanded():
+    """
+    Ensure record_expanded adds the expanded item's text to expanded_dicts.
+    """
+    di = mu.interface.panes.DebugInspector()
+    mock_index = mock.MagicMock()
+    mock_item = mock.MagicMock()
+    mock_item.text.return_value = "expanded_dict"
+    mock_model = mock.MagicMock()
+    mock_model.itemFromIndex.return_value = mock_item
+    di.model = mock.MagicMock(return_value=mock_model)
+    di.expanded_dicts = set()
+    di.record_expanded(mock_index)
+    assert "expanded_dict" in di.expanded_dicts
+    mock_model.itemFromIndex.assert_called_once_with(mock_index)
+
+
+def test_DebugInspector_record_collapsed():
+    """
+    Ensure record_collapsed removes the collapsed item's text from expanded_dicts.
+    """
+    di = mu.interface.panes.DebugInspector()
+    mock_index = mock.MagicMock()
+    mock_item = mock.MagicMock()
+    mock_item.text.return_value = "collapsed_dict"
+    mock_model = mock.MagicMock()
+    mock_model.itemFromIndex.return_value = mock_item
+    di.model = mock.MagicMock(return_value=mock_model)
+    di.expanded_dicts = {"collapsed_dict"}
+    di.record_collapsed(mock_index)
+    assert "collapsed_dict" not in di.expanded_dicts
+    mock_model.itemFromIndex.assert_called_once_with(mock_index)
+
+
+def test_DebugInspector_record_collapsed_does_nothing_if_not_in_expanded_dicts():
+    """
+    Ensure record_collapsed does nothing if the collapsed item's text is not in expanded_dicts.
+    """
+    di = mu.interface.panes.DebugInspector()
+    mock_index = mock.MagicMock()
+    mock_item = mock.MagicMock()
+    mock_item.text.return_value = "not_expanded"
+    mock_model = mock.MagicMock()
+    mock_model.itemFromIndex.return_value = mock_item
+    di.model = mock.MagicMock(return_value=mock_model)
+    di.expanded_dicts = {"some_other_dict"}
+    di.record_collapsed(mock_index)
+    assert "some_other_dict" in di.expanded_dicts
+    assert "not_expanded" not in di.expanded_dicts
+    mock_model.itemFromIndex.assert_called_once_with(mock_index)
 
 
 def test_DebugInspector_set_font_size():

@@ -960,7 +960,7 @@ def test_editor_restore_session_invalid_file(tmp_path):
     ed.select_mode.assert_called_once_with(None)
 
 
-def test_restore_session_open_tabs_in_the_same_order():
+def test_editor_restore_sessionopen_tabs_in_the_same_order():
     """
     Editor.restore_session() loads editor tabs in the same order as the 'paths'
     array in the session.json file.
@@ -976,6 +976,25 @@ def test_restore_session_open_tabs_in_the_same_order():
         for args, _kwargs in ed.direct_load.call_args_list
     ]
     assert direct_load_calls_args == settings_paths
+
+
+def test_editor_restore_sessiondefer_launch_paths():
+    """
+    Editor.restore_session() should defer loading files that are present in launch_paths.
+    """
+    ed = mocked_editor()
+    ed.direct_load = mock.MagicMock()
+    session_paths = ["a.py", "b.py", "c.py"]
+    launch_paths = ["b.py"]
+    with generate_session(paths=session_paths):
+        ed.restore_session(paths=launch_paths)
+
+    direct_load_calls_args = [
+        os.path.basename(args[0])
+        for args, _kwargs in ed.direct_load.call_args_list
+    ]
+    expected_paths = ["a.py", "c.py", "b.py"]
+    assert direct_load_calls_args == expected_paths
 
 
 def test_editor_restore_session_list_envars():
@@ -1006,6 +1025,42 @@ def test_editor_restore_session_duplicated_list_envars():
         ed.restore_session()
 
     assert ed.envars == {"name": "value", "name2": "value2"}
+
+
+def test_editor_restore_sessionsets_python_anywhere_fields():
+    """
+    Ensure that restore_session sets pa_username, pa_token, pa_instance
+    from python_anywhere session data.
+    """
+    ed = mocked_editor()
+    pa_data = {
+        "username": "testuser",
+        "token": "testtoken",
+        "instance": "testinstance",
+    }
+    with generate_session(python_anywhere=pa_data):
+        ed.restore_session()
+    assert ed.pa_username == "testuser"
+    assert ed.pa_token == "testtoken"
+    assert ed.pa_instance == "testinstance"
+
+
+def test_editor_restore_sessionsets_locale():
+    """
+    Ensure that Editor.restore_session sets user_locale and calls i18n.set_language
+    when 'locale' is present in the session.
+    """
+    mode = "python"
+    ed = mocked_editor(mode)
+    test_locale = "zh_CN"
+    with (
+        mock.patch("mu.i18n.set_language") as mock_set_language,
+        mock.patch("mu.logic.settings") as mock_settings,
+    ):
+        mock_settings.session = {"locale": test_locale}
+        ed.restore_session()
+        assert ed.user_locale == test_locale
+        mock_set_language.assert_called_once_with(test_locale)
 
 
 def test_editor_restore_saved_window_geometry():
@@ -1612,6 +1667,26 @@ def test_load_has_default_path():
     view.get_load_path.assert_called_once_with(
         "foo", "*.py *.pyw *.PY *.PYW", allow_previous=False
     )
+
+
+def test_get_dialog_directory_workspace_dir_exception():
+    """
+    If workspace_dir raises, fallback to python mode's workspace_dir.
+    """
+    ed = mu.logic.Editor(mock.MagicMock())
+    ed.current_path = None
+    ed.mode = "circuitpython"
+    mock_mode = mock.MagicMock()
+    mock_mode.workspace_dir.side_effect = Exception("fail")
+    python_mode = mock.MagicMock()
+    python_mode.workspace_dir.return_value = "/python_workspace"
+    ed.modes = {"circuitpython": mock_mode, "python": python_mode}
+    ed._view.current_tab = None
+    with mock.patch("os.path.isdir", return_value=False):
+        with mock.patch("mu.logic.logger.error") as mock_error:
+            result = ed.get_dialog_directory()
+            assert result == "/python_workspace"
+            assert mock_error.call_count == 1
 
 
 def test_check_for_shadow_module_with_match():
@@ -2305,6 +2380,28 @@ def test_show_admin_missing_microbit_runtime():
         assert ed.envars == {"name": "value"}
         assert ed.microbit_runtime == ""
         assert view.show_message.call_count == 1
+
+
+def test_show_admin_no_settings_changed():
+    """
+    If show_admin returns None, ensure 'No admin settings changed.' is logged.
+    """
+    view = mock.MagicMock()
+    ed = mu.logic.Editor(view)
+    ed.modes = {"python": mock.MagicMock()}
+    ed.mode = "python"
+    ed.envars = {"name": "value"}
+    ed.microbit_runtime = "/foo/bar"
+    ed.user_locale = ""
+    ed.pa_username = ""
+    ed.pa_token = ""
+    ed.pa_instance = "www"
+    view.show_admin.return_value = None
+    mock_open = mock.mock_open(read_data="log content")
+    with mock.patch("builtins.open", mock_open):
+        with mock.patch("mu.logic.logger.info") as mock_logger_info:
+            ed.show_admin()
+            mock_logger_info.assert_called_with("No admin settings changed.")
 
 
 def test_select_mode():

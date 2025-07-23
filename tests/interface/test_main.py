@@ -1286,6 +1286,33 @@ def test_Window_add_python3_runner():
     w.addDockWidget.assert_called_once_with(Qt.BottomDockWidgetArea, mock_dock)
 
 
+def test_Window_add_python3_runner_debugger():
+    """
+    Ensure a Python 3 runner (to capture stdin/out/err) is displayed correctly
+    with the debugger enabled.
+    """
+    w = mu.interface.main.Window()
+    w.theme = mock.MagicMock()
+    w.connect_zoom = mock.MagicMock(return_value=None)
+    w.addDockWidget = mock.MagicMock()
+    mock_process_runner = mock.MagicMock()
+    mock_process_class = mock.MagicMock(return_value=mock_process_runner)
+    mock_dock = mock.MagicMock()
+    mock_dock_class = mock.MagicMock(return_value=mock_dock)
+    name = "foo"
+    path = "bar"
+    with (
+        mock.patch("mu.interface.main.PythonProcessPane", mock_process_class),
+        mock.patch("mu.interface.main.QDockWidget", mock_dock_class),
+    ):
+        result = w.add_python3_runner(name, path, debugger=True)
+        assert result == mock_process_runner
+    assert w.process_runner == mock_process_runner
+    assert w.runner == mock_dock
+    w.runner.setWidget.assert_called_once_with(w.process_runner)
+    w.addDockWidget.assert_called_once_with(Qt.BottomDockWidgetArea, mock_dock)
+
+
 def test_Window_add_debug_inspector():
     """
     Ensure a debug inspector (to display local variables) is displayed
@@ -1295,6 +1322,7 @@ def test_Window_add_debug_inspector():
     w.theme = mock.MagicMock()
     w.connect_zoom = mock.MagicMock(return_value=None)
     w.addDockWidget = mock.MagicMock()
+    w.debug_widths = [100, 200]
     mock_debug_inspector = mock.MagicMock()
     mock_debug_inspector_class = mock.MagicMock(
         return_value=mock_debug_inspector
@@ -1316,6 +1344,8 @@ def test_Window_add_debug_inspector():
     mock_debug_inspector.setModel.assert_called_once_with(mock_model)
     mock_dock.setWidget.assert_called_once_with(mock_debug_inspector)
     w.addDockWidget.assert_called_once_with(Qt.RightDockWidgetArea, mock_dock)
+    mock_debug_inspector.setColumnWidth.assert_any_call(0, 100)
+    mock_debug_inspector.setColumnWidth.assert_any_call(1, 200)
 
 
 def test_Window_update_debug_inspector():
@@ -1336,16 +1366,23 @@ def test_Window_update_debug_inspector():
     }
     w = mu.interface.main.Window()
     w.debug_model = mock.MagicMock()
-    w.debug_model.rowCount.return_value = 0
+    w.debug_model.rowCount.side_effect = [2, 1, 0]
+    w.debug_model.removeRow = mock.MagicMock()
     mock_standard_item = mock.MagicMock()
+    mock_debug_inspector = mock.MagicMock()
+    mock_debug_inspector.expanded_dicts = ["bar", "baz"]
+    w.debug_inspector = mock_debug_inspector
+    w.debug_model.indexFromItem = mock.MagicMock(return_value="mock_index")
     with mock.patch(
         "mu.interface.main.DebugInspectorItem", mock_standard_item
     ):
         w.update_debug_inspector(locals_dict)
-    w.debug_model.rowCount.assert_called_once_with()
+    assert w.debug_model.removeRow.call_count == 2
+    w.debug_model.rowCount.assert_called()
     w.debug_model.setHorizontalHeaderLabels(["Name", "Value"])
     # You just have to believe this is correct. I checked! :-)
     assert mock_standard_item.call_count == 22
+    assert mock_debug_inspector.expand.call_count == 2
 
 
 def test_Window_update_debug_inspector_with_exception():
@@ -1430,6 +1467,28 @@ def test_Window_remove_python_runner():
     mock_runner.deleteLater = mock.MagicMock(return_value=None)
     w.runner = mock_runner
     w.process_runner = mock.MagicMock()
+    w.process_runner.debugger = None
+    w.dockWidgetArea = mock.MagicMock()
+    w.remove_python_runner()
+    mock_runner.setParent.assert_called_once_with(None)
+    mock_runner.deleteLater.assert_called_once_with()
+    assert w.dockWidgetArea.call_count == 1
+    assert w.process_runner is None
+    assert w.runner is None
+
+
+def test_Window_remove_python_runner_debugger():
+    """
+    Check all the necessary calls to remove / reset the Python3 runner with
+    debugger are made.
+    """
+    w = mu.interface.main.Window()
+    mock_runner = mock.MagicMock()
+    mock_runner.setParent = mock.MagicMock(return_value=None)
+    mock_runner.deleteLater = mock.MagicMock(return_value=None)
+    w.runner = mock_runner
+    w.process_runner = mock.MagicMock()
+    w.process_runner.debugger = mock.MagicMock()
     w.dockWidgetArea = mock.MagicMock()
     w.remove_python_runner()
     mock_runner.setParent.assert_called_once_with(None)
@@ -1484,6 +1543,9 @@ def test_Window_set_theme():
     w.plotter = mock.MagicMock()
     w.plotter_pane = mock.MagicMock()
     w.plotter_pane.set_theme = mock.MagicMock()
+    w.runner = mock.MagicMock()
+    w.process_runner = mock.MagicMock()
+    w.process_runner.set_theme = mock.MagicMock()
     w.load_theme = mock.MagicMock()
     w.load_theme.emit = mock.MagicMock()
     w.set_theme("night")
@@ -1497,12 +1559,14 @@ def test_Window_set_theme():
     )
     w.repl_pane.set_theme.assert_called_once_with("night")
     w.plotter_pane.set_theme.assert_called_once_with("night")
+    w.process_runner.set_theme.assert_called_once_with("night")
     w.load_theme.emit.reset_mock()
     tab1.set_theme.reset_mock()
     tab2.set_theme.reset_mock()
     w.button_bar.slots["theme"].setIcon.reset_mock()
     w.repl_pane.set_theme.reset_mock()
     w.plotter_pane.set_theme.reset_mock()
+    w.process_runner.set_theme.reset_mock()
     w.set_theme("contrast")
     w.load_theme.emit.assert_called_once_with("contrast")
     assert w.theme == "contrast"
@@ -1514,12 +1578,14 @@ def test_Window_set_theme():
     )
     w.repl_pane.set_theme.assert_called_once_with("contrast")
     w.plotter_pane.set_theme.assert_called_once_with("contrast")
+    w.process_runner.set_theme.assert_called_once_with("contrast")
     w.load_theme.emit.reset_mock()
     tab1.set_theme.reset_mock()
     tab2.set_theme.reset_mock()
     w.button_bar.slots["theme"].setIcon.reset_mock()
     w.repl_pane.set_theme.reset_mock()
     w.plotter_pane.set_theme.reset_mock()
+    w.process_runner.set_theme.reset_mock()
     w.set_theme("day")
     w.load_theme.emit.assert_called_once_with("day")
     assert w.theme == "day"
@@ -1531,6 +1597,7 @@ def test_Window_set_theme():
     )
     w.repl_pane.set_theme.assert_called_once_with("day")
     w.plotter_pane.set_theme.assert_called_once_with("day")
+    w.process_runner.set_theme.assert_called_once_with("day")
 
 
 def test_Window_set_checker_icon():

@@ -1047,6 +1047,27 @@ def test_REPLConnection_execute():
         assert mock_timer.singleShot.call_count == 1
 
 
+def test_REPLConnection_execute_sends_first_command_and_schedules_rest():
+    """
+    Ensure the first command is sent via serial to the connected device, and
+    further commands are scheduled for the future.
+    """
+    mock_serial_class = mock.MagicMock()
+    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
+        conn = REPLConnection("COM0")
+        conn.write = mock.MagicMock()
+
+    commands = [b"A", b"B", b"C"]
+    with mock.patch("mu.modes.base.QTimer") as mock_timer:
+        conn.execute(commands)
+        conn.write.assert_called_once_with(b"A")
+        assert mock_timer.singleShot.call_count == 1
+        scheduled_func = mock_timer.singleShot.call_args[0][1]
+        with mock.patch.object(conn, "execute") as mock_execute:
+            scheduled_func()
+            mock_execute.assert_called_once_with([b"B", b"C"])
+
+
 def test_REPLConnection_send_commands():
     """
     Ensure the list of commands is correctly encoded and bound by control
@@ -1074,26 +1095,3 @@ def test_REPLConnection_send_commands():
         b"\x02",  # Leave raw mode.
     ]
     conn.execute.assert_called_once_with(expected)
-
-
-def test_REPLConnection_execute_sends_first_command_and_schedules_rest():
-    """
-    Ensure the first command is sent via serial to the connected device, and
-    further commands are scheduled for the future.
-    """
-    mock_serial_class = mock.MagicMock()
-    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
-        conn = REPLConnection("COM0")
-        conn.write = mock.MagicMock()
-
-    commands = [b"cmd1", b"cmd2", b"cmd3"]
-    with mock.patch("mu.modes.base.QTimer") as mock_timer:
-        conn.execute(commands)
-        conn.write.assert_called_once_with(b"cmd1")
-        assert mock_timer.singleShot.call_count == 1
-        # Check that the scheduled function, when called, sends the next command
-        # Simulate calling the scheduled function
-        scheduled_func = mock_timer.singleShot.call_args[0][1]
-        with mock.patch.object(conn, "execute") as mock_execute:
-            scheduled_func()
-            mock_execute.assert_called_once_with([b"cmd2", b"cmd3"])
