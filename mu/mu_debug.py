@@ -30,5 +30,12 @@ def debug(filename=None, *args):
         mu.debugger.runner.run("localhost", DEBUGGER_PORT, filepath, args)
 
 
-if __name__ == "__main__":
+def main():
+    """
+    Main entry point for the Mu debugger.
+    """
     debug(*sys.argv[1:])
+
+
+if __name__ == "__main__":
+    main()

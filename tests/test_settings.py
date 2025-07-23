@@ -311,11 +311,10 @@ def test_expandvars_string():
         envvar = "%{}%".format(envvar_name)
     else:
         envvar = "${}".format(envvar_name)
-    os.environ[envvar_name] = value
-    s = mu.settings.SettingsBase()
-    s[key] = envvar
-
-    assert s[key] == value
+    with mock.patch.dict(os.environ, {envvar_name: value}, clear=False):
+        s = mu.settings.SettingsBase()
+        s[key] = envvar
+        assert s[key] == value
 
 
 def test_expandvars_none():

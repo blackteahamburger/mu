@@ -18,6 +18,7 @@ from mu.app import (
     _shared_memory,
     check_only_running_once,
     excepthook,
+    is_linux_wayland,
     run,
     setup_exception_handler,
     setup_logging,
@@ -192,8 +193,8 @@ def test_setup_logging_without_envvar():
 
     Resetting the MU_LOG_TO_STDOUT env var should mean stdout logging is disabled
     """
-    os.environ.pop("MU_LOG_TO_STDOUT", "")
     with (
+        mock.patch.dict(os.environ, {}, clear=False),
         mock.patch("mu.app.TimedRotatingFileHandler") as log_conf,
         mock.patch("mu.app.os.path.exists", return_value=False),
         mock.patch("mu.app.logging") as logging,
@@ -218,8 +219,8 @@ def test_setup_logging_with_envvar():
     Setting the MU_LOG_TO_STDOUT env var ensures that stdout logging
     will be enabled
     """
-    os.environ["MU_LOG_TO_STDOUT"] = "1"
     with (
+        mock.patch.dict(os.environ, {"MU_LOG_TO_STDOUT": "1"}, clear=False),
         mock.patch("mu.app.TimedRotatingFileHandler") as log_conf,
         mock.patch("mu.app.os.path.exists", return_value=False),
         mock.patch("mu.app.logging") as logging,
@@ -235,8 +236,6 @@ def test_setup_logging_with_envvar():
             encoding=ENCODING,
         )
         logging.getLogger.assert_called_once_with()
-        # clear this to avoid interfering with other tests
-        os.environ.pop("MU_LOG_TO_STDOUT", "")
 
 
 def test_setup_except_hook():
@@ -310,6 +309,58 @@ def test_run():
         qa.assert_has_calls([mock.call().setStyleSheet(CONTRAST_STYLE)])
 
 
+def test_run_wayland_qt_qpa_platform_already_set():
+    """
+    Test that if is_linux_wayland() is True and QT_QPA_PLATFORM is already set,
+    run() does not overwrite it.
+    """
+    with (
+        mock.patch.dict(
+            os.environ, {"QT_QPA_PLATFORM": "offscreen"}, clear=False
+        ),
+        mock.patch("mu.app.setup_logging"),
+        mock.patch("mu.app.QApplication"),
+        mock.patch("mu.app.AnimatedSplash"),
+        mock.patch("mu.app.Editor"),
+        mock.patch("mu.app.load_movie"),
+        mock.patch("mu.app.Window"),
+        mock.patch("sys.argv", ["mu"]),
+        mock.patch("sys.exit"),
+        mock.patch("mu.app.QEventLoop"),
+        mock.patch("mu.app.QThread"),
+        mock.patch("mu.app.StartupWorker"),
+        mock.patch("mu.app.setup_exception_handler"),
+        mock.patch("mu.app.is_linux_wayland", return_value=True),
+    ):
+        run()
+        assert os.environ["QT_QPA_PLATFORM"] == "offscreen"
+
+
+def test_run_sets_qt_qpa_platform_when_not_set():
+    """
+    Test that if is_linux_wayland() is True and QT_QPA_PLATFORM is not already set,
+    run() sets the QT_QPA_PLATFORM environment variable to "wayland".
+    """
+    with (
+        mock.patch.dict(os.environ, {}, clear=False),
+        mock.patch("mu.app.setup_logging"),
+        mock.patch("mu.app.QApplication"),
+        mock.patch("mu.app.AnimatedSplash"),
+        mock.patch("mu.app.Editor"),
+        mock.patch("mu.app.load_movie"),
+        mock.patch("mu.app.Window"),
+        mock.patch("sys.argv", ["mu"]),
+        mock.patch("sys.exit"),
+        mock.patch("mu.app.QEventLoop"),
+        mock.patch("mu.app.QThread"),
+        mock.patch("mu.app.StartupWorker"),
+        mock.patch("mu.app.setup_exception_handler"),
+        mock.patch("mu.app.is_linux_wayland", return_value=True),
+    ):
+        run()
+        assert os.environ.get("QT_QPA_PLATFORM") == "wayland"
+
+
 def test_excepthook():
     """
     Test that custom excepthook logs error and calls sys.exit.
@@ -349,6 +400,24 @@ def test_excepthook_alamo():
         exit.assert_called_once_with(1)
 
 
+def test_excepthook_keyboard_interrupt():
+    """
+    Test that excepthook exits with code 0 for KeyboardInterrupt.
+    """
+    ex = KeyboardInterrupt()
+    exc_args = (type(ex), ex, ex.__traceback__)
+
+    with (
+        mock.patch("mu.app.logging.error") as error,
+        mock.patch("mu.app._shared_memory.release") as release,
+        mock.patch("mu.app.sys.exit") as exit,
+    ):
+        excepthook(*exc_args)
+        error.assert_called_once_with("Unrecoverable error", exc_info=exc_args)
+        release.assert_called_once_with()
+        exit.assert_called_once_with(0)
+
+
 def test_debug():
     """
     Ensure the debugger is run with the expected arguments given the filename
@@ -375,6 +444,60 @@ def test_debug_no_args():
     with mock.patch("builtins.print", mock_print):
         mu_debug.debug()
         mock_print.assert_called_once_with(expected_msg)
+
+
+def test_is_linux_wayland_true_xdg():
+    """
+    Test is_linux_wayland returns True when XDG_SESSION_TYPE is wayland.
+    """
+    with (
+        mock.patch.dict(
+            os.environ, {"XDG_SESSION_TYPE": "wayland"}, clear=False
+        ),
+        mock.patch("mu.app.platform.system", return_value="Linux"),
+    ):
+        assert is_linux_wayland() is True
+
+
+def test_is_linux_wayland_true_wayland_display():
+    """
+    Test is_linux_wayland returns True when WAYLAND_DISPLAY contains 'wayland'.
+    """
+    with (
+        mock.patch.dict(
+            os.environ, {"WAYLAND_DISPLAY": "wayland-0"}, clear=False
+        ),
+        mock.patch("mu.app.platform.system", return_value="Linux"),
+    ):
+        assert is_linux_wayland() is True
+
+
+def test_is_linux_wayland_false_not_linux():
+    """
+    Test is_linux_wayland returns False on non-Linux platforms.
+    """
+    with (
+        mock.patch.dict(
+            os.environ, {"XDG_SESSION_TYPE": "wayland"}, clear=False
+        ),
+        mock.patch("mu.app.platform.system", return_value="Windows"),
+    ):
+        assert is_linux_wayland() is False
+
+
+def test_is_linux_wayland_false_env_not_wayland():
+    """
+    Test is_linux_wayland returns False when env vars do not contain 'wayland'.
+    """
+    with (
+        mock.patch.dict(
+            os.environ,
+            {"XDG_SESSION_TYPE": "x11", "WAYLAND_DISPLAY": "somethingelse"},
+            clear=False,
+        ),
+        mock.patch("mu.app.platform.system", return_value="Linux"),
+    ):
+        assert is_linux_wayland() is False
 
 
 @pytest.mark.skipif(
@@ -462,22 +585,22 @@ def test_running_twice_after_generic_exception():
     #
 
     # set show browser on crash suppression env for test
-    os.environ["MU_SUPPRESS_CRASH_REPORT_FORM"] = "1"
-    cmd1 = "".join((
-        "-c",
-        "import os;",
-        "from mu import app;",
-        "print('process 1 id: {}'.format(os.getpid()));",
-        "app.setup_exception_handler();",
-        "app.check_only_running_once();"
-        "raise RuntimeError('intentional test exception')",
-        # Intentionally do not manually release shared memory here.
-        # Test is testing that exception handler does this.
-    ))
+    with mock.patch.dict(
+        os.environ, {"MU_SUPPRESS_CRASH_REPORT_FORM": "1"}, clear=False
+    ):
+        cmd1 = "".join((
+            "-c",
+            "import os;",
+            "from mu import app;",
+            "print('process 1 id: {}'.format(os.getpid()));",
+            "app.setup_exception_handler();",
+            "app.check_only_running_once();"
+            "raise RuntimeError('intentional test exception')",
+            # Intentionally do not manually release shared memory here.
+            # Test is testing that exception handler does this.
+        ))
 
-    child1 = subprocess.run([sys.executable, cmd1])
-    assert child1.returncode == 1
-    # confirm exception handler cleared shared memory and we can still run
-    test_only_running_once()
-    # clear browser launch suppression env flag
-    os.environ.pop("MU_SUPPRESS_CRASH_REPORT_FORM", "")
+        child1 = subprocess.run([sys.executable, cmd1])
+        assert child1.returncode == 1
+        # confirm exception handler cleared shared memory and we can still run
+        test_only_running_once()

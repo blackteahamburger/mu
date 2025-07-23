@@ -156,7 +156,7 @@ class StartupWorker(QObject):
             time.sleep(7)
             self.finished.emit()
             # Re-raise for crash handler to kick in.
-            raise ex
+            raise ex  # pragma: no cover
 
 
 def excepthook(*exc_args):

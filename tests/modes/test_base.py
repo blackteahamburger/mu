@@ -946,10 +946,16 @@ def test_REPLConnection_open_unable_to_connect():
     mock_serial.setBaudRate = mock.MagicMock(return_value=None)
     mock_serial.open = mock.MagicMock(return_value=False)
     mock_serial_class = mock.MagicMock(return_value=mock_serial)
-    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
-        with pytest.raises(IOError):
+    mock_pyserial = mock.MagicMock()
+
+    with (
+        mock.patch("mu.modes.base.QSerialPort", mock_serial_class),
+        mock.patch("mu.modes.base.Serial", mock_pyserial),
+    ):
+        with pytest.raises(IOError) as exc_info:
             conn = REPLConnection("COM0")
             conn.open()
+        assert "Cannot connect to device on port COM0" in str(exc_info.value)
 
 
 def test_REPLConnection_close():
@@ -1068,3 +1074,26 @@ def test_REPLConnection_send_commands():
         b"\x02",  # Leave raw mode.
     ]
     conn.execute.assert_called_once_with(expected)
+
+
+def test_REPLConnection_execute_sends_first_command_and_schedules_rest():
+    """
+    Ensure the first command is sent via serial to the connected device, and
+    further commands are scheduled for the future.
+    """
+    mock_serial_class = mock.MagicMock()
+    with mock.patch("mu.modes.base.QSerialPort", mock_serial_class):
+        conn = REPLConnection("COM0")
+        conn.write = mock.MagicMock()
+
+    commands = [b"cmd1", b"cmd2", b"cmd3"]
+    with mock.patch("mu.modes.base.QTimer") as mock_timer:
+        conn.execute(commands)
+        conn.write.assert_called_once_with(b"cmd1")
+        assert mock_timer.singleShot.call_count == 1
+        # Check that the scheduled function, when called, sends the next command
+        # Simulate calling the scheduled function
+        scheduled_func = mock_timer.singleShot.call_args[0][1]
+        with mock.patch.object(conn, "execute") as mock_execute:
+            scheduled_func()
+            mock_execute.assert_called_once_with([b"cmd2", b"cmd3"])

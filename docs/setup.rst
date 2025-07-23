@@ -56,6 +56,10 @@ To run the local development version of Mu, in the root of the repository type::
 
   python run.py
 
+An alternative form is to type::
+
+  python -m mu
+
 
 Using ``make``
 ++++++++++++++

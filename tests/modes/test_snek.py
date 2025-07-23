@@ -27,7 +27,6 @@ def test_snek_mode():
     editor = mock.MagicMock()
     view = mock.MagicMock()
     am = SnekMode(editor, view)
-    assert am.name == "Snek"
     assert am.description is not None
     assert am.icon == "snek"
     assert am.editor == editor

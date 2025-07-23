@@ -123,7 +123,7 @@ class SettingsBase(object):
 
     def register_for_autosave(self):
         """Ensure the settings are saved at least when the Python session finishes"""
-        atexit.register(self.save)
+        atexit.register(self.save)  # pragma: no cover
 
     def init(self):
         """Attempt to find the default filestem in a number of well-known locations.

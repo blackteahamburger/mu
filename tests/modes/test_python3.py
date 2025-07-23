@@ -7,7 +7,30 @@ import os
 from unittest import mock
 
 from mu.modes.api import PI_APIS, PYTHON3_APIS, SHARED_APIS
-from mu.modes.python3 import KernelRunner, PythonMode
+from mu.modes.python3 import KernelRunner, MuKernelManager, PythonMode
+
+
+def test_mu_kernel_manager_start_kernel_passes_kwargs():
+    """
+    Test that MuKernelManager.start_kernel passes all keyword arguments through
+    to pre_start_kernel and then to _launch_kernel and post_start_kernel.
+    """
+
+    manager = MuKernelManager()
+    manager.pre_start_kernel = mock.MagicMock(
+        return_value=(["python", "-m", "ipykernel"], {"foo": "bar"})
+    )
+    manager._launch_kernel = mock.MagicMock()
+    manager.post_start_kernel = mock.MagicMock()
+
+    result = manager.start_kernel(baz="qux")
+
+    manager.pre_start_kernel.assert_called_once_with(baz="qux")
+    manager._launch_kernel.assert_called_once_with(
+        ["python", "-m", "ipykernel"], foo="bar"
+    )
+    manager.post_start_kernel.assert_called_once_with(foo="bar")
+    assert result is None
 
 
 def test_kernel_runner_start_kernel():
