@@ -490,24 +490,6 @@ def test_Debugger_user_exception_other_exc_type():
     db.interact.assert_called_once_with(mock_frame, "traceback")
 
 
-def test_Debugger_do_break_non_executable_line():
-    """
-    If the referenced file and line are not a executable line, output an error
-    message to the client.
-    """
-    mock_socket = mock.MagicMock()
-    db = mu.debugger.runner.Debugger(mock_socket, "localhost", 9999)
-    db.output = mock.MagicMock()
-    db.is_executable_line = mock.MagicMock(return_value=False)
-    with mock.patch(
-        "mu.debugger.runner.is_breakpoint_line", return_value=False
-    ):
-        db.do_break("foo.py", 10)
-    db.output.assert_called_once_with(
-        "error", message="foo.py:10 is not executable"
-    )
-
-
 def test_Debugger_do_break_causes_error():
     """
     If any error is encountered while calling set_break, output an error
@@ -516,12 +498,8 @@ def test_Debugger_do_break_causes_error():
     mock_socket = mock.MagicMock()
     db = mu.debugger.runner.Debugger(mock_socket, "localhost", 9999)
     db.output = mock.MagicMock()
-    db.is_executable_line = mock.MagicMock(return_value=True)
     db.set_break = mock.MagicMock(return_value="bang!")
-    with mock.patch(
-        "mu.debugger.runner.is_breakpoint_line", return_value=True
-    ):
-        db.do_break("foo.py", 10)
+    db.do_break("foo.py", 10)
     db.output.assert_called_once_with("error", message="bang!")
 
 
@@ -533,7 +511,6 @@ def test_Debugger_do_break():
     mock_socket = mock.MagicMock()
     db = mu.debugger.runner.Debugger(mock_socket, "localhost", 9999)
     db.output = mock.MagicMock()
-    db.is_executable_line = mock.MagicMock(return_value=True)
     db.set_break = mock.MagicMock(return_value=None)
     mock_bp = mock.MagicMock()
     mock_bp.number = 123
@@ -542,10 +519,7 @@ def test_Debugger_do_break():
     mock_bp.temporary = False
     mock_bp.funcname = "bar"
     db.get_breaks = mock.MagicMock(return_value=[mock_bp])
-    with mock.patch(
-        "mu.debugger.runner.is_breakpoint_line", return_value=True
-    ):
-        db.do_break("foo.py", 10)
+    db.do_break("foo.py", 10)
     db.output.assert_called_once_with(
         "breakpoint_create",
         bpnum=mock_bp.number,

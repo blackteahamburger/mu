@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 19:19+0800\n"
+"POT-Creation-Date: 2025-07-24 21:20+0800\n"
 "PO-Revision-Date: 2022-02-13 13:09+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
@@ -212,7 +212,7 @@ msgstr "置換(オプション)"
 msgid "Replace all?"
 msgstr "すべて置換しますか？"
 
-#: mu/interface/editor.py:330 mu/logic.py:1345
+#: mu/interface/editor.py:330 mu/logic.py:1344
 msgid "untitled"
 msgstr "無題"
 
@@ -406,7 +406,7 @@ msgstr "現在の Mu 動作モード。"
 msgid "Detected new {} device: {}."
 msgstr "新規の {} デバイスを検出しました: {}"
 
-#: mu/interface/main.py:1490 mu/logic.py:1617
+#: mu/interface/main.py:1490 mu/logic.py:1616
 #, python-brace-format
 msgid "Detected new {} device."
 msgstr "新規の {} デバイスを検出しました。"
@@ -513,31 +513,31 @@ msgstr "デバイス内のファイル '{}' を取得している際に問題が
 msgid "No device connected."
 msgstr "デバイスが接続されていません。"
 
-#: mu/logic.py:88
+#: mu/logic.py:87
 msgid "Hello, World!"
 msgstr ""
 
-#: mu/logic.py:90
+#: mu/logic.py:89
 msgid ""
 "This editor is free software written in Python. You can modify it, add "
 "features or fix bugs if you like."
 msgstr "このエディタは Python で作成したフリーソフトウェアです。あなたの好きなように変更、機能追加、バグ修正できます。"
 
-#: mu/logic.py:93
+#: mu/logic.py:92
 msgid "This editor is called Mu (you say it 'mew' or 'moo')."
 msgstr "このエディタの名前は Mu です('mew' とか 'moo' とか発音します)。"
 
-#: mu/logic.py:94
+#: mu/logic.py:93
 msgid "Google, Facebook, NASA, Pixar, Disney and many more use Python."
 msgstr "Google, Facebook, NASA, Pixar, Disney など多くが Python を使っている。"
 
-#: mu/logic.py:96
+#: mu/logic.py:95
 msgid ""
 "Programming is a form of magic. Learn to cast the right spells with code "
 "and you'll be a wizard."
 msgstr "プログラミングは魔法の一種。正しいスペルをコードで書く方法を学ぶと魔法使いになれる。"
 
-#: mu/logic.py:100
+#: mu/logic.py:99
 msgid ""
 "REPL stands for read, evaluate, print, loop. It's a fun way to talk to "
 "your computer! :-)"
@@ -545,274 +545,274 @@ msgstr ""
 "REPLは、read (読む)、evaluate (評価)、print (印字)、loop (ループ)の略。 "
 "それはあなたのコンピュータと話す楽しい手段です！ :-)"
 
-#: mu/logic.py:103
+#: mu/logic.py:102
 msgid "Be brave, break things, learn and have fun!"
 msgstr "勇気を出そう、前に進もう、学び、楽しもう！"
 
-#: mu/logic.py:104
+#: mu/logic.py:103
 msgid "Make your software both useful AND fun. Empower your users."
 msgstr "ソフトウェアを便利で楽しいものにしよう。それがユーザの助けになるのです。"
 
-#: mu/logic.py:105
+#: mu/logic.py:104
 msgid "For the Zen of Python: import this"
 msgstr "Zen of Python を見る方法: import this"
 
-#: mu/logic.py:106
+#: mu/logic.py:105
 msgid "Diversity promotes creativity."
 msgstr "多様性は創造性を促進する。"
 
-#: mu/logic.py:107
+#: mu/logic.py:106
 msgid "An open mind, spirit of adventure and respect for diversity are key."
 msgstr "開かれた心、冒険の精神、多様性の尊重が重要です。"
 
-#: mu/logic.py:109
+#: mu/logic.py:108
 msgid ""
 "Don't worry if it doesn't work. Learn the lesson, fix it and try again! "
 ":-)"
 msgstr "動作しなくても心配するな。その失敗から学び、修正してやり直すのだ！ :-)"
 
-#: mu/logic.py:112
+#: mu/logic.py:111
 msgid "Coding is collaboration."
 msgstr "コーディングはコラボレーションである。"
 
-#: mu/logic.py:113
+#: mu/logic.py:112
 msgid "Compliment and amplify the good things with code."
 msgstr "コードのよいところに感謝し、それを広めよう。"
 
-#: mu/logic.py:115
+#: mu/logic.py:114
 msgid "In theory, theory and practice are the same. In practice, they're not. ;-)"
 msgstr "理論的には理論と実践は同じであるが、実践的にはそうではない。 ;-)"
 
-#: mu/logic.py:118
+#: mu/logic.py:117
 msgid "Debugging is twice as hard as writing the code in the first place."
 msgstr "デバッグ作業は、最初にコードを書くときよりも倍難しい。"
 
-#: mu/logic.py:119
+#: mu/logic.py:118
 msgid "It's fun to program."
 msgstr "プログラミングは楽しい。"
 
-#: mu/logic.py:120
+#: mu/logic.py:119
 msgid "Programming has more to do with problem solving than writing code."
 msgstr "プログラミングとは、コードを書くだけにあらず、問題解決するということである。"
 
-#: mu/logic.py:121
+#: mu/logic.py:120
 msgid "Start with your users' needs."
 msgstr "ユーザのニーズから始めなさい。"
 
-#: mu/logic.py:122
+#: mu/logic.py:121
 msgid "Try to see things from your users' point of view."
 msgstr "ユーザの視点から物事を見てください。"
 
-#: mu/logic.py:123
+#: mu/logic.py:122
 msgid "Put yourself in your users' shoes."
 msgstr "ユーザの立場で考えてください。"
 
-#: mu/logic.py:125
+#: mu/logic.py:124
 msgid ""
 "Explaining a programming problem to a friend often reveals the solution. "
 ":-)"
 msgstr "友人にプログラムの問題の問題を説明することで、解決策が明らかになることはよくある。 :-)"
 
-#: mu/logic.py:128
+#: mu/logic.py:127
 msgid "If you don't know, ask. Nobody to ask? Just look it up."
 msgstr "分からないことがあるなら質問してください。質問はありませんか？"
 
-#: mu/logic.py:129
+#: mu/logic.py:128
 msgid "Complexity is the enemy. KISS - keep it simple, stupid!"
 msgstr "複雑さは敵である。KISS - keep it simple, stupid! (単純にしておけ、この間抜け！)"
 
-#: mu/logic.py:130
+#: mu/logic.py:129
 msgid "Beautiful is better than ugly."
 msgstr "醜いより美しいほうがいい。"
 
-#: mu/logic.py:131
+#: mu/logic.py:130
 msgid "Explicit is better than implicit."
 msgstr "暗示するより明示するほうがいい。"
 
-#: mu/logic.py:132
+#: mu/logic.py:131
 msgid "Simple is better than complex. Complex is better than complicated."
 msgstr "複雑であるよりは平易であるほうがいい。それでも、込み入っているよりは複雑であるほうがまし。"
 
-#: mu/logic.py:133
+#: mu/logic.py:132
 msgid "Flat is better than nested."
 msgstr "ネストは浅いほうがいい。"
 
-#: mu/logic.py:134
+#: mu/logic.py:133
 msgid "Sparse is better than dense."
 msgstr "密集しているよりは隙間があるほうがいい。"
 
-#: mu/logic.py:135
+#: mu/logic.py:134
 msgid "Readability counts."
 msgstr "読みやすいことは善である。"
 
-#: mu/logic.py:137
+#: mu/logic.py:136
 msgid ""
 "Special cases aren't special enough to break the rules. Although "
 "practicality beats purity."
 msgstr "特殊であることはルールを破る理由にならない。しかし、実用性を求めると自然さが失われることがある。"
 
-#: mu/logic.py:140
+#: mu/logic.py:139
 msgid "Errors should never pass silently. Unless explicitly silenced."
 msgstr "エラーは隠すな、無視するな。ただし、わざと隠されているのなら見逃せ。"
 
-#: mu/logic.py:141
+#: mu/logic.py:140
 msgid "In the face of ambiguity, refuse the temptation to guess."
 msgstr "曖昧なものに出逢ったら、その意味を適当に推測してはいけない。"
 
-#: mu/logic.py:142
+#: mu/logic.py:141
 msgid "There should be one-- and preferably only one --obvious way to do it."
 msgstr "たったひとつの冴えたやりかたがあるはずだ。"
 
-#: mu/logic.py:144
+#: mu/logic.py:143
 msgid "Now is better than never. Although never is often better than *right* now."
 msgstr "ずっとやらないでいるよりは、今やれ。でも、今\"すぐ\"にやるよりはやらないほうがマシなことが多い。"
 
-#: mu/logic.py:147
+#: mu/logic.py:146
 msgid "If the implementation is hard to explain, it's a bad idea."
 msgstr "コードの内容を説明するのが難しいのなら、それは悪い実装である。"
 
-#: mu/logic.py:148
+#: mu/logic.py:147
 msgid "If the implementation is easy to explain, it may be a good idea."
 msgstr "コードの内容を容易に説明できるのなら、おそらくそれはよい実装である。"
 
-#: mu/logic.py:149
+#: mu/logic.py:148
 msgid "Namespaces are one honking great idea -- let's do more of those!"
 msgstr "名前空間は優れたアイデアであるため、積極的に利用すべきである。"
 
-#: mu/logic.py:150
+#: mu/logic.py:149
 msgid "Mu was created by Nicholas H.Tollervey."
 msgstr "Mu は Nicholas H.Tollervey が作成しました。"
 
-#: mu/logic.py:151
+#: mu/logic.py:150
 msgid "To understand what recursion is, you must first understand recursion."
 msgstr "再帰とは何かを理解するためには、まず再帰を理解する必要がある。"
 
-#: mu/logic.py:153
+#: mu/logic.py:152
 msgid ""
 "Algorithm: a word used by programmers when they don't want to explain "
 "what they did."
 msgstr "アルゴリズム: プログラマーが何をしているかを説明したくないときに使う言葉。"
 
-#: mu/logic.py:156
+#: mu/logic.py:155
 msgid "Programmers count from zero."
 msgstr "プログラマーはゼロから数える。"
 
-#: mu/logic.py:157
+#: mu/logic.py:156
 msgid "Simplicity is the ultimate sophistication."
 msgstr "単純であることは究極の洗練である。 "
 
-#: mu/logic.py:158
+#: mu/logic.py:157
 msgid "A good programmer is humble."
 msgstr "優れたプログラマーは謙虚である。"
 
-#: mu/logic.py:159
+#: mu/logic.py:158
 msgid "A good programmer is playful."
 msgstr "優れたプログラマーには遊び心がある。"
 
-#: mu/logic.py:160
+#: mu/logic.py:159
 msgid "A good programmer learns to learn."
 msgstr "優れたプログラマーは学ぶことを学ぶ。"
 
-#: mu/logic.py:161
+#: mu/logic.py:160
 msgid "A good programmer thinks beyond the obvious."
 msgstr "優れたプログラマーは当たり前の一つ上を考えている。"
 
-#: mu/logic.py:162
+#: mu/logic.py:161
 msgid "A good programmer promotes simplicity."
 msgstr "優れたプログラマーは単純さを推し進める。"
 
-#: mu/logic.py:163
+#: mu/logic.py:162
 msgid "A good programmer avoids complexity."
 msgstr "優れたプログラマーは複雑さを避ける。"
 
-#: mu/logic.py:164
+#: mu/logic.py:163
 msgid "A good programmer is patient."
 msgstr "優れたプログラマーは病気である。"
 
-#: mu/logic.py:165
+#: mu/logic.py:164
 msgid "A good programmer asks questions."
 msgstr "優れたプログラマーは問いかける。"
 
-#: mu/logic.py:166
+#: mu/logic.py:165
 msgid "A good programmer is willing to say, 'I don't know'."
 msgstr "優れたプログラマーは「わからない」と言っても構わない。"
 
-#: mu/logic.py:167
+#: mu/logic.py:166
 msgid "Wisest are they that know they know nothing."
 msgstr "賢明であるとは、知らないことを知っていることである。"
 
-#: mu/logic.py:169
+#: mu/logic.py:168
 msgid "Computers aren’t the thing. They’re the thing that gets us to the thing."
 msgstr ""
 
-#: mu/logic.py:171
+#: mu/logic.py:170
 msgid "Don't stare at a blank screen - try something out."
 msgstr ""
 
-#: mu/logic.py:172
+#: mu/logic.py:171
 msgid "If you're stuck - try explaining it to a rubber duck."
 msgstr ""
 
-#: mu/logic.py:173
+#: mu/logic.py:172
 msgid "It's ok to be stuck, go for a walk and then try again (:"
 msgstr ""
 
-#: mu/logic.py:174 mu/logic.py:178
+#: mu/logic.py:173 mu/logic.py:177
 msgid "It's not a mistake to make an error."
 msgstr ""
 
-#: mu/logic.py:175
+#: mu/logic.py:174
 msgid "Errors are there to learn from them. Then avoid them."
 msgstr ""
 
-#: mu/logic.py:176
+#: mu/logic.py:175
 msgid "Don't look backwards for very long. We keep moving forward."
 msgstr ""
 
-#: mu/logic.py:177
+#: mu/logic.py:176
 msgid "Keep moving forward."
 msgstr ""
 
-#: mu/logic.py:179
+#: mu/logic.py:178
 msgid "Do not pass silently."
 msgstr ""
 
-#: mu/logic.py:180
+#: mu/logic.py:179
 msgid "Computers are not humans. There is no need arguing with them."
 msgstr ""
 
-#: mu/logic.py:181
+#: mu/logic.py:180
 msgid "Embrace change and seek growth."
 msgstr ""
 
-#: mu/logic.py:182
+#: mu/logic.py:181
 msgid "Live, laugh, learn!"
 msgstr ""
 
-#: mu/logic.py:183
+#: mu/logic.py:182
 msgid "Let's get coding!"
 msgstr ""
 
-#: mu/logic.py:184
+#: mu/logic.py:183
 msgid "Don't be afraid of coding, we all learn by making mistakes!"
 msgstr ""
 
-#: mu/logic.py:479
+#: mu/logic.py:478
 msgid " above this line"
 msgstr " この行の上"
 
-#: mu/logic.py:528
+#: mu/logic.py:527
 msgid ""
 "Syntax error. Python cannot understand this line. Check for missing "
 "characters!"
 msgstr "文法エラー。Python はこの行を理解できません。間違った綴りがないか調べてください！"
 
-#: mu/logic.py:592
+#: mu/logic.py:591
 #, python-brace-format
 msgid "{} compatible"
 msgstr "{} 互換"
 
-#: mu/logic.py:1017
+#: mu/logic.py:1016
 #, python-brace-format
 msgid ""
 "The file contains characters Mu expects to be encoded as {0} or as the "
@@ -825,32 +825,32 @@ msgstr ""
 "Mu が前提としているファイルエンコーディングは {0} かコンピュータのデフォルトの {1} ですが、他の方法でエンコードされています。\n"
 "このファイルが別のアプリケーションで保存されたのであれば、「別名で保存」オプションでエンコーディングを {0} を設定して再保存してください。"
 
-#: mu/logic.py:1044
+#: mu/logic.py:1043
 #, python-brace-format
 msgid "The file \"{}\" is already open."
 msgstr "ファイル \"{}\" は既に開いています。"
 
-#: mu/logic.py:1056
+#: mu/logic.py:1055
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
 msgstr "Mu は {} の文字を読み込めませんでした。"
 
-#: mu/logic.py:1082
+#: mu/logic.py:1081
 msgid "Mu was not able to open this file"
 msgstr "Mu はこのファイルを開けませんでした"
 
-#: mu/logic.py:1084
+#: mu/logic.py:1083
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
 msgstr "現在のところ Mu は Python ソースファイルまたは MicroPython コードが埋め込まれた hex ファイルだけを扱えます。"
 
-#: mu/logic.py:1091
+#: mu/logic.py:1090
 #, python-brace-format
 msgid "Could not load {}"
 msgstr "ファイル {} を読み込めません。"
 
-#: mu/logic.py:1094
+#: mu/logic.py:1093
 msgid ""
 "Does this file exist?\n"
 "If it does, do you have permission to read it?\n"
@@ -862,12 +862,12 @@ msgstr ""
 "\n"
 "以上を確認して、再度試してみてください。"
 
-#: mu/logic.py:1101
+#: mu/logic.py:1100
 #, python-brace-format
 msgid "Is this a {} file?"
 msgstr "これは {} ファイルですか？"
 
-#: mu/logic.py:1103
+#: mu/logic.py:1102
 #, python-brace-format
 msgid ""
 "It looks like this could be a {} file.\n"
@@ -878,37 +878,37 @@ msgstr ""
 "\n"
 "Mu を {} モードに変更しますか？"
 
-#: mu/logic.py:1229
+#: mu/logic.py:1228
 msgid "Could not save file (disk problem)"
 msgstr "ファイルを保存できませんでした(ディスクの問題)。"
 
-#: mu/logic.py:1231
+#: mu/logic.py:1230
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
 msgstr "ディスクへのファイルの保存でエラーになりました。ファイルの書込み権とディスクの空きが十分にあるかを確認してください。"
 
-#: mu/logic.py:1236
+#: mu/logic.py:1235
 msgid "Could not save file (encoding problem)"
 msgstr "ファイルを保存できませんでした(エンコーディングの問題)。"
 
-#: mu/logic.py:1239
+#: mu/logic.py:1238
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
 msgstr "すべての文字を変換できませんでした。ファイルの先頭にエンコーディング行がある場合は、それを削除してもう一度やり直してください。"
 
-#: mu/logic.py:1249
+#: mu/logic.py:1248
 #, python-brace-format
 msgid "Saved file: {}"
 msgstr "保存したファイル: {}"
 
-#: mu/logic.py:1281 mu/logic.py:1676
+#: mu/logic.py:1280 mu/logic.py:1666
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
 msgstr "ファイル名 \"{}\" は使えません"
 
-#: mu/logic.py:1285
+#: mu/logic.py:1284
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
@@ -917,67 +917,57 @@ msgstr ""
 "この名前はすでに Python の別のところで使われています。この名前を使うと Python "
 "のシステムを壊してしまう可能性があります。別のファイル名でもう一度やり直してください。"
 
-#: mu/logic.py:1361
+#: mu/logic.py:1360
 msgid "Good job! No problems found."
 msgstr "よくできました！ 問題は見つかりませんでした。"
 
-#: mu/logic.py:1362
+#: mu/logic.py:1361
 msgid "Hurrah! Checker turned up no problems."
 msgstr "バンザイ！ チェッカは問題を検出しませんでした。"
 
-#: mu/logic.py:1363
+#: mu/logic.py:1362
 msgid "Nice one! Zero problems detected."
 msgstr "良いですね！ 問題の検出はゼロです。"
 
-#: mu/logic.py:1364
+#: mu/logic.py:1363
 msgid "Well done! No problems here."
 msgstr "よくやりました！ 問題ありません。"
 
-#: mu/logic.py:1365
+#: mu/logic.py:1364
 msgid "Awesome! Zero problems found."
 msgstr "驚ろきました！ 問題は何も見つかりません。"
 
-#: mu/logic.py:1390
+#: mu/logic.py:1389
 msgid "There is un-saved work, exiting the application will cause you to lose it."
 msgstr "保存していないスクリプトがありますが、アプリケーションを終了すると消えてしまいます。"
 
-#: mu/logic.py:1462
+#: mu/logic.py:1461
 msgid "Could not find MicroPython runtime."
 msgstr "MicroPython ランタイムが見つかりません。"
 
-#: mu/logic.py:1464
+#: mu/logic.py:1463
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
 "again."
 msgstr "指定した micro:bit ランタイムは存在しません。もう一度やり直してください。"
 
-#: mu/logic.py:1569
+#: mu/logic.py:1568
 #, python-brace-format
 msgid "Changed to {} mode."
 msgstr "モードを {} に変更します。"
 
-#: mu/logic.py:1600
+#: mu/logic.py:1599
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
 msgstr "Mu を {} モードに変更しますか？"
 
-#: mu/logic.py:1619
+#: mu/logic.py:1618
 #, python-brace-format
 msgid "Device changed to {}."
 msgstr "モードを {} に変更します。"
 
-#: mu/logic.py:1655
-msgid "Cannot Set Breakpoint."
-msgstr "ブレイクポイントを設定できません。"
-
-#: mu/logic.py:1657
-msgid ""
-"Lines that are comments or some multi-line statements cannot have "
-"breakpoints."
-msgstr "コメント行や複数行のステートメントの一部はブレイクポイントに設定できません。"
-
-#: mu/logic.py:1680
+#: mu/logic.py:1670
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
@@ -986,51 +976,51 @@ msgstr ""
 "この名前はすでに Python の別のところで使われています。この名前を使うと Python "
 "のシステムを壊してしまう可能性があります。別のファイル名でもう一度やり直してください。"
 
-#: mu/logic.py:1701
+#: mu/logic.py:1691
 msgid "Could not rename file."
 msgstr "ファイル名を変更できませんでした。"
 
-#: mu/logic.py:1703
+#: mu/logic.py:1693
 msgid "A file of that name is already open in Mu."
 msgstr "この名前のファイルは Mu で既に開いています。"
 
-#: mu/logic.py:1734
+#: mu/logic.py:1724
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
 msgstr "\"{}\" を \"{}\" で置換する。"
 
-#: mu/logic.py:1739
+#: mu/logic.py:1729
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
 msgstr "{} 個の \"{}\" を \"{}\" で置換しました。"
 
-#: mu/logic.py:1744 mu/logic.py:1751 mu/logic.py:1770
+#: mu/logic.py:1734 mu/logic.py:1741 mu/logic.py:1760
 #, python-brace-format
 msgid "Could not find \"{}\"."
 msgstr "\"{}\" が見つかりませんでした。"
 
-#: mu/logic.py:1749 mu/logic.py:1768
+#: mu/logic.py:1739 mu/logic.py:1758
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
 msgstr "検索した \"{}\" を強調表示しました。"
 
-#: mu/logic.py:1754 mu/logic.py:1773
+#: mu/logic.py:1744 mu/logic.py:1763
 msgid "You must provide something to find."
 msgstr "検索するものを指定してください。"
 
-#: mu/logic.py:1756 mu/logic.py:1775
+#: mu/logic.py:1746 mu/logic.py:1765
 msgid "Please try again, this time with something in the find box."
 msgstr "今度は検索ボックスに何かを入れて、もう一度お試しください。"
 
-#: mu/logic.py:1818
+#: mu/logic.py:1808
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
 msgstr ""
 
-#: mu/logic.py:1824
+#: mu/logic.py:1814
 msgid "Your code contains problems."
 msgstr ""
 
-#: mu/logic.py:1826
+#: mu/logic.py:1816
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
@@ -1172,60 +1162,60 @@ msgstr ""
 "\n"
 " {}"
 
-#: mu/modes/debugger.py:46
+#: mu/modes/debugger.py:45
 msgid "Graphical Debugger"
 msgstr "グラフィカルデバッガ"
 
-#: mu/modes/debugger.py:50
+#: mu/modes/debugger.py:49
 msgid "Debug your Python 3 code."
 msgstr "Python 3 コードをデバッグします。"
 
-#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/debugger.py:65 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
 #: mu/modes/web.py:196
 msgid "Stop"
 msgstr "停止"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:66
 msgid "Stop the running code."
 msgstr "コードの実行を停止します。"
 
-#: mu/modes/debugger.py:73
+#: mu/modes/debugger.py:72
 msgid "Continue"
 msgstr "継続"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:73
 msgid "Continue to run your Python script."
 msgstr "Python スクリプトの実行を継続します。"
 
-#: mu/modes/debugger.py:80
+#: mu/modes/debugger.py:79
 msgid "Step Over"
 msgstr "ステップオーバー"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:80
 msgid "Step over a line of code."
 msgstr "コードの１行をステップオーバーします。"
 
-#: mu/modes/debugger.py:87
+#: mu/modes/debugger.py:86
 msgid "Step In"
 msgstr "ステップイン"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:87
 msgid "Step into a function."
 msgstr "関数にステップインします。"
 
-#: mu/modes/debugger.py:94
+#: mu/modes/debugger.py:93
 msgid "Step Out"
 msgstr "ステップアウト"
 
-#: mu/modes/debugger.py:95
+#: mu/modes/debugger.py:94
 msgid "Step out of a function."
 msgstr "関数からステップアウトします。"
 
-#: mu/modes/debugger.py:166
+#: mu/modes/debugger.py:165
 msgid "Your script has finished running."
 msgstr "スクリプトの実行を終了しました。"
 
-#: mu/modes/debugger.py:271
+#: mu/modes/debugger.py:270
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1233,17 +1223,17 @@ msgstr ""
 "Python デバッガに接続できません。\n"
 "\n"
 
-#: mu/modes/debugger.py:360
+#: mu/modes/debugger.py:355
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "デバッガ情報: {}"
 
-#: mu/modes/debugger.py:367
+#: mu/modes/debugger.py:362
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "デバッガ警告: {}"
 
-#: mu/modes/debugger.py:375
+#: mu/modes/debugger.py:370
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "デバッガエラー: {}"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 19:19+0800\n"
+"POT-Creation-Date: 2025-07-24 21:20+0800\n"
 "PO-Revision-Date: 2022-06-08 12:00+0300\n"
 "Last-Translator: \n"
 "Language: uk_UA\n"
@@ -226,7 +226,7 @@ msgstr "Замінити (необов’язково):"
 msgid "Replace all?"
 msgstr "Замінити всі?"
 
-#: mu/interface/editor.py:330 mu/logic.py:1345
+#: mu/interface/editor.py:330 mu/logic.py:1344
 msgid "untitled"
 msgstr "Без назви"
 
@@ -420,7 +420,7 @@ msgstr "Поточний спосіб поведінки М'ю."
 msgid "Detected new {} device: {}."
 msgstr "Виявлено новий {} пристрій {}."
 
-#: mu/interface/main.py:1490 mu/logic.py:1617
+#: mu/interface/main.py:1490 mu/logic.py:1616
 #, python-brace-format
 msgid "Detected new {} device."
 msgstr "Виявлено новий {} пристрій."
@@ -534,11 +534,11 @@ msgstr ""
 msgid "No device connected."
 msgstr "Немає підключених пристроїв"
 
-#: mu/logic.py:88
+#: mu/logic.py:87
 msgid "Hello, World!"
 msgstr "Вітаю, світе!"
 
-#: mu/logic.py:90
+#: mu/logic.py:89
 msgid ""
 "This editor is free software written in Python. You can modify it, add "
 "features or fix bugs if you like."
@@ -547,17 +547,17 @@ msgstr ""
 "Python. Ви можете змінити його, додати функції або виправити помилки, "
 "якщо хочете."
 
-#: mu/logic.py:93
+#: mu/logic.py:92
 msgid "This editor is called Mu (you say it 'mew' or 'moo')."
 msgstr "Цей редактор називається Mu (вимовляється як \"м'ю\" або \"мю\")."
 
-#: mu/logic.py:94
+#: mu/logic.py:93
 msgid "Google, Facebook, NASA, Pixar, Disney and many more use Python."
 msgstr ""
 "Google, Facebook, NASA, Pixar, Disney та багато інших використовують "
 "Python."
 
-#: mu/logic.py:96
+#: mu/logic.py:95
 msgid ""
 "Programming is a form of magic. Learn to cast the right spells with code "
 "and you'll be a wizard."
@@ -565,7 +565,7 @@ msgstr ""
 "Програмування - форма магії. Навчіться робити правильні 'заклинання' за "
 "допомогою коду, і ви станете чарівником."
 
-#: mu/logic.py:100
+#: mu/logic.py:99
 msgid ""
 "REPL stands for read, evaluate, print, loop. It's a fun way to talk to "
 "your computer! :-)"
@@ -573,29 +573,29 @@ msgstr ""
 "REPL - читати(read), опрацювати(evaluate), друкувати(print), "
 "повторити(loop). Це цікавий спосіб спілкуватися з комп'ютером! :-)"
 
-#: mu/logic.py:103
+#: mu/logic.py:102
 msgid "Be brave, break things, learn and have fun!"
 msgstr "Будьте сміливі, змінюйте світ, вчіться та отримуйте задоволення!"
 
-#: mu/logic.py:104
+#: mu/logic.py:103
 msgid "Make your software both useful AND fun. Empower your users."
 msgstr ""
 "Зробіть своє програмне забезпечення і корисним, і цікавим. Розширюйте "
 "можливості ваших користувачів."
 
-#: mu/logic.py:105
+#: mu/logic.py:104
 msgid "For the Zen of Python: import this"
 msgstr "По Zen для Python: import this"
 
-#: mu/logic.py:106
+#: mu/logic.py:105
 msgid "Diversity promotes creativity."
 msgstr "Різноманітність сприяє творчості."
 
-#: mu/logic.py:107
+#: mu/logic.py:106
 msgid "An open mind, spirit of adventure and respect for diversity are key."
 msgstr "Відкритий розум, дух пригод та повага до різноманітності є ключовими."
 
-#: mu/logic.py:109
+#: mu/logic.py:108
 msgid ""
 "Don't worry if it doesn't work. Learn the lesson, fix it and try again! "
 ":-)"
@@ -603,45 +603,45 @@ msgstr ""
 "Не хвилюйтесь, якщо це не працює. Перегляньте зроблене, виправте його та "
 "спробуйте ще раз! :-)"
 
-#: mu/logic.py:112
+#: mu/logic.py:111
 msgid "Coding is collaboration."
 msgstr "Кодування - це співпраця."
 
-#: mu/logic.py:113
+#: mu/logic.py:112
 msgid "Compliment and amplify the good things with code."
 msgstr "Компліментуйте і підсилюйте хороші речі кодом."
 
-#: mu/logic.py:115
+#: mu/logic.py:114
 msgid "In theory, theory and practice are the same. In practice, they're not. ;-)"
 msgstr "У теорії - теорія та практика однакові. На практиці це не так. ;-)"
 
-#: mu/logic.py:118
+#: mu/logic.py:117
 msgid "Debugging is twice as hard as writing the code in the first place."
 msgstr "Виправлення коду вдвічі важче, ніж його написання."
 
-#: mu/logic.py:119
+#: mu/logic.py:118
 msgid "It's fun to program."
 msgstr "Програмувати весело та захоплююче."
 
-#: mu/logic.py:120
+#: mu/logic.py:119
 msgid "Programming has more to do with problem solving than writing code."
 msgstr ""
 "Програмування більше пов'язане з вирішенням проблем, ніж з написанням "
 "коду."
 
-#: mu/logic.py:121
+#: mu/logic.py:120
 msgid "Start with your users' needs."
 msgstr "Почніть з потреб своїх користувачів."
 
-#: mu/logic.py:122
+#: mu/logic.py:121
 msgid "Try to see things from your users' point of view."
 msgstr "Спробуйте побачити речі з точки зору користувачів."
 
-#: mu/logic.py:123
+#: mu/logic.py:122
 msgid "Put yourself in your users' shoes."
 msgstr "Поставте себе на місце користувачів."
 
-#: mu/logic.py:125
+#: mu/logic.py:124
 msgid ""
 "Explaining a programming problem to a friend often reveals the solution. "
 ":-)"
@@ -649,41 +649,41 @@ msgstr ""
 "Пояснення другові проблеми у програмуванні часто допомагає знайти "
 "рішення. :-)"
 
-#: mu/logic.py:128
+#: mu/logic.py:127
 msgid "If you don't know, ask. Nobody to ask? Just look it up."
 msgstr ""
 "Якщо ви чогось не знаєте - запитайте. Немає кого запитати? Просто "
 "озирніться навколо."
 
-#: mu/logic.py:129
+#: mu/logic.py:128
 msgid "Complexity is the enemy. KISS - keep it simple, stupid!"
 msgstr "Складність - ворог. Гарні речі не можуть бути складними!"
 
-#: mu/logic.py:130
+#: mu/logic.py:129
 msgid "Beautiful is better than ugly."
 msgstr "Красиве краще, ніж потворне."
 
-#: mu/logic.py:131
+#: mu/logic.py:130
 msgid "Explicit is better than implicit."
 msgstr "Явне краще, ніж неявне."
 
-#: mu/logic.py:132
+#: mu/logic.py:131
 msgid "Simple is better than complex. Complex is better than complicated."
 msgstr "Просте - краще, ніж складне. Складне краще, ніж заплутане."
 
-#: mu/logic.py:133
+#: mu/logic.py:132
 msgid "Flat is better than nested."
 msgstr "Плоске краще, ніж вкладене."
 
-#: mu/logic.py:134
+#: mu/logic.py:133
 msgid "Sparse is better than dense."
 msgstr "Розріджене краще, ніж щільне."
 
-#: mu/logic.py:135
+#: mu/logic.py:134
 msgid "Readability counts."
 msgstr "Читабельність має значення."
 
-#: mu/logic.py:137
+#: mu/logic.py:136
 msgid ""
 "Special cases aren't special enough to break the rules. Although "
 "practicality beats purity."
@@ -691,43 +691,43 @@ msgstr ""
 "Особливі випадки не настільки особливі, щоб порушувати правила.\n"
 "При цьому практичність важливіша за бездоганність."
 
-#: mu/logic.py:140
+#: mu/logic.py:139
 msgid "Errors should never pass silently. Unless explicitly silenced."
 msgstr "Помилки ніколи не повинні замовчуватися. Якщо вони не замовчуються явно."
 
-#: mu/logic.py:141
+#: mu/logic.py:140
 msgid "In the face of ambiguity, refuse the temptation to guess."
 msgstr "В умовах неоднозначності не покладайтеся на свої здогадки."
 
-#: mu/logic.py:142
+#: mu/logic.py:141
 msgid "There should be one-- and preferably only one --obvious way to do it."
 msgstr "Повинен бути один, і бажано лише один, очевидний спосіб це зробити."
 
-#: mu/logic.py:144
+#: mu/logic.py:143
 msgid "Now is better than never. Although never is often better than *right* now."
 msgstr "Зараз краще, ніж ніколи. Але часто ніколи краще, ніж прямо зараз."
 
-#: mu/logic.py:147
+#: mu/logic.py:146
 msgid "If the implementation is hard to explain, it's a bad idea."
 msgstr "Якщо реалізацію важко пояснити, це погана ідея."
 
-#: mu/logic.py:148
+#: mu/logic.py:147
 msgid "If the implementation is easy to explain, it may be a good idea."
 msgstr "Якщо реалізацію легко пояснити, це може бути гарною ідеєю."
 
-#: mu/logic.py:149
+#: mu/logic.py:148
 msgid "Namespaces are one honking great idea -- let's do more of those!"
 msgstr "Простори імен - це чудова ідея - давайте зробимо більше таких!"
 
-#: mu/logic.py:150
+#: mu/logic.py:149
 msgid "Mu was created by Nicholas H.Tollervey."
 msgstr "М'ю створив Ніколас Х.Толлервей."
 
-#: mu/logic.py:151
+#: mu/logic.py:150
 msgid "To understand what recursion is, you must first understand recursion."
 msgstr "Щоб зрозуміти, що таке рекурсія, потрібно спочатку зрозуміти рекурсію."
 
-#: mu/logic.py:153
+#: mu/logic.py:152
 msgid ""
 "Algorithm: a word used by programmers when they don't want to explain "
 "what they did."
@@ -735,115 +735,115 @@ msgstr ""
 "Алгоритм: слово, яке використовують програмісти, коли вони не хочуть "
 "пояснювати, що зробили."
 
-#: mu/logic.py:156
+#: mu/logic.py:155
 msgid "Programmers count from zero."
 msgstr "Програмісти рахують від нуля."
 
-#: mu/logic.py:157
+#: mu/logic.py:156
 msgid "Simplicity is the ultimate sophistication."
 msgstr "Простота - це найвища витонченість."
 
-#: mu/logic.py:158
+#: mu/logic.py:157
 msgid "A good programmer is humble."
 msgstr "Хороший програміст - скромний."
 
-#: mu/logic.py:159
+#: mu/logic.py:158
 msgid "A good programmer is playful."
 msgstr "Хороший програміст дотепний."
 
-#: mu/logic.py:160
+#: mu/logic.py:159
 msgid "A good programmer learns to learn."
 msgstr "Хороший програміст вчиться вчитися."
 
-#: mu/logic.py:161
+#: mu/logic.py:160
 msgid "A good programmer thinks beyond the obvious."
 msgstr "Хороший програміст мислить за межами очевидного."
 
-#: mu/logic.py:162
+#: mu/logic.py:161
 msgid "A good programmer promotes simplicity."
 msgstr "Хороший програміст сприяє простоті."
 
-#: mu/logic.py:163
+#: mu/logic.py:162
 msgid "A good programmer avoids complexity."
 msgstr "Хороший програміст уникає складності."
 
-#: mu/logic.py:164
+#: mu/logic.py:163
 msgid "A good programmer is patient."
 msgstr "Хороший програміст - терплячий."
 
-#: mu/logic.py:165
+#: mu/logic.py:164
 msgid "A good programmer asks questions."
 msgstr "Хороший програміст ставить запитання."
 
-#: mu/logic.py:166
+#: mu/logic.py:165
 msgid "A good programmer is willing to say, 'I don't know'."
 msgstr "Хороший програміст готовий сказати: 'Я не знаю'."
 
-#: mu/logic.py:167
+#: mu/logic.py:166
 msgid "Wisest are they that know they know nothing."
 msgstr "Наймудріші ті, хто знає, що нічого не знає."
 
-#: mu/logic.py:169
+#: mu/logic.py:168
 msgid "Computers aren’t the thing. They’re the thing that gets us to the thing."
 msgstr ""
 
-#: mu/logic.py:171
+#: mu/logic.py:170
 msgid "Don't stare at a blank screen - try something out."
 msgstr ""
 
-#: mu/logic.py:172
+#: mu/logic.py:171
 msgid "If you're stuck - try explaining it to a rubber duck."
 msgstr ""
 
-#: mu/logic.py:173
+#: mu/logic.py:172
 msgid "It's ok to be stuck, go for a walk and then try again (:"
 msgstr ""
 
-#: mu/logic.py:174 mu/logic.py:178
+#: mu/logic.py:173 mu/logic.py:177
 msgid "It's not a mistake to make an error."
 msgstr ""
 
-#: mu/logic.py:175
+#: mu/logic.py:174
 msgid "Errors are there to learn from them. Then avoid them."
 msgstr ""
 
-#: mu/logic.py:176
+#: mu/logic.py:175
 msgid "Don't look backwards for very long. We keep moving forward."
 msgstr ""
 
-#: mu/logic.py:177
+#: mu/logic.py:176
 msgid "Keep moving forward."
 msgstr ""
 
-#: mu/logic.py:179
+#: mu/logic.py:178
 msgid "Do not pass silently."
 msgstr ""
 
-#: mu/logic.py:180
+#: mu/logic.py:179
 msgid "Computers are not humans. There is no need arguing with them."
 msgstr ""
 
-#: mu/logic.py:181
+#: mu/logic.py:180
 msgid "Embrace change and seek growth."
 msgstr ""
 
-#: mu/logic.py:182
+#: mu/logic.py:181
 msgid "Live, laugh, learn!"
 msgstr ""
 
-#: mu/logic.py:183
+#: mu/logic.py:182
 msgid "Let's get coding!"
 msgstr ""
 
-#: mu/logic.py:184
+#: mu/logic.py:183
 msgid "Don't be afraid of coding, we all learn by making mistakes!"
 msgstr ""
 
-#: mu/logic.py:479
+#: mu/logic.py:478
 msgid " above this line"
 msgstr "вище цього рядка"
 
-#: mu/logic.py:528
+#: mu/logic.py:527
 msgid ""
 "Syntax error. Python cannot understand this line. Check for missing "
 "characters!"
@@ -851,12 +851,12 @@ msgstr ""
 "Синтаксична помилка. Python не може зрозуміти цей рядок. Перевірте "
 "наявність відсутніх символів!"
 
-#: mu/logic.py:592
+#: mu/logic.py:591
 #, python-brace-format
 msgid "{} compatible"
 msgstr ""
 
-#: mu/logic.py:1017
+#: mu/logic.py:1016
 #, python-brace-format
 msgid ""
 "The file contains characters Mu expects to be encoded as {0} or as the "
@@ -873,21 +873,21 @@ msgstr ""
 "Якщо цей файл було збережено в іншій програмі, повторно збережіть файл за"
 " допомогою параметра «Зберегти як» і встановіть кодування на {0}"
 
-#: mu/logic.py:1044
+#: mu/logic.py:1043
 #, python-brace-format
 msgid "The file \"{}\" is already open."
 msgstr "Файл \"{}\" вже відкрито."
 
-#: mu/logic.py:1056
+#: mu/logic.py:1055
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
 msgstr "М'ю не може прочитати символи у {}"
 
-#: mu/logic.py:1082
+#: mu/logic.py:1081
 msgid "Mu was not able to open this file"
 msgstr "М'ю не може відкрити цей файл"
 
-#: mu/logic.py:1084
+#: mu/logic.py:1083
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
@@ -895,12 +895,12 @@ msgstr ""
 "В даний час М'ю працює лише з вихідними файлами Python або "
 "шістнадцятковими файлами, створеними з вбудованим кодом MicroPython."
 
-#: mu/logic.py:1091
+#: mu/logic.py:1090
 #, python-brace-format
 msgid "Could not load {}"
 msgstr "Не вдалося завантажити  {}"
 
-#: mu/logic.py:1094
+#: mu/logic.py:1093
 msgid ""
 "Does this file exist?\n"
 "If it does, do you have permission to read it?\n"
@@ -912,12 +912,12 @@ msgstr ""
 "\n"
 "Перевірте і повторіть спробу."
 
-#: mu/logic.py:1101
+#: mu/logic.py:1100
 #, python-brace-format
 msgid "Is this a {} file?"
 msgstr "Це {} файл?"
 
-#: mu/logic.py:1103
+#: mu/logic.py:1102
 #, python-brace-format
 msgid ""
 "It looks like this could be a {} file.\n"
@@ -928,11 +928,11 @@ msgstr ""
 "\n"
 "Чи хотіли б ви змінити М'ю на режим {}?"
 
-#: mu/logic.py:1229
+#: mu/logic.py:1228
 msgid "Could not save file (disk problem)"
 msgstr "Не вдалось зберегти файл (проблема с диском)"
 
-#: mu/logic.py:1231
+#: mu/logic.py:1230
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
@@ -940,11 +940,11 @@ msgstr ""
 "Помилка збереження файлу на диску. Переконайтеся, що у вас є дозвіл на "
 "запис файлу та достатньо місця на диску."
 
-#: mu/logic.py:1236
+#: mu/logic.py:1235
 msgid "Could not save file (encoding problem)"
 msgstr "Не вдалося зберегти файл (проблема кодування)"
 
-#: mu/logic.py:1239
+#: mu/logic.py:1238
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
@@ -952,17 +952,17 @@ msgstr ""
 "Неможливо конвертувати всі символи. Якщо у верхній частині файлу є рядок "
 "кодування, видаліть його та спробуйте ще раз."
 
-#: mu/logic.py:1249
+#: mu/logic.py:1248
 #, python-brace-format
 msgid "Saved file: {}"
 msgstr "Збережений файл: {}"
 
-#: mu/logic.py:1281 mu/logic.py:1676
+#: mu/logic.py:1280 mu/logic.py:1666
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
 msgstr "Ви не можете використовувати назву файла \"{}\""
 
-#: mu/logic.py:1285
+#: mu/logic.py:1284
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
@@ -972,35 +972,35 @@ msgstr ""
 "використовувати це ім'я, код, ймовірно, зіпсується. Спробуйте ще раз з "
 "іншим іменем файлу."
 
-#: mu/logic.py:1361
+#: mu/logic.py:1360
 msgid "Good job! No problems found."
 msgstr "Молодець! Проблем не знайдено."
 
-#: mu/logic.py:1362
+#: mu/logic.py:1361
 msgid "Hurrah! Checker turned up no problems."
 msgstr "Ура! Перевірка не виявила проблем."
 
-#: mu/logic.py:1363
+#: mu/logic.py:1362
 msgid "Nice one! Zero problems detected."
 msgstr "Чудово! Не виявлено жодної проблеми."
 
-#: mu/logic.py:1364
+#: mu/logic.py:1363
 msgid "Well done! No problems here."
 msgstr "Молодець! Тут проблем немає."
 
-#: mu/logic.py:1365
+#: mu/logic.py:1364
 msgid "Awesome! Zero problems found."
 msgstr "Дивовижно! Не знайдено жодної проблеми."
 
-#: mu/logic.py:1390
+#: mu/logic.py:1389
 msgid "There is un-saved work, exiting the application will cause you to lose it."
 msgstr "Роботу не збережено, вихід із програми призведе до  її втрати."
 
-#: mu/logic.py:1462
+#: mu/logic.py:1461
 msgid "Could not find MicroPython runtime."
 msgstr "Не вдалося знайти MicroPython."
 
-#: mu/logic.py:1464
+#: mu/logic.py:1463
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
@@ -1009,34 +1009,22 @@ msgstr ""
 "Код micro:bit, який ви вказали ('{}'), не існує. Будь ласка спробуйте ще "
 "раз."
 
-#: mu/logic.py:1569
+#: mu/logic.py:1568
 #, python-brace-format
 msgid "Changed to {} mode."
 msgstr "Змінено на режим {}."
 
-#: mu/logic.py:1600
+#: mu/logic.py:1599
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
 msgstr "Бажаєте змінити режим М'ю на {}?"
 
-#: mu/logic.py:1619
+#: mu/logic.py:1618
 #, python-brace-format
 msgid "Device changed to {}."
 msgstr "Пристрій змінено на {}."
 
-#: mu/logic.py:1655
-msgid "Cannot Set Breakpoint."
-msgstr "Неможливо встановити точку зупинки."
-
-#: mu/logic.py:1657
-msgid ""
-"Lines that are comments or some multi-line statements cannot have "
-"breakpoints."
-msgstr ""
-"Рядки, які є коментарями або деякими багаторядковими операторами, не "
-"можуть мати точки зупинки."
-
-#: mu/logic.py:1680
+#: mu/logic.py:1670
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
@@ -1046,51 +1034,51 @@ msgstr ""
 "використовувати це ім'я, код, ймовірно, зіпсується. Спробуйте ще раз з "
 "іншим іменем файлу."
 
-#: mu/logic.py:1701
+#: mu/logic.py:1691
 msgid "Could not rename file."
 msgstr "Не вдалося перейменувати файл."
 
-#: mu/logic.py:1703
+#: mu/logic.py:1693
 msgid "A file of that name is already open in Mu."
 msgstr "Файл з такою назвою вже відкрито в М'ю."
 
-#: mu/logic.py:1734
+#: mu/logic.py:1724
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
 msgstr "Замінено \"{}\" на \"{}\"."
 
-#: mu/logic.py:1739
+#: mu/logic.py:1729
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
 msgstr "Замінено {} збігів \"{}\" на \"{}\"."
 
-#: mu/logic.py:1744 mu/logic.py:1751 mu/logic.py:1770
+#: mu/logic.py:1734 mu/logic.py:1741 mu/logic.py:1760
 #, python-brace-format
 msgid "Could not find \"{}\"."
 msgstr "Не вдалося знайти \"{}\"."
 
-#: mu/logic.py:1749 mu/logic.py:1768
+#: mu/logic.py:1739 mu/logic.py:1758
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
 msgstr "Підсвічування збігів для \"{}\"."
 
-#: mu/logic.py:1754 mu/logic.py:1773
+#: mu/logic.py:1744 mu/logic.py:1763
 msgid "You must provide something to find."
 msgstr "Ви повинні вказати щось, щоб знайти."
 
-#: mu/logic.py:1756 mu/logic.py:1775
+#: mu/logic.py:1746 mu/logic.py:1765
 msgid "Please try again, this time with something in the find box."
 msgstr "Спробуйте ще раз, цього разу з чимось у вікні пошуку."
 
-#: mu/logic.py:1818
+#: mu/logic.py:1808
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
 msgstr "Код успішно очищено. Використовуйте Ctrl-Z для скасування."
 
-#: mu/logic.py:1824
+#: mu/logic.py:1814
 msgid "Your code contains problems."
 msgstr "Ваш код містить проблеми."
 
-#: mu/logic.py:1826
+#: mu/logic.py:1816
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
@@ -1247,60 +1235,60 @@ msgstr ""
 "\n"
 "...для зберігання вашого коду."
 
-#: mu/modes/debugger.py:46
+#: mu/modes/debugger.py:45
 msgid "Graphical Debugger"
 msgstr "Графічний налагоджувач"
 
-#: mu/modes/debugger.py:50
+#: mu/modes/debugger.py:49
 msgid "Debug your Python 3 code."
 msgstr "Налагодити код Python 3."
 
-#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/debugger.py:65 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
 #: mu/modes/web.py:196
 msgid "Stop"
 msgstr "Зупинити"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:66
 msgid "Stop the running code."
 msgstr "Зупиніть працюючий код."
 
-#: mu/modes/debugger.py:73
+#: mu/modes/debugger.py:72
 msgid "Continue"
 msgstr "Продовжити"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:73
 msgid "Continue to run your Python script."
 msgstr "Продовжити виконувати скрипт Python."
 
-#: mu/modes/debugger.py:80
+#: mu/modes/debugger.py:79
 msgid "Step Over"
 msgstr "Крок вперед"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:80
 msgid "Step over a line of code."
 msgstr "Пропустити  рядок коду."
 
-#: mu/modes/debugger.py:87
+#: mu/modes/debugger.py:86
 msgid "Step In"
 msgstr "Крок із входом"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:87
 msgid "Step into a function."
 msgstr "Крок у середину функції."
 
-#: mu/modes/debugger.py:94
+#: mu/modes/debugger.py:93
 msgid "Step Out"
 msgstr "Крок з виходом"
 
-#: mu/modes/debugger.py:95
+#: mu/modes/debugger.py:94
 msgid "Step out of a function."
 msgstr "Крок з виходом із функції."
 
-#: mu/modes/debugger.py:166
+#: mu/modes/debugger.py:165
 msgid "Your script has finished running."
 msgstr "Ваш скрипт закінчився."
 
-#: mu/modes/debugger.py:271
+#: mu/modes/debugger.py:270
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1308,17 +1296,17 @@ msgstr ""
 "Не вдається підключитися до налагоджувача Python.\n"
 "\n"
 
-#: mu/modes/debugger.py:360
+#: mu/modes/debugger.py:355
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "Інформація налагоджувача: {}"
 
-#: mu/modes/debugger.py:367
+#: mu/modes/debugger.py:362
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "Попередження налагоджувача: {}"
 
-#: mu/modes/debugger.py:375
+#: mu/modes/debugger.py:370
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "Помилка налагодження: {}"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 19:19+0800\n"
+"POT-Creation-Date: 2025-07-24 21:20+0800\n"
 "PO-Revision-Date: 2018-08-21 11:07+0200\n"
 "Last-Translator: \n"
 "Language: sv\n"
@@ -211,7 +211,7 @@ msgstr "Ersätt (valfritt):"
 msgid "Replace all?"
 msgstr "Ersätt alla?"
 
-#: mu/interface/editor.py:330 mu/logic.py:1345
+#: mu/interface/editor.py:330 mu/logic.py:1344
 msgid "untitled"
 msgstr "namnlös"
 
@@ -406,7 +406,7 @@ msgstr "Mu nuvarande utvecklingsläge."
 msgid "Detected new {} device: {}."
 msgstr "Upptäckt new {} enhet."
 
-#: mu/interface/main.py:1490 mu/logic.py:1617
+#: mu/interface/main.py:1490 mu/logic.py:1616
 #, python-brace-format
 msgid "Detected new {} device."
 msgstr "Upptäckt new {} enhet."
@@ -522,11 +522,11 @@ msgstr ""
 msgid "No device connected."
 msgstr ""
 
-#: mu/logic.py:88
+#: mu/logic.py:87
 msgid "Hello, World!"
 msgstr "Hello, World!"
 
-#: mu/logic.py:90
+#: mu/logic.py:89
 msgid ""
 "This editor is free software written in Python. You can modify it, add "
 "features or fix bugs if you like."
@@ -534,15 +534,15 @@ msgstr ""
 "Den här editorn är skriven i Python. Du kan ändra den, lägga till saker "
 "eller fixa buggar om du vill."
 
-#: mu/logic.py:93
+#: mu/logic.py:92
 msgid "This editor is called Mu (you say it 'mew' or 'moo')."
 msgstr "Den här editorn heter Mu (Utalas mu)."
 
-#: mu/logic.py:94
+#: mu/logic.py:93
 msgid "Google, Facebook, NASA, Pixar, Disney and many more use Python."
 msgstr "Google, Facebook, NASA, Pixar, Disney och många fler använder Python."
 
-#: mu/logic.py:96
+#: mu/logic.py:95
 msgid ""
 "Programming is a form of magic. Learn to cast the right spells with code "
 "and you'll be a wizard."
@@ -550,7 +550,7 @@ msgstr ""
 "Programmering är en form av magi. Lär dig kasta de rätt formlerna med kod"
 " och du kommer bli en trollkarl."
 
-#: mu/logic.py:100
+#: mu/logic.py:99
 msgid ""
 "REPL stands for read, evaluate, print, loop. It's a fun way to talk to "
 "your computer! :-)"
@@ -558,27 +558,27 @@ msgstr ""
 "REPL är en förkortning för “read, evaluate, print, loop”. Det är ett kul "
 "sätt att kommunicera med din dator!"
 
-#: mu/logic.py:103
+#: mu/logic.py:102
 msgid "Be brave, break things, learn and have fun!"
 msgstr "Var modig, ta sönder saker, lär dig och ha kul!"
 
-#: mu/logic.py:104
+#: mu/logic.py:103
 msgid "Make your software both useful AND fun. Empower your users."
 msgstr "Gör din mjukvara både användbar och kul. Stärk dina användare."
 
-#: mu/logic.py:105
+#: mu/logic.py:104
 msgid "For the Zen of Python: import this"
 msgstr "För Python Zen: import this"
 
-#: mu/logic.py:106
+#: mu/logic.py:105
 msgid "Diversity promotes creativity."
 msgstr "Mångfald föder kreativitet."
 
-#: mu/logic.py:107
+#: mu/logic.py:106
 msgid "An open mind, spirit of adventure and respect for diversity are key."
 msgstr "Ett öppet sinne, äventyrslusta och respekt för mångfald är essentiellt."
 
-#: mu/logic.py:109
+#: mu/logic.py:108
 msgid ""
 "Don't worry if it doesn't work. Learn the lesson, fix it and try again! "
 ":-)"
@@ -586,83 +586,83 @@ msgstr ""
 "Oroa dig inte ifall det inte fungerar. Lär dig, lös det och försök igen! "
 ":-)"
 
-#: mu/logic.py:112
+#: mu/logic.py:111
 msgid "Coding is collaboration."
 msgstr "Att koda är att sammarbeta."
 
-#: mu/logic.py:113
+#: mu/logic.py:112
 msgid "Compliment and amplify the good things with code."
 msgstr "Komplettera och förstärk bra saker med kod."
 
-#: mu/logic.py:115
+#: mu/logic.py:114
 msgid "In theory, theory and practice are the same. In practice, they're not. ;-)"
 msgstr ""
 "I teorin så är teori och praktik samma sak. In praktiken, så är de inte "
 "det."
 
-#: mu/logic.py:118
+#: mu/logic.py:117
 msgid "Debugging is twice as hard as writing the code in the first place."
 msgstr "Debugging är dubbelt så svårt att skiva koden."
 
-#: mu/logic.py:119
+#: mu/logic.py:118
 msgid "It's fun to program."
 msgstr "Det är kul att programmera."
 
-#: mu/logic.py:120
+#: mu/logic.py:119
 msgid "Programming has more to do with problem solving than writing code."
 msgstr "Programmering har mer med problemlösningar att göra än att skriva kod."
 
-#: mu/logic.py:121
+#: mu/logic.py:120
 msgid "Start with your users' needs."
 msgstr "Starta med dina användares behov."
 
-#: mu/logic.py:122
+#: mu/logic.py:121
 msgid "Try to see things from your users' point of view."
 msgstr "Försök att se saker från dina användares håll."
 
-#: mu/logic.py:123
+#: mu/logic.py:122
 msgid "Put yourself in your users' shoes."
 msgstr "Sätt dig själv i användarens skor."
 
-#: mu/logic.py:125
+#: mu/logic.py:124
 msgid ""
 "Explaining a programming problem to a friend often reveals the solution. "
 ":-)"
 msgstr "Lösningen visar sig ofta när man förklarar sitt problem för en vän. :-)"
 
-#: mu/logic.py:128
+#: mu/logic.py:127
 msgid "If you don't know, ask. Nobody to ask? Just look it up."
 msgstr "Fråga om du inte vet. Ingen att fråga? Då är det bara att slå upp det."
 
-#: mu/logic.py:129
+#: mu/logic.py:128
 msgid "Complexity is the enemy. KISS - keep it simple, stupid!"
 msgstr "Komplexitet är en fiende. Håll det enkelt, dummer!"
 
-#: mu/logic.py:130
+#: mu/logic.py:129
 msgid "Beautiful is better than ugly."
 msgstr "Vackert är bättre än fult."
 
-#: mu/logic.py:131
+#: mu/logic.py:130
 msgid "Explicit is better than implicit."
 msgstr "Explicit är bättre än implicit."
 
-#: mu/logic.py:132
+#: mu/logic.py:131
 msgid "Simple is better than complex. Complex is better than complicated."
 msgstr "Enkelt är bättre än komplext. Komplext är bättre än komplicerat."
 
-#: mu/logic.py:133
+#: mu/logic.py:132
 msgid "Flat is better than nested."
 msgstr "Flat är bättre nestlat."
 
-#: mu/logic.py:134
+#: mu/logic.py:133
 msgid "Sparse is better than dense."
 msgstr "Glest är bättre än tätt."
 
-#: mu/logic.py:135
+#: mu/logic.py:134
 msgid "Readability counts."
 msgstr "Läsbarhet räknas."
 
-#: mu/logic.py:137
+#: mu/logic.py:136
 msgid ""
 "Special cases aren't special enough to break the rules. Although "
 "practicality beats purity."
@@ -670,43 +670,43 @@ msgstr ""
 "Specialfall är inte speciella nog för att bryta reglerna. Pragmatism slår"
 " dock renhet."
 
-#: mu/logic.py:140
+#: mu/logic.py:139
 msgid "Errors should never pass silently. Unless explicitly silenced."
 msgstr "Fel ska aldrig passera tyst. Såvida explicit tystade."
 
-#: mu/logic.py:141
+#: mu/logic.py:140
 msgid "In the face of ambiguity, refuse the temptation to guess."
 msgstr "Vid tvetydighet, motstå frestelsen att gissa."
 
-#: mu/logic.py:142
+#: mu/logic.py:141
 msgid "There should be one-- and preferably only one --obvious way to do it."
 msgstr "Det ska finnas ett — och helst bara ett — uppenbart sätt att göra det."
 
-#: mu/logic.py:144
+#: mu/logic.py:143
 msgid "Now is better than never. Although never is often better than *right* now."
 msgstr "Nu är bättre än aldrig. Aldrig är i och för sig ofta bättre än *just* nu."
 
-#: mu/logic.py:147
+#: mu/logic.py:146
 msgid "If the implementation is hard to explain, it's a bad idea."
 msgstr "Om en implementation är svår att förklara, så är den en dålig idé."
 
-#: mu/logic.py:148
+#: mu/logic.py:147
 msgid "If the implementation is easy to explain, it may be a good idea."
 msgstr "Om en implementation är lätt att förklara, så är den nog en god idé."
 
-#: mu/logic.py:149
+#: mu/logic.py:148
 msgid "Namespaces are one honking great idea -- let's do more of those!"
 msgstr "Namnrymder är en kanonidé — låt oss använda dem mer!"
 
-#: mu/logic.py:150
+#: mu/logic.py:149
 msgid "Mu was created by Nicholas H.Tollervey."
 msgstr "Mu skapades av Nicholas H.Tollervey."
 
-#: mu/logic.py:151
+#: mu/logic.py:150
 msgid "To understand what recursion is, you must first understand recursion."
 msgstr "För att förstår rekursion, måste du först förstå rekursion."
 
-#: mu/logic.py:153
+#: mu/logic.py:152
 msgid ""
 "Algorithm: a word used by programmers when they don't want to explain "
 "what they did."
@@ -714,115 +714,115 @@ msgstr ""
 "Algoritm: ett ord som används av programmerare när det inte vill förklara"
 " vad de gjort."
 
-#: mu/logic.py:156
+#: mu/logic.py:155
 msgid "Programmers count from zero."
 msgstr "Programmerare räknar från noll."
 
-#: mu/logic.py:157
+#: mu/logic.py:156
 msgid "Simplicity is the ultimate sophistication."
 msgstr "Enkelhet är den ultimata sofistikeringen."
 
-#: mu/logic.py:158
+#: mu/logic.py:157
 msgid "A good programmer is humble."
 msgstr "En bra programmerare är ödmjuk."
 
-#: mu/logic.py:159
+#: mu/logic.py:158
 msgid "A good programmer is playful."
 msgstr "A bra programmerare är lekfull."
 
-#: mu/logic.py:160
+#: mu/logic.py:159
 msgid "A good programmer learns to learn."
 msgstr "En bra programmerare lär sig lärande."
 
-#: mu/logic.py:161
+#: mu/logic.py:160
 msgid "A good programmer thinks beyond the obvious."
 msgstr "En bra programmerare tänker bortom det uppenbara."
 
-#: mu/logic.py:162
+#: mu/logic.py:161
 msgid "A good programmer promotes simplicity."
 msgstr "En bra programmerare föredrar enkelhet."
 
-#: mu/logic.py:163
+#: mu/logic.py:162
 msgid "A good programmer avoids complexity."
 msgstr "En bra programmerare undviker komplexitet."
 
-#: mu/logic.py:164
+#: mu/logic.py:163
 msgid "A good programmer is patient."
 msgstr "En bra programmerare har tålamod."
 
-#: mu/logic.py:165
+#: mu/logic.py:164
 msgid "A good programmer asks questions."
 msgstr "En bra programmerare ställer frågor."
 
-#: mu/logic.py:166
+#: mu/logic.py:165
 msgid "A good programmer is willing to say, 'I don't know'."
 msgstr "A bra programmerare säger gärna: ‘Jag vet inte’."
 
-#: mu/logic.py:167
+#: mu/logic.py:166
 msgid "Wisest are they that know they know nothing."
 msgstr "Visast är de som vet att det inte vet någonting."
 
-#: mu/logic.py:169
+#: mu/logic.py:168
 msgid "Computers aren’t the thing. They’re the thing that gets us to the thing."
 msgstr ""
 
-#: mu/logic.py:171
+#: mu/logic.py:170
 msgid "Don't stare at a blank screen - try something out."
 msgstr ""
 
-#: mu/logic.py:172
+#: mu/logic.py:171
 msgid "If you're stuck - try explaining it to a rubber duck."
 msgstr ""
 
-#: mu/logic.py:173
+#: mu/logic.py:172
 msgid "It's ok to be stuck, go for a walk and then try again (:"
 msgstr ""
 
-#: mu/logic.py:174 mu/logic.py:178
+#: mu/logic.py:173 mu/logic.py:177
 msgid "It's not a mistake to make an error."
 msgstr ""
 
-#: mu/logic.py:175
+#: mu/logic.py:174
 msgid "Errors are there to learn from them. Then avoid them."
 msgstr ""
 
-#: mu/logic.py:176
+#: mu/logic.py:175
 msgid "Don't look backwards for very long. We keep moving forward."
 msgstr ""
 
-#: mu/logic.py:177
+#: mu/logic.py:176
 msgid "Keep moving forward."
 msgstr ""
 
-#: mu/logic.py:179
+#: mu/logic.py:178
 msgid "Do not pass silently."
 msgstr ""
 
-#: mu/logic.py:180
+#: mu/logic.py:179
 msgid "Computers are not humans. There is no need arguing with them."
 msgstr ""
 
-#: mu/logic.py:181
+#: mu/logic.py:180
 msgid "Embrace change and seek growth."
 msgstr ""
 
-#: mu/logic.py:182
+#: mu/logic.py:181
 msgid "Live, laugh, learn!"
 msgstr ""
 
-#: mu/logic.py:183
+#: mu/logic.py:182
 msgid "Let's get coding!"
 msgstr ""
 
-#: mu/logic.py:184
+#: mu/logic.py:183
 msgid "Don't be afraid of coding, we all learn by making mistakes!"
 msgstr ""
 
-#: mu/logic.py:479
+#: mu/logic.py:478
 msgid " above this line"
 msgstr " ovanför den här raden"
 
-#: mu/logic.py:528
+#: mu/logic.py:527
 msgid ""
 "Syntax error. Python cannot understand this line. Check for missing "
 "characters!"
@@ -830,12 +830,12 @@ msgstr ""
 "Syntaxfel. Python kan inte förstå den här raden. Kontrollera om det "
 "saknas tecken!"
 
-#: mu/logic.py:592
+#: mu/logic.py:591
 #, python-brace-format
 msgid "{} compatible"
 msgstr ""
 
-#: mu/logic.py:1017
+#: mu/logic.py:1016
 #, python-brace-format
 msgid ""
 "The file contains characters Mu expects to be encoded as {0} or as the "
@@ -851,21 +851,21 @@ msgstr ""
 "Om filen sparades i en annan applikation, spara om den via ‘Spara som’ "
 "och sätt teckenkodningen till {0}"
 
-#: mu/logic.py:1044
+#: mu/logic.py:1043
 #, python-brace-format
 msgid "The file \"{}\" is already open."
 msgstr "Filen “{}” är redan öppen."
 
-#: mu/logic.py:1056
+#: mu/logic.py:1055
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
 msgstr "Mu kan inte läsa tecknen i {}"
 
-#: mu/logic.py:1082
+#: mu/logic.py:1081
 msgid "Mu was not able to open this file"
 msgstr "Mu kunde inte öppna filen"
 
-#: mu/logic.py:1084
+#: mu/logic.py:1083
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
@@ -873,12 +873,12 @@ msgstr ""
 "För nuvarande fungerar bara Mu med Python källkodsfiler eller hex-filer "
 "med MicroPython-kod."
 
-#: mu/logic.py:1091
+#: mu/logic.py:1090
 #, python-brace-format
 msgid "Could not load {}"
 msgstr "Kunde inte ladda {}"
 
-#: mu/logic.py:1094
+#: mu/logic.py:1093
 msgid ""
 "Does this file exist?\n"
 "If it does, do you have permission to read it?\n"
@@ -890,12 +890,12 @@ msgstr ""
 "\n"
 "Undersök och försök igen."
 
-#: mu/logic.py:1101
+#: mu/logic.py:1100
 #, python-brace-format
 msgid "Is this a {} file?"
 msgstr "Är det här en {} fil?"
 
-#: mu/logic.py:1103
+#: mu/logic.py:1102
 #, python-brace-format
 msgid ""
 "It looks like this could be a {} file.\n"
@@ -906,11 +906,11 @@ msgstr ""
 "\n"
 "Vill du ändra Mu till {}-läget?"
 
-#: mu/logic.py:1229
+#: mu/logic.py:1228
 msgid "Could not save file (disk problem)"
 msgstr "Kunde inte spara filen (disk-problem)"
 
-#: mu/logic.py:1231
+#: mu/logic.py:1230
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
@@ -918,11 +918,11 @@ msgstr ""
 "Kunde inte spara till disk. Kontrollera att du ha rättighet att skriva "
 "till filen och att det finns tillräckligt med diskutrymme."
 
-#: mu/logic.py:1236
+#: mu/logic.py:1235
 msgid "Could not save file (encoding problem)"
 msgstr "Kunde inte spara file (teckenkodningsproblem)"
 
-#: mu/logic.py:1239
+#: mu/logic.py:1238
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
@@ -930,17 +930,17 @@ msgstr ""
 "Kunde inte konvertera alla tecken. Om du har en teckenkodningsrad i "
 "början av filen, ta bort den och försök igen."
 
-#: mu/logic.py:1249
+#: mu/logic.py:1248
 #, python-brace-format
 msgid "Saved file: {}"
 msgstr "Sparat filen: {}"
 
-#: mu/logic.py:1281 mu/logic.py:1676
+#: mu/logic.py:1280 mu/logic.py:1666
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
 msgstr "Du kan inte använda filnamnet “{}”"
 
-#: mu/logic.py:1285
+#: mu/logic.py:1284
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
@@ -950,69 +950,59 @@ msgstr ""
 "det, så kommer saker antagligen inte att fungera. Försök med ett annat "
 "filnamn."
 
-#: mu/logic.py:1361
+#: mu/logic.py:1360
 msgid "Good job! No problems found."
 msgstr "Snyggt jobbat! Hittade inga problem."
 
-#: mu/logic.py:1362
+#: mu/logic.py:1361
 msgid "Hurrah! Checker turned up no problems."
 msgstr "Hurra! Hittade inga problem efter kontrollen."
 
-#: mu/logic.py:1363
+#: mu/logic.py:1362
 msgid "Nice one! Zero problems detected."
 msgstr "Snyggt! Noll detekterade problem."
 
-#: mu/logic.py:1364
+#: mu/logic.py:1363
 msgid "Well done! No problems here."
 msgstr "Bra gjort! Inga problem här inte."
 
-#: mu/logic.py:1365
+#: mu/logic.py:1364
 msgid "Awesome! Zero problems found."
 msgstr "Häftigt! Inga hittade problem."
 
-#: mu/logic.py:1390
+#: mu/logic.py:1389
 msgid "There is un-saved work, exiting the application will cause you to lose it."
 msgstr ""
 "Det finns arbete som inte är sparat, om avslutar du applikationen "
 "förloras det."
 
-#: mu/logic.py:1462
+#: mu/logic.py:1461
 msgid "Could not find MicroPython runtime."
 msgstr "Kunde inte hitta någon exekveringsmiljö för MicroPython."
 
-#: mu/logic.py:1464
+#: mu/logic.py:1463
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
 "again."
 msgstr "Exekveringsmiljön (‘{}’) du angav finns inte. Försök igen."
 
-#: mu/logic.py:1569
+#: mu/logic.py:1568
 #, python-brace-format
 msgid "Changed to {} mode."
 msgstr "Ändrat till {}-läget."
 
-#: mu/logic.py:1600
+#: mu/logic.py:1599
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
 msgstr "Vill du ändra Mu till {}-läget?"
 
-#: mu/logic.py:1619
+#: mu/logic.py:1618
 #, fuzzy, python-brace-format
 msgid "Device changed to {}."
 msgstr "Ändrat till {}-läget."
 
-#: mu/logic.py:1655
-msgid "Cannot Set Breakpoint."
-msgstr "Kan inte sätta brytpunkt."
-
-#: mu/logic.py:1657
-msgid ""
-"Lines that are comments or some multi-line statements cannot have "
-"breakpoints."
-msgstr "Kommentarsrader eller vissa flerraders statements kan inte ha brytpunkter."
-
-#: mu/logic.py:1680
+#: mu/logic.py:1670
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
@@ -1022,51 +1012,51 @@ msgstr ""
 "det, så kommer saker antagligen inte att fungera. Försök med ett annat "
 "filnamn."
 
-#: mu/logic.py:1701
+#: mu/logic.py:1691
 msgid "Could not rename file."
 msgstr "Kunde inte byta namn på filen."
 
-#: mu/logic.py:1703
+#: mu/logic.py:1693
 msgid "A file of that name is already open in Mu."
 msgstr "En fil med det namnet har redan öppnats i Mu."
 
-#: mu/logic.py:1734
+#: mu/logic.py:1724
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
 msgstr "Ersatte “{}” med “{}”."
 
-#: mu/logic.py:1739
+#: mu/logic.py:1729
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
 msgstr "Ersatte {} träffar av “{}” med “{}”."
 
-#: mu/logic.py:1744 mu/logic.py:1751 mu/logic.py:1770
+#: mu/logic.py:1734 mu/logic.py:1741 mu/logic.py:1760
 #, python-brace-format
 msgid "Could not find \"{}\"."
 msgstr "Kunde inte hitta “{}”."
 
-#: mu/logic.py:1749 mu/logic.py:1768
+#: mu/logic.py:1739 mu/logic.py:1758
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
 msgstr "Markerar träffar för \"{}\"."
 
-#: mu/logic.py:1754 mu/logic.py:1773
+#: mu/logic.py:1744 mu/logic.py:1763
 msgid "You must provide something to find."
 msgstr "Du måste ange något att söka efter."
 
-#: mu/logic.py:1756 mu/logic.py:1775
+#: mu/logic.py:1746 mu/logic.py:1765
 msgid "Please try again, this time with something in the find box."
 msgstr "Försök igen, den här gången med något i sök-rutan."
 
-#: mu/logic.py:1818
+#: mu/logic.py:1808
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
 msgstr ""
 
-#: mu/logic.py:1824
+#: mu/logic.py:1814
 msgid "Your code contains problems."
 msgstr ""
 
-#: mu/logic.py:1826
+#: mu/logic.py:1816
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
@@ -1219,60 +1209,60 @@ msgstr ""
 "\n"
 "…för att lagra din kod."
 
-#: mu/modes/debugger.py:46
+#: mu/modes/debugger.py:45
 msgid "Graphical Debugger"
 msgstr "Grafisk debuter"
 
-#: mu/modes/debugger.py:50
+#: mu/modes/debugger.py:49
 msgid "Debug your Python 3 code."
 msgstr "Debugga din Python 3-kod."
 
-#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/debugger.py:65 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
 #: mu/modes/web.py:196
 msgid "Stop"
 msgstr "Stopp"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:66
 msgid "Stop the running code."
 msgstr "Stoppa den körande koden."
 
-#: mu/modes/debugger.py:73
+#: mu/modes/debugger.py:72
 msgid "Continue"
 msgstr "Fortsätt"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:73
 msgid "Continue to run your Python script."
 msgstr "Fortsätt att köra ditt Python-skript."
 
-#: mu/modes/debugger.py:80
+#: mu/modes/debugger.py:79
 msgid "Step Over"
 msgstr "Stega över"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:80
 msgid "Step over a line of code."
 msgstr "Stega över en kodrad."
 
-#: mu/modes/debugger.py:87
+#: mu/modes/debugger.py:86
 msgid "Step In"
 msgstr "Stega in"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:87
 msgid "Step into a function."
 msgstr "Stega in i en funktion."
 
-#: mu/modes/debugger.py:94
+#: mu/modes/debugger.py:93
 msgid "Step Out"
 msgstr "Stega ut"
 
-#: mu/modes/debugger.py:95
+#: mu/modes/debugger.py:94
 msgid "Step out of a function."
 msgstr "Stega ut ur en funktion."
 
-#: mu/modes/debugger.py:166
+#: mu/modes/debugger.py:165
 msgid "Your script has finished running."
 msgstr "Ditt skript har slutat köra."
 
-#: mu/modes/debugger.py:271
+#: mu/modes/debugger.py:270
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1280,17 +1270,17 @@ msgstr ""
 "Kan inte koppla till Python-debuggern\n"
 "\n"
 
-#: mu/modes/debugger.py:360
+#: mu/modes/debugger.py:355
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "Debugger-info: {}"
 
-#: mu/modes/debugger.py:367
+#: mu/modes/debugger.py:362
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "Debugger-varning: {}"
 
-#: mu/modes/debugger.py:375
+#: mu/modes/debugger.py:370
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "Debugger-fel: {}"

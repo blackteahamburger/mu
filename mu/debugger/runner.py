@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import bdb
 import json
-import linecache
 import logging
 import os
 import socket
@@ -28,8 +27,6 @@ import traceback
 from enum import Enum
 from queue import Queue
 from threading import Thread
-
-from mu.debugger.utils import is_breakpoint_line
 
 logger = logging.getLogger(__name__)
 
@@ -316,26 +313,18 @@ class Debugger(bdb.Bdb):
         """
         Set a breakpoint.
         """
-        globs = self.curframe.f_globals if hasattr(self, "curframe") else None
-        code = linecache.getline(filename, line, globs)
-        if is_breakpoint_line(code):
-            err = self.set_break(filename, line, temporary, None, None)
-            if err:
-                self.output("error", message=err)
-            else:
-                bp = self.get_breaks(filename, line)[-1]
-                self.output(
-                    "breakpoint_create",
-                    bpnum=bp.number,
-                    filename=bp.file,
-                    line=bp.line,
-                    temporary=bp.temporary,
-                    funcname=bp.funcname,
-                )
+        err = self.set_break(filename, line, temporary, None, None)
+        if err:
+            self.output("error", message=err)
         else:
+            bp = self.get_breaks(filename, line)[-1]
             self.output(
-                "error",
-                message="{}:{} is not executable".format(filename, line),
+                "breakpoint_create",
+                bpnum=bp.number,
+                filename=bp.file,
+                line=bp.line,
+                temporary=bp.temporary,
+                funcname=bp.funcname,
             )
 
     def do_enable(self, bpnum):

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mu Chinese\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 19:19+0800\n"
+"POT-Creation-Date: 2025-07-24 21:20+0800\n"
 "PO-Revision-Date: 2025-07-23 00:01+0800\n"
 "Last-Translator: Blackteahamburger <blackteahamburger@outlook.com>\n"
 "Language: zh_TW\n"
@@ -214,7 +214,7 @@ msgstr "取代（選用）："
 msgid "Replace all?"
 msgstr "全部取代？"
 
-#: mu/interface/editor.py:330 mu/logic.py:1345
+#: mu/interface/editor.py:330 mu/logic.py:1344
 msgid "untitled"
 msgstr "未命名"
 
@@ -415,7 +415,7 @@ msgstr "Mu 目前的執行模式。"
 msgid "Detected new {} device: {}."
 msgstr "偵測到新的 {} 裝置：{}。"
 
-#: mu/interface/main.py:1490 mu/logic.py:1617
+#: mu/interface/main.py:1490 mu/logic.py:1616
 #, python-brace-format
 msgid "Detected new {} device."
 msgstr "偵測到新的 {} 裝置。"
@@ -520,304 +520,304 @@ msgstr "從裝置取得「{}」時出現問題。請檢視 Mu 的記錄以取得
 msgid "No device connected."
 msgstr "無裝置已連線。"
 
-#: mu/logic.py:88
+#: mu/logic.py:87
 msgid "Hello, World!"
 msgstr "你好，世界！"
 
-#: mu/logic.py:90
+#: mu/logic.py:89
 msgid ""
 "This editor is free software written in Python. You can modify it, add "
 "features or fix bugs if you like."
 msgstr "這個編輯器是用 Python 編寫的自由軟體。你可以根據需要修改，新增功能或修復錯誤。"
 
-#: mu/logic.py:93
+#: mu/logic.py:92
 msgid "This editor is called Mu (you say it 'mew' or 'moo')."
 msgstr "這個編輯器名為 Mu，你可以讀作「謬 (miu)」或「沐 (mu)」。"
 
-#: mu/logic.py:94
+#: mu/logic.py:93
 msgid "Google, Facebook, NASA, Pixar, Disney and many more use Python."
 msgstr "Google、Facebook、NASA、皮克斯、迪士尼等等都在使用 Python。"
 
-#: mu/logic.py:96
+#: mu/logic.py:95
 msgid ""
 "Programming is a form of magic. Learn to cast the right spells with code "
 "and you'll be a wizard."
 msgstr "程式設計是一種魔法。透過學習使用程式碼施放正確的法術，你將成為一名魔法師。"
 
-#: mu/logic.py:100
+#: mu/logic.py:99
 msgid ""
 "REPL stands for read, evaluate, print, loop. It's a fun way to talk to "
 "your computer! :-)"
 msgstr "REPL 代表「讀取 (Read)-求值 (Evaluate)-列印 (Print)」的迴圈 (Loop)。這是與你的電腦交談的一個有趣方式！:-)"
 
-#: mu/logic.py:103
+#: mu/logic.py:102
 msgid "Be brave, break things, learn and have fun!"
 msgstr "要勇敢地打破一切，快樂地學習和玩耍！"
 
-#: mu/logic.py:104
+#: mu/logic.py:103
 msgid "Make your software both useful AND fun. Empower your users."
 msgstr "讓你的軟體既實用又有趣。為你的使用者賦能。"
 
-#: mu/logic.py:105
+#: mu/logic.py:104
 msgid "For the Zen of Python: import this"
 msgstr "了解 Python 之禪：import this"
 
-#: mu/logic.py:106
+#: mu/logic.py:105
 msgid "Diversity promotes creativity."
 msgstr "多樣性促進創造力。"
 
-#: mu/logic.py:107
+#: mu/logic.py:106
 msgid "An open mind, spirit of adventure and respect for diversity are key."
 msgstr "開闊思路、冒險精神及尊重是多樣性的關鍵。"
 
-#: mu/logic.py:109
+#: mu/logic.py:108
 msgid ""
 "Don't worry if it doesn't work. Learn the lesson, fix it and try again! "
 ":-)"
 msgstr "如果它不起作用，別擔心。吸取教訓，修復它，然後再試一次！:-)"
 
-#: mu/logic.py:112
+#: mu/logic.py:111
 msgid "Coding is collaboration."
 msgstr "程式設計需要合作。"
 
-#: mu/logic.py:113
+#: mu/logic.py:112
 msgid "Compliment and amplify the good things with code."
 msgstr "使用程式碼來讚美和放大美好的東西。"
 
-#: mu/logic.py:115
+#: mu/logic.py:114
 msgid "In theory, theory and practice are the same. In practice, they're not. ;-)"
 msgstr "理論上來說，理論和實務都是一樣的。在實務中，並不是。;-)"
 
-#: mu/logic.py:118
+#: mu/logic.py:117
 msgid "Debugging is twice as hard as writing the code in the first place."
 msgstr "在開始的時候，除錯程式碼比寫程式碼要難兩倍。"
 
-#: mu/logic.py:119
+#: mu/logic.py:118
 msgid "It's fun to program."
 msgstr "程式設計是個有趣的事情。"
 
-#: mu/logic.py:120
+#: mu/logic.py:119
 msgid "Programming has more to do with problem solving than writing code."
 msgstr "程式設計更多的是為了解決問題，而不是單純的寫程式碼。"
 
-#: mu/logic.py:121
+#: mu/logic.py:120
 msgid "Start with your users' needs."
 msgstr "從你的使用者需求出發。"
 
-#: mu/logic.py:122
+#: mu/logic.py:121
 msgid "Try to see things from your users' point of view."
 msgstr "嘗試從使用者的角度看問題。"
 
-#: mu/logic.py:123
+#: mu/logic.py:122
 msgid "Put yourself in your users' shoes."
 msgstr "讓自己站在使用者的位置上。"
 
-#: mu/logic.py:125
+#: mu/logic.py:124
 msgid ""
 "Explaining a programming problem to a friend often reveals the solution. "
 ":-)"
 msgstr "與朋友討論程式設計中遇到的問題，通常會獲得新的解決方案。:-)"
 
-#: mu/logic.py:128
+#: mu/logic.py:127
 msgid "If you don't know, ask. Nobody to ask? Just look it up."
 msgstr "如果你不知道，就提問吧。找不到人問的話，就自己查查看吧。"
 
-#: mu/logic.py:129
+#: mu/logic.py:128
 msgid "Complexity is the enemy. KISS - keep it simple, stupid!"
 msgstr "複雜是敵人。KISS - keep it simple, stupid!（保持簡單和純粹！）"
 
-#: mu/logic.py:130
+#: mu/logic.py:129
 msgid "Beautiful is better than ugly."
 msgstr "美觀勝於醜陋。"
 
-#: mu/logic.py:131
+#: mu/logic.py:130
 msgid "Explicit is better than implicit."
 msgstr "顯式勝於隱式。"
 
-#: mu/logic.py:132
+#: mu/logic.py:131
 msgid "Simple is better than complex. Complex is better than complicated."
 msgstr "簡單勝於複雜。複雜勝於難懂。"
 
-#: mu/logic.py:133
+#: mu/logic.py:132
 msgid "Flat is better than nested."
 msgstr "扁平勝於巢狀。"
 
-#: mu/logic.py:134
+#: mu/logic.py:133
 msgid "Sparse is better than dense."
 msgstr "分散勝於密集。"
 
-#: mu/logic.py:135
+#: mu/logic.py:134
 msgid "Readability counts."
 msgstr "可讀性應當被重視。"
 
-#: mu/logic.py:137
+#: mu/logic.py:136
 msgid ""
 "Special cases aren't special enough to break the rules. Although "
 "practicality beats purity."
 msgstr "儘管實用性會打敗純粹性，特例也不能凌駕於規則之上。"
 
-#: mu/logic.py:140
+#: mu/logic.py:139
 msgid "Errors should never pass silently. Unless explicitly silenced."
 msgstr "除非明確地使其沉默，錯誤永遠不應該默默地溜走。"
 
-#: mu/logic.py:141
+#: mu/logic.py:140
 msgid "In the face of ambiguity, refuse the temptation to guess."
 msgstr "面對不明確的定義，拒絕猜測的誘惑。"
 
-#: mu/logic.py:142
+#: mu/logic.py:141
 msgid "There should be one-- and preferably only one --obvious way to do it."
 msgstr "只用一種方法，最好只有一種方法來做一件事。"
 
-#: mu/logic.py:144
+#: mu/logic.py:143
 msgid "Now is better than never. Although never is often better than *right* now."
 msgstr "現在做總比不做好，雖然有時候不做比立刻做更好。"
 
-#: mu/logic.py:147
+#: mu/logic.py:146
 msgid "If the implementation is hard to explain, it's a bad idea."
 msgstr "如果寫的程式碼很難清楚表述的話，那就是個糟糕想法。"
 
-#: mu/logic.py:148
+#: mu/logic.py:147
 msgid "If the implementation is easy to explain, it may be a good idea."
 msgstr "如果寫的程式碼很容易清楚表述的話，那很有可能是個好想法。"
 
-#: mu/logic.py:149
+#: mu/logic.py:148
 msgid "Namespaces are one honking great idea -- let's do more of those!"
 msgstr "命名空間是個絕妙的想法，讓我們多多地使用它們吧！"
 
-#: mu/logic.py:150
+#: mu/logic.py:149
 msgid "Mu was created by Nicholas H.Tollervey."
 msgstr "Mu 由 Nicholas H.Tollervey 創造。"
 
-#: mu/logic.py:151
+#: mu/logic.py:150
 msgid "To understand what recursion is, you must first understand recursion."
 msgstr "要理解遞迴是什麼，你必須先了解遞迴。"
 
-#: mu/logic.py:153
+#: mu/logic.py:152
 msgid ""
 "Algorithm: a word used by programmers when they don't want to explain "
 "what they did."
 msgstr "演算法：程式設計師在不想解釋他們所做的事情時使用的一個詞。"
 
-#: mu/logic.py:156
+#: mu/logic.py:155
 msgid "Programmers count from zero."
 msgstr "程式設計師們都從0開始計數。"
 
-#: mu/logic.py:157
+#: mu/logic.py:156
 msgid "Simplicity is the ultimate sophistication."
 msgstr "簡單是終極的複雜。"
 
-#: mu/logic.py:158
+#: mu/logic.py:157
 msgid "A good programmer is humble."
 msgstr "一個優秀的程式設計師很謙虛。"
 
-#: mu/logic.py:159
+#: mu/logic.py:158
 msgid "A good programmer is playful."
 msgstr "一個優秀的程式設計師富有玩心。"
 
-#: mu/logic.py:160
+#: mu/logic.py:159
 msgid "A good programmer learns to learn."
 msgstr "一個優秀的程式設計師會學習如何學習。"
 
-#: mu/logic.py:161
+#: mu/logic.py:160
 msgid "A good programmer thinks beyond the obvious."
 msgstr "一個優秀的程式設計師思考不止於表面的問題。"
 
-#: mu/logic.py:162
+#: mu/logic.py:161
 msgid "A good programmer promotes simplicity."
 msgstr "一個優秀的程式設計師崇尚簡單。"
 
-#: mu/logic.py:163
+#: mu/logic.py:162
 msgid "A good programmer avoids complexity."
 msgstr "一個優秀的程式設計師會避免複雜。"
 
-#: mu/logic.py:164
+#: mu/logic.py:163
 msgid "A good programmer is patient."
 msgstr "一個優秀的程式設計師很有耐心。"
 
-#: mu/logic.py:165
+#: mu/logic.py:164
 msgid "A good programmer asks questions."
 msgstr "一個優秀的程式設計師善於提問。"
 
-#: mu/logic.py:166
+#: mu/logic.py:165
 msgid "A good programmer is willing to say, 'I don't know'."
 msgstr "一個優秀的程式設計師願意說：「我不懂」。"
 
-#: mu/logic.py:167
+#: mu/logic.py:166
 msgid "Wisest are they that know they know nothing."
 msgstr "最聰明的人是那些知道自己一無所知的人。"
 
-#: mu/logic.py:169
+#: mu/logic.py:168
 msgid "Computers aren’t the thing. They’re the thing that gets us to the thing."
 msgstr "電腦本身並不是關鍵。它們是幫助我們到達目標的工具。"
 
-#: mu/logic.py:171
+#: mu/logic.py:170
 msgid "Don't stare at a blank screen - try something out."
 msgstr "不要盯著空白螢幕 - 嘗試一些操作。"
 
-#: mu/logic.py:172
+#: mu/logic.py:171
 msgid "If you're stuck - try explaining it to a rubber duck."
 msgstr "如果你卡住了 - 嘗試向橡皮鴨解釋一下。"
 
-#: mu/logic.py:173
+#: mu/logic.py:172
 msgid "It's ok to be stuck, go for a walk and then try again (:"
 msgstr "卡住了沒關係，去散步，然後再試一次 (:"
 
-#: mu/logic.py:174 mu/logic.py:178
+#: mu/logic.py:173 mu/logic.py:177
 msgid "It's not a mistake to make an error."
 msgstr "犯錯並不可恥。"
 
-#: mu/logic.py:175
+#: mu/logic.py:174
 msgid "Errors are there to learn from them. Then avoid them."
 msgstr "錯誤是用來學習的。然後避免它們。"
 
-#: mu/logic.py:176
+#: mu/logic.py:175
 msgid "Don't look backwards for very long. We keep moving forward."
 msgstr "不要長時間向後看。我們要繼續向前走。"
 
-#: mu/logic.py:177
+#: mu/logic.py:176
 msgid "Keep moving forward."
 msgstr "繼續向前走。"
 
-#: mu/logic.py:179
+#: mu/logic.py:178
 msgid "Do not pass silently."
 msgstr "不要默默地溜走。"
 
-#: mu/logic.py:180
+#: mu/logic.py:179
 msgid "Computers are not humans. There is no need arguing with them."
 msgstr "電腦不是人類。與它們爭論沒有必要。"
 
-#: mu/logic.py:181
+#: mu/logic.py:180
 msgid "Embrace change and seek growth."
 msgstr "擁抱變化，追求成長。"
 
-#: mu/logic.py:182
+#: mu/logic.py:181
 msgid "Live, laugh, learn!"
 msgstr "生活、歡笑、學習！"
 
-#: mu/logic.py:183
+#: mu/logic.py:182
 msgid "Let's get coding!"
 msgstr "讓我們開始程式設計吧！"
 
-#: mu/logic.py:184
+#: mu/logic.py:183
 msgid "Don't be afraid of coding, we all learn by making mistakes!"
 msgstr "不要害怕程式設計，我們都是透過犯錯來學習的！"
 
-#: mu/logic.py:479
+#: mu/logic.py:478
 msgid " above this line"
 msgstr " 在這行之上"
 
-#: mu/logic.py:528
+#: mu/logic.py:527
 msgid ""
 "Syntax error. Python cannot understand this line. Check for missing "
 "characters!"
 msgstr "語法錯誤。Python 無法理解這一行。檢查缺少的字元！"
 
-#: mu/logic.py:592
+#: mu/logic.py:591
 #, python-brace-format
 msgid "{} compatible"
 msgstr "{} 相容"
 
-#: mu/logic.py:1017
+#: mu/logic.py:1016
 #, python-brace-format
 msgid ""
 "The file contains characters Mu expects to be encoded as {0} or as the "
@@ -831,32 +831,32 @@ msgstr ""
 "\n"
 "如果此檔案是透過另外一個應用程式儲存，請透過「另存新檔」選項重新儲存檔案，並將編碼設定為 {0}"
 
-#: mu/logic.py:1044
+#: mu/logic.py:1043
 #, python-brace-format
 msgid "The file \"{}\" is already open."
 msgstr "檔案「{}」已經開啟。"
 
-#: mu/logic.py:1056
+#: mu/logic.py:1055
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
 msgstr "Mu 無法讀取 {} 中的字元"
 
-#: mu/logic.py:1082
+#: mu/logic.py:1081
 msgid "Mu was not able to open this file"
 msgstr "Mu 無法開啟此檔案"
 
-#: mu/logic.py:1084
+#: mu/logic.py:1083
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
 msgstr "目前，Mu 僅適用於使用嵌入式 MicroPython 程式碼建立的 Python 原始檔或 hex 檔案。"
 
-#: mu/logic.py:1091
+#: mu/logic.py:1090
 #, python-brace-format
 msgid "Could not load {}"
 msgstr "無法載入 {}"
 
-#: mu/logic.py:1094
+#: mu/logic.py:1093
 msgid ""
 "Does this file exist?\n"
 "If it does, do you have permission to read it?\n"
@@ -868,12 +868,12 @@ msgstr ""
 "\n"
 "請檢查並重試。"
 
-#: mu/logic.py:1101
+#: mu/logic.py:1100
 #, python-brace-format
 msgid "Is this a {} file?"
 msgstr "這是一個 {} 檔案嗎？"
 
-#: mu/logic.py:1103
+#: mu/logic.py:1102
 #, python-brace-format
 msgid ""
 "It looks like this could be a {} file.\n"
@@ -884,155 +884,145 @@ msgstr ""
 "\n"
 "你想將 Mu 改為 {} 模式嗎？"
 
-#: mu/logic.py:1229
+#: mu/logic.py:1228
 msgid "Could not save file (disk problem)"
 msgstr "無法儲存檔案（磁碟問題）"
 
-#: mu/logic.py:1231
+#: mu/logic.py:1230
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
 msgstr "將檔案儲存到磁碟時出錯。確保你有寫入檔案的權限和足夠的磁碟空間。"
 
-#: mu/logic.py:1236
+#: mu/logic.py:1235
 msgid "Could not save file (encoding problem)"
 msgstr "無法儲存檔案（編碼問題）"
 
-#: mu/logic.py:1239
+#: mu/logic.py:1238
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
 msgstr "無法轉換所有字元。如果檔案頂部有編碼行，請將其刪除並重試。"
 
-#: mu/logic.py:1249
+#: mu/logic.py:1248
 #, python-brace-format
 msgid "Saved file: {}"
 msgstr "已儲存檔案：{}"
 
-#: mu/logic.py:1281 mu/logic.py:1676
+#: mu/logic.py:1280 mu/logic.py:1666
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
 msgstr "你不能使用檔名「{}」"
 
-#: mu/logic.py:1285
+#: mu/logic.py:1284
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
 "filename."
 msgstr "這個名稱已被 Python 的另一部分使用。如果你使用這個名稱，可能會出問題。請使用其他檔名重試。"
 
-#: mu/logic.py:1361
+#: mu/logic.py:1360
 msgid "Good job! No problems found."
 msgstr "幹得漂亮！沒有發現問題。"
 
-#: mu/logic.py:1362
+#: mu/logic.py:1361
 msgid "Hurrah! Checker turned up no problems."
 msgstr "誒嘿！檢查結果顯示，沒有問題。"
 
-#: mu/logic.py:1363
+#: mu/logic.py:1362
 msgid "Nice one! Zero problems detected."
 msgstr "棒！偵測到 0 個問題。"
 
-#: mu/logic.py:1364
+#: mu/logic.py:1363
 msgid "Well done! No problems here."
 msgstr "做得好！這裡沒問題。"
 
-#: mu/logic.py:1365
+#: mu/logic.py:1364
 msgid "Awesome! Zero problems found."
 msgstr "真棒！偵測到 0 個問題。"
 
-#: mu/logic.py:1390
+#: mu/logic.py:1389
 msgid "There is un-saved work, exiting the application will cause you to lose it."
 msgstr "你有未儲存的程式碼，結束程式將導致其遺失。"
 
-#: mu/logic.py:1462
+#: mu/logic.py:1461
 msgid "Could not find MicroPython runtime."
 msgstr "找不到 MicroPython 執行環境。"
 
-#: mu/logic.py:1464
+#: mu/logic.py:1463
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
 "again."
 msgstr "你指定的 micro:bit 執行環境（「{}」）不存在。請再試一次。"
 
-#: mu/logic.py:1569
+#: mu/logic.py:1568
 #, python-brace-format
 msgid "Changed to {} mode."
 msgstr "已變更為 {} 模式。"
 
-#: mu/logic.py:1600
+#: mu/logic.py:1599
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
 msgstr "你想將 Mu 改為 {} 模式嗎？"
 
-#: mu/logic.py:1619
+#: mu/logic.py:1618
 #, python-brace-format
 msgid "Device changed to {}."
 msgstr "裝置變更為 {}。"
 
-#: mu/logic.py:1655
-msgid "Cannot Set Breakpoint."
-msgstr "無法設定中斷點。"
-
-#: mu/logic.py:1657
-msgid ""
-"Lines that are comments or some multi-line statements cannot have "
-"breakpoints."
-msgstr "註解行或某些多行陳述式無法設定中斷點。"
-
-#: mu/logic.py:1680
+#: mu/logic.py:1670
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
 "filename."
 msgstr "這個名稱已被 Python 的另一部分使用。如果你使用這個名稱，可能會出問題。請使用其他檔名重試。"
 
-#: mu/logic.py:1701
+#: mu/logic.py:1691
 msgid "Could not rename file."
 msgstr "無法重新命名檔案。"
 
-#: mu/logic.py:1703
+#: mu/logic.py:1693
 msgid "A file of that name is already open in Mu."
 msgstr "該名稱的檔案已在 Mu 中開啟。"
 
-#: mu/logic.py:1734
+#: mu/logic.py:1724
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
 msgstr "已將「{}」取代為「{}」。"
 
-#: mu/logic.py:1739
+#: mu/logic.py:1729
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
 msgstr "已將 {} 個「{}」的符合項取代為「{}」。"
 
-#: mu/logic.py:1744 mu/logic.py:1751 mu/logic.py:1770
+#: mu/logic.py:1734 mu/logic.py:1741 mu/logic.py:1760
 #, python-brace-format
 msgid "Could not find \"{}\"."
 msgstr "找不到「{}」。"
 
-#: mu/logic.py:1749 mu/logic.py:1768
+#: mu/logic.py:1739 mu/logic.py:1758
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
 msgstr "反白顯示「{}」的符合項。"
 
-#: mu/logic.py:1754 mu/logic.py:1773
+#: mu/logic.py:1744 mu/logic.py:1763
 msgid "You must provide something to find."
 msgstr "你需要輸入要尋找的內容。"
 
-#: mu/logic.py:1756 mu/logic.py:1775
+#: mu/logic.py:1746 mu/logic.py:1765
 msgid "Please try again, this time with something in the find box."
 msgstr "請在尋找方塊中輸入內容，然後重試。"
 
-#: mu/logic.py:1818
+#: mu/logic.py:1808
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
 msgstr "成功清理程式碼。按 CTRL-Z 以復原。"
 
-#: mu/logic.py:1824
+#: mu/logic.py:1814
 msgid "Your code contains problems."
 msgstr "你的程式碼包含錯誤。"
 
-#: mu/logic.py:1826
+#: mu/logic.py:1816
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
@@ -1174,60 +1164,60 @@ msgstr ""
 "\n"
 "…來儲存你的程式碼。"
 
-#: mu/modes/debugger.py:46
+#: mu/modes/debugger.py:45
 msgid "Graphical Debugger"
 msgstr "圖形化偵錯器"
 
-#: mu/modes/debugger.py:50
+#: mu/modes/debugger.py:49
 msgid "Debug your Python 3 code."
 msgstr "偵錯你的 Python 3 程式碼。"
 
-#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/debugger.py:65 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
 #: mu/modes/web.py:196
 msgid "Stop"
 msgstr "停止"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:66
 msgid "Stop the running code."
 msgstr "停止執行程式碼。"
 
-#: mu/modes/debugger.py:73
+#: mu/modes/debugger.py:72
 msgid "Continue"
 msgstr "繼續"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:73
 msgid "Continue to run your Python script."
 msgstr "繼續執行你的 Python 腳本。"
 
-#: mu/modes/debugger.py:80
+#: mu/modes/debugger.py:79
 msgid "Step Over"
 msgstr "單步"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:80
 msgid "Step over a line of code."
 msgstr "單步一行程式碼。"
 
-#: mu/modes/debugger.py:87
+#: mu/modes/debugger.py:86
 msgid "Step In"
 msgstr "步入"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:87
 msgid "Step into a function."
 msgstr "步入一個函式。"
 
-#: mu/modes/debugger.py:94
+#: mu/modes/debugger.py:93
 msgid "Step Out"
 msgstr "步出"
 
-#: mu/modes/debugger.py:95
+#: mu/modes/debugger.py:94
 msgid "Step out of a function."
 msgstr "步出一個函式。"
 
-#: mu/modes/debugger.py:166
+#: mu/modes/debugger.py:165
 msgid "Your script has finished running."
 msgstr "你的腳本已完成執行。"
 
-#: mu/modes/debugger.py:271
+#: mu/modes/debugger.py:270
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1235,17 +1225,17 @@ msgstr ""
 "無法連線到 Python 偵錯器。\n"
 "\n"
 
-#: mu/modes/debugger.py:360
+#: mu/modes/debugger.py:355
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "偵錯器資訊：{}"
 
-#: mu/modes/debugger.py:367
+#: mu/modes/debugger.py:362
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "偵錯器警告：{}"
 
-#: mu/modes/debugger.py:375
+#: mu/modes/debugger.py:370
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "偵錯器錯誤：{}"

@@ -39,6 +39,7 @@ def test_base_mode():
     assert bm.short_name == "UNDEFINED_MODE"
     assert bm.description == "DESCRIPTION NOT AVAILABLE."
     assert bm.icon == "help"
+    assert bm.code_template == "# Write your code here :-)"
     assert bm.is_debugger is False
     assert bm.editor == editor
     assert bm.view == view

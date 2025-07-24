@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 19:19+0800\n"
+"POT-Creation-Date: 2025-07-24 21:20+0800\n"
 "PO-Revision-Date: 2018-08-03 15:53+0200\n"
 "Last-Translator: Minh Dang <minhdang@linux.com>\n"
 "Language: vi\n"
@@ -213,7 +213,7 @@ msgstr "Thay thế (tùy chọn):"
 msgid "Replace all?"
 msgstr "Thay thế tất cả?"
 
-#: mu/interface/editor.py:330 mu/logic.py:1345
+#: mu/interface/editor.py:330 mu/logic.py:1344
 msgid "untitled"
 msgstr "Chưa có tiêu đề"
 
@@ -408,7 +408,7 @@ msgstr "Chế độ hành vi hiện tại của Mu."
 msgid "Detected new {} device: {}."
 msgstr "Đã phát hiện thiết bị {} mới."
 
-#: mu/interface/main.py:1490 mu/logic.py:1617
+#: mu/interface/main.py:1490 mu/logic.py:1616
 #, python-brace-format
 msgid "Detected new {} device."
 msgstr "Đã phát hiện thiết bị {} mới."
@@ -524,11 +524,11 @@ msgstr ""
 msgid "No device connected."
 msgstr ""
 
-#: mu/logic.py:88
+#: mu/logic.py:87
 msgid "Hello, World!"
 msgstr "Hello, World!"
 
-#: mu/logic.py:90
+#: mu/logic.py:89
 msgid ""
 "This editor is free software written in Python. You can modify it, add "
 "features or fix bugs if you like."
@@ -536,17 +536,17 @@ msgstr ""
 "Chương trình soạn thảo này là phần mềm miễn phí được viết bằng Python. "
 "Bạn có thể sửa đổi nó, thêm các tính năng hoặc sửa lỗi nếu bạn muốn."
 
-#: mu/logic.py:93
+#: mu/logic.py:92
 msgid "This editor is called Mu (you say it 'mew' or 'moo')."
 msgstr ""
 "Trình soạn thảo này được gọi là Mu (bạn có thể phát âm là 'miu' hoặc "
 "'mu')."
 
-#: mu/logic.py:94
+#: mu/logic.py:93
 msgid "Google, Facebook, NASA, Pixar, Disney and many more use Python."
 msgstr "Google, Facebook, NASA, Pixar, Disney và nhiều hơn nữa sử dụng Python."
 
-#: mu/logic.py:96
+#: mu/logic.py:95
 msgid ""
 "Programming is a form of magic. Learn to cast the right spells with code "
 "and you'll be a wizard."
@@ -554,7 +554,7 @@ msgstr ""
 "Lập trình là một dạng phép thuật. Hãy học để tạo phép thuật với các câu "
 "lệnh, và bạn sẽ thành một phù thủy."
 
-#: mu/logic.py:100
+#: mu/logic.py:99
 msgid ""
 "REPL stands for read, evaluate, print, loop. It's a fun way to talk to "
 "your computer! :-)"
@@ -562,29 +562,29 @@ msgstr ""
 "REPL là viết tắt của read (đọc), evaluate (thực thi), print (in), loop "
 "(lặp). Đó là một cách thú vị để nói chuyện với máy tính của bạn! :-)"
 
-#: mu/logic.py:103
+#: mu/logic.py:102
 msgid "Be brave, break things, learn and have fun!"
 msgstr "Hãy dũng cảm, dám phá bỏ giới hạn, học hỏi và vui chơi!"
 
-#: mu/logic.py:104
+#: mu/logic.py:103
 msgid "Make your software both useful AND fun. Empower your users."
 msgstr ""
 "Làm phần mềm của bạn trở nên vừa hữu ích vừa thú vị. Tăng sức mạnh cho "
 "người dùng của bạn."
 
-#: mu/logic.py:105
+#: mu/logic.py:104
 msgid "For the Zen of Python: import this"
 msgstr "Đối với Zen of Python: import this"
 
-#: mu/logic.py:106
+#: mu/logic.py:105
 msgid "Diversity promotes creativity."
 msgstr "Đa dạng thúc đẩy sự sáng tạo."
 
-#: mu/logic.py:107
+#: mu/logic.py:106
 msgid "An open mind, spirit of adventure and respect for diversity are key."
 msgstr "Tâm trí cởi mở, tinh thần phiêu lưu và tôn trọng sự đa dạng là chìa khóa."
 
-#: mu/logic.py:109
+#: mu/logic.py:108
 msgid ""
 "Don't worry if it doesn't work. Learn the lesson, fix it and try again! "
 ":-)"
@@ -592,47 +592,47 @@ msgstr ""
 "Đừng lo lắng nếu nó không hoạt động. Rút ra bài học, sửa nó và thử lại! "
 ":-)"
 
-#: mu/logic.py:112
+#: mu/logic.py:111
 msgid "Coding is collaboration."
 msgstr "Lập trình là sự cộng tác."
 
-#: mu/logic.py:113
+#: mu/logic.py:112
 msgid "Compliment and amplify the good things with code."
 msgstr "Khen ngợi và nhân rộng những điều tốt đẹp với các dòng mã."
 
-#: mu/logic.py:115
+#: mu/logic.py:114
 msgid "In theory, theory and practice are the same. In practice, they're not. ;-)"
 msgstr ""
 "Về lý thuyết, lý thuyết và thực hành đều giống nhau. Về thực tế, chúng "
 "khác nhau. ;-)"
 
-#: mu/logic.py:118
+#: mu/logic.py:117
 msgid "Debugging is twice as hard as writing the code in the first place."
 msgstr "Gỡ lỗi là việc khó gấp đôi viết mã lệnh ban đầu."
 
-#: mu/logic.py:119
+#: mu/logic.py:118
 msgid "It's fun to program."
 msgstr "Lập trình thật là thú vị."
 
-#: mu/logic.py:120
+#: mu/logic.py:119
 msgid "Programming has more to do with problem solving than writing code."
 msgstr ""
 "Lập trình là phải làm nhiều việc để giải quyết vấn đề, chứ không chỉ là "
 "viết mã."
 
-#: mu/logic.py:121
+#: mu/logic.py:120
 msgid "Start with your users' needs."
 msgstr "Bắt đầu với nhu cầu của người dùng của bạn."
 
-#: mu/logic.py:122
+#: mu/logic.py:121
 msgid "Try to see things from your users' point of view."
 msgstr "Hãy thử nhìn mọi thứ từ góc nhìn của người dùng của bạn."
 
-#: mu/logic.py:123
+#: mu/logic.py:122
 msgid "Put yourself in your users' shoes."
 msgstr "Đặt mình vào vị trí của người dùng."
 
-#: mu/logic.py:125
+#: mu/logic.py:124
 msgid ""
 "Explaining a programming problem to a friend often reveals the solution. "
 ":-)"
@@ -640,41 +640,41 @@ msgstr ""
 "Ta thường tìm thấy giải pháp khi đang giải thích một vấn đề lập trình cho"
 " người khác. :-)"
 
-#: mu/logic.py:128
+#: mu/logic.py:127
 msgid "If you don't know, ask. Nobody to ask? Just look it up."
 msgstr ""
 "Nếu bạn không biết, hãy hỏi. Không có ai để hỏi? Thế thì tìm kiếm trên "
 "mạng."
 
-#: mu/logic.py:129
+#: mu/logic.py:128
 msgid "Complexity is the enemy. KISS - keep it simple, stupid!"
 msgstr "Sự phức tạp là kẻ thù. KISS - giữ nó đơn giản, ai cũng hiểu!"
 
-#: mu/logic.py:130
+#: mu/logic.py:129
 msgid "Beautiful is better than ugly."
 msgstr "Đẹp là tốt hơn xấu xí."
 
-#: mu/logic.py:131
+#: mu/logic.py:130
 msgid "Explicit is better than implicit."
 msgstr "Rõ ràng là tốt hơn ngầm ẩn."
 
-#: mu/logic.py:132
+#: mu/logic.py:131
 msgid "Simple is better than complex. Complex is better than complicated."
 msgstr "Đơn giản là tốt hơn phức tạp. Phức tạp là tốt hơn rắc rối."
 
-#: mu/logic.py:133
+#: mu/logic.py:132
 msgid "Flat is better than nested."
 msgstr "Phẳng là tốt hơn so với lồng nhau."
 
-#: mu/logic.py:134
+#: mu/logic.py:133
 msgid "Sparse is better than dense."
 msgstr "Thưa thớt là tốt hơn so với dày đặc."
 
-#: mu/logic.py:135
+#: mu/logic.py:134
 msgid "Readability counts."
 msgstr "Tính dễ đọc là điểm cộng."
 
-#: mu/logic.py:137
+#: mu/logic.py:136
 msgid ""
 "Special cases aren't special enough to break the rules. Although "
 "practicality beats purity."
@@ -682,47 +682,47 @@ msgstr ""
 "Các trường hợp đặc biệt không đủ đặc biệt để phá vỡ các quy tắc. Mặc dù "
 "tính thực tế đánh bại sự tinh khiết."
 
-#: mu/logic.py:140
+#: mu/logic.py:139
 msgid "Errors should never pass silently. Unless explicitly silenced."
 msgstr ""
 "Lỗi sẽ không bao giờ được đẩy đi lặng lẽ. Trừ khi nó bị tắt một cách rõ "
 "ràng."
 
-#: mu/logic.py:141
+#: mu/logic.py:140
 msgid "In the face of ambiguity, refuse the temptation to guess."
 msgstr "Khi đối mặt với sự mơ hồ, đừng thử đoán nó."
 
-#: mu/logic.py:142
+#: mu/logic.py:141
 msgid "There should be one-- and preferably only one --obvious way to do it."
 msgstr "Nên có một -- và tốt nhất là chỉ có một -- cách rõ ràng để làm điều đó."
 
-#: mu/logic.py:144
+#: mu/logic.py:143
 msgid "Now is better than never. Although never is often better than *right* now."
 msgstr ""
 "Bây giờ là tốt hơn không bao giờ. Mặc dù không bao giờ thường tốt hơn "
 "*ngay* bây giờ."
 
-#: mu/logic.py:147
+#: mu/logic.py:146
 msgid "If the implementation is hard to explain, it's a bad idea."
 msgstr "Nếu cách triển khai là khó giải thích, đó là một ý tưởng tồi."
 
-#: mu/logic.py:148
+#: mu/logic.py:147
 msgid "If the implementation is easy to explain, it may be a good idea."
 msgstr "Nếu cách triển khai là dễ giải thích, đó có thể là một ý tưởng hay."
 
-#: mu/logic.py:149
+#: mu/logic.py:148
 msgid "Namespaces are one honking great idea -- let's do more of those!"
 msgstr "Namespaces là một trong những ý tưởng tuyệt vời - hãy dùng nhiều hơn nữa!"
 
-#: mu/logic.py:150
+#: mu/logic.py:149
 msgid "Mu was created by Nicholas H.Tollervey."
 msgstr "Mu được tạo ra bởi Nicholas H.Tollervey."
 
-#: mu/logic.py:151
+#: mu/logic.py:150
 msgid "To understand what recursion is, you must first understand recursion."
 msgstr "Để hiểu được đệ quy là gì, trước hết bạn phải hiểu đệ quy."
 
-#: mu/logic.py:153
+#: mu/logic.py:152
 msgid ""
 "Algorithm: a word used by programmers when they don't want to explain "
 "what they did."
@@ -730,115 +730,115 @@ msgstr ""
 "Thuật toán: một từ được sử dụng bởi các lập trình viên khi họ không muốn "
 "giải thích những gì họ đã làm."
 
-#: mu/logic.py:156
+#: mu/logic.py:155
 msgid "Programmers count from zero."
 msgstr "Các lập trình viên đếm số đầu tiên là số không."
 
-#: mu/logic.py:157
+#: mu/logic.py:156
 msgid "Simplicity is the ultimate sophistication."
 msgstr "Đơn giản là sự tinh tế cao nhất."
 
-#: mu/logic.py:158
+#: mu/logic.py:157
 msgid "A good programmer is humble."
 msgstr "Một lập trình viên giỏi thường khiêm tốn."
 
-#: mu/logic.py:159
+#: mu/logic.py:158
 msgid "A good programmer is playful."
 msgstr "Một lập trình viên giỏi thường hài hước."
 
-#: mu/logic.py:160
+#: mu/logic.py:159
 msgid "A good programmer learns to learn."
 msgstr "Một lập trình viên giỏi biết học cách học."
 
-#: mu/logic.py:161
+#: mu/logic.py:160
 msgid "A good programmer thinks beyond the obvious."
 msgstr "Một lập trình viên giỏi biết nghĩ vượt ra ngoài cái trước mắt."
 
-#: mu/logic.py:162
+#: mu/logic.py:161
 msgid "A good programmer promotes simplicity."
 msgstr "Một lập trình viên giỏi cổ xúy sự đơn giản."
 
-#: mu/logic.py:163
+#: mu/logic.py:162
 msgid "A good programmer avoids complexity."
 msgstr "Một lập trình viên giỏi tránh sự phức tạp."
 
-#: mu/logic.py:164
+#: mu/logic.py:163
 msgid "A good programmer is patient."
 msgstr "Một lập trình viên giỏi biết kiên nhẫn."
 
-#: mu/logic.py:165
+#: mu/logic.py:164
 msgid "A good programmer asks questions."
 msgstr "Một lập trình viên giỏi biết đặt câu hỏi."
 
-#: mu/logic.py:166
+#: mu/logic.py:165
 msgid "A good programmer is willing to say, 'I don't know'."
 msgstr "Một lập trình viên giỏi sẵn sàng nói, 'Tôi không biết'."
 
-#: mu/logic.py:167
+#: mu/logic.py:166
 msgid "Wisest are they that know they know nothing."
 msgstr "Khôn ngoan nhất là họ biết rằng họ không biết gì cả."
 
-#: mu/logic.py:169
+#: mu/logic.py:168
 msgid "Computers aren’t the thing. They’re the thing that gets us to the thing."
 msgstr ""
 
-#: mu/logic.py:171
+#: mu/logic.py:170
 msgid "Don't stare at a blank screen - try something out."
 msgstr ""
 
-#: mu/logic.py:172
+#: mu/logic.py:171
 msgid "If you're stuck - try explaining it to a rubber duck."
 msgstr ""
 
-#: mu/logic.py:173
+#: mu/logic.py:172
 msgid "It's ok to be stuck, go for a walk and then try again (:"
 msgstr ""
 
-#: mu/logic.py:174 mu/logic.py:178
+#: mu/logic.py:173 mu/logic.py:177
 msgid "It's not a mistake to make an error."
 msgstr ""
 
-#: mu/logic.py:175
+#: mu/logic.py:174
 msgid "Errors are there to learn from them. Then avoid them."
 msgstr ""
 
-#: mu/logic.py:176
+#: mu/logic.py:175
 msgid "Don't look backwards for very long. We keep moving forward."
 msgstr ""
 
-#: mu/logic.py:177
+#: mu/logic.py:176
 msgid "Keep moving forward."
 msgstr ""
 
-#: mu/logic.py:179
+#: mu/logic.py:178
 msgid "Do not pass silently."
 msgstr ""
 
-#: mu/logic.py:180
+#: mu/logic.py:179
 msgid "Computers are not humans. There is no need arguing with them."
 msgstr ""
 
-#: mu/logic.py:181
+#: mu/logic.py:180
 msgid "Embrace change and seek growth."
 msgstr ""
 
-#: mu/logic.py:182
+#: mu/logic.py:181
 msgid "Live, laugh, learn!"
 msgstr ""
 
-#: mu/logic.py:183
+#: mu/logic.py:182
 msgid "Let's get coding!"
 msgstr ""
 
-#: mu/logic.py:184
+#: mu/logic.py:183
 msgid "Don't be afraid of coding, we all learn by making mistakes!"
 msgstr ""
 
-#: mu/logic.py:479
+#: mu/logic.py:478
 msgid " above this line"
 msgstr "phía trên dòng này"
 
-#: mu/logic.py:528
+#: mu/logic.py:527
 msgid ""
 "Syntax error. Python cannot understand this line. Check for missing "
 "characters!"
@@ -846,12 +846,12 @@ msgstr ""
 "Lỗi cú pháp. Python không thể hiểu được dòng này. Kiểm tra các ký tự còn "
 "thiếu!"
 
-#: mu/logic.py:592
+#: mu/logic.py:591
 #, python-brace-format
 msgid "{} compatible"
 msgstr ""
 
-#: mu/logic.py:1017
+#: mu/logic.py:1016
 #, python-brace-format
 msgid ""
 "The file contains characters Mu expects to be encoded as {0} or as the "
@@ -867,21 +867,21 @@ msgstr ""
 "Nếu tệp này được lưu trong ứng dụng khác, hãy lưu lại tệp qua tùy chọn "
 "'Lưu dưới dạng' và đặt mã hóa thành {0}"
 
-#: mu/logic.py:1044
+#: mu/logic.py:1043
 #, python-brace-format
 msgid "The file \"{}\" is already open."
 msgstr "Tệp \"{}\" đã được mở sẵn."
 
-#: mu/logic.py:1056
+#: mu/logic.py:1055
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
 msgstr "Mu không thể đọc các ký tự trong {}"
 
-#: mu/logic.py:1082
+#: mu/logic.py:1081
 msgid "Mu was not able to open this file"
 msgstr "Mu không thể mở tập tin này"
 
-#: mu/logic.py:1084
+#: mu/logic.py:1083
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
@@ -889,12 +889,12 @@ msgstr ""
 "Hiện tại Mu chỉ hoạt động với các tệp nguồn Python hoặc các tệp hex được "
 "tạo bằng mã nhúng MicroPython."
 
-#: mu/logic.py:1091
+#: mu/logic.py:1090
 #, python-brace-format
 msgid "Could not load {}"
 msgstr "Không thể mở {}"
 
-#: mu/logic.py:1094
+#: mu/logic.py:1093
 msgid ""
 "Does this file exist?\n"
 "If it does, do you have permission to read it?\n"
@@ -906,12 +906,12 @@ msgstr ""
 "\n"
 "Vui lòng kiểm tra và thử lại."
 
-#: mu/logic.py:1101
+#: mu/logic.py:1100
 #, python-brace-format
 msgid "Is this a {} file?"
 msgstr "Đây có phải là tệp {} không?"
 
-#: mu/logic.py:1103
+#: mu/logic.py:1102
 #, python-brace-format
 msgid ""
 "It looks like this could be a {} file.\n"
@@ -922,11 +922,11 @@ msgstr ""
 "\n"
 "Bạn có muốn đổi Mu thành chế độ {} không?"
 
-#: mu/logic.py:1229
+#: mu/logic.py:1228
 msgid "Could not save file (disk problem)"
 msgstr "Không thể lưu tệp (sự cố đĩa)"
 
-#: mu/logic.py:1231
+#: mu/logic.py:1230
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
@@ -934,11 +934,11 @@ msgstr ""
 "Lỗi khi lưu tệp vào đĩa. Đảm bảo bạn có quyền ghi tệp và đủ dung lượng "
 "đĩa."
 
-#: mu/logic.py:1236
+#: mu/logic.py:1235
 msgid "Could not save file (encoding problem)"
 msgstr "Không thể lưu tệp (sự cố mã hóa)"
 
-#: mu/logic.py:1239
+#: mu/logic.py:1238
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
@@ -946,17 +946,17 @@ msgstr ""
 "Không thể chuyển đổi tất cả các ký tự. Nếu bạn có một dòng mã hóa ở đầu "
 "tệp, hãy xóa nó và thử lại."
 
-#: mu/logic.py:1249
+#: mu/logic.py:1248
 #, python-brace-format
 msgid "Saved file: {}"
 msgstr "Tệp đã lưu: {}"
 
-#: mu/logic.py:1281 mu/logic.py:1676
+#: mu/logic.py:1280 mu/logic.py:1666
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
 msgstr "Bạn không thể sử dụng tên tệp \"{}\""
 
-#: mu/logic.py:1285
+#: mu/logic.py:1284
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
@@ -965,35 +965,35 @@ msgstr ""
 "Tên này đã được một thành phần khác của Python sử dụng. Nếu bạn sử dụng "
 "tên này, mọi thứ có thể sẽ bị hỏng. Vui lòng thử lại với tên tệp khác."
 
-#: mu/logic.py:1361
+#: mu/logic.py:1360
 msgid "Good job! No problems found."
 msgstr "Làm tốt lắm! Không tìm thấy vấn đề gì."
 
-#: mu/logic.py:1362
+#: mu/logic.py:1361
 msgid "Hurrah! Checker turned up no problems."
 msgstr "Hu-ra! Chương trình kiểm tra đã báo là không có vấn đề."
 
-#: mu/logic.py:1363
+#: mu/logic.py:1362
 msgid "Nice one! Zero problems detected."
 msgstr "Tốt rồi! Không tìm thấy lỗi nào."
 
-#: mu/logic.py:1364
+#: mu/logic.py:1363
 msgid "Well done! No problems here."
 msgstr "Khá lắm! Không có vấn đề ở đây."
 
-#: mu/logic.py:1365
+#: mu/logic.py:1364
 msgid "Awesome! Zero problems found."
 msgstr "Tuyệt vời! Không tìm thấy lỗi nào."
 
-#: mu/logic.py:1390
+#: mu/logic.py:1389
 msgid "There is un-saved work, exiting the application will cause you to lose it."
 msgstr "Có công việc chưa lưu, nó sẽ mất nếu bạn thoát khỏi ứng dụng."
 
-#: mu/logic.py:1462
+#: mu/logic.py:1461
 msgid "Could not find MicroPython runtime."
 msgstr "Không thể tìm thấy trình chạy MicroPython."
 
-#: mu/logic.py:1464
+#: mu/logic.py:1463
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
@@ -1002,34 +1002,22 @@ msgstr ""
 "Trình chạy micro:bit mà bạn đã chỉ định ('{}') không tồn tại. Vui lòng "
 "thử lại."
 
-#: mu/logic.py:1569
+#: mu/logic.py:1568
 #, python-brace-format
 msgid "Changed to {} mode."
 msgstr "Đã thay đổi thành chế độ {}."
 
-#: mu/logic.py:1600
+#: mu/logic.py:1599
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
 msgstr "Bạn có muốn đổi Mu thành chế độ {} không?"
 
-#: mu/logic.py:1619
+#: mu/logic.py:1618
 #, fuzzy, python-brace-format
 msgid "Device changed to {}."
 msgstr "Đã thay đổi thành chế độ {}."
 
-#: mu/logic.py:1655
-msgid "Cannot Set Breakpoint."
-msgstr "Không thể đặt điểm ngắt."
-
-#: mu/logic.py:1657
-msgid ""
-"Lines that are comments or some multi-line statements cannot have "
-"breakpoints."
-msgstr ""
-"Không thể đặt điểm ngắt ở các dòng là các chú thích hoặc một số câu lệnh "
-"nhiều dòng."
-
-#: mu/logic.py:1680
+#: mu/logic.py:1670
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
@@ -1038,51 +1026,51 @@ msgstr ""
 "Tên này đã được một thành phần khác của Python sử dụng. Nếu bạn sử dụng "
 "tên đó, mọi thứ có thể sẽ bị phá vỡ. Vui lòng thử lại với tên tệp khác."
 
-#: mu/logic.py:1701
+#: mu/logic.py:1691
 msgid "Could not rename file."
 msgstr "Không thể đổi tên tệp."
 
-#: mu/logic.py:1703
+#: mu/logic.py:1693
 msgid "A file of that name is already open in Mu."
 msgstr "Một tệp có tên đó đã được mở sẵn trong Mu."
 
-#: mu/logic.py:1734
+#: mu/logic.py:1724
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
 msgstr "Thay thế \"{}\" bằng \"{}\"."
 
-#: mu/logic.py:1739
+#: mu/logic.py:1729
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
 msgstr "Đã thay thế {} kết quả phù hợp của \"{}\" bằng \"{}\"."
 
-#: mu/logic.py:1744 mu/logic.py:1751 mu/logic.py:1770
+#: mu/logic.py:1734 mu/logic.py:1741 mu/logic.py:1760
 #, python-brace-format
 msgid "Could not find \"{}\"."
 msgstr "Không thể tìm thấy \"{}\"."
 
-#: mu/logic.py:1749 mu/logic.py:1768
+#: mu/logic.py:1739 mu/logic.py:1758
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
 msgstr "Làm nổi bật các kết quả phù hợp cho \"{}\"."
 
-#: mu/logic.py:1754 mu/logic.py:1773
+#: mu/logic.py:1744 mu/logic.py:1763
 msgid "You must provide something to find."
 msgstr "Bạn phải cung cấp một cái gì đó để tìm."
 
-#: mu/logic.py:1756 mu/logic.py:1775
+#: mu/logic.py:1746 mu/logic.py:1765
 msgid "Please try again, this time with something in the find box."
 msgstr "Vui lòng thử lại, lần này với nội dung nào đó trong hộp tìm kiếm."
 
-#: mu/logic.py:1818
+#: mu/logic.py:1808
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
 msgstr ""
 
-#: mu/logic.py:1824
+#: mu/logic.py:1814
 msgid "Your code contains problems."
 msgstr ""
 
-#: mu/logic.py:1826
+#: mu/logic.py:1816
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
@@ -1232,60 +1220,60 @@ msgstr ""
 "\n"
 "... để lưu trữ chương trình của bạn."
 
-#: mu/modes/debugger.py:46
+#: mu/modes/debugger.py:45
 msgid "Graphical Debugger"
 msgstr "Trình gỡ lỗi đồ họa"
 
-#: mu/modes/debugger.py:50
+#: mu/modes/debugger.py:49
 msgid "Debug your Python 3 code."
 msgstr "Gỡ lỗi mã Python 3 của bạn."
 
-#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/debugger.py:65 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
 #: mu/modes/web.py:196
 msgid "Stop"
 msgstr "Dừng"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:66
 msgid "Stop the running code."
 msgstr "Dừng mã đang chạy."
 
-#: mu/modes/debugger.py:73
+#: mu/modes/debugger.py:72
 msgid "Continue"
 msgstr "Tiếp tục"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:73
 msgid "Continue to run your Python script."
 msgstr "Tiếp tục chạy tệp lệnh Python của bạn."
 
-#: mu/modes/debugger.py:80
+#: mu/modes/debugger.py:79
 msgid "Step Over"
 msgstr "Bước qua"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:80
 msgid "Step over a line of code."
 msgstr "Bước qua một dòng mã."
 
-#: mu/modes/debugger.py:87
+#: mu/modes/debugger.py:86
 msgid "Step In"
 msgstr "Bước vào"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:87
 msgid "Step into a function."
 msgstr "Bước vào một hàm."
 
-#: mu/modes/debugger.py:94
+#: mu/modes/debugger.py:93
 msgid "Step Out"
 msgstr "Bước ra"
 
-#: mu/modes/debugger.py:95
+#: mu/modes/debugger.py:94
 msgid "Step out of a function."
 msgstr "Bước ra khỏi một hàm."
 
-#: mu/modes/debugger.py:166
+#: mu/modes/debugger.py:165
 msgid "Your script has finished running."
 msgstr "Tệp lệnh của bạn đã chạy xong."
 
-#: mu/modes/debugger.py:271
+#: mu/modes/debugger.py:270
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1293,17 +1281,17 @@ msgstr ""
 "Không thể kết nối với trình gỡ lỗi Python.\n"
 "\n"
 
-#: mu/modes/debugger.py:360
+#: mu/modes/debugger.py:355
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "Thông tin trình gỡ lỗi: {}"
 
-#: mu/modes/debugger.py:367
+#: mu/modes/debugger.py:362
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "Cảnh báo trình gỡ lỗi: {}"
 
-#: mu/modes/debugger.py:375
+#: mu/modes/debugger.py:370
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "Lỗi trình gỡ lỗi: {}"

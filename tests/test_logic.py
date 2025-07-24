@@ -2740,8 +2740,7 @@ def test_debug_toggle_breakpoint_on():
     mock_debugger.is_debugger = False
     ed.modes = {"python": mock_debugger}
     ed.mode = "python"
-    with mock.patch("mu.logic.is_breakpoint_line", return_value=True):
-        ed.debug_toggle_breakpoint(1, 10, False)
+    ed.debug_toggle_breakpoint(1, 10, False)
     view.current_tab.markerAdd.assert_called_once_with(
         10, view.current_tab.BREAKPOINT_MARKER
     )
@@ -2760,43 +2759,6 @@ def test_debug_toggle_breakpoint_off():
     mock_debugger.has_debugger = True
     mock_debugger.is_debugger = False
     ed.modes = {"python": mock_debugger}
-    ed.mode = "python"
-    with mock.patch("mu.logic.is_breakpoint_line", return_value=True):
-        ed.debug_toggle_breakpoint(1, 10, False)
-    view.current_tab.markerDelete.assert_called_once_with(10, -1)
-
-
-def test_debug_toggle_breakpoint_on_invalid_breakpoint_line():
-    """
-    If a breakpoint is toggled on, it won't work if the line isn't a valid
-    breakpoint line.
-    """
-    view = mock.MagicMock()
-    view.current_tab.text.return_value = '#print("Hello")'
-    ed = mu.logic.Editor(view)
-    mock_debugger = mock.MagicMock()
-    mock_debugger.has_debugger = False
-    mock_debugger.is_debugger = True
-    ed.modes = {"debugger": mock_debugger}
-    ed.mode = "debugger"
-    ed.debug_toggle_breakpoint(1, 10, False)
-    assert view.show_message.call_count == 1
-
-
-def test_debug_toggle_breakpoint_off_invalid_breakpoint_line():
-    """
-    It should be possible to remove breakpoints from *invalid* breakpoint
-    lines.
-    """
-    view = mock.MagicMock()
-    view.current_tab.text.return_value = '#print("Hello")'
-    view.current_tab.markersAtLine.return_value = True
-    view.current_tab.breakpoint_handles = set([10])
-    ed = mu.logic.Editor(view)
-    mock_mode = mock.MagicMock()
-    mock_mode.has_debugger = True
-    mock_mode.is_debugger = False
-    ed.modes = {"python": mock_mode}
     ed.mode = "python"
     ed.debug_toggle_breakpoint(1, 10, False)
     view.current_tab.markerDelete.assert_called_once_with(10, -1)

@@ -18,6 +18,21 @@ def lego_mode():
     return lego_mode
 
 
+def test_lego_mode_init():
+    """
+    Sanity check for setting up the mode.
+    """
+    editor = mock.MagicMock()
+    view = mock.MagicMock()
+    lego_mode = LegoMode(editor, view)
+    assert lego_mode.name == "Lego MicroPython"
+    assert (
+        lego_mode.description
+        == "Write MicroPython directly on Lego Spike devices."
+    )
+    assert lego_mode.icon == "lego"
+
+
 def test_api(lego_mode):
     """
     Ensure the right thing comes back from the API.

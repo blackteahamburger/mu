@@ -39,7 +39,6 @@ from PyQt6.QtWidgets import QMessageBox
 
 from mu import __version__, i18n, settings
 from mu.config import DATA_DIR, MAX_LINE_LENGTH
-from mu.debugger.utils import is_breakpoint_line
 from mu.resources import path
 
 # The default directory for application logs.
@@ -1637,27 +1636,18 @@ class Editor(QObject):
             or self.modes[self.mode].is_debugger
         ):
             tab = self._view.current_tab
-            code = tab.text(line)
             if self.mode == "debugger":
                 # The debugger is running.
-                if is_breakpoint_line(code):
-                    self.modes["debugger"].toggle_breakpoint(line, tab)
-                    return
+                self.modes["debugger"].toggle_breakpoint(line, tab)
+                return
             else:
                 # The debugger isn't running.
                 if tab.markersAtLine(line):
                     tab.markerDelete(line, -1)
                     return
-                elif is_breakpoint_line(code):
-                    handle = tab.markerAdd(line, tab.BREAKPOINT_MARKER)
-                    tab.breakpoint_handles.add(handle)
-                    return
-            msg = _("Cannot Set Breakpoint.")
-            info = _(
-                "Lines that are comments or some multi-line "
-                "statements cannot have breakpoints."
-            )
-            self._view.show_message(msg, info)
+                handle = tab.markerAdd(line, tab.BREAKPOINT_MARKER)
+                tab.breakpoint_handles.add(handle)
+                return
 
     def rename_tab(self, tab_id=None):
         """

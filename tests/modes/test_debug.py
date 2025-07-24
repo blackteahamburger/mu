@@ -386,30 +386,6 @@ def test_debug_on_bootstrap_ignore_duplicate_handles():
     assert dm.debugger.create_breakpoint.call_count == 1
 
 
-def test_debug_on_bootstrap_remove_invalid_breaks():
-    """
-    Sometimes it's possible for a marker to end up on a line that is eventually
-    an in-valid breakpoint line. This checks that such markers don't end up
-    with an attempt to set a breakpoint and are ultimately discarded so the
-    visual state of the markers matches the breakpoint state of the debugger.
-    """
-    editor = mock.MagicMock()
-    view = mock.MagicMock()
-    dm = DebugMode(editor, view)
-    dm.debugger = mock.MagicMock()
-    mock_tab = mock.MagicMock()
-    mock_tab.path = "foo"
-    mock_tab.breakpoint_handles = set([0])
-    mock_tab.markerLine.return_value = 1
-    view.widgets = [mock_tab]
-    with mock.patch(
-        "mu.modes.debugger.is_breakpoint_line", return_value=False
-    ):
-        dm.debug_on_bootstrap()
-    assert 0 not in mock_tab.breakpoint_handles
-    mock_tab.markerDelete.assert_called_once_with(1, -1)
-
-
 def test_debug_on_breakpoint_enable():
     """
     Handle the signal that shows the debug runner has created a breakpoint.

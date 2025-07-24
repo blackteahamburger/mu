@@ -17,7 +17,7 @@ def esp_mode():
     return esp_mode
 
 
-def test_ESPMode_init():
+def test_esp_mode_init():
     """
     Sanity check for setting up the mode.
     """
@@ -29,7 +29,7 @@ def test_ESPMode_init():
     assert esp_mode.icon == "esp"
 
 
-def test_ESPMode_actions(esp_mode):
+def test_esp_mode_actions(esp_mode):
     """
     Sanity check for mode actions.
     """

@@ -18,6 +18,22 @@ def pico_mode():
     return pico_mode
 
 
+def test_pico_mode_init():
+    """
+    Sanity check for setting up the mode.
+    """
+    editor = mock.MagicMock()
+    view = mock.MagicMock()
+    pm = PicoMode(editor, view)
+    assert pm.name == "RP2040"
+    assert (
+        pm.description == "Write MicroPython directly on a Raspberry Pi Pico."
+    )
+    assert pm.icon == "pico"
+    assert pm.editor == editor
+    assert pm.view == view
+
+
 def test_api(pico_mode):
     """
     Ensure the right thing comes back from the API.

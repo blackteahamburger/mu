@@ -24,7 +24,6 @@ from PyQt6.QtCore import QTimer
 
 from mu.debugger.client import Debugger
 from mu.debugger.config import DEBUGGER_PORT
-from mu.debugger.utils import is_breakpoint_line
 from mu.modes.base import BaseMode
 
 logger = logging.getLogger(__name__)
@@ -287,12 +286,8 @@ class DebugMode(BaseMode):
             break_lines = set()
             for handle in list(tab.breakpoint_handles):
                 line = tab.markerLine(handle)
-                code = tab.text(line)
-                if (
-                    line > -1
-                    and line not in break_lines
-                    and is_breakpoint_line(code)
-                ):
+                tab.text(line)
+                if line > -1 and line not in break_lines:
                     self.debugger.create_breakpoint(tab.path, line + 1)
                     break_lines.add(line)
                 else:
