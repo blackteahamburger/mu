@@ -6,7 +6,7 @@ Tests for the resources sub-module.
 from pathlib import Path
 from unittest import mock
 
-from PyQt6.QtGui import QIcon, QMovie, QPixmap
+from PyQt6.QtGui import QIcon, QPixmap
 
 import mu.resources
 
@@ -37,14 +37,6 @@ def test_load_pixmap():
     """
     result = mu.resources.load_pixmap("icon")
     assert isinstance(result, QPixmap)
-
-
-def test_load_movie():
-    """
-    Check the load_movie function returns the expected QMovie object.
-    """
-    result = mu.resources.load_movie("splash_screen")
-    assert isinstance(result, QMovie)
 
 
 def test_stylesheet():

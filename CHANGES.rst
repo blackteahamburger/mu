@@ -10,6 +10,7 @@ This version basically does not provide feature updates, containing the followin
 
 * Support for new versions of all dependencies (including PyQt6 support)
 * Runtime virtual environment is removed
+* Splash screen is removed to speed up startup time
 * New translation: zh_TW (Traditional Chinese)
 * Bundled libraries under mu.contrib are removed to allow for immediate new version usage and easier maintenance
 * micro:bit mode: minifying option is removed - now done by uflash and by default

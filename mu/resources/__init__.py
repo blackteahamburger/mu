@@ -22,7 +22,7 @@ import os
 from importlib.resources import files as importlib_files
 
 from PyQt6.QtCore import QDir
-from PyQt6.QtGui import QIcon, QMovie, QPixmap
+from PyQt6.QtGui import QIcon, QPixmap
 
 # The following lines add the images and css directories to the search path.
 QDir.addSearchPath(
@@ -52,11 +52,6 @@ def load_pixmap(name, size=None):
         icon = load_icon(name)
         return icon.pixmap(size)
     return QPixmap(str(path(name)))
-
-
-def load_movie(name):
-    """Load an animated GIF from the resources directory."""
-    return QMovie(str(path(name)))
 
 
 def load_stylesheet(name):

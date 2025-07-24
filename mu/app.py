@@ -33,14 +33,12 @@ import webbrowser
 from logging.handlers import TimedRotatingFileHandler
 
 from PyQt6.QtCore import (
-    QEventLoop,
     QObject,
     QSharedMemory,
     Qt,
-    QThread,
     pyqtSignal,
 )
-from PyQt6.QtWidgets import QApplication, QSplashScreen
+from PyQt6.QtWidgets import QApplication
 
 from mu import __version__, i18n, settings
 from mu.interface import Window
@@ -59,84 +57,17 @@ from mu.modes import (
     SnekMode,
     WebMode,
 )
-from mu.resources import load_icon, load_movie, load_pixmap
-
-
-class AnimatedSplash(QSplashScreen):
-    """
-    An animated splash screen for gifs. Includes a text area for logging
-    output.
-    """
-
-    def __init__(self, animation, parent=None):
-        """
-        Ensure signals are connected and start the animation.
-        """
-        self.log_lines = 4
-        # To hold only number of log_lines of logs to display.
-        self.log = []
-        self.animation = animation
-        self.animation.frameChanged.connect(self.set_frame)
-        # Always on top.
-        super().__init__(self.animation.currentPixmap())
-        # Disable clicks.
-        self.setEnabled(False)
-        self.animation.start()
-
-    def set_frame(self):
-        """
-        Update the splash screen with the next frame of the animation.
-        """
-        pixmap = self.animation.currentPixmap()
-        self.setPixmap(pixmap)
-        self.setMask(pixmap.mask())
-
-    def draw_log(self, text):
-        """
-        Draw the log entries onto the splash screen. Will only display the last
-        self.log_lines number of log entries. The logs will be displayed at the
-        bottom of the splash screen, justified left.
-        """
-        self.log.append(text)
-        self.log = self.log[-self.log_lines :]
-        if self.log:
-            self.draw_text("\n".join(self.log))
-
-    def draw_text(self, text):
-        """
-        Draw text into splash screen.
-        """
-        if text:
-            self.showMessage(text, Qt.AlignBottom | Qt.AlignLeft)
-
-    def failed(self, text):
-        """
-        Something has gone wrong during start-up, so signal this, display a
-        helpful message along with instructions for what to do.
-        """
-        self.animation.stop()
-        pixmap = load_pixmap("splash_fail.png")
-        self.setPixmap(pixmap)
-        lines = text.split("\n")
-        lines.append(
-            "This screen will close in a few seconds. "
-            "Then a crash report tool will open in your browser."
-        )
-        lines = lines[-12:]
-        self.draw_text("\n".join(lines))
+from mu.resources import load_icon
 
 
 class StartupWorker(QObject):
     """
     A worker class for running blocking tasks on a separate thread during
     application start-up.
-
-    The animated splash screen will be shown until this thread is finished.
     """
 
     finished = pyqtSignal()  # emitted when successfully finished.
     failed = pyqtSignal(str)  # emitted if finished with an error.
-    display_text = pyqtSignal(str)  # emitted to update the splash text.
 
     def run(self):
         """
@@ -358,8 +289,6 @@ def run():
     - check that another instance of the app isn't already running (exit if so)
     - create an application object
     - create an editor window and status bar
-    - display a splash screen while starting
-    - close the splash screen after startup timer ends
     """
     setup_logging()
     logging.info("\n\n-----------------\n\nStarting Mu {}".format(__version__))
@@ -405,36 +334,6 @@ def run():
     app.setDesktopFileName("mu.codewith.editor")
     app.setApplicationVersion(__version__)
     app.setAttribute(Qt.AA_DontShowIconsInMenus)
-
-    def splash_context():
-        """
-        Function context (to ensure garbage collection) for displaying the
-        splash screen.
-        """
-        # Display a friendly "splash" icon.
-        splash = AnimatedSplash(load_movie("splash_screen"))
-        splash.show()
-
-        # Create a blocking thread upon which to run the StartupWorker and which
-        # will process the events for animating the splash screen.
-        initLoop = QEventLoop()
-        thread = QThread()
-        worker = StartupWorker()
-        worker.moveToThread(thread)
-        thread.started.connect(worker.run)
-        worker.finished.connect(thread.quit)
-        worker.finished.connect(worker.deleteLater)
-        worker.display_text.connect(splash.draw_log)
-        worker.failed.connect(splash.failed)
-        # Stop the blocking event loop when the thread is finished.
-        thread.finished.connect(initLoop.quit)
-        thread.finished.connect(thread.deleteLater)
-        thread.start()
-        initLoop.exec()  # start processing the pending StartupWorker.
-        splash.close()
-        splash.deleteLater()
-
-    splash_context()
 
     # Create the "window" we'll be looking at.
     editor_window = Window()

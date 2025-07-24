@@ -8,7 +8,6 @@
     - create a logical editor (from logic.py:Editor) passing the core Window as its "view"
     - set up the editor (via logic.py\Editor:setup), secondarily setting up modes (via app.py:setup_modes)
     - throw in various connectors to the editor window
-    - throw up a splash screen for 2 secs
     - run the app
 * Logical editor setup (in logic.py:__init__ & setup)
     - Reset the theme, the mode, the list of modes, the microbit runtime, list of
