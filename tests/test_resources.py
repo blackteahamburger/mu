@@ -11,7 +11,7 @@ from PyQt6.QtGui import QIcon, QMovie, QPixmap
 import mu.resources
 
 
-def test_path_default():
+def test_path():
     """
     Ensure the path function returns the expected result with default arguments.
     """
@@ -19,23 +19,8 @@ def test_path_default():
     with mock.patch.object(
         mu.resources, "importlib_files", return_value=mock_resources
     ):
-        expected = str(mock_resources.joinpath("images", "foo"))
+        expected = mock_resources.joinpath("images", "foo")
         assert mu.resources.path("foo") == expected
-
-
-def test_path_custom_dir_ext():
-    """
-    Ensure the path function returns the expected result with custom resource_dir and ext.
-    """
-    mock_resources = Path("bar")
-    with mock.patch.object(
-        mu.resources, "importlib_files", return_value=mock_resources
-    ):
-        expected = str(mock_resources.joinpath("fonts", "font.ttf"))
-        assert (
-            mu.resources.path("font", resource_dir="fonts", ext=".ttf")
-            == expected
-        )
 
 
 def test_load_icon():

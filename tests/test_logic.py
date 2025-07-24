@@ -3,7 +3,6 @@
 Tests for the Editor and REPL logic.
 """
 
-import atexit
 import codecs
 import contextlib
 import json
@@ -71,16 +70,6 @@ def _generate_python_files(contents, dirpath):
         with open(filepath, "w", encoding=mu.logic.ENCODING, newline="") as f:
             f.write(c)
         yield filepath
-
-
-@contextlib.contextmanager
-def generate_python_files(contents, dirpath=None):
-    """
-    Create a temp directory and populate it with .py files, then remove it.
-    """
-    dirpath = dirpath or tempfile.mkdtemp(prefix="mu-")
-    yield list(_generate_python_files(contents, dirpath))
-    shutil.rmtree(dirpath)
 
 
 @contextlib.contextmanager
@@ -192,12 +181,6 @@ def mocked_editor(mode="python", text=None, path=None, newline=None):
     mock_mode.api.return_value = ["API Specification"]
     ed.modes = {mode: mock_mode}
     return ed
-
-
-@pytest.fixture(scope="module")
-def prevent_settings_autosave():
-    """Prevent the settings from auto-saving"""
-    atexit._clear()
 
 
 @pytest.fixture
@@ -538,10 +521,7 @@ def test_check_pycodestyle_with_non_ascii():
     Ensure pycodestyle can at least see a file with non-ASCII characters
     """
     code = "x='\u2005'\n"
-    try:
-        mu.logic.check_pycodestyle(code)
-    except Exception as exc:
-        assert False, "Exception was raised: %s" % exc
+    mu.logic.check_pycodestyle(code)
     #
     # Doesn't actually matter what pycodestyle returns; we just want to make
     # sure it didn't error out

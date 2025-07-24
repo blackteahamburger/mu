@@ -17,6 +17,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import tokenize
+from io import StringIO
+
 
 def is_breakpoint_line(code):
     """
@@ -28,9 +31,22 @@ def is_breakpoint_line(code):
     code = code.strip()
     if not code:
         return False
-    # Can't set breakpoints on blank lines or comments.
-    # TODO: Make this more robust.
-    if code[0] == "#" or code[:3] == '"""' or code[:3] == "'''":
+    # More robust detection for comments and blank lines
+    try:
+        tokens = list(tokenize.generate_tokens(StringIO(code).readline))
+        # If there is only one token and its type is COMMENT or NL, it's a comment or blank line
+        if len(tokens) == 1 and tokens[0].type in (
+            tokenize.COMMENT,
+            tokenize.NL,
+        ):
+            return False
+        # If the first token is a comment, cannot set breakpoint
+        if tokens[0].type == tokenize.COMMENT:
+            return False
+        # If the first token is a string (possibly a docstring), cannot set breakpoint
+        if tokens[0].type == tokenize.STRING:
+            return False
+    except tokenize.TokenError:
         return False
     # Can't set breakpoints on lines that end with opening (, { or [
     if code[-1] in ("(", "{", "["):

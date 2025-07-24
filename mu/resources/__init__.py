@@ -31,21 +31,19 @@ QDir.addSearchPath(
 QDir.addSearchPath("css", str(importlib_files("mu.resources").joinpath("css")))
 
 
-def path(name, resource_dir="images", ext=""):
+def path(name, resource_dir="images"):
     """Return the filename for the referenced image."""
-    return str(
-        importlib_files("mu.resources").joinpath(resource_dir, name + ext)
-    )
+    return importlib_files("mu.resources").joinpath(resource_dir, name)
 
 
 def load_icon(name):
     """Load an icon from the resources directory."""
-    svg_path = path(name, ext=".svg")
+    svg_path = str(path(name + ".svg"))
     if os.path.exists(svg_path):
         svg_icon = QIcon(svg_path)
         if svg_icon:
             return svg_icon
-    return QIcon(path(name))
+    return QIcon(str(path(name)))
 
 
 def load_pixmap(name, size=None):
@@ -53,28 +51,21 @@ def load_pixmap(name, size=None):
     if size is not None:
         icon = load_icon(name)
         return icon.pixmap(size)
-    return QPixmap(path(name))
+    return QPixmap(str(path(name)))
 
 
 def load_movie(name):
     """Load an animated GIF from the resources directory."""
-    return QMovie(path(name))
+    return QMovie(str(path(name)))
 
 
 def load_stylesheet(name):
     """Load a CSS stylesheet from the resources directory."""
-    return (
-        importlib_files("mu.resources")
-        .joinpath("css/" + name)
-        .read_bytes()
-        .decode("utf8")
-    )
+    return path(name, "css").read_bytes().decode("utf8")
 
 
 def load_font_data(name):
     """
     Load the (binary) content of a font as bytes
     """
-    return (
-        importlib_files("mu.resources").joinpath("fonts/" + name).read_bytes()
-    )
+    return path(name, "fonts").read_bytes()

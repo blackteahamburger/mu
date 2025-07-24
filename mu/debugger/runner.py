@@ -526,7 +526,8 @@ def run(hostname, port, filename, args):
                 debugger.output("finished")
                 break
         except Restart:
-            # TODO: Log restart.
+            # Log restart event for debugging purposes.
+            logger.info("Debugger session restarted by user request.")
             debugger.output("restart")
         except (KeyboardInterrupt, SystemExit, OSError):
             debugger.client = None

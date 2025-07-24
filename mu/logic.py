@@ -835,7 +835,8 @@ class Editor(QObject):
             os.makedirs(images_path)
             for img in DEFAULT_IMAGES:
                 shutil.copy(
-                    path(img, "pygamezero/"), os.path.join(images_path, img)
+                    str(path(img, "pygamezero")),
+                    os.path.join(images_path, img),
                 )
         if not os.path.exists(fonts_path):
             logger.debug("Creating directory: {}".format(fonts_path))
@@ -845,7 +846,8 @@ class Editor(QObject):
             os.makedirs(sounds_path)
             for sfx in DEFAULT_SOUNDS:
                 shutil.copy(
-                    path(sfx, "pygamezero/"), os.path.join(sounds_path, sfx)
+                    str(path(sfx, "pygamezero")),
+                    os.path.join(sounds_path, sfx),
                 )
         if not os.path.exists(music_path):
             logger.debug("Creating directory: {}".format(music_path))
@@ -855,10 +857,10 @@ class Editor(QObject):
         static_path = os.path.join(wd, "static")
         if not os.path.exists(template_path):
             logger.debug("Creating directory: {}".format(template_path))
-            shutil.copytree(path("templates", "web/"), template_path)
+            shutil.copytree(str(path("templates", "web")), template_path)
         if not os.path.exists(static_path):
             logger.debug("Creating directory: {}".format(static_path))
-            shutil.copytree(path("static", "web/"), static_path)
+            shutil.copytree(str(path("static", "web")), static_path)
             # Copy all the static directories.
         # Start the timer to poll every second for an attached or removed
         # USB device.

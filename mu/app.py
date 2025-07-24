@@ -270,10 +270,7 @@ class SharedMemoryMutex(object):
     handler which uses the built in Semaphore as a locking mechanism
     and raises an error if the shared memory object is already in use
 
-    TODO: The Unix implementation doesn't release the shared memory if a
-    process attached to it crashes. There is code to attempt to detect this
-    but it doesn't seem worth implementing for the moment: we're only talking
-    about a page at most.
+    Now detects and cleans up zombie shared memory on *nix systems.
     """
 
     NAME = "mu-tex"
@@ -291,20 +288,32 @@ class SharedMemoryMutex(object):
     def __exit__(self, *args, **kwargs):
         self._shared_memory.unlock()
 
+    def _pid_exists(self, pid):
+        """Check if a process with given pid exists (*nix only)."""
+        if pid <= 0:
+            return False
+        try:
+            os.kill(pid, 0)
+        except OSError:
+            return False
+        else:
+            return True
+
     def acquire(self):
-        #
-        # The attach-detach dance is a shim from
-        # https://stackoverflow.com/questions/42549904/qsharedmemory-is-not-getting-deleted-on-application-crash
-        # If the existing shared memory is not held by any active application
-        # (eg because an appimage has hard-crashed) then it will be released
-        # If the memory is held by an active application it will have no effect
-        #
         self._shared_memory.attach()
         self._shared_memory.detach()
 
         if self._shared_memory.attach():
-            pid = struct.unpack("q", self._shared_memory.data()[:8])
-            raise MutexError("MUTEX: Mu is already running with pid %d" % pid)
+            pid = struct.unpack("q", self._shared_memory.data()[:8])[0]
+            if os.name == "posix" and not self._pid_exists(pid):
+                # Zombie shared memory, clean up and re-create
+                self._shared_memory.detach()
+                self._shared_memory.create(8)
+                self._shared_memory.data()[:8] = struct.pack("q", os.getpid())
+            else:
+                raise MutexError(
+                    "MUTEX: Mu is already running with pid %d" % pid
+                )
         else:
             self._shared_memory.create(8)
             self._shared_memory.data()[:8] = struct.pack("q", os.getpid())

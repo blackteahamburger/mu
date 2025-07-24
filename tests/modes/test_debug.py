@@ -516,9 +516,7 @@ def test_debug_on_line():
 
 def test_debug_on_stack_no_stack():
     """
-    In certain rare situations the runner could send an empty stack.
-
-    ToDo: Look into this.
+    Ensure that when the runner sends an empty stack, the debug inspector is not updated.
     """
     editor = mock.MagicMock()
     view = mock.MagicMock()

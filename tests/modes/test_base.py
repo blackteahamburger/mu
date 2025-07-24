@@ -237,8 +237,6 @@ def test_base_mode_no_op_change(microbit):
     assert bm.device_changed(microbit) is None
 
 
-# TODO Avoid using BOARD_IDS from base.py (which is only ever used in
-# this test)
 def test_micropython_mode_find_device():
     """
     Ensure it's possible to detect a device and return the expected port.
@@ -246,6 +244,10 @@ def test_micropython_mode_find_device():
     editor = mock.MagicMock()
     view = mock.MagicMock()
     mm = MicroPythonMode(editor, view)
+    mm.valid_boards = [
+        (0x0D28, 0x0204, "ARM", "BBC micro:bit"),
+        (0x1234, 0x5678, "TestManufacturer", "TestBoard"),
+    ]
     mock_port = mock.MagicMock()
     for vid, pid, manufacturer, board_name in mm.valid_boards:
         mock_port.vid = vid
