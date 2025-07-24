@@ -30,9 +30,7 @@ class PyboardMode(MicroPythonMode):
     Represents the functionality required by the Pyboard mode.
     """
 
-    name = _("Pyboard MicroPython")
     short_name = "pyboard"
-    description = _("Use MicroPython on the Pyboard line of boards.")
     icon = "pyboard"
     save_timeout = 0
     connected = True
@@ -75,6 +73,14 @@ class PyboardMode(MicroPythonMode):
         "pyb",
         "lcd160cr",
     }
+
+    @property
+    def name(self):
+        return _("Pyboard MicroPython")
+
+    @property
+    def description(self):
+        return _("Use MicroPython on the Pyboard line of boards.")
 
     def actions(self):
         """

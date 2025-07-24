@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mu Chinese\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 13:41+0800\n"
+"POT-Creation-Date: 2025-07-24 19:19+0800\n"
 "PO-Revision-Date: 2025-07-23 00:01+0800\n"
 "Last-Translator: Blackteahamburger <blackteahamburger@outlook.com>\n"
 "Language: zh_TW\n"
@@ -154,7 +154,7 @@ msgstr "選擇裝置類型："
 msgid "Firmware (.bin):"
 msgstr "韌體（.bin）："
 
-#: mu/interface/dialogs.py:374 mu/modes/web.py:105
+#: mu/interface/dialogs.py:374 mu/modes/web.py:114
 msgid "Browse"
 msgstr "瀏覽"
 
@@ -1043,15 +1043,15 @@ msgstr "這些錯誤必須在格式化之前修正。請使用「檢查」按鈕
 msgid "Cannot connect to device on port {}"
 msgstr "無法在 {} 連接埠上連線裝置"
 
-#: mu/modes/base.py:182
+#: mu/modes/base.py:191
 msgid "# Write your code here :-)"
 msgstr "# 在這裡寫上你的程式碼 :-)"
 
-#: mu/modes/base.py:327
+#: mu/modes/base.py:336
 msgid "Data Flood Detected!"
 msgstr "偵測到資料氾濫！"
 
-#: mu/modes/base.py:329
+#: mu/modes/base.py:338
 msgid ""
 "The plotter is flooded with data which will make Mu unresponsive and "
 "freeze. As a safeguard, the plotter has been stopped.\n"
@@ -1068,15 +1068,15 @@ msgstr ""
 "\n"
 "要解決此問題，請確保你的程式碼在列印小的元組 (tuple) 資料的間隔中，呼叫非常短時間的「sleep」函式。"
 
-#: mu/modes/base.py:509 mu/modes/base.py:559 mu/modes/snek.py:522
+#: mu/modes/base.py:518 mu/modes/base.py:568 mu/modes/snek.py:528
 msgid "Click on the device's reset button, wait a few seconds and then try again."
 msgstr "按一下裝置的重置 (reset) 按鈕，等待幾秒鐘，然後重試。"
 
-#: mu/modes/base.py:516 mu/modes/base.py:566 mu/modes/snek.py:529
+#: mu/modes/base.py:525 mu/modes/base.py:575 mu/modes/snek.py:535
 msgid "Could not find an attached device."
 msgstr "找不到已連線的裝置。"
 
-#: mu/modes/base.py:518
+#: mu/modes/base.py:527
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1092,7 +1092,7 @@ msgstr ""
 "\n"
 "最後，按一下裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
-#: mu/modes/base.py:568
+#: mu/modes/base.py:577
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1108,44 +1108,44 @@ msgstr ""
 "\n"
 "最後，按一下裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
-#: mu/modes/circuitpython.py:39
+#: mu/modes/circuitpython.py:136
 msgid "CircuitPython"
 msgstr "CircuitPython"
 
-#: mu/modes/circuitpython.py:41
+#: mu/modes/circuitpython.py:140
 msgid "Write code for boards running CircuitPython."
 msgstr "為執行 CircuitPython 的開發板編寫程式碼。"
 
-#: mu/modes/circuitpython.py:144 mu/modes/pyboard.py:87 mu/modes/snek.py:384
+#: mu/modes/circuitpython.py:150 mu/modes/pyboard.py:93 mu/modes/snek.py:390
 msgid "Serial"
 msgstr "序列埠"
 
-#: mu/modes/circuitpython.py:145 mu/modes/pyboard.py:88 mu/modes/snek.py:385
+#: mu/modes/circuitpython.py:151 mu/modes/pyboard.py:94 mu/modes/snek.py:391
 msgid "Open a serial connection to your device."
 msgstr "開啟與裝置的序列埠連線。"
 
-#: mu/modes/circuitpython.py:152 mu/modes/esp.py:107 mu/modes/microbit.py:140
-#: mu/modes/pyboard.py:95 mu/modes/python3.py:158 mu/modes/snek.py:406
+#: mu/modes/circuitpython.py:158 mu/modes/esp.py:113 mu/modes/microbit.py:146
+#: mu/modes/pyboard.py:101 mu/modes/python3.py:164 mu/modes/snek.py:412
 msgid "Plotter"
 msgstr "繪圖器"
 
-#: mu/modes/circuitpython.py:153 mu/modes/esp.py:108 mu/modes/microbit.py:141
-#: mu/modes/pyboard.py:96 mu/modes/snek.py:407
+#: mu/modes/circuitpython.py:159 mu/modes/esp.py:114 mu/modes/microbit.py:147
+#: mu/modes/pyboard.py:102 mu/modes/snek.py:413
 msgid "Plot incoming REPL data."
 msgstr "繪製由 REPL 傳入的資料。"
 
-#: mu/modes/circuitpython.py:188
+#: mu/modes/circuitpython.py:194
 msgid "Permission error running mount command"
 msgstr "執行掛載命令時遇到權限錯誤。"
 
-#: mu/modes/circuitpython.py:190
+#: mu/modes/circuitpython.py:196
 #, python-brace-format
 msgid ""
 "The mount command (\"{}\") returned an error: {}. Mu will continue as if "
 "a device isn't plugged in."
 msgstr "掛載命令（「{}」）傳回了一個錯誤：{}。Mu 將假設裝置未連線。"
 
-#: mu/modes/circuitpython.py:208
+#: mu/modes/circuitpython.py:214
 msgid ""
 "If your Circuit Python device is plugged in, you need to \"Share with "
 "Linux\" on the CIRCUITPY drive in the \"Files\" app then restart Mu."
@@ -1153,11 +1153,11 @@ msgstr ""
 "如果你的 CircuitPython 裝置已插入，你需要在「檔案 (Files)」應用中把 CIRCUITPY 磁碟機「與 Linux 共享 "
 "(Share with Linux)」，然後重新啟動 Mu。"
 
-#: mu/modes/circuitpython.py:268
+#: mu/modes/circuitpython.py:274
 msgid "Could not find an attached CircuitPython device."
 msgstr "找不到已連線的 CircuitPython 裝置。"
 
-#: mu/modes/circuitpython.py:270
+#: mu/modes/circuitpython.py:276
 #, python-brace-format
 msgid ""
 "Python files for CircuitPython devices are stored on the device. "
@@ -1174,60 +1174,60 @@ msgstr ""
 "\n"
 "…來儲存你的程式碼。"
 
-#: mu/modes/debugger.py:38
+#: mu/modes/debugger.py:46
 msgid "Graphical Debugger"
 msgstr "圖形化偵錯器"
 
-#: mu/modes/debugger.py:40
+#: mu/modes/debugger.py:50
 msgid "Debug your Python 3 code."
 msgstr "偵錯你的 Python 3 程式碼。"
 
-#: mu/modes/debugger.py:60 mu/modes/pygamezero.py:123 mu/modes/python3.py:188
-#: mu/modes/web.py:187
+#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/web.py:196
 msgid "Stop"
 msgstr "停止"
 
-#: mu/modes/debugger.py:61
+#: mu/modes/debugger.py:67
 msgid "Stop the running code."
 msgstr "停止執行程式碼。"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:73
 msgid "Continue"
 msgstr "繼續"
 
-#: mu/modes/debugger.py:68
+#: mu/modes/debugger.py:74
 msgid "Continue to run your Python script."
 msgstr "繼續執行你的 Python 腳本。"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:80
 msgid "Step Over"
 msgstr "單步"
 
-#: mu/modes/debugger.py:75
+#: mu/modes/debugger.py:81
 msgid "Step over a line of code."
 msgstr "單步一行程式碼。"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:87
 msgid "Step In"
 msgstr "步入"
 
-#: mu/modes/debugger.py:82
+#: mu/modes/debugger.py:88
 msgid "Step into a function."
 msgstr "步入一個函式。"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:94
 msgid "Step Out"
 msgstr "步出"
 
-#: mu/modes/debugger.py:89
+#: mu/modes/debugger.py:95
 msgid "Step out of a function."
 msgstr "步出一個函式。"
 
-#: mu/modes/debugger.py:160
+#: mu/modes/debugger.py:166
 msgid "Your script has finished running."
 msgstr "你的腳本已完成執行。"
 
-#: mu/modes/debugger.py:265
+#: mu/modes/debugger.py:271
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1235,103 +1235,103 @@ msgstr ""
 "無法連線到 Python 偵錯器。\n"
 "\n"
 
-#: mu/modes/debugger.py:354
+#: mu/modes/debugger.py:360
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "偵錯器資訊：{}"
 
-#: mu/modes/debugger.py:361
+#: mu/modes/debugger.py:367
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "偵錯器警告：{}"
 
-#: mu/modes/debugger.py:369
+#: mu/modes/debugger.py:375
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "偵錯器錯誤：{}"
 
-#: mu/modes/esp.py:36
+#: mu/modes/esp.py:71
 msgid "ESP MicroPython"
 msgstr "ESP MicroPython"
 
-#: mu/modes/esp.py:39
+#: mu/modes/esp.py:75
 msgid "Write MicroPython on ESP8266/ESP32 boards."
 msgstr "向 ESP8266/ESP32 開發板刷入 MicroPython。"
 
-#: mu/modes/esp.py:79 mu/modes/python3.py:136 mu/modes/python3.py:180
-#: mu/modes/web.py:91 mu/modes/web.py:179
+#: mu/modes/esp.py:85 mu/modes/python3.py:142 mu/modes/python3.py:186
+#: mu/modes/web.py:100 mu/modes/web.py:188
 msgid "Run"
 msgstr "執行"
 
-#: mu/modes/esp.py:81
+#: mu/modes/esp.py:87
 #, python-brace-format
 msgid "Run your code directly on the {board_name} via the REPL."
 msgstr "透過 REPL 直接在 {board_name} 上執行你的程式碼。"
 
-#: mu/modes/esp.py:88 mu/modes/microbit.py:123
+#: mu/modes/esp.py:94 mu/modes/microbit.py:129
 msgid "Files"
 msgstr "檔案"
 
-#: mu/modes/esp.py:90
+#: mu/modes/esp.py:96
 #, python-brace-format
 msgid "Access the file system on {board_name}."
 msgstr "存取 {board_name} 上的檔案系統。"
 
-#: mu/modes/esp.py:97 mu/modes/microbit.py:130 mu/modes/python3.py:150
+#: mu/modes/esp.py:103 mu/modes/microbit.py:136 mu/modes/python3.py:156
 msgid "REPL"
 msgstr "REPL"
 
-#: mu/modes/esp.py:99
+#: mu/modes/esp.py:105
 #, python-brace-format
 msgid "Use the REPL to live-code on the {board_name}."
 msgstr "使用 REPL 在 {board_name} 上即時編寫程式碼。"
 
-#: mu/modes/esp.py:133 mu/modes/microbit.py:445
+#: mu/modes/esp.py:139 mu/modes/microbit.py:451
 msgid "REPL and file system cannot work at the same time."
 msgstr "REPL 和檔案系統不能同時工作。"
 
-#: mu/modes/esp.py:135 mu/modes/microbit.py:447
+#: mu/modes/esp.py:141 mu/modes/microbit.py:453
 msgid ""
 "The REPL and file system both use the same USB serial connection. Only "
 "one can be active at any time. Toggle the file system off and try again."
 msgstr "REPL 和檔案系統都使用相同的 USB 序列埠通訊。任何時候只能使用其中一個功能。請關閉檔案系統，然後重試。"
 
-#: mu/modes/esp.py:154 mu/modes/microbit.py:466
+#: mu/modes/esp.py:160 mu/modes/microbit.py:472
 msgid "The plotter and file system cannot work at the same time."
 msgstr "繪圖器和檔案系統無法同時工作。"
 
-#: mu/modes/esp.py:157 mu/modes/microbit.py:469
+#: mu/modes/esp.py:163 mu/modes/microbit.py:475
 msgid ""
 "The plotter and file system both use the same USB serial connection. Only"
 " one can be active at any time. Toggle the file system off and try again."
 msgstr "繪圖器和檔案系統都使用相同的 USB 序列埠通訊。任何時候只能使用其中一個功能。請關閉檔案系統，然後重試。"
 
-#: mu/modes/esp.py:184 mu/modes/snek.py:422
+#: mu/modes/esp.py:190 mu/modes/snek.py:428
 msgid "Cannot run anything without any active editor tabs."
 msgstr "不能沒有作用中的編輯器分頁時執行程式。"
 
-#: mu/modes/esp.py:186 mu/modes/snek.py:424
+#: mu/modes/esp.py:192 mu/modes/snek.py:430
 msgid ""
 "Running transfers the content of the current tab onto the device. It "
 "seems like you don't have  any tabs open."
 msgstr "「執行」將把目前編輯器分頁的內容傳輸至裝置。未能找到任何開啟的分頁。"
 
-#: mu/modes/esp.py:205 mu/modes/microbit.py:483
+#: mu/modes/esp.py:211 mu/modes/microbit.py:489
 msgid "File system cannot work at the same time as the REPL or plotter."
 msgstr "檔案系統無法與 REPL 或繪圖器同時工作。"
 
-#: mu/modes/esp.py:209 mu/modes/microbit.py:487
+#: mu/modes/esp.py:215 mu/modes/microbit.py:493
 msgid ""
 "The file system and the REPL and plotter use the same USB serial "
 "connection. Toggle the REPL and plotter off and try again."
 msgstr "檔案系統、REPL、繪圖器使用相同的 USB 序列埠通訊。請關閉 REPL 和繪圖器，然後重試。"
 
-#: mu/modes/esp.py:235
+#: mu/modes/esp.py:241
 #, python-brace-format
 msgid "Could not find an attached {board_name}"
 msgstr "找不到已連線的 {board_name}"
 
-#: mu/modes/esp.py:239 mu/modes/microbit.py:512
+#: mu/modes/esp.py:245 mu/modes/microbit.py:518
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1347,48 +1347,48 @@ msgstr ""
 "\n"
 "最後，按裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
-#: mu/modes/esp.py:263
+#: mu/modes/esp.py:269
 #, python-brace-format
 msgid "{board_name} board"
 msgstr "{board_name} 開發板"
 
-#: mu/modes/lego.py:34
+#: mu/modes/lego.py:46
 msgid "Lego MicroPython"
 msgstr "Lego MicroPython"
 
-#: mu/modes/lego.py:37
+#: mu/modes/lego.py:50
 msgid "Write MicroPython directly on Lego Spike devices."
 msgstr "向 Lego Spike 裝置直接刷入 MicroPython。"
 
-#: mu/modes/microbit.py:89
+#: mu/modes/microbit.py:108
 msgid "BBC micro:bit"
 msgstr "BBC micro:bit"
 
-#: mu/modes/microbit.py:91
+#: mu/modes/microbit.py:112
 msgid "Write MicroPython for the BBC micro:bit."
 msgstr "為 BBC micro:bit 編寫 MicroPython。"
 
-#: mu/modes/microbit.py:116
+#: mu/modes/microbit.py:122
 msgid "Flash"
 msgstr "刷入"
 
-#: mu/modes/microbit.py:117
+#: mu/modes/microbit.py:123
 msgid "Flash your code onto the micro:bit."
 msgstr "將程式碼刷入到 micro:bit 上。"
 
-#: mu/modes/microbit.py:124
+#: mu/modes/microbit.py:130
 msgid "Access the file system on the micro:bit."
 msgstr "存取 micro:bit 上的檔案系統。"
 
-#: mu/modes/microbit.py:132
+#: mu/modes/microbit.py:138
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "使用 REPL 在 micro:bit 上即時編寫程式碼。"
 
-#: mu/modes/microbit.py:232 mu/modes/microbit.py:510
+#: mu/modes/microbit.py:238 mu/modes/microbit.py:516
 msgid "Could not find an attached BBC micro:bit."
 msgstr "找不到已連線的 BBC micro:bit。"
 
-#: mu/modes/microbit.py:234
+#: mu/modes/microbit.py:240
 msgid ""
 "Please ensure you leave enough time for the BBC micro:bit to be attached "
 "and configured correctly by your computer. This may take several seconds."
@@ -1398,21 +1398,21 @@ msgstr ""
 "請確保你留出了足夠的時間讓你的電腦正確連線和設定 BBC micro:bit "
 "裝置。這可能需要幾秒鐘的時間。或者你可以嘗試儲存檔案並重新連線裝置，如果仍未發現裝置，你還可以嘗試重新啟動 Mu。"
 
-#: mu/modes/microbit.py:251
+#: mu/modes/microbit.py:257
 msgid "Cannot save a custom hex file to a local directory."
 msgstr "無法將自訂 hex 檔案儲存至本機目錄。"
 
-#: mu/modes/microbit.py:253
+#: mu/modes/microbit.py:259
 msgid ""
 "When a custom hex file is configured in the settings a local directory "
 "cannot be used to save the final hex file."
 msgstr "當在設定中設定了自訂 hex 檔案時，無法使用本機目錄來儲存最終的 hex 檔案。"
 
-#: mu/modes/microbit.py:261
+#: mu/modes/microbit.py:267
 msgid "Cannot use a custom hex file without micro:bit port."
 msgstr "無法在沒有 micro:bit 連接埠的情況下使用自訂 hex 檔案。"
 
-#: mu/modes/microbit.py:263
+#: mu/modes/microbit.py:269
 msgid ""
 "Mu was unable to detect the micro:bit serial port. Normally this is okay,"
 " as Mu can inject the Python code into the hex to flash. However, this "
@@ -1421,67 +1421,67 @@ msgstr ""
 "Mu 無法偵測到 micro:bit 序列埠。通常這沒問題，因為 Mu 可以將 Python 程式碼注入到 hex "
 "檔案中進行刷入。但是，這不能在自訂 hex 檔案中完成。"
 
-#: mu/modes/microbit.py:317
+#: mu/modes/microbit.py:323
 msgid "Unsupported BBC micro:bit."
 msgstr "不支援的 BBC micro:bit。"
 
-#: mu/modes/microbit.py:319
+#: mu/modes/microbit.py:325
 msgid ""
 "Your device is newer than current version of uflash. Please update uflash"
 " to the latest version to support this device."
 msgstr "你的裝置比此版本的 uflash 更新。請將 uflash 更新到最新版本以支援此裝置。"
 
-#: mu/modes/microbit.py:351 mu/modes/microbit.py:372
+#: mu/modes/microbit.py:357 mu/modes/microbit.py:378
 msgid "Flashing the micro:bit"
 msgstr "正在刷入到 micro:bit "
 
-#: mu/modes/microbit.py:353
+#: mu/modes/microbit.py:359
 msgid "Runtime"
 msgstr "執行環境"
 
-#: mu/modes/microbit.py:384
+#: mu/modes/microbit.py:390
 msgid "Finished flashing."
 msgstr "刷入完成。"
 
-#: mu/modes/microbit.py:416
+#: mu/modes/microbit.py:422
 msgid "Copied code onto micro:bit."
 msgstr "已將程式碼複製到 micro:bit。"
 
-#: mu/modes/microbit.py:424
+#: mu/modes/microbit.py:430
 msgid "There was a problem flashing the micro:bit."
 msgstr "刷入程式到 micro:bit 時出現了一個問題。"
 
-#: mu/modes/microbit.py:426
+#: mu/modes/microbit.py:432
 msgid ""
 "Please do not disconnect the device until flashing has completed. Please "
 "check the logs for more information."
 msgstr "在刷入完成之前，請不要斷開裝置。請檢視記錄以取得更多資訊。"
 
-#: mu/modes/microbit.py:527
+#: mu/modes/microbit.py:533
 msgid "micro:bit"
 msgstr "micro:bit"
 
-#: mu/modes/pico.py:34
+#: mu/modes/pico.py:46
 msgid "RP2040"
 msgstr "RP2040"
 
-#: mu/modes/pico.py:37
+#: mu/modes/pico.py:50
 msgid "Write MicroPython directly on a Raspberry Pi Pico."
 msgstr "向 Raspberry Pi Pico 直接刷入 MicroPython。"
 
-#: mu/modes/pyboard.py:33
+#: mu/modes/pyboard.py:79
 msgid "Pyboard MicroPython"
 msgstr "Pyboard MicroPython"
 
-#: mu/modes/pyboard.py:35
+#: mu/modes/pyboard.py:83
 msgid "Use MicroPython on the Pyboard line of boards."
 msgstr "在 Pyboard 系列開發板上使用 MicroPython。"
 
-#: mu/modes/pyboard.py:175
+#: mu/modes/pyboard.py:181
 msgid "Could not find an attached PyBoard device."
 msgstr "找不到已連線的 PyBoard 裝置。"
 
-#: mu/modes/pyboard.py:177
+#: mu/modes/pyboard.py:183
 #, python-brace-format
 msgid ""
 "Python files for PyBoard MicroPython devices are stored on the device. "
@@ -1499,135 +1499,135 @@ msgstr ""
 "\n"
 "…來儲存你的程式碼。"
 
-#: mu/modes/pygamezero.py:35
+#: mu/modes/pygamezero.py:57
 msgid "Pygame Zero"
 msgstr "Pygame Zero"
 
-#: mu/modes/pygamezero.py:37
+#: mu/modes/pygamezero.py:61
 msgid "Make games with Pygame Zero."
 msgstr "用 Pygame Zero 製作遊戲。"
 
-#: mu/modes/pygamezero.py:65 mu/modes/pygamezero.py:115
+#: mu/modes/pygamezero.py:71 mu/modes/pygamezero.py:121
 msgid "Play"
 msgstr "開始"
 
-#: mu/modes/pygamezero.py:66 mu/modes/pygamezero.py:116
+#: mu/modes/pygamezero.py:72 mu/modes/pygamezero.py:122
 msgid "Play your Pygame Zero game."
 msgstr "開始你的 Pygame Zero 遊戲。"
 
-#: mu/modes/pygamezero.py:72 mu/modes/web.py:126
+#: mu/modes/pygamezero.py:78 mu/modes/web.py:135
 msgid "Images"
 msgstr "圖片"
 
-#: mu/modes/pygamezero.py:73
+#: mu/modes/pygamezero.py:79
 msgid "Show the images used by Pygame Zero."
 msgstr "顯示 Pygame Zero 使用的圖片。"
 
-#: mu/modes/pygamezero.py:79
+#: mu/modes/pygamezero.py:85
 msgid "Fonts"
 msgstr "字型"
 
-#: mu/modes/pygamezero.py:80
+#: mu/modes/pygamezero.py:86
 msgid "Show the fonts used by Pygame Zero."
 msgstr "顯示 Pygame Zero 使用的字型。"
 
-#: mu/modes/pygamezero.py:86
+#: mu/modes/pygamezero.py:92
 msgid "Sounds"
 msgstr "音效"
 
-#: mu/modes/pygamezero.py:87
+#: mu/modes/pygamezero.py:93
 msgid "Show the sounds used by Pygame Zero."
 msgstr "顯示 Pygame Zero 使用的音效。"
 
-#: mu/modes/pygamezero.py:93
+#: mu/modes/pygamezero.py:99
 msgid "Music"
 msgstr "音樂"
 
-#: mu/modes/pygamezero.py:94
+#: mu/modes/pygamezero.py:100
 msgid "Show the music used by Pygame Zero."
 msgstr "顯示 Pygame Zero 使用的音樂。"
 
-#: mu/modes/pygamezero.py:124
+#: mu/modes/pygamezero.py:130
 msgid "Stop your Pygame Zero game."
 msgstr "停止你的 Pygame Zero 遊戲。"
 
-#: mu/modes/python3.py:119
+#: mu/modes/python3.py:128
 msgid "Python 3"
 msgstr "Python 3"
 
-#: mu/modes/python3.py:121
+#: mu/modes/python3.py:132
 msgid "Create code using standard Python 3."
 msgstr "使用標準 Python 3 編寫程式碼。"
 
-#: mu/modes/python3.py:137 mu/modes/python3.py:181
+#: mu/modes/python3.py:143 mu/modes/python3.py:187
 msgid "Run your Python script."
 msgstr "執行你的 Python 腳本。"
 
-#: mu/modes/python3.py:143
+#: mu/modes/python3.py:149
 msgid "Debug"
 msgstr "偵錯"
 
-#: mu/modes/python3.py:144
+#: mu/modes/python3.py:150
 msgid "Debug your Python script."
 msgstr "偵錯你的 Python 腳本。"
 
-#: mu/modes/python3.py:151
+#: mu/modes/python3.py:157
 msgid "Use the REPL for live coding."
 msgstr "用 REPL 進行即時程式設計。"
 
-#: mu/modes/python3.py:159
+#: mu/modes/python3.py:165
 msgid "Plot data from your script or the REPL."
 msgstr "從你的腳本或 REPL 的繪製資料。"
 
-#: mu/modes/python3.py:189
+#: mu/modes/python3.py:195
 msgid "Stop your Python script."
 msgstr "停止你的 Python 腳本。"
 
-#: mu/modes/python3.py:259
+#: mu/modes/python3.py:265
 msgid "Starting iPython REPL."
 msgstr "正在啟動 iPython REPL。"
 
-#: mu/modes/python3.py:265
+#: mu/modes/python3.py:271
 msgid "Stopping iPython REPL (this may take a short amount of time)."
 msgstr "正在停止 iPython REPL （可能需要一點點時間）。"
 
-#: mu/modes/python3.py:355
+#: mu/modes/python3.py:361
 msgid "REPL started."
 msgstr "REPL 已啟動。"
 
-#: mu/modes/python3.py:364
+#: mu/modes/python3.py:370
 msgid "REPL stopped."
 msgstr "REPL 已停止。"
 
-#: mu/modes/snek.py:177
+#: mu/modes/snek.py:373
 msgid "Snek"
 msgstr "Snek"
 
-#: mu/modes/snek.py:179
+#: mu/modes/snek.py:377
 msgid "Write code for boards running Snek."
 msgstr "為執行 Snek 的開發板編寫程式碼。"
 
-#: mu/modes/snek.py:391
+#: mu/modes/snek.py:397
 msgid "Put"
 msgstr "上傳"
 
-#: mu/modes/snek.py:392
+#: mu/modes/snek.py:398
 msgid "Put the current program to the device."
 msgstr "將目前程式上傳到裝置。"
 
-#: mu/modes/snek.py:398
+#: mu/modes/snek.py:404
 msgid "Get"
 msgstr "下載"
 
-#: mu/modes/snek.py:399
+#: mu/modes/snek.py:405
 msgid "Get the current program from the device."
 msgstr "從裝置下載目前程式。"
 
-#: mu/modes/snek.py:461
+#: mu/modes/snek.py:467
 msgid "There is un-saved work, 'get' will cause you to lose it."
 msgstr "你有還沒有儲存的程式碼，「下載」將導致你遺失它。"
 
-#: mu/modes/snek.py:531
+#: mu/modes/snek.py:537
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1643,69 +1643,100 @@ msgstr ""
 "\n"
 "最後，按一下裝置的重置 (reset) 按鈕並等待幾秒鐘後再重試。"
 
-#: mu/modes/web.py:63
+#: mu/modes/web.py:43
+#, python-brace-format
+msgid ""
+"\"\"\"\n"
+"A simple web application.\n"
+"\"\"\"\n"
+"# WARNING START: do not change the following two lines of code.\n"
+"from flask import Flask, render_template\n"
+"\n"
+"{}\n"
+"# WARNING END: do not change the previous two lines of code.\n"
+"\n"
+"\n"
+"@app.route(\"/\")\n"
+"def index():\n"
+"    return render_template(\"index.html\")"
+msgstr ""
+"\"\"\"\n"
+"一個簡單的網頁應用。\n"
+"\"\"\"\n"
+"# WARNING START: 不要更改以下兩行程式碼。\n"
+"from flask import Flask, render_template\n"
+"\n"
+"{}\n"
+"# WARNING END: 不要更改前面兩行程式碼。\n"
+"\n"
+"\n"
+"@app.route(\"/\")\n"
+"def index():\n"
+"    return render_template(\"index.html\")"
+
+#: mu/modes/web.py:71
 msgid "Web"
 msgstr "網頁"
 
-#: mu/modes/web.py:65
+#: mu/modes/web.py:75
 msgid "Build simple websites with the \"Flask\" web framework."
 msgstr "使用 Flask Web 框架建置簡單的網頁。"
 
-#: mu/modes/web.py:92 mu/modes/web.py:180
+#: mu/modes/web.py:101 mu/modes/web.py:189
 msgid "Run the web server."
 msgstr "執行網頁伺服器。"
 
-#: mu/modes/web.py:98
+#: mu/modes/web.py:107
 msgid "Deploy"
 msgstr "部署"
 
-#: mu/modes/web.py:99
+#: mu/modes/web.py:108
 msgid "Deploy website to PythonAnywhere."
 msgstr "將網站部署到 PythonAnywhere。"
 
-#: mu/modes/web.py:106
+#: mu/modes/web.py:115
 msgid "Open your website in a browser."
 msgstr "在瀏覽器中開啟你的網站。"
 
-#: mu/modes/web.py:112
+#: mu/modes/web.py:121
 msgid "Templates"
 msgstr "範本"
 
-#: mu/modes/web.py:113
+#: mu/modes/web.py:122
 msgid "Load HTML templates used by your website."
 msgstr "載入你的網站使用的 HTML 範本。"
 
-#: mu/modes/web.py:119
+#: mu/modes/web.py:128
 msgid "CSS"
 msgstr "CSS"
 
-#: mu/modes/web.py:120
+#: mu/modes/web.py:129
 msgid "Load CSS files used by your website."
 msgstr "載入你的網站使用的 CSS 檔案。"
 
-#: mu/modes/web.py:128
+#: mu/modes/web.py:137
 msgid "Open the directory containing images used by your website."
 msgstr "開啟你的網站使用的圖片檔案目錄。"
 
-#: mu/modes/web.py:188
+#: mu/modes/web.py:197
 msgid "Stop the web server."
 msgstr "停止網頁伺服器。"
 
-#: mu/modes/web.py:208 mu/modes/web.py:368
+#: mu/modes/web.py:217 mu/modes/web.py:377
 msgid "This is not a Python file!"
 msgstr "這不是 Python 檔案！"
 
-#: mu/modes/web.py:210
+#: mu/modes/web.py:219
 msgid ""
 "Mu is only able to serve a Python file. Please make sure the current tab "
 "in Mu is the one for your web application and then try again."
 msgstr "Mu 只能識別 Python 檔案。請確認 Mu 編輯器目前分頁開啟的檔案屬於你的網頁應用，然後重試。"
 
-#: mu/modes/web.py:226 mu/modes/web.py:385
+#: mu/modes/web.py:235 mu/modes/web.py:394
 msgid "Cannot find template directory!"
 msgstr "無法找到範本目錄！"
 
-#: mu/modes/web.py:228
+#: mu/modes/web.py:237
 msgid ""
 "To serve your web application, there needs to be a 'templates' directory "
 "in the same place as your web application's Python code. Please fix this "
@@ -1715,32 +1746,32 @@ msgstr ""
 "要在本機執行你的網頁應用，必須在網頁應用的 Python 程式碼所在的同一目錄下有一個「templates」目錄。請修正此問題並重試。 "
 "(提示：Mu 期望 `templates` 目錄在這裡： )"
 
-#: mu/modes/web.py:282
+#: mu/modes/web.py:291
 msgid "Too many web apps."
 msgstr "網頁應用過多。"
 
-#: mu/modes/web.py:284
+#: mu/modes/web.py:293
 msgid "Please ensure you only have one open Python file for a web application."
 msgstr "請確保你只有一個開啟的 Python 檔案用於網頁應用。"
 
-#: mu/modes/web.py:344
+#: mu/modes/web.py:353
 msgid "Cannot Open Website - Server not Running."
 msgstr "無法開啟網站 - 伺服器未執行。"
 
-#: mu/modes/web.py:346
+#: mu/modes/web.py:355
 msgid ""
 "You must have the local web server running in order to view your website "
 "in a browser. Click on the 'Run' button to start the server and then try "
 "again."
 msgstr "要在瀏覽器中存取你的網站，必須在本機執行 Web 伺服器。點選「執行」按鈕以啟動伺服器，然後重試。"
 
-#: mu/modes/web.py:370
+#: mu/modes/web.py:379
 msgid ""
 "Mu is only able to deploy a Python file. Please make sure the current tab"
 " in Mu is the one for your web application and then try again."
 msgstr "Mu 只能識別 Python 檔案。請確認 Mu 編輯器目前分頁開啟的檔案屬於你的網頁應用，然後重試。"
 
-#: mu/modes/web.py:387
+#: mu/modes/web.py:396
 msgid ""
 "To deploy your web application, there needs to be a 'templates' directory"
 " in the same place as your web application's Python code. Please fix this"

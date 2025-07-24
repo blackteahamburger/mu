@@ -25,7 +25,7 @@ def test_ESPMode_init():
     view = mock.MagicMock()
     esp_mode = ESPMode(editor, view)
     assert esp_mode.name == "ESP MicroPython"
-    assert esp_mode.description is not None
+    assert esp_mode.description == "Write MicroPython on ESP8266/ESP32 boards."
     assert esp_mode.icon == "esp"
 
 

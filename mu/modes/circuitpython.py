@@ -36,9 +36,7 @@ class CircuitPythonMode(MicroPythonMode):
     Represents the functionality required by the CircuitPython mode.
     """
 
-    name = _("CircuitPython")
     short_name = "circuitpython"
-    description = _("Write code for boards running CircuitPython.")
     icon = "circuitpython"
     save_timeout = 0  #: No auto-save on CP boards. Will restart.
     connected = True  #: is the board connected.
@@ -132,6 +130,14 @@ class CircuitPythonMode(MicroPythonMode):
         "wiznet",
         "zlib",
     }
+
+    @property
+    def name(self):
+        return _("CircuitPython")
+
+    @property
+    def description(self):
+        return _("Write code for boards running CircuitPython.")
 
     def actions(self):
         """

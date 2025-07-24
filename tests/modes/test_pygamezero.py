@@ -19,7 +19,7 @@ def test_pgzero_mode():
     view = mock.MagicMock()
     pm = PyGameZeroMode(editor, view)
     assert pm.name == "Pygame Zero"
-    assert pm.description is not None
+    assert pm.description == "Make games with Pygame Zero."
     assert pm.icon == "pygamezero"
     assert pm.is_debugger is False
     assert pm.editor == editor

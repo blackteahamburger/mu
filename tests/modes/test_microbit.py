@@ -87,7 +87,7 @@ def test_microbit_mode():
     view = mock.MagicMock()
     mm = MicrobitMode(editor, view)
     assert mm.name == "BBC micro:bit"
-    assert mm.description is not None
+    assert mm.description == "Write MicroPython for the BBC micro:bit."
     assert mm.icon == "microbit"
     assert mm.editor == editor
     assert mm.view == view

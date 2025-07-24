@@ -31,10 +31,8 @@ class LegoMode(ESPMode):
     boards. This is simply a modified version of the ESP mode.
     """
 
-    name = _("Lego MicroPython")
     short_name = "lego"
     board_name = "Lego Spike"
-    description = _("Write MicroPython directly on Lego Spike devices.")
     icon = "lego"
     fs = None
 
@@ -42,6 +40,14 @@ class LegoMode(ESPMode):
         # VID  , PID,    Manufacturer string, Device name
         (0x0694, 0x0009, None, "Lego Spike"),  # Lego Spike board only.
     ]
+
+    @property
+    def name(self):
+        return _("Lego MicroPython")
+
+    @property
+    def description(self):
+        return _("Write MicroPython directly on Lego Spike devices.")
 
     def api(self):
         """

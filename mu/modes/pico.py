@@ -31,10 +31,8 @@ class PicoMode(ESPMode):
     Raspberry Pi Pico board. This is simply a modified version of the ESP mode.
     """
 
-    name = _("RP2040")
     short_name = "pico"
     board_name = "Raspberry Pi Pico"
-    description = _("Write MicroPython directly on a Raspberry Pi Pico.")
     icon = "pico"
     fs = None
 
@@ -42,6 +40,14 @@ class PicoMode(ESPMode):
         # VID  , PID,    Manufacturer string, Device name
         (0x2E8A, 0x0005, None, "Raspberry Pi Pico"),
     ]
+
+    @property
+    def name(self):
+        return _("RP2040")
+
+    @property
+    def description(self):
+        return _("Write MicroPython directly on a Raspberry Pi Pico.")
 
     def api(self):
         """

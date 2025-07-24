@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-24 13:35+0800\n"
+"POT-Creation-Date: 2025-07-24 19:19+0800\n"
 "PO-Revision-Date: 2022-02-13 13:09+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
@@ -152,7 +152,7 @@ msgstr "デバイス種別の選択:"
 msgid "Firmware (.bin):"
 msgstr "ファームウェア(.bin):"
 
-#: mu/interface/dialogs.py:374 mu/modes/web.py:105
+#: mu/interface/dialogs.py:374 mu/modes/web.py:114
 msgid "Browse"
 msgstr "ブラウズ"
 
@@ -1041,15 +1041,15 @@ msgstr ""
 msgid "Cannot connect to device on port {}"
 msgstr "ポート {} でデバイスに接続できません"
 
-#: mu/modes/base.py:182
+#: mu/modes/base.py:191
 msgid "# Write your code here :-)"
 msgstr "# ここにコードを書いてね :-)"
 
-#: mu/modes/base.py:327
+#: mu/modes/base.py:336
 msgid "Data Flood Detected!"
 msgstr "データの氾濫を検出しました！"
 
-#: mu/modes/base.py:329
+#: mu/modes/base.py:338
 msgid ""
 "The plotter is flooded with data which will make Mu unresponsive and "
 "freeze. As a safeguard, the plotter has been stopped.\n"
@@ -1066,15 +1066,15 @@ msgstr ""
 "\n"
 "これを解決するには、非常に短時間の 'sleep' 呼び出しの合間にデータの小さなタプルをプリントするようにしてください。"
 
-#: mu/modes/base.py:509 mu/modes/base.py:559 mu/modes/snek.py:522
+#: mu/modes/base.py:518 mu/modes/base.py:568 mu/modes/snek.py:528
 msgid "Click on the device's reset button, wait a few seconds and then try again."
 msgstr "デバイスのリセットボタンを押して数秒待った後に再度試してください。"
 
-#: mu/modes/base.py:516 mu/modes/base.py:566 mu/modes/snek.py:529
+#: mu/modes/base.py:525 mu/modes/base.py:575 mu/modes/snek.py:535
 msgid "Could not find an attached device."
 msgstr "デバイスが繋げられていないようです。"
 
-#: mu/modes/base.py:518
+#: mu/modes/base.py:527
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1090,7 +1090,7 @@ msgstr ""
 "\n"
 "最後に、デバイスのリセットボタンを押してから、もう一度試してください。"
 
-#: mu/modes/base.py:568
+#: mu/modes/base.py:577
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1106,44 +1106,44 @@ msgstr ""
 "\n"
 "最後に、デバイスのリセットボタンを押してから、もう一度試してください。"
 
-#: mu/modes/circuitpython.py:39
+#: mu/modes/circuitpython.py:136
 msgid "CircuitPython"
 msgstr ""
 
-#: mu/modes/circuitpython.py:41
+#: mu/modes/circuitpython.py:140
 msgid "Write code for boards running CircuitPython."
 msgstr "CircuitPython が動作するボードのコードを編集。"
 
-#: mu/modes/circuitpython.py:144 mu/modes/pyboard.py:87 mu/modes/snek.py:384
+#: mu/modes/circuitpython.py:150 mu/modes/pyboard.py:93 mu/modes/snek.py:390
 msgid "Serial"
 msgstr "シリアル"
 
-#: mu/modes/circuitpython.py:145 mu/modes/pyboard.py:88 mu/modes/snek.py:385
+#: mu/modes/circuitpython.py:151 mu/modes/pyboard.py:94 mu/modes/snek.py:391
 msgid "Open a serial connection to your device."
 msgstr "デバイスへのシリアル接続を開きます。"
 
-#: mu/modes/circuitpython.py:152 mu/modes/esp.py:107 mu/modes/microbit.py:140
-#: mu/modes/pyboard.py:95 mu/modes/python3.py:158 mu/modes/snek.py:406
+#: mu/modes/circuitpython.py:158 mu/modes/esp.py:113 mu/modes/microbit.py:146
+#: mu/modes/pyboard.py:101 mu/modes/python3.py:164 mu/modes/snek.py:412
 msgid "Plotter"
 msgstr "プロッター"
 
-#: mu/modes/circuitpython.py:153 mu/modes/esp.py:108 mu/modes/microbit.py:141
-#: mu/modes/pyboard.py:96 mu/modes/snek.py:407
+#: mu/modes/circuitpython.py:159 mu/modes/esp.py:114 mu/modes/microbit.py:147
+#: mu/modes/pyboard.py:102 mu/modes/snek.py:413
 msgid "Plot incoming REPL data."
 msgstr "REPL 入力のデータをプロットします。"
 
-#: mu/modes/circuitpython.py:188
+#: mu/modes/circuitpython.py:194
 msgid "Permission error running mount command"
 msgstr "mount コマンド実行中の権限エラー"
 
-#: mu/modes/circuitpython.py:190
+#: mu/modes/circuitpython.py:196
 #, python-brace-format
 msgid ""
 "The mount command (\"{}\") returned an error: {}. Mu will continue as if "
 "a device isn't plugged in."
 msgstr "mount コマンド(\"{}\")がエラーを返しました: {}。Mu はデバイスが接続されていないかのように動作を継続します。"
 
-#: mu/modes/circuitpython.py:208
+#: mu/modes/circuitpython.py:214
 msgid ""
 "If your Circuit Python device is plugged in, you need to \"Share with "
 "Linux\" on the CIRCUITPY drive in the \"Files\" app then restart Mu."
@@ -1151,11 +1151,11 @@ msgstr ""
 "CircuitPython デバイスが接続されている場合、\"ファイル\" アプリで CIRCUITPY ドライブを \"Linuxで共有\" "
 "してから Mu を再起動する必要があります。"
 
-#: mu/modes/circuitpython.py:268
+#: mu/modes/circuitpython.py:274
 msgid "Could not find an attached CircuitPython device."
 msgstr "CircuitPython デバイスが繋げられていないようです。"
 
-#: mu/modes/circuitpython.py:270
+#: mu/modes/circuitpython.py:276
 #, python-brace-format
 msgid ""
 "Python files for CircuitPython devices are stored on the device. "
@@ -1172,60 +1172,60 @@ msgstr ""
 "\n"
 " {}"
 
-#: mu/modes/debugger.py:38
+#: mu/modes/debugger.py:46
 msgid "Graphical Debugger"
 msgstr "グラフィカルデバッガ"
 
-#: mu/modes/debugger.py:40
+#: mu/modes/debugger.py:50
 msgid "Debug your Python 3 code."
 msgstr "Python 3 コードをデバッグします。"
 
-#: mu/modes/debugger.py:60 mu/modes/pygamezero.py:123 mu/modes/python3.py:188
-#: mu/modes/web.py:187
+#: mu/modes/debugger.py:66 mu/modes/pygamezero.py:129 mu/modes/python3.py:194
+#: mu/modes/web.py:196
 msgid "Stop"
 msgstr "停止"
 
-#: mu/modes/debugger.py:61
+#: mu/modes/debugger.py:67
 msgid "Stop the running code."
 msgstr "コードの実行を停止します。"
 
-#: mu/modes/debugger.py:67
+#: mu/modes/debugger.py:73
 msgid "Continue"
 msgstr "継続"
 
-#: mu/modes/debugger.py:68
+#: mu/modes/debugger.py:74
 msgid "Continue to run your Python script."
 msgstr "Python スクリプトの実行を継続します。"
 
-#: mu/modes/debugger.py:74
+#: mu/modes/debugger.py:80
 msgid "Step Over"
 msgstr "ステップオーバー"
 
-#: mu/modes/debugger.py:75
+#: mu/modes/debugger.py:81
 msgid "Step over a line of code."
 msgstr "コードの１行をステップオーバーします。"
 
-#: mu/modes/debugger.py:81
+#: mu/modes/debugger.py:87
 msgid "Step In"
 msgstr "ステップイン"
 
-#: mu/modes/debugger.py:82
+#: mu/modes/debugger.py:88
 msgid "Step into a function."
 msgstr "関数にステップインします。"
 
-#: mu/modes/debugger.py:88
+#: mu/modes/debugger.py:94
 msgid "Step Out"
 msgstr "ステップアウト"
 
-#: mu/modes/debugger.py:89
+#: mu/modes/debugger.py:95
 msgid "Step out of a function."
 msgstr "関数からステップアウトします。"
 
-#: mu/modes/debugger.py:160
+#: mu/modes/debugger.py:166
 msgid "Your script has finished running."
 msgstr "スクリプトの実行を終了しました。"
 
-#: mu/modes/debugger.py:265
+#: mu/modes/debugger.py:271
 msgid ""
 "Unable to connect to the Python debugger.\n"
 "\n"
@@ -1233,62 +1233,62 @@ msgstr ""
 "Python デバッガに接続できません。\n"
 "\n"
 
-#: mu/modes/debugger.py:354
+#: mu/modes/debugger.py:360
 #, python-brace-format
 msgid "Debugger info: {}"
 msgstr "デバッガ情報: {}"
 
-#: mu/modes/debugger.py:361
+#: mu/modes/debugger.py:367
 #, python-brace-format
 msgid "Debugger warning: {}"
 msgstr "デバッガ警告: {}"
 
-#: mu/modes/debugger.py:369
+#: mu/modes/debugger.py:375
 #, python-brace-format
 msgid "Debugger error: {}"
 msgstr "デバッガエラー: {}"
 
-#: mu/modes/esp.py:36
+#: mu/modes/esp.py:71
 msgid "ESP MicroPython"
 msgstr ""
 
-#: mu/modes/esp.py:39
+#: mu/modes/esp.py:75
 msgid "Write MicroPython on ESP8266/ESP32 boards."
 msgstr "ESP8266/ESP32 ボードの MicroPython を編集。"
 
-#: mu/modes/esp.py:79 mu/modes/python3.py:136 mu/modes/python3.py:180
-#: mu/modes/web.py:91 mu/modes/web.py:179
+#: mu/modes/esp.py:85 mu/modes/python3.py:142 mu/modes/python3.py:186
+#: mu/modes/web.py:100 mu/modes/web.py:188
 msgid "Run"
 msgstr "実行"
 
-#: mu/modes/esp.py:81
+#: mu/modes/esp.py:87
 #, python-brace-format
 msgid "Run your code directly on the {board_name} via the REPL."
 msgstr "REPL を介して {board_name} 上で直にコードを実行します。"
 
-#: mu/modes/esp.py:88 mu/modes/microbit.py:123
+#: mu/modes/esp.py:94 mu/modes/microbit.py:129
 msgid "Files"
 msgstr "ファイル"
 
-#: mu/modes/esp.py:90
+#: mu/modes/esp.py:96
 #, python-brace-format
 msgid "Access the file system on {board_name}."
 msgstr "{board_name} にあるファイルにアクセスします。"
 
-#: mu/modes/esp.py:97 mu/modes/microbit.py:130 mu/modes/python3.py:150
+#: mu/modes/esp.py:103 mu/modes/microbit.py:136 mu/modes/python3.py:156
 msgid "REPL"
 msgstr ""
 
-#: mu/modes/esp.py:99
+#: mu/modes/esp.py:105
 #, python-brace-format
 msgid "Use the REPL to live-code on the {board_name}."
 msgstr "{board_name} を対話モードで利用します。"
 
-#: mu/modes/esp.py:133 mu/modes/microbit.py:445
+#: mu/modes/esp.py:139 mu/modes/microbit.py:451
 msgid "REPL and file system cannot work at the same time."
 msgstr "REPL とファイルシステムは同時に利用できません。"
 
-#: mu/modes/esp.py:135 mu/modes/microbit.py:447
+#: mu/modes/esp.py:141 mu/modes/microbit.py:453
 msgid ""
 "The REPL and file system both use the same USB serial connection. Only "
 "one can be active at any time. Toggle the file system off and try again."
@@ -1296,11 +1296,11 @@ msgstr ""
 "REPL とファイルシステムはどちらも USB "
 "シリアル接続を利用しますが、有効にできるのは常にどちらか一方です。ファイルシステムの利用を止めて、もう一度試してください。"
 
-#: mu/modes/esp.py:154 mu/modes/microbit.py:466
+#: mu/modes/esp.py:160 mu/modes/microbit.py:472
 msgid "The plotter and file system cannot work at the same time."
 msgstr "プロッターとファイルシステムは同時に利用できません。"
 
-#: mu/modes/esp.py:157 mu/modes/microbit.py:469
+#: mu/modes/esp.py:163 mu/modes/microbit.py:475
 msgid ""
 "The plotter and file system both use the same USB serial connection. Only"
 " one can be active at any time. Toggle the file system off and try again."
@@ -1308,32 +1308,32 @@ msgstr ""
 "プロッターとファイルシステムはどちらも USB "
 "シリアル接続を利用しますが、有効にできるのは常にどちらか一方です。ファイルシステムの利用を止めて、もう一度試してください。"
 
-#: mu/modes/esp.py:184 mu/modes/snek.py:422
+#: mu/modes/esp.py:190 mu/modes/snek.py:428
 msgid "Cannot run anything without any active editor tabs."
 msgstr "アクティブなエディタタブがなければ何も実行できません。"
 
-#: mu/modes/esp.py:186 mu/modes/snek.py:424
+#: mu/modes/esp.py:192 mu/modes/snek.py:430
 msgid ""
 "Running transfers the content of the current tab onto the device. It "
 "seems like you don't have  any tabs open."
 msgstr "現在開いているタブの内容をデバイスに転送中。タブが何も開かれていないようです。"
 
-#: mu/modes/esp.py:205 mu/modes/microbit.py:483
+#: mu/modes/esp.py:211 mu/modes/microbit.py:489
 msgid "File system cannot work at the same time as the REPL or plotter."
 msgstr "ファイルシステムは REPL やプロッターと同時に利用できません。"
 
-#: mu/modes/esp.py:209 mu/modes/microbit.py:487
+#: mu/modes/esp.py:215 mu/modes/microbit.py:493
 msgid ""
 "The file system and the REPL and plotter use the same USB serial "
 "connection. Toggle the REPL and plotter off and try again."
 msgstr "ファイルシステムと REPL とプロッターは同じ USB シリアル接続を利用します。REPL とプロッターの利用を止めて、再度試してください。"
 
-#: mu/modes/esp.py:235
+#: mu/modes/esp.py:241
 #, python-brace-format
 msgid "Could not find an attached {board_name}"
 msgstr "デバイスが繋げられていないようです。"
 
-#: mu/modes/esp.py:239 mu/modes/microbit.py:512
+#: mu/modes/esp.py:245 mu/modes/microbit.py:518
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
 "\n"
@@ -1349,48 +1349,48 @@ msgstr ""
 "\n"
 "最後に、デバイスのリセットボタンを押してから、再度試してください。"
 
-#: mu/modes/esp.py:263
+#: mu/modes/esp.py:269
 #, python-brace-format
 msgid "{board_name} board"
 msgstr "{board_name} ボード"
 
-#: mu/modes/lego.py:34
+#: mu/modes/lego.py:46
 msgid "Lego MicroPython"
 msgstr ""
 
-#: mu/modes/lego.py:37
+#: mu/modes/lego.py:50
 msgid "Write MicroPython directly on Lego Spike devices."
 msgstr "Lego Spike デバイスで直接 MicroPython を編集。"
 
-#: mu/modes/microbit.py:89
+#: mu/modes/microbit.py:108
 msgid "BBC micro:bit"
 msgstr ""
 
-#: mu/modes/microbit.py:91
+#: mu/modes/microbit.py:112
 msgid "Write MicroPython for the BBC micro:bit."
 msgstr "BBC micro:bit の MicroPython を編集。"
 
-#: mu/modes/microbit.py:116
+#: mu/modes/microbit.py:122
 msgid "Flash"
 msgstr "転送"
 
-#: mu/modes/microbit.py:117
+#: mu/modes/microbit.py:123
 msgid "Flash your code onto the micro:bit."
 msgstr "コードを micro:bit に転送します。"
 
-#: mu/modes/microbit.py:124
+#: mu/modes/microbit.py:130
 msgid "Access the file system on the micro:bit."
 msgstr "micro:bit にあるファイルにアクセスします。"
 
-#: mu/modes/microbit.py:132
+#: mu/modes/microbit.py:138
 msgid "Use the REPL to live-code on the micro:bit."
 msgstr "micro:bit を対話モードで利用します。"
 
-#: mu/modes/microbit.py:232 mu/modes/microbit.py:510
+#: mu/modes/microbit.py:238 mu/modes/microbit.py:516
 msgid "Could not find an attached BBC micro:bit."
 msgstr "BBC micro:bit が繋げられていないようです。"
 
-#: mu/modes/microbit.py:234
+#: mu/modes/microbit.py:240
 msgid ""
 "Please ensure you leave enough time for the BBC micro:bit to be attached "
 "and configured correctly by your computer. This may take several seconds."
@@ -1401,21 +1401,21 @@ msgstr ""
 "を正しく繋げている場合でも、コンピュータがそれを認識するのに十分な時間をおいてください。これには数秒かかることがあります。それでもデバイスが認識されない場合は、デバイス一度取り外して再度繋げるか、スクリプトを保存して"
 " Mu を再起動してみてください。"
 
-#: mu/modes/microbit.py:251
+#: mu/modes/microbit.py:257
 msgid "Cannot save a custom hex file to a local directory."
 msgstr "ローカルディレクトリにカスタム hex ファイルを保存できません。"
 
-#: mu/modes/microbit.py:253
+#: mu/modes/microbit.py:259
 msgid ""
 "When a custom hex file is configured in the settings a local directory "
 "cannot be used to save the final hex file."
 msgstr "カスタム hex ファイルが設定されている場合、最終的な hex ファイルを保存するためにローカルディレクトリは使えません。"
 
-#: mu/modes/microbit.py:261
+#: mu/modes/microbit.py:267
 msgid "Cannot use a custom hex file without micro:bit port."
 msgstr "micro:bit ポートなしではカスタム hex ファイルを利用できません。"
 
-#: mu/modes/microbit.py:263
+#: mu/modes/microbit.py:269
 msgid ""
 "Mu was unable to detect the micro:bit serial port. Normally this is okay,"
 " as Mu can inject the Python code into the hex to flash. However, this "
@@ -1424,11 +1424,11 @@ msgstr ""
 "Mu は micro:bit のシリアルポートを検出できませんでした。通常は Mu が Python コードを hex "
 "に注入して転送できるので、これは問題ありません。しかし、カスタム hex ファイルの場合はダメです。"
 
-#: mu/modes/microbit.py:317
+#: mu/modes/microbit.py:323
 msgid "Unsupported BBC micro:bit."
 msgstr "未サポートの BBC micro:bit。"
 
-#: mu/modes/microbit.py:319
+#: mu/modes/microbit.py:325
 #, fuzzy
 msgid ""
 "Your device is newer than current version of uflash. Please update uflash"
@@ -1439,57 +1439,57 @@ msgstr ""
 "\n"
 "https://codewith.mu/"
 
-#: mu/modes/microbit.py:351 mu/modes/microbit.py:372
+#: mu/modes/microbit.py:357 mu/modes/microbit.py:378
 msgid "Flashing the micro:bit"
 msgstr "micro:bit に \"{}\" を転送中。"
 
-#: mu/modes/microbit.py:353
+#: mu/modes/microbit.py:359
 msgid "Runtime"
 msgstr "ランタイム"
 
-#: mu/modes/microbit.py:384
+#: mu/modes/microbit.py:390
 msgid "Finished flashing."
 msgstr "転送を完了しました。"
 
-#: mu/modes/microbit.py:416
+#: mu/modes/microbit.py:422
 msgid "Copied code onto micro:bit."
 msgstr "micro:bit にコードをコピーしました。"
 
-#: mu/modes/microbit.py:424
+#: mu/modes/microbit.py:430
 msgid "There was a problem flashing the micro:bit."
 msgstr "micro:bit への転送で問題が発生しました。"
 
-#: mu/modes/microbit.py:426
+#: mu/modes/microbit.py:432
 msgid ""
 "Please do not disconnect the device until flashing has completed. Please "
 "check the logs for more information."
 msgstr "転送が完了するまでデバイスを取り外さないでください。詳しくは Mu のログを確認してください。"
 
-#: mu/modes/microbit.py:527
+#: mu/modes/microbit.py:533
 msgid "micro:bit"
 msgstr ""
 
-#: mu/modes/pico.py:34
+#: mu/modes/pico.py:46
 msgid "RP2040"
 msgstr ""
 
-#: mu/modes/pico.py:37
+#: mu/modes/pico.py:50
 msgid "Write MicroPython directly on a Raspberry Pi Pico."
 msgstr "Raspberry Pi Pico の MicroPython を編集。"
 
-#: mu/modes/pyboard.py:33
+#: mu/modes/pyboard.py:79
 msgid "Pyboard MicroPython"
 msgstr ""
 
-#: mu/modes/pyboard.py:35
+#: mu/modes/pyboard.py:83
 msgid "Use MicroPython on the Pyboard line of boards."
 msgstr "ボードの Pyboard ラインで MicroPython を利用。"
 
-#: mu/modes/pyboard.py:175
+#: mu/modes/pyboard.py:181
 msgid "Could not find an attached PyBoard device."
 msgstr "デバイスが繋げられていないようです。"
 
-#: mu/modes/pyboard.py:177
+#: mu/modes/pyboard.py:183
 #, python-brace-format
 msgid ""
 "Python files for PyBoard MicroPython devices are stored on the device. "
@@ -1506,137 +1506,137 @@ msgstr ""
 "\n"
 " {}"
 
-#: mu/modes/pygamezero.py:35
+#: mu/modes/pygamezero.py:57
 msgid "Pygame Zero"
 msgstr ""
 
-#: mu/modes/pygamezero.py:37
+#: mu/modes/pygamezero.py:61
 msgid "Make games with Pygame Zero."
 msgstr "Pygame Zero でゲームを作成します。"
 
-#: mu/modes/pygamezero.py:65 mu/modes/pygamezero.py:115
+#: mu/modes/pygamezero.py:71 mu/modes/pygamezero.py:121
 msgid "Play"
 msgstr "プレイ"
 
-#: mu/modes/pygamezero.py:66 mu/modes/pygamezero.py:116
+#: mu/modes/pygamezero.py:72 mu/modes/pygamezero.py:122
 msgid "Play your Pygame Zero game."
 msgstr "Pygame Zero ゲームをプレイします。"
 
-#: mu/modes/pygamezero.py:72 mu/modes/web.py:126
+#: mu/modes/pygamezero.py:78 mu/modes/web.py:135
 msgid "Images"
 msgstr "イメージ"
 
-#: mu/modes/pygamezero.py:73
+#: mu/modes/pygamezero.py:79
 msgid "Show the images used by Pygame Zero."
 msgstr "Pygame で使うイメージを表示します。"
 
-#: mu/modes/pygamezero.py:79
+#: mu/modes/pygamezero.py:85
 msgid "Fonts"
 msgstr "フォント"
 
-#: mu/modes/pygamezero.py:80
+#: mu/modes/pygamezero.py:86
 msgid "Show the fonts used by Pygame Zero."
 msgstr "Pygame Zero で使うフォントを表示します。"
 
-#: mu/modes/pygamezero.py:86
+#: mu/modes/pygamezero.py:92
 msgid "Sounds"
 msgstr "効果音"
 
-#: mu/modes/pygamezero.py:87
+#: mu/modes/pygamezero.py:93
 msgid "Show the sounds used by Pygame Zero."
 msgstr "Pygame Zero で使う効果音を表示します。"
 
-#: mu/modes/pygamezero.py:93
+#: mu/modes/pygamezero.py:99
 msgid "Music"
 msgstr "音楽"
 
-#: mu/modes/pygamezero.py:94
+#: mu/modes/pygamezero.py:100
 msgid "Show the music used by Pygame Zero."
 msgstr "Pygame Zero で使う音楽を表示します。"
 
-#: mu/modes/pygamezero.py:124
+#: mu/modes/pygamezero.py:130
 msgid "Stop your Pygame Zero game."
 msgstr "Pygame Zero ゲームを停止します。"
 
-#: mu/modes/python3.py:119
+#: mu/modes/python3.py:128
 msgid "Python 3"
 msgstr ""
 
-#: mu/modes/python3.py:121
+#: mu/modes/python3.py:132
 msgid "Create code using standard Python 3."
 msgstr "標準 Python 3 のコードを作成します。"
 
-#: mu/modes/python3.py:137 mu/modes/python3.py:181
+#: mu/modes/python3.py:143 mu/modes/python3.py:187
 msgid "Run your Python script."
 msgstr "Python スクリプトを実行します。"
 
-#: mu/modes/python3.py:143
+#: mu/modes/python3.py:149
 msgid "Debug"
 msgstr "デバッグ"
 
-#: mu/modes/python3.py:144
+#: mu/modes/python3.py:150
 msgid "Debug your Python script."
 msgstr "Python スクリプトをデバッグします。"
 
-#: mu/modes/python3.py:151
+#: mu/modes/python3.py:157
 msgid "Use the REPL for live coding."
 msgstr "ライブコーディングのために REPL を利用します。"
 
-#: mu/modes/python3.py:159
+#: mu/modes/python3.py:165
 msgid "Plot data from your script or the REPL."
 msgstr "スクリプトまたは REPL からのデータをプロットします。"
 
-#: mu/modes/python3.py:189
+#: mu/modes/python3.py:195
 msgid "Stop your Python script."
 msgstr "Python スクリプトを停止します。"
 
-#: mu/modes/python3.py:259
+#: mu/modes/python3.py:265
 msgid "Starting iPython REPL."
 msgstr "iPython REPL を始動します。"
 
-#: mu/modes/python3.py:265
+#: mu/modes/python3.py:271
 msgid "Stopping iPython REPL (this may take a short amount of time)."
 msgstr "iPython REPL を停止(少し時間がかかります)。"
 
-#: mu/modes/python3.py:355
+#: mu/modes/python3.py:361
 msgid "REPL started."
 msgstr "REPL が始動しました。"
 
-#: mu/modes/python3.py:364
+#: mu/modes/python3.py:370
 msgid "REPL stopped."
 msgstr "REPL が停止しました。"
 
-#: mu/modes/snek.py:177
+#: mu/modes/snek.py:373
 msgid "Snek"
 msgstr ""
 
-#: mu/modes/snek.py:179
+#: mu/modes/snek.py:377
 #, fuzzy
 msgid "Write code for boards running Snek."
 msgstr "CircuitPython が動作するボードのコードを編集。"
 
-#: mu/modes/snek.py:391
+#: mu/modes/snek.py:397
 msgid "Put"
 msgstr ""
 
-#: mu/modes/snek.py:392
+#: mu/modes/snek.py:398
 msgid "Put the current program to the device."
 msgstr ""
 
-#: mu/modes/snek.py:398
+#: mu/modes/snek.py:404
 msgid "Get"
 msgstr ""
 
-#: mu/modes/snek.py:399
+#: mu/modes/snek.py:405
 msgid "Get the current program from the device."
 msgstr ""
 
-#: mu/modes/snek.py:461
+#: mu/modes/snek.py:467
 #, fuzzy
 msgid "There is un-saved work, 'get' will cause you to lose it."
 msgstr "保存していないスクリプトがありますが、アプリケーションを終了すると消えてしまいます。"
 
-#: mu/modes/snek.py:531
+#: mu/modes/snek.py:537
 #, fuzzy
 msgid ""
 "Please make sure the device is plugged into this computer.\n"
@@ -1653,60 +1653,78 @@ msgstr ""
 "\n"
 "最後に、デバイスのリセットボタンを押してから、もう一度試してください。"
 
-#: mu/modes/web.py:63
+#: mu/modes/web.py:43
+#, python-brace-format
+msgid ""
+"\"\"\"\n"
+"A simple web application.\n"
+"\"\"\"\n"
+"# WARNING START: do not change the following two lines of code.\n"
+"from flask import Flask, render_template\n"
+"\n"
+"{}\n"
+"# WARNING END: do not change the previous two lines of code.\n"
+"\n"
+"\n"
+"@app.route(\"/\")\n"
+"def index():\n"
+"    return render_template(\"index.html\")"
+msgstr ""
+
+#: mu/modes/web.py:71
 msgid "Web"
 msgstr ""
 
-#: mu/modes/web.py:65
+#: mu/modes/web.py:75
 msgid "Build simple websites with the \"Flask\" web framework."
 msgstr "Web フレームワーク「Flask」でシンプルな Web サイトを構築。"
 
-#: mu/modes/web.py:92 mu/modes/web.py:180
+#: mu/modes/web.py:101 mu/modes/web.py:189
 msgid "Run the web server."
 msgstr "web サーバを実行します。"
 
-#: mu/modes/web.py:98
+#: mu/modes/web.py:107
 #, fuzzy
 msgid "Deploy"
 msgstr "プレイ"
 
-#: mu/modes/web.py:99
+#: mu/modes/web.py:108
 msgid "Deploy website to PythonAnywhere."
 msgstr ""
 
-#: mu/modes/web.py:106
+#: mu/modes/web.py:115
 msgid "Open your website in a browser."
 msgstr "Mu のヘルプをWebブラウザで表示します。"
 
-#: mu/modes/web.py:112
+#: mu/modes/web.py:121
 msgid "Templates"
 msgstr "テンプレート"
 
-#: mu/modes/web.py:113
+#: mu/modes/web.py:122
 msgid "Load HTML templates used by your website."
 msgstr "web サイトで使う HTML テンプレートを読み込みます。"
 
-#: mu/modes/web.py:119
+#: mu/modes/web.py:128
 msgid "CSS"
 msgstr ""
 
-#: mu/modes/web.py:120
+#: mu/modes/web.py:129
 msgid "Load CSS files used by your website."
 msgstr "web サイトで使う CSS ファイルを読み込みます。"
 
-#: mu/modes/web.py:128
+#: mu/modes/web.py:137
 msgid "Open the directory containing images used by your website."
 msgstr "web サイトで使う画像のあるディレクトリを開きます。"
 
-#: mu/modes/web.py:188
+#: mu/modes/web.py:197
 msgid "Stop the web server."
 msgstr "web サーバを停止します。"
 
-#: mu/modes/web.py:208 mu/modes/web.py:368
+#: mu/modes/web.py:217 mu/modes/web.py:377
 msgid "This is not a Python file!"
 msgstr "これは Python ファイルではありません！"
 
-#: mu/modes/web.py:210
+#: mu/modes/web.py:219
 msgid ""
 "Mu is only able to serve a Python file. Please make sure the current tab "
 "in Mu is the one for your web application and then try again."
@@ -1714,11 +1732,11 @@ msgstr ""
 "Mu は Python ファイルしか扱えません。Mu の現在のタブが Web "
 "アプリケーションのタブであることを確認してから、もう一度試してみてください。"
 
-#: mu/modes/web.py:226 mu/modes/web.py:385
+#: mu/modes/web.py:235 mu/modes/web.py:394
 msgid "Cannot find template directory!"
 msgstr "テンプレートのディレクトリが見つかりません！"
 
-#: mu/modes/web.py:228
+#: mu/modes/web.py:237
 msgid ""
 "To serve your web application, there needs to be a 'templates' directory "
 "in the same place as your web application's Python code. Please fix this "
@@ -1729,19 +1747,19 @@ msgstr ""
 "ディレクトリがある必要があります。これを修正して、もう一度試してみてください。(ヒント: Mu は `templates` "
 "ディレクトリがここにあると思っていました: )"
 
-#: mu/modes/web.py:282
+#: mu/modes/web.py:291
 msgid "Too many web apps."
 msgstr ""
 
-#: mu/modes/web.py:284
+#: mu/modes/web.py:293
 msgid "Please ensure you only have one open Python file for a web application."
 msgstr ""
 
-#: mu/modes/web.py:344
+#: mu/modes/web.py:353
 msgid "Cannot Open Website - Server not Running."
 msgstr "Web サイトを開ません - サーバが動作していません。"
 
-#: mu/modes/web.py:346
+#: mu/modes/web.py:355
 msgid ""
 "You must have the local web server running in order to view your website "
 "in a browser. Click on the 'Run' button to start the server and then try "
@@ -1750,7 +1768,7 @@ msgstr ""
 "ブラウザで Web サイトを表示するには、ローカルの Web "
 "サーバーが起動している必要があります。「実行」ボタンをクリックしてサーバーを起動して、もう一度試してください。"
 
-#: mu/modes/web.py:370
+#: mu/modes/web.py:379
 #, fuzzy
 msgid ""
 "Mu is only able to deploy a Python file. Please make sure the current tab"
@@ -1759,7 +1777,7 @@ msgstr ""
 "Mu は Python ファイルしか扱えません。Mu の現在のタブが Web "
 "アプリケーションのタブであることを確認してから、もう一度試してみてください。"
 
-#: mu/modes/web.py:387
+#: mu/modes/web.py:396
 #, fuzzy
 msgid ""
 "To deploy your web application, there needs to be a 'templates' directory"

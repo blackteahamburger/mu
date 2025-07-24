@@ -174,9 +174,7 @@ class SnekMode(MicroPythonMode):
     Represents the functionality required by the Snek mode.
     """
 
-    name = _("Snek")
     short_name = "snek"
-    description = _("Write code for boards running Snek.")
     icon = "snek"
     save_timeout = 0  #: No auto-save on CP boards. Will restart.
     connected = True  #: is the board connected.
@@ -369,6 +367,14 @@ class SnekMode(MicroPythonMode):
         "temperature",
         "time",
     )
+
+    @property
+    def name(self):
+        return _("Snek")
+
+    @property
+    def description(self):
+        return _("Write code for boards running Snek.")
 
     def stop(self):
         self.remove_repl()

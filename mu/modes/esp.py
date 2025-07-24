@@ -33,10 +33,8 @@ class ESPMode(MicroPythonMode):
     Represents the functionality required for running MicroPython on ESP8266
     """
 
-    name = _("ESP MicroPython")
     short_name = "esp"
     board_name = "ESP8266/ESP32"
-    description = _("Write MicroPython on ESP8266/ESP32 boards.")
     icon = "esp"
     fs = None
 
@@ -67,6 +65,14 @@ class ESPMode(MicroPythonMode):
             "TinyS3",
         ),  # Unexpected Maker tinys3
     ]
+
+    @property
+    def name(self):
+        return _("ESP MicroPython")
+
+    @property
+    def description(self):
+        return _("Write MicroPython on ESP8266/ESP32 boards.")
 
     def actions(self):
         """

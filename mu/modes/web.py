@@ -40,7 +40,7 @@ app.run()
 FLASK_APP = "app = Flask(__name__)"
 
 
-CODE_TEMPLATE = """\"\"\"
+CODE_TEMPLATE = _("""\"\"\"
 A simple web application.
 \"\"\"
 # WARNING START: do not change the following two lines of code.
@@ -52,7 +52,7 @@ from flask import Flask, render_template
 
 @app.route("/")
 def index():
-    return render_template("index.html")""".format(FLASK_APP)
+    return render_template("index.html")""").format(FLASK_APP)
 
 
 class WebMode(BaseMode):
@@ -60,14 +60,23 @@ class WebMode(BaseMode):
     Represents the functionality required by the WWW mode.
     """
 
-    name = _("Web")
     short_name = "web"
-    description = _('Build simple websites with the "Flask" web framework.')
     icon = "web"
     runner = None
     save_timeout = 0  # User has to explicitly save web application.
     file_extensions = ["css", "html"]
-    code_template = CODE_TEMPLATE
+
+    @property
+    def name(self):
+        return _("Web")
+
+    @property
+    def description(self):
+        return _('Build simple websites with the "Flask" web framework.')
+
+    @property
+    def code_template(self):
+        return CODE_TEMPLATE
 
     def ensure_state(self):
         """

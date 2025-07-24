@@ -167,9 +167,7 @@ class BaseMode(QObject):
     Represents the common aspects of a mode.
     """
 
-    name = "UNNAMED MODE"
     short_name = "UNDEFINED_MODE"
-    description = "DESCRIPTION NOT AVAILABLE."
     icon = "help"
     repl = False
     plotter = False
@@ -179,7 +177,18 @@ class BaseMode(QObject):
     builtins = None  #: Symbols to assume as builtins when checking code style.
     file_extensions = []
     module_names = MODULE_NAMES
-    code_template = _("# Write your code here :-)")
+
+    @property
+    def name(self):
+        return "UNNAMED MODE"
+
+    @property
+    def description(self):
+        return "DESCRIPTION NOT AVAILABLE."
+
+    @property
+    def code_template(self):
+        return _("# Write your code here :-)")
 
     def __init__(self, editor, view):
         self.editor = editor

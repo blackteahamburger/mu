@@ -32,9 +32,7 @@ class PyGameZeroMode(BaseMode):
     Represents the functionality required by the PyGameZero mode.
     """
 
-    name = _("Pygame Zero")
     short_name = "pygamezero"
-    description = _("Make games with Pygame Zero.")
     icon = "pygamezero"
     runner = None
     builtins = [
@@ -53,6 +51,14 @@ class PyGameZeroMode(BaseMode):
         "exit",
         "screen",
     ]
+
+    @property
+    def name(self):
+        return _("Pygame Zero")
+
+    @property
+    def description(self):
+        return _("Make games with Pygame Zero.")
 
     def actions(self):
         """

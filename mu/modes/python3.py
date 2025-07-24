@@ -116,14 +116,20 @@ class PythonMode(BaseMode):
     Represents the functionality required by the Python 3 mode.
     """
 
-    name = _("Python 3")
     short_name = "python"
-    description = _("Create code using standard Python 3.")
     icon = "python"
     runner = None
     has_debugger = True
     kernel_runner = None
     stop_kernel = pyqtSignal()
+
+    @property
+    def name(self):
+        return _("Python 3")
+
+    @property
+    def description(self):
+        return _("Create code using standard Python 3.")
 
     def actions(self):
         """

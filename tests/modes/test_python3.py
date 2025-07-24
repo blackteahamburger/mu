@@ -102,7 +102,7 @@ def test_python_mode():
     view = mock.MagicMock()
     pm = PythonMode(editor, view)
     assert pm.name == "Python 3"
-    assert pm.description is not None
+    assert pm.description == "Create code using standard Python 3."
     assert pm.icon == "python"
     assert pm.is_debugger is False
     assert pm.editor == editor

@@ -19,7 +19,8 @@ def test_circuitpython_mode():
     editor = mock.MagicMock()
     view = mock.MagicMock()
     am = CircuitPythonMode(editor, view)
-    assert am.description is not None
+    assert am.name == "CircuitPython"
+    assert am.description == "Write code for boards running CircuitPython."
     assert am.icon == "circuitpython"
     assert am.editor == editor
     assert am.view == view

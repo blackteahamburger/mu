@@ -35,13 +35,19 @@ class DebugMode(BaseMode):
     Represents the functionality required by the Python 3 visual debugger.
     """
 
-    name = _("Graphical Debugger")
     short_name = "debugger"
-    description = _("Debug your Python 3 code.")
     icon = "python"
     runner = None
     is_debugger = True
     save_timeout = 0  # No need to auto-save when in read-only debug mode.
+
+    @property
+    def name(self):
+        return _("Graphical Debugger")
+
+    @property
+    def description(self):
+        return _("Debug your Python 3 code.")
 
     def __init__(self, editor, view):
         super().__init__(editor, view)

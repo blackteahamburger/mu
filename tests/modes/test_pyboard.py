@@ -43,7 +43,7 @@ def test_pyboard_mode():
     view = mock.MagicMock()
     pbm = PyboardMode(editor, view)
     assert pbm.name == "Pyboard MicroPython"
-    assert pbm.description is not None
+    assert pbm.description == "Use MicroPython on the Pyboard line of boards."
     assert pbm.icon == "pyboard"
     assert pbm.editor == editor
     assert pbm.view == view

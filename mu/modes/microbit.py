@@ -86,9 +86,7 @@ class MicrobitMode(MicroPythonMode):
     Represents the functionality required by the micro:bit mode.
     """
 
-    name = _("BBC micro:bit")
     short_name = "microbit"
-    description = _("Write MicroPython for the BBC micro:bit.")
     icon = "microbit"
     fs = None  #: Reference to filesystem navigator.
     flash_thread = None
@@ -104,6 +102,14 @@ class MicrobitMode(MicroPythonMode):
     valid_board_ids = [0x9900, 0x9901, 0x9904, 0x9905, 0x9906]
 
     python_script = ""
+
+    @property
+    def name(self):
+        return _("BBC micro:bit")
+
+    @property
+    def description(self):
+        return _("Write MicroPython for the BBC micro:bit.")
 
     def actions(self):
         """
