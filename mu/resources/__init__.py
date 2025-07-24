@@ -18,7 +18,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import os
 from importlib.resources import files as importlib_files
 
 from PyQt6.QtCore import QDir
@@ -38,11 +37,6 @@ def path(name, resource_dir="images"):
 
 def load_icon(name):
     """Load an icon from the resources directory."""
-    svg_path = str(path(name + ".svg"))
-    if os.path.exists(svg_path):
-        svg_icon = QIcon(svg_path)
-        if svg_icon:
-            return svg_icon
     return QIcon(str(path(name)))
 
 

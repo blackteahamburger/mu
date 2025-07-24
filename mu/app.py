@@ -26,17 +26,14 @@ import os
 import platform
 import struct
 import sys
-import time
 import traceback
 import urllib.parse
 import webbrowser
 from logging.handlers import TimedRotatingFileHandler
 
 from PyQt6.QtCore import (
-    QObject,
     QSharedMemory,
     Qt,
-    pyqtSignal,
 )
 from PyQt6.QtWidgets import QApplication
 
@@ -58,36 +55,6 @@ from mu.modes import (
     WebMode,
 )
 from mu.resources import load_icon
-
-
-class StartupWorker(QObject):
-    """
-    A worker class for running blocking tasks on a separate thread during
-    application start-up.
-    """
-
-    finished = pyqtSignal()  # emitted when successfully finished.
-    failed = pyqtSignal(str)  # emitted if finished with an error.
-
-    def run(self):
-        """
-        Blocking and long running tasks for application startup should be
-        called from here.
-        """
-        try:
-            self.finished.emit()  # Always called last.
-        except Exception as ex:
-            # Catch all exceptions just in case.
-            # Report the failure, along with a summary to show the user.
-            stack = traceback.extract_stack()[:-1]
-            msg = "\n".join(traceback.format_list(stack))
-            msg += "\n\n" + traceback.format_exc()
-            self.failed.emit(msg)
-            # Sleep a while in the thread so the user sees something is wrong.
-            time.sleep(7)
-            self.finished.emit()
-            # Re-raise for crash handler to kick in.
-            raise ex  # pragma: no cover
 
 
 def excepthook(*exc_args):

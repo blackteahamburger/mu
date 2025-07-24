@@ -8,11 +8,8 @@ import subprocess
 import sys
 from unittest import mock
 
-import pytest
-
 from mu import mu_debug
 from mu.app import (
-    StartupWorker,
     excepthook,
     is_linux_wayland,
     run,
@@ -54,36 +51,6 @@ class DumSig:
         Proxy the callback function
         """
         self.func(*args)
-
-
-def test_worker_fail():
-    """
-    Ensure that exceptions encountered during Mu's start-up are handled in the
-    expected manner.
-    """
-    worker = StartupWorker()
-    worker.finished = mock.MagicMock()
-    worker.failed = mock.MagicMock()
-    worker.failed.emit = mock.MagicMock()
-    with (
-        mock.patch("mu.app.traceback.extract_stack", return_value=["stack"]),
-        mock.patch(
-            "mu.app.traceback.format_list", return_value=["formatted stack"]
-        ),
-        mock.patch(
-            "mu.app.traceback.format_exc", return_value="formatted exc"
-        ),
-        mock.patch("mu.app.time.sleep") as sleep,
-    ):
-
-        def raise_exc():
-            raise Exception("fail!")
-
-        worker.finished.emit = raise_exc
-        with pytest.raises(Exception, match="fail!"):
-            worker.run()
-        worker.failed.emit.assert_called_once()
-        sleep.assert_called_once_with(7)
 
 
 def test_setup_logging_without_envvar():
@@ -174,9 +141,6 @@ def test_run():
         mock.patch("mu.app.Window", window) as win,
         mock.patch("sys.argv", ["mu"]),
         mock.patch("sys.exit") as ex,
-        mock.patch("mu.app.QEventLoop") as mock_event_loop,
-        mock.patch("mu.app.QThread"),
-        mock.patch("mu.app.StartupWorker") as mock_worker,
         mock.patch("mu.app.setup_exception_handler") as mock_set_except,
     ):
         run()
@@ -189,15 +153,11 @@ def test_run():
         # else:
         #    assert len(qa.mock_calls) == 8
         assert len(qa.mock_calls) == 7
-        assert qsp.call_count == 1
-        assert len(qsp.mock_calls) == 4
         assert ed.call_count == 1
         assert len(ed.mock_calls) == 4
         assert win.call_count == 1
         assert len(win.mock_calls) == 6
         assert ex.call_count == 1
-        assert mock_event_loop.call_count == 1
-        assert mock_worker.call_count == 1
         assert mock_set_except.call_count == 1
         window.load_theme.emit("day")
         qa.assert_has_calls([mock.call().setStyleSheet(DAY_STYLE)])
@@ -222,9 +182,6 @@ def test_run_wayland_qt_qpa_platform_already_set():
         mock.patch("mu.app.Window"),
         mock.patch("sys.argv", ["mu"]),
         mock.patch("sys.exit"),
-        mock.patch("mu.app.QEventLoop"),
-        mock.patch("mu.app.QThread"),
-        mock.patch("mu.app.StartupWorker"),
         mock.patch("mu.app.setup_exception_handler"),
         mock.patch("mu.app.is_linux_wayland", return_value=True),
     ):
@@ -245,9 +202,6 @@ def test_run_sets_qt_qpa_platform_when_not_set():
         mock.patch("mu.app.Window"),
         mock.patch("sys.argv", ["mu"]),
         mock.patch("sys.exit"),
-        mock.patch("mu.app.QEventLoop"),
-        mock.patch("mu.app.QThread"),
-        mock.patch("mu.app.StartupWorker"),
         mock.patch("mu.app.setup_exception_handler"),
         mock.patch("mu.app.is_linux_wayland", return_value=True),
     ):

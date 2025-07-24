@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mu Chinese\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-23 00:44+0800\n"
+"POT-Creation-Date: 2025-07-24 13:35+0800\n"
 "PO-Revision-Date: 2022-02-02 18:39+0800\n"
 "Last-Translator: Blackteahamburger <blackteahamburger@outlook.com>\n"
 "Language: zh_CN\n"
@@ -139,8 +139,8 @@ msgstr ""
 "&nbsp;1. 确定设备类型（ ESP8266 或 ESP32 ）<br />&nbsp;2. 从 <a "
 "href=\"https://micropython.org/download\" "
 "style=\"color:#039be5;\">https://micropython.org/download</a> "
-"下载固件<br/>&nbsp;3. 连接设备<br/>&nbsp;4. 用“浏览”按钮加载 .bin 文件<br/>&nbsp;5. 点击“擦除&"
-" 写入固件”"
+"下载固件<br/>&nbsp;3. 连接设备<br/>&nbsp;4. 用“浏览”按钮加载 .bin 文件<br/>&nbsp;5. 点击“擦除 "
+"& 写入固件”"
 
 #: mu/interface/dialogs.py:365
 msgid "Device:"
@@ -160,7 +160,7 @@ msgstr "浏览"
 
 #: mu/interface/dialogs.py:375
 msgid "Erase && write firmware"
-msgstr "擦除 & 写入固件"
+msgstr "擦除 && 写入固件"
 
 #: mu/interface/dialogs.py:407
 msgid "Select MicroPython firmware (.bin)"
@@ -214,7 +214,7 @@ msgstr "替换（可选）："
 msgid "Replace all?"
 msgstr "全部替换？"
 
-#: mu/interface/editor.py:330 mu/logic.py:1343
+#: mu/interface/editor.py:330 mu/logic.py:1345
 msgid "untitled"
 msgstr "无标题"
 
@@ -415,7 +415,7 @@ msgstr "Mu 当前的运行模式。"
 msgid "Detected new {} device: {}."
 msgstr "检测到新的 {} 设备：{}。"
 
-#: mu/interface/main.py:1490 mu/logic.py:1615
+#: mu/interface/main.py:1490 mu/logic.py:1617
 #, python-brace-format
 msgid "Detected new {} device."
 msgstr "检测到新的 {} 设备。"
@@ -819,7 +819,7 @@ msgstr "语法错误。Python 无法理解这一行。检查缺少的字符！"
 msgid "{} compatible"
 msgstr "{} 兼容"
 
-#: mu/logic.py:1015
+#: mu/logic.py:1017
 #, python-brace-format
 msgid ""
 "The file contains characters Mu expects to be encoded as {0} or as the "
@@ -833,32 +833,32 @@ msgstr ""
 "\n"
 "如果此文件是通过另外一个应用程序保存，请通过“另存为”选项重新保存文件，并将编码设置为 {0}"
 
-#: mu/logic.py:1042
+#: mu/logic.py:1044
 #, python-brace-format
 msgid "The file \"{}\" is already open."
 msgstr "文件“{}”已经打开。"
 
-#: mu/logic.py:1054
+#: mu/logic.py:1056
 #, python-brace-format
 msgid "Mu cannot read the characters in {}"
 msgstr "Mu 无法读取 {} 中的字符"
 
-#: mu/logic.py:1080
+#: mu/logic.py:1082
 msgid "Mu was not able to open this file"
 msgstr "Mu 无法打开此文件"
 
-#: mu/logic.py:1082
+#: mu/logic.py:1084
 msgid ""
 "Currently Mu only works with Python source files or hex files created "
 "with embedded MicroPython code."
 msgstr "目前，Mu 仅适用于使用嵌入式 MicroPython 代码创建的 Python 源文件或 hex 文件。"
 
-#: mu/logic.py:1089
+#: mu/logic.py:1091
 #, python-brace-format
 msgid "Could not load {}"
 msgstr "无法加载 {}"
 
-#: mu/logic.py:1092
+#: mu/logic.py:1094
 msgid ""
 "Does this file exist?\n"
 "If it does, do you have permission to read it?\n"
@@ -870,12 +870,12 @@ msgstr ""
 "\n"
 "请检查并重试。"
 
-#: mu/logic.py:1099
+#: mu/logic.py:1101
 #, python-brace-format
 msgid "Is this a {} file?"
 msgstr "这是一个 {} 文件吗？"
 
-#: mu/logic.py:1101
+#: mu/logic.py:1103
 #, python-brace-format
 msgid ""
 "It looks like this could be a {} file.\n"
@@ -886,155 +886,155 @@ msgstr ""
 "\n"
 "你想将 Mu 改为 {} 模式吗？"
 
-#: mu/logic.py:1227
+#: mu/logic.py:1229
 msgid "Could not save file (disk problem)"
 msgstr "无法保存文件（磁盘问题）"
 
-#: mu/logic.py:1229
+#: mu/logic.py:1231
 msgid ""
 "Error saving file to disk. Ensure you have permission to write the file "
 "and sufficient disk space."
 msgstr "将文件保存到磁盘时出错。确保你有写入文件的权限和足够的磁盘空间。"
 
-#: mu/logic.py:1234
+#: mu/logic.py:1236
 msgid "Could not save file (encoding problem)"
 msgstr "无法保存文件（编码问题）"
 
-#: mu/logic.py:1237
+#: mu/logic.py:1239
 msgid ""
 "Unable to convert all the characters. If you have an encoding line at the"
 " top of the file, remove it and try again."
 msgstr "无法转换所有字符。如果文件顶部有编码行，请将其删除并重试。"
 
-#: mu/logic.py:1247
+#: mu/logic.py:1249
 #, python-brace-format
 msgid "Saved file: {}"
 msgstr "已保存文件：{}"
 
-#: mu/logic.py:1279 mu/logic.py:1674
+#: mu/logic.py:1281 mu/logic.py:1676
 #, python-brace-format
 msgid "You cannot use the filename \"{}\""
 msgstr "你不能使用文件名“{}”"
 
-#: mu/logic.py:1283
+#: mu/logic.py:1285
 msgid ""
 "This name is already used by another part of Python. If you use this "
 "name, things are likely to break. Please try again with a different "
 "filename."
 msgstr "这个名字已被 Python 的另一部分使用。如果你使用这个名字，可能会出问题。请使用其他文件名重试。"
 
-#: mu/logic.py:1359
+#: mu/logic.py:1361
 msgid "Good job! No problems found."
 msgstr "干得漂亮！没有发现问题。"
 
-#: mu/logic.py:1360
+#: mu/logic.py:1362
 msgid "Hurrah! Checker turned up no problems."
 msgstr "诶嘿！检查结果显示，没有问题。"
 
-#: mu/logic.py:1361
+#: mu/logic.py:1363
 msgid "Nice one! Zero problems detected."
 msgstr "棒！检测到 0 个问题。"
 
-#: mu/logic.py:1362
+#: mu/logic.py:1364
 msgid "Well done! No problems here."
 msgstr "做得好！这里没问题。"
 
-#: mu/logic.py:1363
+#: mu/logic.py:1365
 msgid "Awesome! Zero problems found."
 msgstr "真棒！检测到 0 个问题。"
 
-#: mu/logic.py:1388
+#: mu/logic.py:1390
 msgid "There is un-saved work, exiting the application will cause you to lose it."
 msgstr "你有未保存的代码，退出程序将导致其丢失。"
 
-#: mu/logic.py:1460
+#: mu/logic.py:1462
 msgid "Could not find MicroPython runtime."
 msgstr "找不到 MicroPython 运行时。"
 
-#: mu/logic.py:1462
+#: mu/logic.py:1464
 #, python-brace-format
 msgid ""
 "The micro:bit runtime you specified ('{}') does not exist. Please try "
 "again."
 msgstr "你指定的 micro:bit 运行时（“{}”）不存在。请再试一次。"
 
-#: mu/logic.py:1567
+#: mu/logic.py:1569
 #, python-brace-format
 msgid "Changed to {} mode."
 msgstr "已更改为 {} 模式。"
 
-#: mu/logic.py:1598
+#: mu/logic.py:1600
 #, python-brace-format
 msgid "Would you like to change Mu to the {} mode?"
 msgstr "你想将 Mu 改为 {} 模式吗？"
 
-#: mu/logic.py:1617
+#: mu/logic.py:1619
 #, python-brace-format
 msgid "Device changed to {}."
 msgstr "设备更改为 {}。"
 
-#: mu/logic.py:1653
+#: mu/logic.py:1655
 msgid "Cannot Set Breakpoint."
 msgstr "无法设置断点。"
 
-#: mu/logic.py:1655
+#: mu/logic.py:1657
 msgid ""
 "Lines that are comments or some multi-line statements cannot have "
 "breakpoints."
 msgstr "注释行或某些多行语句无法设置断点。"
 
-#: mu/logic.py:1678
+#: mu/logic.py:1680
 msgid ""
 "This name is already used by another part of Python. If you use that "
 "name, things are likely to break. Please try again with a different "
 "filename."
 msgstr "这个名字已被 Python 的另一部分使用。如果你使用这个名字，可能会出问题。请使用其他文件名重试。"
 
-#: mu/logic.py:1699
+#: mu/logic.py:1701
 msgid "Could not rename file."
 msgstr "无法重命名文件。"
 
-#: mu/logic.py:1701
+#: mu/logic.py:1703
 msgid "A file of that name is already open in Mu."
 msgstr "该名称的文件已在 Mu 中打开。"
 
-#: mu/logic.py:1732
+#: mu/logic.py:1734
 #, python-brace-format
 msgid "Replaced \"{}\" with \"{}\"."
 msgstr "已将“{}”替换为“{}”。"
 
-#: mu/logic.py:1737
+#: mu/logic.py:1739
 #, python-brace-format
 msgid "Replaced {} matches of \"{}\" with \"{}\"."
 msgstr "已将 {} 个“{}”的匹配项替换为“{}”。"
 
-#: mu/logic.py:1742 mu/logic.py:1749 mu/logic.py:1768
+#: mu/logic.py:1744 mu/logic.py:1751 mu/logic.py:1770
 #, python-brace-format
 msgid "Could not find \"{}\"."
 msgstr "找不到“{}”。"
 
-#: mu/logic.py:1747 mu/logic.py:1766
+#: mu/logic.py:1749 mu/logic.py:1768
 #, python-brace-format
 msgid "Highlighting matches for \"{}\"."
 msgstr "高亮显示“{}”的匹配项。"
 
-#: mu/logic.py:1752 mu/logic.py:1771
+#: mu/logic.py:1754 mu/logic.py:1773
 msgid "You must provide something to find."
 msgstr "你需要输入要查找的内容。"
 
-#: mu/logic.py:1754 mu/logic.py:1773
+#: mu/logic.py:1756 mu/logic.py:1775
 msgid "Please try again, this time with something in the find box."
 msgstr "请在查找框中输入内容，然后重试。"
 
-#: mu/logic.py:1816
+#: mu/logic.py:1818
 msgid "Successfully cleaned the code. Use CTRL-Z to undo."
 msgstr "成功清理代码。按 CTRL-Z 以撤销。"
 
-#: mu/logic.py:1822
+#: mu/logic.py:1824
 msgid "Your code contains problems."
 msgstr "你的代码包含错误。"
 
-#: mu/logic.py:1824
+#: mu/logic.py:1826
 msgid ""
 "These must be fixed before tidying will work. Please use the 'Check' "
 "button to highlight these problems."
