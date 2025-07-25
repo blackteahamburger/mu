@@ -9,7 +9,7 @@ from unittest import mock
 import pytest
 
 from mu.modes.api import FLASK_APIS, PYTHON3_APIS, SHARED_APIS
-from mu.modes.web import CODE_TEMPLATE, FLASK_APP, WebMode
+from mu.modes.web import FLASK_APP, WebMode
 
 
 def test_init():
@@ -29,7 +29,20 @@ def test_init():
     assert wm.runner is None
     assert wm.save_timeout == 0
     assert wm.file_extensions == ["css", "html"]
-    assert wm.code_template == CODE_TEMPLATE
+    expected_code_template = """\"\"\"
+A simple web application.
+\"\"\"
+# WARNING START: do not change the following two lines of code.
+from flask import Flask, render_template
+
+{}
+# WARNING END: do not change the previous two lines of code.
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")""".format(FLASK_APP)
+    assert wm.code_template == expected_code_template
     actions = wm.actions()
     assert len(actions) == 6
     assert actions[0]["name"] == "run"

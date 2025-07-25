@@ -37,6 +37,7 @@ class ESPMode(MicroPythonMode):
     board_name = "ESP8266/ESP32"
     icon = "esp"
     fs = None
+    file_manager_thread = None
 
     # The below list defines the supported devices, however, many
     # devices are using the exact same FTDI USB-interface, with vendor
@@ -73,6 +74,13 @@ class ESPMode(MicroPythonMode):
     @property
     def description(self):
         return _("Write MicroPython on ESP8266/ESP32 boards.")
+
+    def stop(self):
+        """
+        Stop the mode and clean up any resources.
+        """
+        super().stop()
+        self.remove_fs()
 
     def actions(self):
         """
@@ -276,10 +284,13 @@ class ESPMode(MicroPythonMode):
         """
         Remove the file system navigator from the UI.
         """
-        self.view.remove_filesystem()
-        self.file_manager = None
-        self.file_manager_thread = None
-        self.fs = None
+        if self.fs is not None:
+            self.view.remove_filesystem()
+            self.file_manager = None
+            self.file_manager_thread.quit()
+            self.file_manager_thread.wait()
+            self.file_manager_thread = None
+            self.fs = None
 
     def on_data_flood(self):
         """
@@ -288,14 +299,6 @@ class ESPMode(MicroPythonMode):
         """
         self.set_buttons(files=True)
         super().on_data_flood()
-
-    def deactivate(self):
-        """
-        Invoked whenever the mode is deactivated.
-        """
-        super().deactivate()
-        if self.fs:
-            self.remove_fs()
 
     def device_changed(self, new_device):
         """

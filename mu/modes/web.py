@@ -29,30 +29,7 @@ from mu.resources import load_icon
 logger = logging.getLogger(__name__)
 
 
-MUWEB_TEMPLATE = """# Wraps the user's Flask application with boilerplate.
-from {} import app
-
-
-app.run()
-"""
-
-
 FLASK_APP = "app = Flask(__name__)"
-
-
-CODE_TEMPLATE = _("""\"\"\"
-A simple web application.
-\"\"\"
-# WARNING START: do not change the following two lines of code.
-from flask import Flask, render_template
-
-{}
-# WARNING END: do not change the previous two lines of code.
-
-
-@app.route("/")
-def index():
-    return render_template("index.html")""").format(FLASK_APP)
 
 
 class WebMode(BaseMode):
@@ -76,7 +53,20 @@ class WebMode(BaseMode):
 
     @property
     def code_template(self):
-        return CODE_TEMPLATE
+        _code_template = _("""\"\"\"
+A simple web application.
+\"\"\"
+# WARNING START: do not change the following two lines of code.
+from flask import Flask, render_template
+
+{}
+# WARNING END: do not change the previous two lines of code.
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")""").format(FLASK_APP)
+        return _code_template
 
     def ensure_state(self):
         """
@@ -265,11 +255,11 @@ class WebMode(BaseMode):
         """
         Stop the currently running web server.
         """
-        logger.debug("Stopping Flask app.")
         if self.runner:
+            logger.debug("Stopping Flask app.")
             self.runner.stop_process()
             self.runner = None
-        self.view.remove_python_runner()
+            self.view.remove_python_runner()
 
     def stop(self):
         """

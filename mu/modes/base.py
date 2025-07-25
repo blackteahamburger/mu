@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import csv
+import functools
 import logging
 import os
 import os.path
@@ -132,11 +133,7 @@ class REPLConnection(QObject):
             logger.info("Sending command {}".format(command))
             self.write(command)
             remainder = commands[1:]
-
-            def remaining_task(commands=remainder):
-                return self.execute(commands)
-
-            QTimer.singleShot(2, remaining_task)
+            QTimer.singleShot(2, functools.partial(self.execute, remainder))
 
     def send_commands(self, commands):
         """
@@ -197,7 +194,7 @@ class BaseMode(QObject):
 
     def stop(self):
         """
-        Called if/when the editor quits when in this mode. Override in child
+        Called when the editor quits/switches mode when in this mode. Override in child
         classes to clean up state, stop child processes etc.
         """
         pass  # Default is to do nothing
@@ -309,18 +306,19 @@ class BaseMode(QObject):
         called 'data_capture' in the workspace directory. The file contains
         CSV data and is named with a timestamp for easy identification.
         """
-        # Save the raw data as CSV
-        data_dir = os.path.join(self.workspace_dir(), "data_capture")
-        if not os.path.exists(data_dir):
-            logger.debug("Creating directory: {}".format(data_dir))
-            os.makedirs(data_dir)
-        filename = "{}.csv".format(time.strftime("%Y%m%d-%H%M%S"))
-        filepath = os.path.join(data_dir, filename)
-        self.write_plotter_data_to_csv(filepath)
-        self.view.remove_plotter()
-        self.plotter = False
-        logger.info("Removing plotter")
-        self.return_focus_to_current_tab()
+        if self.plotter:
+            # Save the raw data as CSV
+            data_dir = os.path.join(self.workspace_dir(), "data_capture")
+            if not os.path.exists(data_dir):
+                logger.debug("Creating directory: {}".format(data_dir))
+                os.makedirs(data_dir)
+            filename = "{}.csv".format(time.strftime("%Y%m%d-%H%M%S"))
+            filepath = os.path.join(data_dir, filename)
+            self.write_plotter_data_to_csv(filepath)
+            self.view.remove_plotter()
+            self.plotter = False
+            logger.info("Removing plotter")
+            self.return_focus_to_current_tab()
 
     def on_data_flood(self):
         """
@@ -368,12 +366,6 @@ class BaseMode(QObject):
         """
         pass  # Default is to do nothing
 
-    def deactivate(self):
-        """
-        Executed when the mode is activated
-        """
-        pass  # Default is to do nothing
-
     def device_changed(self, new_device):
         """
         Invoked when the user changes device.
@@ -391,6 +383,15 @@ class MicroPythonMode(BaseMode):
     connection = None
     baudrate = 115200
     builtins = ["const"]
+
+    def stop(self):
+        """
+        Stop the mode and clean up any resources.
+        """
+        # Remove REPL/Plotter if they are active
+        self.view.hide_device_selector()
+        self.remove_plotter()
+        self.remove_repl()
 
     def compatible_board(self, port):
         """
@@ -486,11 +487,12 @@ class MicroPythonMode(BaseMode):
         """
         If there's an active REPL, disconnect and hide it.
         """
-        if not self.plotter and self.connection:
-            self.connection.close()
-            self.connection = None
-        self.view.remove_repl()
-        self.repl = False
+        if self.repl:
+            if not self.plotter and self.connection:
+                self.connection.close()
+                self.connection = None
+            self.view.remove_repl()
+            self.repl = False
 
     def add_repl(self):
         """
@@ -594,27 +596,17 @@ class MicroPythonMode(BaseMode):
         """
         Remove plotter pane. Disconnects serial connection to device.
         """
-        if not self.repl and self.connection:
-            self.connection.close()
-            self.connection = None
-        super().remove_plotter()
+        if self.plotter:
+            if not self.repl and self.connection:
+                self.connection.close()
+                self.connection = None
+            super().remove_plotter()
 
     def activate(self):
         """
         Invoked whenever the mode is activated.
         """
         self.view.show_device_selector()
-
-    def deactivate(self):
-        """
-        Invoked whenever the mode is deactivated.
-        """
-        # Remove REPL/Plotter if they are active
-        self.view.hide_device_selector()
-        if self.plotter:
-            self.remove_plotter()
-        if self.repl:
-            self.remove_repl()
 
     def device_changed(self, new_device):
         """

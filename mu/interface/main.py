@@ -778,7 +778,7 @@ class Window(QMainWindow):
             area = self._runner_area or Qt.BottomDockWidgetArea
         self.addDockWidget(area, self.runner)
         logger.info(
-            "About to start_process: %r, %r, %r, %r, %r, %r, %r, %r",
+            "About to start_process: %r, %r, %r, %r, %r, %r, %r",
             script_name,
             working_directory,
             interactive,

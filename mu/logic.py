@@ -1501,17 +1501,9 @@ class Editor(QObject):
         Given the name of a mode, will make the necessary changes to put the
         editor into the new mode.
         """
-        # Remove the old mode's REPL / filesystem / plotter if required.
-        old_mode = self.modes[self.mode]
-        if hasattr(old_mode, "remove_repl"):
-            old_mode.remove_repl()
-        if hasattr(old_mode, "remove_fs"):
-            old_mode.remove_fs()
-        if hasattr(old_mode, "remove_plotter"):
-            if old_mode.plotter:
-                old_mode.remove_plotter()
-        # Deactivate old mode
-        self.modes[self.mode].deactivate()
+        # Make sure the mode's stop method is called so
+        # everything is cleaned up.
+        self.modes[self.mode].stop()
         # Re-assign to new mode.
         self.mode = mode
         # Activate new mode

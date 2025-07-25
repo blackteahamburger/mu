@@ -87,11 +87,7 @@ class SnekREPLConnection(REPLConnection):
         # non-default baud rate
 
         if self.wait_for_data:
-
-            def ready_func():
-                return self.set_ready()
-
-            QTimer.singleShot(3000, ready_func)
+            QTimer.singleShot(3000, self.set_ready())
         else:
             self.set_ready()
 
@@ -127,12 +123,8 @@ class SnekREPLConnection(REPLConnection):
         # if we were waiting for reset, we know the device is now
         # ready, so start transmitting
         if not self.ready and b"W" in data:
-
-            def ready_func():
-                return self.set_ready()
-
             # give it 200ms to finish starting up
-            QTimer.singleShot(200, ready_func)
+            QTimer.singleShot(200, self.set_ready)
 
     def send_data(self):
         while not self.waiting and self.data:
@@ -375,9 +367,6 @@ class SnekMode(MicroPythonMode):
     @property
     def description(self):
         return _("Write code for boards running Snek.")
-
-    def stop(self):
-        self.remove_repl()
 
     def actions(self):
         """

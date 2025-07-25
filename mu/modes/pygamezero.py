@@ -165,11 +165,17 @@ class PyGameZeroMode(BaseMode):
         """
         Stop the currently running game.
         """
-        logger.debug("Stopping script.")
         if self.runner:
+            logger.debug("Stopping script.")
             self.runner.stop_process()
             self.runner = None
-        self.view.remove_python_runner()
+            self.view.remove_python_runner()
+
+    def stop(self):
+        """
+        Called by logic.quit, so if the game is running, stop it.
+        """
+        self.stop_game()
 
     def show_images(self, event):
         """

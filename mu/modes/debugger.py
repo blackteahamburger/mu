@@ -145,17 +145,18 @@ class DebugMode(BaseMode):
         """
         Stop the debug runner and reset the UI.
         """
-        logger.debug("Stopping debugger.")
         if self.runner:
+            logger.debug("Stopping debugger.")
             self.runner.stop_process()
             self.runner = None
+            self.debugger.stop()
             self.debugger = None
             self.view.remove_python_runner()
             self.view.remove_debug_inspector()
-        self.set_buttons(modes=True)
-        self.editor.change_mode("python")
-        self.editor.mode = "python"
-        self.view.set_read_only(False)
+            self.set_buttons(modes=True)
+            self.editor.change_mode("python")
+            self.editor.mode = "python"
+            self.view.set_read_only(False)
 
     def finished(self):
         """
@@ -286,7 +287,6 @@ class DebugMode(BaseMode):
             break_lines = set()
             for handle in list(tab.breakpoint_handles):
                 line = tab.markerLine(handle)
-                tab.text(line)
                 if line > -1 and line not in break_lines:
                     self.debugger.create_breakpoint(tab.path, line + 1)
                     break_lines.add(line)

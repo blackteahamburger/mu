@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import bisect
 import codecs
+import functools
 import logging
 import os
 import os.path
@@ -626,11 +627,7 @@ class SnekREPLPane(MicroPythonREPLPane):
             logger.info("Sending command {}".format(command))
             self.connection.write(command)
             remainder = commands[1:]
-
-            def remaining_task(commands=remainder):
-                return self.execute(commands)
-
-            QTimer.singleShot(1000, remaining_task)
+            QTimer.singleShot(1000, functools.partial(self.execute, remainder))
 
     def process_bytes(self, data):
         """
@@ -1233,7 +1230,9 @@ class PythonProcessPane(QTextEdit):
             # to process. This allows the event loop to cycle and handle any
             # output from the child process as a result of the text pasted so
             # far (especially useful for handling responses from newlines).
-            QTimer.singleShot(2, lambda text=remainder: self.parse_paste(text))
+            QTimer.singleShot(
+                2, functools.partial(self.parse_paste, remainder)
+            )
 
     def keyPressEvent(self, data):
         """

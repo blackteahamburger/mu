@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import errno
 import json
 import logging
 import os.path
@@ -226,10 +227,16 @@ class Debugger(QObject):
         self.listener_thread.wait()
         if self.proc is not None:
             self.output("quit")
-        self.socket.shutdown(socket.SHUT_WR)
+        try:
+            self.socket.shutdown(socket.SHUT_WR)
+        except OSError as exc:
+            if exc.errno == errno.ENOTCONN:
+                pass
+            else:
+                raise
         if self.proc is not None:
             # Wait for the runner process to die.
-            self.proc.wait()
+            self.proc.waitForFinished()
 
     def output(self, event, **data):
         """

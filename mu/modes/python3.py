@@ -64,7 +64,7 @@ class KernelRunner(QObject):
         target current working directory and any user-defined envars
         """
         logger.debug(
-            "About to create KernelRunner for %s, %s, %s ",
+            "About to create KernelRunner for %s, %s ",
             cwd,
             envars,
         )
@@ -130,6 +130,14 @@ class PythonMode(BaseMode):
     @property
     def description(self):
         return _("Create code using standard Python 3.")
+
+    def stop(self):
+        """
+        Stop the mode and clean up any resources.
+        """
+        self.stop_script()
+        self.remove_repl()
+        self.remove_plotter()
 
     def actions(self):
         """
@@ -239,13 +247,13 @@ class PythonMode(BaseMode):
         """
         Stop the currently running script.
         """
-        logger.debug("Stopping script.")
         if self.runner:
+            logger.debug("Stopping script.")
             self.runner.stop_process()
             self.runner = None
-        self.view.remove_python_runner()
-        self.set_buttons(plotter=True, repl=True)
-        self.return_focus_to_current_tab()
+            self.view.remove_python_runner()
+            self.set_buttons(plotter=True, repl=True)
+            self.return_focus_to_current_tab()
 
     def debug(self, event):
         """
@@ -297,11 +305,12 @@ class PythonMode(BaseMode):
         """
         Remove the Jupyter REPL session.
         """
-        self.view.remove_repl()
-        self.set_buttons(repl=False)
-        # Don't block the GUI
-        self.stop_kernel.emit()
-        self.return_focus_to_current_tab()
+        if self.repl:
+            self.view.remove_repl()
+            self.set_buttons(repl=False)
+            # Don't block the GUI
+            self.stop_kernel.emit()
+            self.return_focus_to_current_tab()
 
     def toggle_plotter(self):
         """
@@ -331,8 +340,9 @@ class PythonMode(BaseMode):
         """
         Remove the plotter pane, dump data and clean things up.
         """
-        self.set_buttons(run=True, repl=True, debug=True)
-        super().remove_plotter()
+        if self.plotter:
+            self.set_buttons(run=True, repl=True, debug=True)
+            super().remove_plotter()
 
     def on_data_flood(self):
         """
@@ -353,6 +363,7 @@ class PythonMode(BaseMode):
         kernel.
         """
         self.view.add_jupyter_repl(kernel_manager, kernel_client)
+        self.repl = True
         self.set_buttons(repl=True)
         if self.runner:
             self.set_buttons(plotter=False)
