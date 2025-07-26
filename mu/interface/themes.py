@@ -55,6 +55,10 @@ class Font:
     def __init__(
         self, color="#181818", paper="#FEFEF7", bold=False, italic=False
     ):
+        """
+        Initialise the font with a color, paper (background), and style
+        (bold and/or italic).
+        """
         self.color = color
         self.paper = paper
         self.bold = bold
@@ -106,6 +110,9 @@ class Theme:
 
     @classmethod
     def apply_to(cls, lexer):
+        """
+        Apply the theme to the given lexer.
+        """
         # Apply a font for all styles
         lexer.setFont(Font().load())
 

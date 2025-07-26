@@ -45,14 +45,23 @@ class WebMode(BaseMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Web")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _('Build simple websites with the "Flask" web framework.')
 
     @property
     def code_template(self):
+        """
+        Get the code template for a new web application.
+        """
         _code_template = _("""\"\"\"
 A simple web application.
 \"\"\"

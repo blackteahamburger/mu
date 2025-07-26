@@ -55,6 +55,9 @@ class ModeItem(QListWidgetItem):
     """
 
     def __init__(self, name, description, icon, parent=None):
+        """
+        Instantiate a mode item with the given name, description, and icon.
+        """
         super().__init__(parent)
         self.name = name
         self.description = description
@@ -70,9 +73,15 @@ class ModeSelector(QDialog):
     """
 
     def __init__(self, parent=None):
+        """
+        Instantiate a mode selector dialog.
+        """
         super().__init__(parent)
 
     def setup(self, modes, current_mode):
+        """
+        Set up the mode selector dialog with available modes.
+        """
         self.setMinimumSize(600, 400)
         self.setWindowTitle(_("Select Mode"))
         widget_layout = QVBoxLayout()
@@ -134,6 +143,9 @@ class LogWidget(QWidget):
     """
 
     def setup(self, log):
+        """
+        Set up the log widget with the given log content.
+        """
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
         label = QLabel(
@@ -158,6 +170,9 @@ class EnvironmentVariablesWidget(QWidget):
     """
 
     def setup(self, envars):
+        """
+        Set up the environment variables widget with the given environment variables.
+        """
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
         label = QLabel(
@@ -184,6 +199,9 @@ class MicrobitSettingsWidget(QWidget):
     """
 
     def setup(self, custom_runtime_path):
+        """
+        Set up the micro:bit settings widget with the given runtime path.
+        """
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
         label = QLabel(
@@ -197,8 +215,28 @@ class MicrobitSettingsWidget(QWidget):
         widget_layout.addWidget(label)
         self.runtime_path = QLineEdit()
         self.runtime_path.setText(custom_runtime_path)
-        widget_layout.addWidget(self.runtime_path)
+        self.btnFolder = QPushButton(_("Browse"))
+        self.btnFolder.clicked.connect(self.show_folder_dialog)
+        hbox = QHBoxLayout()
+        hbox.addWidget(self.runtime_path)
+        hbox.addWidget(self.btnFolder)
+        widget_layout.addLayout(hbox)
         widget_layout.addStretch()
+
+    def show_folder_dialog(self):
+        """
+        Show a file dialog to select a MicroPython runtime hex file.
+        """
+        # open dialog and set to foldername
+        filename, _type = QFileDialog.getOpenFileName(
+            self,
+            _("Select MicroPython runtime (.hex)"),
+            os.path.expanduser("."),
+            _("MicroPython firmware (*.hex)"),
+        )
+        if filename:
+            filename = filename.replace("/", os.sep)
+            self.runtime_path.setText(filename)
 
 
 class PythonAnywhereWidget(QWidget):
@@ -214,6 +252,9 @@ class PythonAnywhereWidget(QWidget):
     ]
 
     def setup(self, username, token, instance="www"):
+        """
+        Set up the PythonAnywhere widget with the given username, token, and instance.
+        """
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
         label = QLabel(
@@ -292,6 +333,9 @@ class LocaleWidget(QWidget):
     }
 
     def setup(self, locale):
+        """
+        Set up the locale widget with the given locale.
+        """
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
         self.drop_down = QComboBox()
@@ -327,6 +371,9 @@ class ESPFirmwareFlasherWidget(QWidget):
     """
 
     def setup(self, mode, device_list):
+        """
+        Set up the firmware flasher widget with the given mode and device list.
+        """
         widget_layout = QVBoxLayout()
         self.setLayout(widget_layout)
 
@@ -401,18 +448,24 @@ class ESPFirmwareFlasherWidget(QWidget):
         self.mode = mode
 
     def show_folder_dialog(self):
+        """
+        Show a file dialog to select a MicroPython firmware binary file.
+        """
         # open dialog and set to foldername
-        filename = QFileDialog.getOpenFileName(
+        filename, _type = QFileDialog.getOpenFileName(
             self,
             _("Select MicroPython firmware (.bin)"),
             os.path.expanduser("."),
             _("Firmware (*.bin)"),
         )
         if filename:
-            filename = filename[0].replace("/", os.sep)
+            filename = filename.replace("/", os.sep)
             self.txtFolder.setText(filename)
 
     def update_firmware(self):
+        """
+        Update the firmware on the selected device using esptool.
+        """
         baudrate = 115200
 
         if self.mode.repl:
@@ -458,6 +511,9 @@ class ESPFirmwareFlasherWidget(QWidget):
         self.run_esptool()
 
     def run_esptool(self):
+        """
+        Run the esptool commands to flash the firmware.
+        """
         self.process = QProcess(self)
         self.process.setProcessChannelMode(QProcess.MergedChannels)
         self.process.readyReadStandardError.connect(self.read_process)
@@ -470,6 +526,9 @@ class ESPFirmwareFlasherWidget(QWidget):
         self.process.startCommand(command)
 
     def esptool_error(self, error_num):
+        """
+        Handle errors that occur during the execution of esptool commands.
+        """
         self.log_text_area.appendPlainText(
             "Error occurred: Error {}\n".format(error_num)
         )
@@ -513,9 +572,17 @@ class ESPFirmwareFlasherWidget(QWidget):
         self.log_text_area.setTextCursor(cursor)
 
     def firmware_path_changed(self):
+        """
+        Enable or disable the execute button based on the firmware path and
+        the selected device.
+        """
         self.toggle_exec_button()
 
     def toggle_exec_button(self):
+        """
+        Enable or disable the execute button based on the firmware path and
+        the selected device.
+        """
         if (
             len(self.txtFolder.text()) > 0
             and self.device_selector.selected_device() is not None
@@ -532,12 +599,18 @@ class AdminDialog(QDialog):
     """
 
     def __init__(self, parent=None):
+        """
+        Instantiate the admin dialog.
+        """
         super().__init__(parent)
         self.microbit_widget = None
         self.envar_widget = None
         self.python_anywhere_widget = None
 
     def setup(self, log, settings, mode, device_list):
+        """
+        Set up the admin dialog with the given log, settings, mode, and device list.
+        """
         self.setMinimumSize(600, 400)
         self.setWindowTitle(_("Mu Administration"))
         widget_layout = QVBoxLayout()
@@ -623,9 +696,15 @@ class FindReplaceDialog(QDialog):
     """
 
     def __init__(self, parent=None):
+        """
+        Instantiate a find/replace dialog.
+        """
         super().__init__(parent)
 
     def setup(self, find=None, replace=None, replace_flag=False):
+        """
+        Set up the find/replace dialog with the given parameters.
+        """
         self.setMinimumSize(600, 200)
         self.setWindowTitle(_("Find / Replace"))
         widget_layout = QVBoxLayout()

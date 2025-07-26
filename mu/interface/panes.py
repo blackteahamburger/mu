@@ -92,6 +92,9 @@ class JupyterREPLPane(RichJupyterWidget):
     on_append_text = pyqtSignal(bytes)
 
     def __init__(self, theme="day", parent=None):
+        """
+        Initialise the Jupyter REPL pane.
+        """
         super().__init__(parent)
         self.set_theme(theme)
         self.console_height = 10
@@ -161,6 +164,9 @@ class MicroPythonREPLPane(QTextEdit):
     """
 
     def __init__(self, connection, theme="day", parent=None):
+        """
+        Initialise the MicroPython REPL pane.
+        """
         super().__init__(parent)
         self.connection = connection
         self.setFont(Font().load())
@@ -218,9 +224,15 @@ class MicroPythonREPLPane(QTextEdit):
         menu.exec(QCursor.pos())
 
     def set_theme(self, theme):
+        """
+        Set the theme for the REPL pane.
+        """
         self.set_font_size(self.font_size)
 
     def send(self, msg):
+        """
+        Send a message to the REPL.
+        """
         self.connection.write(msg)
 
     def keyPressEvent(self, data):
@@ -310,7 +322,8 @@ class MicroPythonREPLPane(QTextEdit):
         self.move_cursor_to(self.textCursor().position())
 
     def move_cursor_to(self, new_position):
-        """Move the cursor, by sending vt100 left/right signals through
+        """
+        Move the cursor, by sending vt100 left/right signals through
         serial. The Qt cursor is first returned to the known location
         of the device cursor.  Then the appropriate number of move
         left or right signals are send.  The Qt cursor is not moved to
@@ -359,7 +372,8 @@ class MicroPythonREPLPane(QTextEdit):
         return False
 
     def mouseReleaseEvent(self, mouseEvent):
-        """Called whenever a user have had a mouse button pressed, and
+        """
+        Called whenever a user have had a mouse button pressed, and
         releases it. We pass it through to the normal way Qt handles
         button pressed, but also sends as cursor movement signal to
         the device (except if a selection is made, for selections we first
@@ -522,6 +536,9 @@ class SnekREPLPane(MicroPythonREPLPane):
     """
 
     def __init__(self, connection, theme="day", parent=None):
+        """
+        Initialise the Snek REPL pane.
+        """
         super().__init__(connection, theme, parent)
         self.getting_text = False
         self.text = b""
@@ -597,6 +614,9 @@ class SnekREPLPane(MicroPythonREPLPane):
             self.connection.write(bytes(text, "utf8"))
 
     def set_devicecursor_to_qtcursor(self):
+        """
+        Set the device cursor position to the Qt text cursor position.
+        """
         # Move cursor to the end of document
         tc = self.textCursor()
         tc.movePosition(QTextCursor.End, mode=QTextCursor.MoveAnchor)
@@ -706,11 +726,17 @@ class MicroPythonDeviceFileList(MuFileList):
     delete = pyqtSignal(str)
 
     def __init__(self, home):
+        """
+        Initialise the MicroPython device file list.
+        """
         super().__init__()
         self.home = home
         self.setDragDropMode(QListWidget.DragDrop)
 
     def dropEvent(self, event):
+        """
+        Handle the drop event for the file list.
+        """
         source = event.source()
         if isinstance(source, LocalFileList):
             file_exists = self.findItems(
@@ -739,6 +765,9 @@ class MicroPythonDeviceFileList(MuFileList):
         self.list_files.emit()
 
     def contextMenuEvent(self, event):
+        """
+        Handle the context menu event for the file list.
+        """
         menu_current_item = self.currentItem()
         if menu_current_item is None:
             return
@@ -773,11 +802,17 @@ class LocalFileList(MuFileList):
     open_file = pyqtSignal(str)
 
     def __init__(self, home):
+        """
+        Initialise the local file list.
+        """
         super().__init__()
         self.home = home
         self.setDragDropMode(QListWidget.DragDrop)
 
     def dropEvent(self, event):
+        """
+        Handle the drop event for the file list.
+        """
         source = event.source()
         if isinstance(source, MicroPythonDeviceFileList):
             file_exists = self.findItems(
@@ -809,6 +844,9 @@ class LocalFileList(MuFileList):
         self.list_files.emit()
 
     def contextMenuEvent(self, event):
+        """
+        Handle the context menu event for the file list.
+        """
         menu_current_item = self.currentItem()
         if menu_current_item is None:
             return
@@ -863,6 +901,9 @@ class FileSystemPane(QFrame):
     open_file = pyqtSignal(str)
 
     def __init__(self, home):
+        """
+        Initialise the file system pane.
+        """
         super().__init__()
         self.home = home
         self.font = Font().load()
@@ -998,6 +1039,9 @@ class FileSystemPane(QFrame):
         )
 
     def set_theme(self, theme):
+        """
+        Set the theme for the file system pane.
+        """
         pass
 
     def set_font_size(self, new_size=DEFAULT_FONT_SIZE):
@@ -1026,6 +1070,9 @@ class PythonProcessPane(QTextEdit):
     on_append_text = pyqtSignal(bytes)
 
     def __init__(self, parent=None):
+        """
+        Initialise the Python process pane.
+        """
         super().__init__(parent)
         self.setFont(Font().load())
         self.font_size = DEFAULT_FONT_SIZE
@@ -1155,6 +1202,9 @@ class PythonProcessPane(QTextEdit):
             self.running = True
 
     def stop_process(self):
+        """
+        Stop the running process.
+        """
         if self.process:
             self.process.terminate()
             terminated = self.process.waitForFinished(10)
@@ -1162,9 +1212,6 @@ class PythonProcessPane(QTextEdit):
                 self.process.kill()
                 self.process.waitForFinished()
             self.running = False
-
-    def _del_(self):
-        self.stop_process()
 
     def finished(self, code, status):
         """
@@ -1509,11 +1556,21 @@ class PythonProcessPane(QTextEdit):
         self.set_font_size(PANE_ZOOM_SIZES[size])
 
     def set_theme(self, theme):
+        """
+        Set the theme for the Python process pane.
+        """
         self.set_font_size(self.font_size)
 
 
 class DebugInspectorItem(QStandardItem):
+    """
+    Represents an item in the debug inspector tree.
+    """
+
     def __init__(self, *args):
+        """
+        Initialise the debug inspector item.
+        """
         super().__init__(*args)
         self.setEditable(False)
 
@@ -1525,6 +1582,9 @@ class DebugInspector(QTreeView):
     """
 
     def __init__(self):
+        """
+        Initialise the debug inspector.
+        """
         super().__init__()
         self.setUniformRowHeights(True)
         self.setSelectionBehavior(QTreeView.SelectRows)
@@ -1566,6 +1626,9 @@ class DebugInspector(QTreeView):
         self.set_font_size(PANE_ZOOM_SIZES[size])
 
     def set_theme(self, theme):
+        """
+        Set the theme for the debug inspector.
+        """
         pass
 
 
@@ -1581,6 +1644,9 @@ class PlotterPane(QChartView):
     data_flood = pyqtSignal()
 
     def __init__(self, parent=None):
+        """
+        Initialise the plotter pane.
+        """
         super().__init__(parent)
         # Holds the raw input to be checked for actionable data to display.
         self.input_buffer = []

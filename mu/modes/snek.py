@@ -43,6 +43,9 @@ class SnekREPLConnection(REPLConnection):
         chunk=16,
         wait_for_data=False,
     ):
+        """
+        Initialize the Snek REPL connection.
+        """
         super().__init__(port, baudrate)
         self.flowcontrol = flowcontrol
         self.sent = 0
@@ -79,6 +82,9 @@ class SnekREPLConnection(REPLConnection):
         self.pending = b""
 
     def open(self):
+        """
+        Open the serial connection.
+        """
         super().open()
 
         # If the device will reset on open, wait for it to send
@@ -91,21 +97,26 @@ class SnekREPLConnection(REPLConnection):
         else:
             self.set_ready()
 
-    # Flow control: every 'chunk' bytes, send an ENQ character and
-    # block until the matching ACK is received
-
     def send_enq(self):
+        """
+        Flow control: every 'chunk' bytes, send an ENQ character and
+        block until the matching ACK is received.
+        """
         super().write(b"\x05")
         self.waiting = True
 
-    # Called when an ACK is received. Restart transmission.
-
     def recv_ack(self):
+        """
+        Called when an ACK is received. Restart transmission.
+        """
         self.sent = 0
         self.waiting = False
         self.send_data()
 
     def _on_serial_read(self):
+        """
+        Handle incoming serial data.
+        """
         data = bytes(self.serial.readAll())
 
         # when we receive an ACK, restart transmission
@@ -127,6 +138,9 @@ class SnekREPLConnection(REPLConnection):
             QTimer.singleShot(200, self.set_ready)
 
     def send_data(self):
+        """
+        Send data to the device.
+        """
         while not self.waiting and self.data:
             amt = self.chunk - self.sent
             if amt > len(self.data):
@@ -138,9 +152,10 @@ class SnekREPLConnection(REPLConnection):
             if self.sent >= self.chunk:
                 self.send_enq()
 
-    # Overload write method to handle flow control when needed
-
     def write(self, data):
+        """
+        Overload write method to handle flow control when needed
+        """
         if not self.ready:
             self.pending += data
             return
@@ -156,8 +171,10 @@ class SnekREPLConnection(REPLConnection):
             super().write(data)
 
     def send_interrupt(self):
-        # Send a Control-O / exit raw mode.
-        # Send a Control-C / keyboard interrupt.
+        """
+        Send a Control-O / exit raw mode.
+        Send a Control-C / keyboard interrupt.
+        """
         self.write(b"\x0f\x03")
 
 
@@ -362,10 +379,16 @@ class SnekMode(MicroPythonMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Snek")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Write code for boards running Snek.")
 
     def actions(self):
@@ -432,12 +455,18 @@ class SnekMode(MicroPythonMode):
             self.view.repl_pane.send_commands(command)
 
     def get_tab(self):
+        """
+        Get the current tab to write to.
+        """
         for tab in self.view.widgets:
             if not tab.path:
                 return tab
         return None
 
     def recv_text(self, text):
+        """
+        Receive text from the device.
+        """
         target_tab = self.get_tab()
         if target_tab:
             target_tab.setText(text)

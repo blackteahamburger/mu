@@ -160,10 +160,16 @@ class MicrobitMode(MicroPythonMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("BBC micro:bit")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Write MicroPython for the BBC micro:bit.")
 
     def stop(self):
@@ -185,7 +191,7 @@ class MicrobitMode(MicroPythonMode):
                 "display_name": _("Flash"),
                 "description": _("Flash your code onto the micro:bit."),
                 "handler": self.flash,
-                "shortcut": "F3",
+                "shortcut": "F7",
             },
             {
                 "name": "files",
@@ -451,6 +457,9 @@ class MicrobitMode(MicroPythonMode):
         self.copy_main()
 
     def copy_finished(self):
+        """
+        Called when the thread used to copy main.py has finished.
+        """
         self.editor.show_status_message(_("Finished copying main.py."))
         logger.info("Finished copying main.py.")
         self.reset_flash_state()
@@ -494,9 +503,12 @@ class MicrobitMode(MicroPythonMode):
         self.reset_flash_state()
 
     def copy_failed_fallback_old(self, error):
-        # There was a problem with the serial communication with
-        # the device, so revert to forced flash... "old style".
-        # THIS IS A HACK! :-(
+        """
+        Called when the thread used to copy main.py encounters a problem and
+        there was a problem with the serial communication with
+        the device, so revert to forced flash... "old style".
+        THIS IS A HACK! :-(
+        """
         logger.warning("Could not copy file to device.")
         logger.error(error)
         logger.info("Falling back to old-style flashing.")

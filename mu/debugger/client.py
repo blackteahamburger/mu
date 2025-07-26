@@ -61,6 +61,9 @@ class Breakpoint:
         temporary=False,
         funcname=None,
     ):
+        """
+        Instantiate a breakpoint with the given attributes.
+        """
         self.bpnum = bpnum
         self.filename = filename
         self.line = line
@@ -69,6 +72,9 @@ class Breakpoint:
         self.funcname = funcname
 
     def __str__(self):
+        """
+        Return a string representation of the breakpoint.
+        """
         return "{}:{}".format(self.filename, self.line)
 
 

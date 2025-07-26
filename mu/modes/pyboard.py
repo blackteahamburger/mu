@@ -76,10 +76,16 @@ class PyboardMode(MicroPythonMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Pyboard MicroPython")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Use MicroPython on the Pyboard line of boards.")
 
     def actions(self):

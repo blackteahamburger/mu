@@ -240,7 +240,8 @@ def save_and_encode(text, filepath, newline=os.linesep):
 
 
 def sniff_encoding(filepath):
-    """Determine the encoding of a file:
+    """
+    Determine the encoding of a file:
 
     * If there is a BOM, return the appropriate encoding
     * If there is a PEP 263 encoding cookie, return the appropriate encoding
@@ -293,7 +294,8 @@ def sniff_encoding(filepath):
 
 
 def sniff_newline_convention(text):
-    """Determine which line-ending convention predominates in the text.
+    """
+    Determine which line-ending convention predominates in the text.
 
     Windows usually has U+000D U+000A
     Posix usually has U+000A
@@ -372,6 +374,9 @@ def extract_envars(raw):
 
 
 def save_session(session):
+    """
+    Save the current session to the settings file.
+    """
     settings.session.update(session)
     settings.session.save()
 
@@ -559,6 +564,9 @@ class Device:
         short_mode_name,
         board_name=None,
     ):
+        """
+        Initialise the device.
+        """
         self.vid = vid
         self.pid = pid
         self.port = port
@@ -639,10 +647,17 @@ class Device:
 
 
 class DeviceList(QtCore.QAbstractListModel):
+    """
+    A list of devices.
+    """
+
     device_connected = pyqtSignal("PyQt_PyObject")
     device_disconnected = pyqtSignal("PyQt_PyObject")
 
     def __init__(self, modes, parent=None):
+        """
+        Initialise the device list.
+        """
         super().__init__(parent)
         self.modes = modes
         self._devices = list()
@@ -767,6 +782,9 @@ class Editor(QObject):
     """
 
     def __init__(self, view):
+        """
+        Initialise the editor.
+        """
         super().__init__()
         logger.info("Setting up editor.")
         self._view = view

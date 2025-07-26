@@ -33,8 +33,13 @@ logger = logging.getLogger(__name__)
 
 
 class MuKernelManager(QtKernelManager):
+    """
+    Subclass of QtKernelManager for Mu-specific behavior.
+    """
+
     def start_kernel(self, **kw):
-        """Starts a kernel on this host in a separate process.
+        """
+        Starts a kernel on this host in a separate process.
 
         Subclassed to allow checking that the kernel uses the same Python as
         Mu itself.
@@ -125,10 +130,16 @@ class PythonMode(BaseMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Python 3")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Create code using standard Python 3.")
 
     def stop(self):

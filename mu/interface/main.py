@@ -86,6 +86,9 @@ class ButtonBar(QToolBar):
     """
 
     def __init__(self, parent):
+        """
+        Initialise the button bar.
+        """
         super().__init__(parent)
         self.setMovable(False)
         self.setIconSize(QSize(64, 64))
@@ -102,6 +105,9 @@ class ButtonBar(QToolBar):
         self.clear()
 
     def change_mode(self, mode):
+        """
+        Change the mode of the button bar.
+        """
         self.reset()
         self.addAction(
             name="modes",
@@ -207,6 +213,9 @@ class FileTabs(QTabWidget):
     """
 
     def __init__(self):
+        """
+        Initialise the file tabs.
+        """
         super(FileTabs, self).__init__()
         # We are implementing closable tabs manually
         self.setTabsClosable(False)
@@ -332,6 +341,9 @@ class Window(QMainWindow):
     debug_widths = None
 
     def __init__(self, parent=None):
+        """
+        Initialise the main window.
+        """
         super().__init__(parent)
         # Record pane area to allow reopening where user put it in a session
         self._debugger_area = 0
@@ -413,8 +425,8 @@ class Window(QMainWindow):
             )
         else:
             open_in = folder
-        path, _ = QFileDialog.getOpenFileName(
-            self.widget, "Open file", open_in, extensions
+        path, _type = QFileDialog.getOpenFileName(
+            self.widget, _("Open file"), open_in, extensions
         )
         logger.debug("Getting load path: {}".format(path))
         if allow_previous:
@@ -426,12 +438,12 @@ class Window(QMainWindow):
         Displays a dialog for selecting a file to save. Returns the selected
         path. Defaults to start in the referenced folder.
         """
-        path, _ = QFileDialog.getSaveFileName(
+        path, _type = QFileDialog.getSaveFileName(
             self.widget,
-            "Save file",
+            _("Save file"),
             folder if self.previous_folder is None else self.previous_folder,
-            "Python (*.py);;Other (*.*)",
-            "Python (*.py)",
+            _("Python (*.py);;Other (*.*)"),
+            _("Python (*.py)"),
         )
         self.previous_folder = os.path.dirname(path)
         # Ensure there's a .py extension if none is provided by the user.
@@ -452,7 +464,7 @@ class Window(QMainWindow):
         """
         path = QFileDialog.getExistingDirectory(
             self.widget,
-            "Locate BBC micro:bit",
+            _("Locate BBC micro:bit"),
             folder if self.previous_folder is None else self.previous_folder,
             QFileDialog.ShowDirsOnly,
         )
@@ -1422,6 +1434,9 @@ class StatusBar(QStatusBar):
     """
 
     def __init__(self, parent=None, mode="python"):
+        """
+        Initializes the status bar with a mode and sets up the widgets.
+        """
         super().__init__(parent)
         self.mode = mode
         self.msg_duration = 5

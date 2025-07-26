@@ -14,6 +14,9 @@ _qapp_instance = None
 
 @pytest.fixture(scope="session", autouse=True)
 def qtapp():
+    """
+    Create a QApplication instance for the test session.
+    """
     app = QApplication.instance()
     if app is None:
         global _qapp_instance
@@ -25,7 +28,9 @@ def qtapp():
 
 @pytest.fixture(scope="session", autouse=True)
 def disable_autosave():
-    """Ensure that no settings are autosaved as part of a test"""
+    """
+    Ensure that no settings are autosaved as part of a test.
+    """
     with mock.patch.object(
         settings.SettingsBase, "register_for_autosave"
     ) as register:
@@ -34,7 +39,9 @@ def disable_autosave():
 
 @pytest.fixture(autouse=True)
 def temp_shared_mem_app_name():
-    """Make multi-instance execution blocking shared memory app name unique for tests"""
+    """
+    Make multi-instance execution blocking shared memory app name unique for tests.
+    """
     os.environ["MU_TEST_SUPPORT_RANDOM_APP_NAME_EXT"] = "_" + str(
         random.randint(0, 100000000)
     )
@@ -44,5 +51,7 @@ def temp_shared_mem_app_name():
 
 @pytest.fixture(scope="session", autouse=True)
 def set_locale():
-    """Enforce the en locale"""
+    """
+    Enforce the en locale.
+    """
     set_language("en")

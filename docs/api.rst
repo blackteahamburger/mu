@@ -132,12 +132,44 @@ The Python 3 debugger mode.
 .. automodule:: mu.modes.debugger
     :members:
 
+``mu.modes.esp``
+++++++++++++++++
+
+The ESP8266/ESP32 mode.
+
+.. automodule:: mu.modes.esp
+    :members:
+
+``mu.modes.lego``
++++++++++++++++++++++
+
+The LEGO mode.
+
+.. automodule:: mu.modes.lego
+    :members:
+
 ``mu.modes.microbit``
 +++++++++++++++++++++
 
 The original BBC micro:bit mode.
 
 .. automodule:: mu.modes.microbit
+    :members:
+
+``mu.modes.pico``
++++++++++++++++++++++
+
+The Raspberry Pi Pico mode.
+
+.. automodule:: mu.modes.pico
+    :members:
+
+``mu.modes.pyboard``
++++++++++++++++++++++
+
+The MicroPython board mode.
+
+.. automodule:: mu.modes.pyboard
     :members:
 
 ``mu.modes.pygamezero``
@@ -154,6 +186,14 @@ The Pygame Zero / pygame mode.
 The Python 3 editing mode.
 
 .. automodule:: mu.modes.python3
+    :members:
+
+``mu.modes.snek``
++++++++++++++++++++++
+
+The Snek mode.
+
+.. automodule:: mu.modes.snek
     :members:
 
 ``mu.resources``

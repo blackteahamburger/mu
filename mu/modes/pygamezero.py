@@ -54,10 +54,16 @@ class PyGameZeroMode(BaseMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Pygame Zero")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Make games with Pygame Zero.")
 
     def actions(self):

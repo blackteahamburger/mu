@@ -98,6 +98,9 @@ class Debugger(bdb.Bdb):
     ETX = b"\x03"  # End transmission token.
 
     def __init__(self, socket, host, port, skip=None):
+        """
+        Initialize the debugger with a socket, host, port, and optional skip.
+        """
         super().__init__(skip=skip)
         self._run_state = DebugState.NOT_STARTED
         self.socket = socket

@@ -55,6 +55,9 @@ class PythonAnywhereWorker(QObject):
     error = pyqtSignal(str)  # Emitted with an error description if failed.
 
     def __init__(self, instance, username, token, files, app_name, progress):
+        """
+        Initialise the worker with the necessary parameters.
+        """
         super().__init__(None)
         self.instance = instance
         self.username = username  # PythonAnywhere username.
@@ -86,6 +89,17 @@ class PythonAnywhereWorker(QObject):
         )
 
     def run(self):
+        """
+        Run the worker to deploy the application to PythonAnywhere.
+        This method performs the following steps:
+        1. Checks if the web application exists.
+        2. Creates the web application if it does not exist.
+        3. Configures static file serving.
+        4. Uploads the files to the web application.
+        5. Updates the WSGI settings.
+        6. Forces HTTPS and sets the source directory.
+        7. Reloads the web application.
+        """
         logger.info(
             "Deploying to PythonAnywhere {instance} for: {app_name}".format(
                 instance=self.instance, app_name=self.app_name

@@ -31,17 +31,23 @@ QDir.addSearchPath("css", str(importlib_files("mu.resources").joinpath("css")))
 
 
 def path(name, resource_dir="images"):
-    """Return the filename for the referenced image."""
+    """
+    Return the filename for the referenced image.
+    """
     return importlib_files("mu.resources").joinpath(resource_dir, name)
 
 
 def load_icon(name):
-    """Load an icon from the resources directory."""
+    """
+    Load an icon from the resources directory.
+    """
     return QIcon(str(path(name)))
 
 
 def load_pixmap(name, size=None):
-    """Load a pixmap from the resources directory."""
+    """
+    Load a pixmap from the resources directory.
+    """
     if size is not None:
         icon = load_icon(name)
         return icon.pixmap(size)
@@ -49,7 +55,9 @@ def load_pixmap(name, size=None):
 
 
 def load_stylesheet(name):
-    """Load a CSS stylesheet from the resources directory."""
+    """
+    Load a CSS stylesheet from the resources directory.
+    """
     return path(name, "css").read_bytes().decode("utf8")
 
 

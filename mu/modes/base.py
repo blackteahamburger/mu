@@ -50,11 +50,18 @@ MODULE_NAMES.add("builtins")
 
 
 class REPLConnection(QObject):
+    """
+    Represents a connection to a REPL (Read-Eval-Print Loop) environment.
+    """
+
     serial = None
     data_received = pyqtSignal(bytes)
     connection_error = pyqtSignal(str)
 
     def __init__(self, port, baudrate=115200):
+        """
+        Initialize the REPL connection.
+        """
         super().__init__()
         self.serial = QSerialPort()
         self._port = port
@@ -64,6 +71,9 @@ class REPLConnection(QObject):
 
     @property
     def port(self):
+        """
+        Get the port name for the REPL connection.
+        """
         if self.serial:
             # perhaps return self.serial.portName()?
             return self._port
@@ -72,6 +82,9 @@ class REPLConnection(QObject):
 
     @property
     def baudrate(self):
+        """
+        Get the baud rate for the REPL connection.
+        """
         if self.serial:
             # perhaps return self.serial.baudRate()
             return self._baudrate
@@ -82,7 +95,6 @@ class REPLConnection(QObject):
         """
         Open the serial link
         """
-
         logger.info("Connecting to REPL on port: {}".format(self.port))
 
         # Using pyserial as a 'hack' to open the port and set DTR
@@ -117,9 +129,15 @@ class REPLConnection(QObject):
         self.data_received.emit(data)
 
     def write(self, data):
+        """
+        Write data to the REPL connection.
+        """
         self.serial.write(data)
 
     def send_interrupt(self):
+        """
+        Send an interrupt to the REPL connection.
+        """
         self.write(EXIT_RAW_MODE)  # CTRL-B
         self.write(KEYBOARD_INTERRUPT)  # CTRL-C
 
@@ -177,17 +195,29 @@ class BaseMode(QObject):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return "UNNAMED MODE"
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return "DESCRIPTION NOT AVAILABLE."
 
     @property
     def code_template(self):
+        """
+        Get the code template for the mode.
+        """
         return _("# Write your code here :-)")
 
     def __init__(self, editor, view):
+        """
+        Initialize the mode with the given editor and view.
+        """
         self.editor = editor
         self.view = view
         super().__init__()
@@ -291,8 +321,9 @@ class BaseMode(QObject):
         return NotImplemented
 
     def write_plotter_data_to_csv(self, csv_filepath):
-        """Write any plotter data out to a CSV file when the
-        plotter is closed
+        """
+        Write any plotter data out to a CSV file when the
+        plotter is closed.
         """
         with open(csv_filepath, "w", newline="") as csvfile:
             csv_writer = csv.writer(csvfile)
@@ -462,6 +493,9 @@ class MicroPythonMode(BaseMode):
         return devices
 
     def port_path(self, port_name):
+        """
+        Get the port path.
+        """
         if os.name == "posix":
             # If we're on Linux or OSX reference the port is like this...
             return "/dev/{}".format(port_name)

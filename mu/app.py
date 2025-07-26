@@ -160,34 +160,49 @@ def setup_modes(editor, view):
 
 
 class MutexError(BaseException):
+    """
+    Exception raised when a mutex cannot be acquired.
+    """
+
     pass
 
 
 class SharedMemoryMutex(object):
-    """Simple wrapper around the QSharedMemory object, adding a context
+    """
+    Simple wrapper around the QSharedMemory object, adding a context
     handler which uses the built in Semaphore as a locking mechanism
-    and raises an error if the shared memory object is already in use
-
-    Now detects and cleans up zombie shared memory on *nix systems.
+    and raises an error if the shared memory object is already in use.
+    Detects and cleans up zombie shared memory on Unix systems.
     """
 
     NAME = "mu-tex"
 
     def __init__(self):
+        """
+        Initialise the shared memory mutex.
+        """
         sharedAppName = self.NAME
         if "MU_TEST_SUPPORT_RANDOM_APP_NAME_EXT" in os.environ:
             sharedAppName += os.environ["MU_TEST_SUPPORT_RANDOM_APP_NAME_EXT"]
         self._shared_memory = QSharedMemory(sharedAppName)
 
     def __enter__(self):
+        """
+        Lock the shared memory mutex.
+        """
         self._shared_memory.lock()
         return self
 
     def __exit__(self, *args, **kwargs):
+        """
+        Unlock the shared memory mutex.
+        """
         self._shared_memory.unlock()
 
     def _pid_exists(self, pid):
-        """Check if a process with given pid exists (*nix only)."""
+        """
+        Check if a process with given pid exists (*nix only).
+        """
         if pid <= 0:
             return False
         try:
@@ -198,6 +213,9 @@ class SharedMemoryMutex(object):
             return True
 
     def acquire(self):
+        """
+        Acquire the shared memory mutex.
+        """
         self._shared_memory.attach()
         self._shared_memory.detach()
 
@@ -217,6 +235,9 @@ class SharedMemoryMutex(object):
             self._shared_memory.data()[:8] = struct.pack("q", os.getpid())
 
     def release(self):
+        """
+        Release the shared memory mutex.
+        """
         self._shared_memory.detach()
 
 
@@ -236,7 +257,9 @@ def is_linux_wayland():
 
 
 def check_only_running_once():
-    """If the application is already running log the error and exit"""
+    """
+    If the application is already running log the error and exit
+    """
     try:
         with _shared_memory:
             _shared_memory.acquire()

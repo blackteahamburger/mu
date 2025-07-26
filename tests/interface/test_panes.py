@@ -2369,16 +2369,6 @@ def test_PythonProcessPane_stop_process():
     ppp.process.waitForFinished.assert_called_once_with(10)
 
 
-def test_PythonProcessPane_del_():
-    """
-    Ensure that _del_ calls stop_process.
-    """
-    ppp = mu.interface.panes.PythonProcessPane()
-    ppp.stop_process = mock.MagicMock()
-    ppp._del_()
-    ppp.stop_process.assert_called_once_with()
-
-
 def test_PythonProcessPane_stop_process_with_error():
     """
     If killing the child process encounters a problem (perhaps the

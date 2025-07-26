@@ -69,10 +69,16 @@ class ESPMode(MicroPythonMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("ESP MicroPython")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Write MicroPython on ESP8266/ESP32 boards.")
 
     def stop(self):
@@ -133,6 +139,9 @@ class ESPMode(MicroPythonMode):
         return SHARED_APIS + ESP_APIS
 
     def toggle_repl(self, event):
+        """
+        Toggle the REPL interface.
+        """
         if self.fs is None:
             if self.repl:
                 # Remove REPL
@@ -240,7 +249,6 @@ class ESPMode(MicroPythonMode):
         """
         Add the file system navigator to the UI.
         """
-
         # Find serial port the ESP8266/ESP32 is connected to
         device = self.editor.current_device
 

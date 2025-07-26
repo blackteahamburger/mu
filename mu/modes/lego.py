@@ -43,10 +43,16 @@ class LegoMode(ESPMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Lego MicroPython")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Write MicroPython directly on Lego Spike devices.")
 
     def api(self):

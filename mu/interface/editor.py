@@ -51,6 +51,9 @@ class PythonLexer(QsciLexerPython):
     """
 
     def __init__(self, *args, **kwargs):
+        """
+        Initialise the Python lexer.
+        """
         super().__init__(*args, **kwargs)
         self.setHighlightSubidentifiers(False)
 
@@ -93,6 +96,9 @@ class EditorPane(QsciScintilla):
     context_menu = pyqtSignal()
 
     def __init__(self, path, text, newline=NEWLINE):
+        """
+        Initialise the editor pane with the given path and text.
+        """
         super().__init__()
         self.setUtf8(True)
         self.path = path
@@ -144,7 +150,6 @@ class EditorPane(QsciScintilla):
         """
         Run by Qt when *something* is dropped on this editor
         """
-
         # Does the drag event have any urls?
         # Files are transferred as a url (by path not value)
         if event.mimeData().hasUrls():
@@ -475,7 +480,8 @@ class EditorPane(QsciScintilla):
         )  # More POSIX compatible RegEx
 
     def range_from_positions(self, start_position, end_position):
-        """Given a start-end pair, such as are provided by a regex match,
+        """
+        Given a start-end pair, such as are provided by a regex match,
         return the corresponding Scintilla line-offset pairs which are
         used for searches, indicators etc.
 

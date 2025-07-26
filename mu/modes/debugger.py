@@ -42,13 +42,22 @@ class DebugMode(BaseMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("Graphical Debugger")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Debug your Python 3 code.")
 
     def __init__(self, editor, view):
+        """
+        Initialize the debug mode.
+        """
         super().__init__(editor, view)
         self._button_disable_timer = QTimer()
         self._button_disable_timer.setSingleShot(True)

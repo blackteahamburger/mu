@@ -133,10 +133,16 @@ class CircuitPythonMode(MicroPythonMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("CircuitPython")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Write code for boards running CircuitPython.")
 
     def actions(self):
@@ -289,7 +295,6 @@ class CircuitPythonMode(MicroPythonMode):
         Use adafruit_board_toolkit to find out whether a board is running
         CircuitPython. The toolkit sees if the CDC Interface name is appropriate.
         """
-
         pid = port.productIdentifier()
         vid = port.vendorIdentifier()
         manufacturer = port.manufacturer()

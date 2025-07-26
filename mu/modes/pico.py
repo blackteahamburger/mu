@@ -43,10 +43,16 @@ class PicoMode(ESPMode):
 
     @property
     def name(self):
+        """
+        Get the name of the mode.
+        """
         return _("RP2040")
 
     @property
     def description(self):
+        """
+        Get a description of the mode.
+        """
         return _("Write MicroPython directly on a Raspberry Pi Pico.")
 
     def api(self):
