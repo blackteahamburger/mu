@@ -6,7 +6,7 @@ import platformdirs
 DATA_DIR = platformdirs.user_data_dir(appname="mu", appauthor="python")
 
 # Maximum line length for using both in Check and Tidy
-MAX_LINE_LENGTH = 88
+MAX_LINE_LENGTH = 79
 
 # The user's home directory.
 HOME_DIRECTORY = os.path.expanduser("~")

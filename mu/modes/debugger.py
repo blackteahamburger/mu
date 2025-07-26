@@ -153,10 +153,8 @@ class DebugMode(BaseMode):
             self.debugger = None
             self.view.remove_python_runner()
             self.view.remove_debug_inspector()
-            self.set_buttons(modes=True)
-            self.editor.change_mode("python")
-            self.editor.mode = "python"
-            self.view.set_read_only(False)
+        self.editor.change_mode("python")
+        self.view.set_read_only(False)
 
     def finished(self):
         """

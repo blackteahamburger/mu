@@ -9,13 +9,14 @@ This is the first version released by this fork of Mu, which was originally inte
 This version basically does not provide feature updates, containing the following changes:
 
 * Support for new versions of all dependencies (including PyQt6 support)
+* Code style check and formatting improvements
 * New translation: zh_TW (Traditional Chinese)
+* Modernize packaging to use pyproject.toml
 * Runtime virtual environment is removed
 * Splash screen is removed to speed up startup time
 * Bundled libraries under mu.contrib are removed to allow for immediate new version usage and easier maintenance
 * is_breakpoint_line is removed to simplify the code - now all lines can have breakpoints, and comments are simply ignored
 * micro:bit mode: minifying option is removed - now done by uflash and by default
-* Modernize packaging to use pyproject.toml
 * Various miscellaneous improvements, including bugfix, test, formatting, translation (mainly zh_CN), documentation...
 
 1.2.2

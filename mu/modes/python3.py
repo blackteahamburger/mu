@@ -259,10 +259,8 @@ class PythonMode(BaseMode):
         """
         Debug the script using the debug mode.
         """
-        logger.info("Starting debug mode.")
         self.editor.change_mode("debugger")
-        self.editor.mode = "debugger"
-        self.editor.modes["debugger"].start()
+        self.editor.modes[self.editor.mode].start()
 
     def toggle_repl(self, event):
         """

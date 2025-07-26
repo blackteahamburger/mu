@@ -237,8 +237,6 @@ def index():
             envars = self.editor.envars
             envars["FLASK_APP"] = os.path.basename(tab.path)
             envars["FLASK_ENV"] = "development"
-            envars["LC_ALL"] = "en_GB.UTF8"
-            envars["LANG"] = "en_GB.UTF8"
             args = ["-m", "flask", "run"]
             cwd = os.path.dirname(tab.path)
             self.runner = self.view.add_python3_runner(

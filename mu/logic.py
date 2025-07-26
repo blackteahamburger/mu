@@ -425,19 +425,7 @@ def check_pycodestyle(code, config_file=False):
     save_and_encode(code, code_filename)
     # Configure which PEP8 rules to ignore.
     ignore = (
-        "E121",
-        "E123",
-        "E126",
-        "E226",
         "E203",
-        "E302",
-        "E305",
-        "E24",
-        "E704",
-        "W291",
-        "W292",
-        "W293",
-        "W391",
         "W503",
     )
     style = StyleGuide(
@@ -1503,7 +1491,8 @@ class Editor(QObject):
         """
         # Make sure the mode's stop method is called so
         # everything is cleaned up.
-        self.modes[self.mode].stop()
+        if not self.modes[self.mode].is_debugger:
+            self.modes[self.mode].stop()
         # Re-assign to new mode.
         self.mode = mode
         # Activate new mode
@@ -1780,15 +1769,13 @@ class Editor(QObject):
         # Only works on Python, so abort.
         if tab.path and not self.has_python_extension(tab.path):
             return
-        from black import FileMode, format_str
-        from black.mode import TargetVersion
+        from black import Mode, format_str
 
         try:
             source_code = tab.text()
             logger.info("Tidy code.")
             logger.info(source_code)
-            filemode = FileMode(
-                target_versions={TargetVersion.PY36},
+            filemode = Mode(
                 line_length=MAX_LINE_LENGTH,
             )
             tidy_code = format_str(source_code, mode=filemode)
