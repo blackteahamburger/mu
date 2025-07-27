@@ -316,9 +316,12 @@ class PythonMode(BaseMode):
         """
         if self.repl:
             self.view.remove_repl()
+            self.repl = False
             self.set_buttons(repl=False)
             # Don't block the GUI
             self.stop_kernel.emit()
+            self.kernel_thread.quit()
+            self.kernel_thread.wait()
             self.return_focus_to_current_tab()
 
     def toggle_plotter(self):
@@ -385,7 +388,6 @@ class PythonMode(BaseMode):
         Handles UI updates for when the kernel runner has shut down the running
         iPython kernel.
         """
-        self.repl_kernel_manager = None
         self.set_buttons(repl=True, plotter=True, run=True)
         self.editor.show_status_message(_("REPL stopped."))
         self.kernel_runner = None
