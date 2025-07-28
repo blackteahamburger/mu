@@ -21,7 +21,7 @@ import logging
 import os
 import sys
 
-from PyQt6.QtCore import QObject, QThread, pyqtSignal
+from PyQt6.QtCore import QObject, QThread, QTimer, pyqtSignal
 from qtconsole.client import QtKernelClient
 from qtconsole.manager import QtKernelManager
 
@@ -382,6 +382,20 @@ class PythonMode(BaseMode):
         elif self.plotter:
             self.set_buttons(run=False, debug=False)
         self.editor.show_status_message(_("REPL started."))
+        # Handle `quit` or `exit` command in the REPL.
+        self._kernel_check_timer = QTimer()
+        self._kernel_check_timer.timeout.connect(self._check_kernel_alive)
+        self._kernel_check_timer.start()
+
+    def _check_kernel_alive(self):
+        """
+        Checks if the kernel is alive and updates the UI accordingly.
+        """
+        if self.kernel_runner and self.kernel_runner.repl_kernel_manager:
+            if not self.kernel_runner.repl_kernel_manager.is_alive():
+                logger.info("Kernel not alive, closing REPL.")
+                self._kernel_check_timer.stop()
+                self.remove_repl()
 
     def on_kernel_stop(self):
         """
